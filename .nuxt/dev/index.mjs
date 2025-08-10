@@ -690,7 +690,7 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
-    "baseUrl": ""
+    "baseUrl": "http://localhost:4000"
   }
 };
 const envOptions = {

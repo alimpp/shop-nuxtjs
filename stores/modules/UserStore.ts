@@ -26,8 +26,7 @@ export class UserStore extends BaseStore<IUserState> {
         fristname: "",
         lastname: "",
         email: "",
-        avatarUrl: "",
-        bio: "",
+        phone: "",
         fullname: "",
         fristChar: "",
       },
@@ -55,8 +54,16 @@ export class UserStore extends BaseStore<IUserState> {
     return this._state.user
   }
 
+  get getUserPhone() {
+    return this._state.user.phone
+  }
+
   setUser(user: IUser) {
     this._state.user = user;
+  }
+
+  setUserPhone(phone: string) {
+    this._state.user.phone = phone;
   }
 
   setAuthenticated(flag: boolean) {
@@ -69,8 +76,7 @@ export class UserStore extends BaseStore<IUserState> {
       fristname: "",
       lastname: "",
       email: "",
-      avatarUrl: "",
-      bio: "",
+      phone: "",
       fullname: "",
       fristChar: "",
     }),

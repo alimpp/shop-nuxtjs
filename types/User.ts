@@ -3,15 +3,9 @@ export interface IUser {
   fristname: string;
   lastname: string,
   email: string,
-  avatarUrl: string,
-  bio: string
+  phone: string,
   fullname: string,
   fristChar: string
-}
-
-export interface ILoginForm {
-    email: string,
-    password: string
 }
 
 export interface IRegisterForm {

@@ -31,6 +31,24 @@ export const useValidations = () => {
     return { isValid: true, message: '' };
   }
 
-  return { validEmail, validEmpty, validLength }
+  const ValidationIranianPhoneNumber = (phoneNumber: string) => {
+    const cleaned = phoneNumber.toString().replace(/\D/g, "");
+
+    const patterns = [
+      /^09[0-9]{9}$/,
+      /^989[0-9]{9}$/,
+      /^021[0-9]{8}$/,
+      /^\+98[0-9]{10}$/,
+      /^0098[0-9]{10}$/,
+    ];
+
+    if (patterns.some((pattern) => pattern.test(cleaned))) {
+      return true
+    } else {
+      return false
+    }
+};
+
+  return { validEmail, validEmpty, validLength, ValidationIranianPhoneNumber }
 
 }

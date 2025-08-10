@@ -3,8 +3,8 @@
     <div class="w-50 flex px-10 align-center">
       <BaseAvatar width="45px" height="45px" :character="user.fristChar" :avatar="user.avatarUrl" />
       <div class="flex flex-column justify-center px-5">
-        <span class="f-s-14 f-w-600">{{ user.fullname }}</span>
-        <span class="f-s-12 f-w-500 color-gray">{{ user.email }}</span>
+        <span class="f-s-14 f-w-600">{{ user.phone }}</span>
+        <span class="f-s-12 f-w-500 color-gray">{{ user.fullname }}</span>
       </div>
     </div>
     <div class="w-50 flex justify-end px-10 align-center">

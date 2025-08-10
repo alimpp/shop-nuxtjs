@@ -9,7 +9,7 @@
     </div>
     <div class="flex flex-column px-10 pt-10">
       <div class="flex justify-center">
-        <img src="/public/logo/black-cat-logo.png" alt="logo" width="100">
+        <img src="/public/logo/logo.png" alt="logo" width="100">
       </div>
       <BaseDivider class="mt-10" />
       <div

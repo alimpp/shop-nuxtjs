@@ -1,7 +1,6 @@
 import { UserDataModel } from "~/model/User";
 
-import type { ILoginForm, IRegisterForm } from "@/types/User";
-const { success } = useToast()
+const { success, error } = useToast()
 interface IUpdateProfile {
   fristname: string;
   lastname: string;
@@ -15,7 +14,6 @@ export class UserController extends UserDataModel {
   }
 
   private userStore = useUserStore();
-  private applicationStore = useApplicationStore();
 
   private getCacheData() {
     const cacheUser = this.readObject();
@@ -24,33 +22,30 @@ export class UserController extends UserDataModel {
     }
   }
 
-  public async login(loginForm: ILoginForm) {
-    await this.Post("/api/auth/login", loginForm)
+  public async requestOtp(phoneNumber: string) {
+    await this.Post("/api/auth/request-otp", {phoneNumber})
       .then((res: unknown) => {
-        const response = res as { token: string };
+        success(`Send otp code to ${phoneNumber}`)
+        this.userStore.setUserPhone(phoneNumber)
+        navigateTo("/auth/verify-otp");
+      })
+      .catch((err) => {
+        error(`Send otp has error please try again`)
+      });
+  }
+
+  public async verifyOtp(payload: {phoneNumber: string, otp: string}) {
+    await this.Post("/api/auth/verify-otp", payload)
+      .then((res: unknown) => {
+        const response = res as { accessToken: string };
         const tokenCookie = useCookie("token", { maxAge: 60 * 60 * 24 });
-        tokenCookie.value = response.token;
+        tokenCookie.value = response.accessToken;
         success('Authenticated Success')
         navigateTo("/");
       })
       .catch((err) => {
-        if (err.data.data.statusCode == 401) {
-          this.applicationStore.setAlert(
-            "danger",
-            err.data.data.message,
-            err.data.data.error,
-            5000
-          );
-        }
+        error('Otp code is invalid!')
       });
-  }
-
-  public async register(registerForm: IRegisterForm) {
-    const response = await this.Post("/api/auth/register", registerForm);
-    if (response) {
-      success('New Profile Created')
-      navigateTo("/auth/login");
-    }
   }
 
   public async profile(): Promise<void> {

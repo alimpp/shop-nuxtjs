@@ -1,0 +1,37 @@
+<template>
+   <div class="w-100 flex flex-column fade-animation-1s">
+        <div class="w-100 flex flex-column justify-start">
+            <span class="f-s-16 f-w-500">Please enter otp code</span>
+            <span class="f-s-12 f-w-500 color-primary pt-5">Authentication with otp code</span>
+        </div>
+        <div class="mt-10">
+            <BaseOtp
+                v-model="otp" 
+                :length="6" 
+                @complete="sendOtp"
+                ref="otpInputRef"
+                :loading="loading"
+            />
+        </div>
+   </div>
+</template>
+
+<script setup>
+import { userController } from '@/controllers/User'
+
+const userStore = useUserStore()
+
+definePageMeta({
+  layout: "auth",
+});
+
+const loading = ref(false)
+const otp = ref('')
+
+const sendOtp = async () => {
+    const phone = userStore.getUserPhone
+    loading.value = !loading.value
+    await userController.verifyOtp({phoneNumber: phone, otp: otp.value})
+    loading.value = !loading.value
+}
+</script>

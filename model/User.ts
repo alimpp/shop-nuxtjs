@@ -1,25 +1,19 @@
 import { BaseApp } from "../core/BaseApp";
 
-import { filesController } from "@/controllers/Files";
-
 export class UserDataModel extends BaseApp<any> {
   constructor() {
     super("user");
   }
 
   async profileParsed(user: any) {
-    const avatarUrl = user.avatarUrl
-      ? await filesController.downloadFileById(user.avatarUrl)
-      : "";
     const result = {
       fullname: user.fristname + " " + user.lastname,
-      fristChar: user.fristname[0].toUpperCase(),
+      fristChar: user.fristname ? user.fristname[0].toUpperCase() : user.phone[0]+user.phone[1],
       fristname: user.fristname,
       lastname: user.lastname,
-      email: user.email,
       id: user.id,
-      avatarUrl,
-      bio: user.bio,
+      phone: user.phone,
+      email: user.email
     };
     this.saveItem(result);
     return result;

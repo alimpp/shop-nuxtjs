@@ -131,6 +131,16 @@ watch(
             errorMessage.value = result.message;
           }
           break;
+        case "phone":
+          const { ValidationIranianPhoneNumber } = useValidations()
+          if (ValidationIranianPhoneNumber(props.modelValue)) {
+            access.value = true;
+            errorMessage.value = "";
+          } else {
+            access.value = false;
+            errorMessage.value = "Phone number is not valid";
+          }
+          break;
       }
     }
   },

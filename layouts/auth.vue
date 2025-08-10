@@ -2,7 +2,7 @@
     <div class="auth-layout">
       <div class="glass-content">
          <div class="content">
-            <img src="/public/logo/black-cat-logo.png" alt="logo" width="150" height="150">
+            <img src="/public/logo/logo.png" alt="logo" width="150" height="150">
             <NuxtPage />
          </div>
       </div>
@@ -22,7 +22,7 @@ const alert = computed(() => {
 .auth-layout{
     width: 100%;
     height: 100dvh;
-    background-image: url('/public/gifs/auth-bg.gif');
+    background-image: url('/public/image/auth-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -30,21 +30,29 @@ const alert = computed(() => {
 .glass-content{
     width: 100%;
     height: 100dvh;
-    background: #0000001f;
+    background: #0000009f;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    align-items: end;
 }
 .content {
-    width: 380px;
-    border-radius: 15px;
-    background: #ffffffc2;
+    width: 500px;
+    height: 100dvh;
+    background: #ffffffce;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 30px 10px;
     overflow: hidden;
     transition: 1s;
+    padding: 0 20px;
+}
+
+@media (max-width: 700px) {
+    .content{
+        width: 100%;
+        height: 60dvh;
+        border-radius: 30px 30px 0 0 ;
+    }
 }
 </style>
