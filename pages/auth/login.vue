@@ -1,8 +1,8 @@
 <template>
    <div class="w-100 flex flex-column fade-animation-1s">
         <div class="w-100 flex flex-column justify-start">
-                <span class="f-s-22 f-w-600">Login With Black Cat</span>
-                <span class="f-s-12 f-w-600 color-primary pt-5">Authentication</span>
+            <span class="f-s-22 f-w-600">Login With Black Cat</span>
+            <span class="f-s-12 f-w-600 color-primary pt-5">Authentication</span>
             </div>
             <BaseInput validate="true" v-model:access="access" v-model="form.email" rules="email" class="mt-15" label="Email" placeholder="Please Enter Your Email" />
             <BaseInput validate="true" v-model:access="access" v-model="form.password" rules="length" min-length="8" max-length="16" class="mt-10" label="Password" placeholder="Please Enter Your Password" />
