@@ -8,6 +8,7 @@ interface IUpdateProfile {
 }
 
 export class UserController extends UserDataModel {
+  
   constructor() {
     super();
   }
@@ -70,6 +71,7 @@ export class UserController extends UserDataModel {
     this.clearStorage();
     navigateTo("/auth/login");
   }
+  
 }
 
 export const userController = new UserController();
