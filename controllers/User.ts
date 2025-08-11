@@ -4,8 +4,7 @@ const { success, error } = useToast()
 interface IUpdateProfile {
   fristname: string;
   lastname: string;
-  bio: string;
-  avatarUrl?: string;
+  email: string
 }
 
 export class UserController extends UserDataModel {
@@ -56,10 +55,6 @@ export class UserController extends UserDataModel {
     if (requestResponse) this.userStore.setAuthenticated(true);
     const user = await this.profileParsed(requestResponse);
     this.userStore.setUser(user);
-  }
-
-  public async updateAvatar(avatarUrl: string) {
-    this.Patch("/api/users/update", { avatarUrl }).then(()=> {success('Set New Avatar')})
   }
 
   async updateProfile(body: IUpdateProfile) {
