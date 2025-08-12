@@ -1,42 +1,59 @@
 <template>
   <div
-    class="add-post-content-style border-rounded w-200-px h-40-px bg-primary slid-left-animation-3"
+    class="orders-content-style border-rounded w-200-px h-40-px bg-primary slid-left-animation-3"
     v-if="activeCompose"
     @click="emited('createPost')"
   >
-    <BaseIcon class="mx-5" name="hugeicons:note" />
-    <span class="f-s-14 f-w-500">Create Post</span>
+    <BaseIcon class="mx-5" width="28" height="28" name="hugeicons:note" />
+    <span class="f-s-14 f-w-500">Orders</span>
   </div>
   <div
-    class="add-note-content-style border-rounded w-200-px h-40-px bg-primary slid-left-animation-5"
+    class="basket-content-style border-rounded w-200-px h-40-px bg-primary slid-left-animation-5"
     v-if="activeCompose"
     @click="emited('addNote')"
   >
-    <BaseIcon class="mx-5" name="hugeicons:note-04" />
-    <span class="f-s-14 f-w-500">Add Note</span>
+    <BaseIcon class="mx-5" width="28" height="28" name="solar:bag-2-linear" />
+    <span class="f-s-14 f-w-500">Basket</span>
   </div>
   <div
-    class="add-project-content-style border-rounded w-200-px h-40-px bg-primary slid-left-animation-8"
+    class="profile-content-style border-rounded w-200-px h-40-px bg-primary slid-left-animation-8"
     v-if="activeCompose"
     @click="emited('createProject')"
   >
-    <BaseIcon class="mx-5" name="eos-icons:project-outlined" />
-    <span class="f-s-14 f-w-500">Create Project</span>
+    <BaseIcon class="mx-5" width="28" height="28" name="solar:user-broken" />
+    <span class="f-s-14 f-w-500">Profile</span>
+  </div>
+  <div
+    class="support-content-style border-rounded w-200-px h-40-px bg-primary slid-left-animation-1s"
+    v-if="activeCompose"
+    @click="emited('createProject')"
+  >
+    <BaseIcon
+      class="mx-5"
+      width="28"
+      height="28"
+      name="clarity:chat-bubble-line"
+    />
+    <span class="f-s-14 f-w-500">Support</span>
   </div>
   <div class="float-button bg-primary">
     <BaseIcon
-      icon="line-md:plus"
+      icon="line-md:close"
+      v-if="activeCompose"
       @click="handleActiveCompose"
-      :class="{
-        'active-style': activeCompose,
-        'deactive-style': !activeCompose,
-      }"
+    />
+    <BaseIcon
+      v-else
+      icon="solar:user-rounded-linear"
+      width="28"
+      height="28"
+      @click="handleActiveCompose"
     />
   </div>
 </template>
 
 <script setup>
-const applicationStore = useApplicationStore()
+const applicationStore = useApplicationStore();
 
 const emit = defineEmits(["signal"]);
 
@@ -45,12 +62,12 @@ const activeCompose = computed(() => {
 });
 
 const emited = (data) => {
-  emit('signal', data)
-  applicationStore.setCompose()
-}
+  emit("signal", data);
+  applicationStore.setCompose();
+};
 
 const handleActiveCompose = () => {
-  applicationStore.setCompose()
+  applicationStore.setCompose();
 };
 </script>
 
@@ -71,7 +88,7 @@ const handleActiveCompose = () => {
   cursor: pointer;
 }
 
-.add-post-content-style {
+.orders-content-style {
   position: fixed;
   z-index: 10;
   bottom: 0;
@@ -83,7 +100,7 @@ const handleActiveCompose = () => {
   cursor: pointer;
 }
 
-.add-note-content-style {
+.basket-content-style {
   position: fixed;
   z-index: 10;
   bottom: 0;
@@ -95,12 +112,24 @@ const handleActiveCompose = () => {
   cursor: pointer;
 }
 
-.add-project-content-style {
+.profile-content-style {
   position: fixed;
   z-index: 10;
   bottom: 0;
   right: 0;
   margin-bottom: 159px;
+  margin-right: 35px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.support-content-style {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 206px;
   margin-right: 35px;
   display: flex;
   align-items: center;

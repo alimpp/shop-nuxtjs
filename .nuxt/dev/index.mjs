@@ -1,32 +1,32 @@
-import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { getRequestHeader, splitCookiesString, setResponseStatus, setResponseHeader, send, getRequestHeaders, defineEventHandler, handleCacheHeaders, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, setResponseHeaders, createError, getRouterParam, readBody, getQuery as getQuery$1, getCookie, getResponseStatusText } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/h3/dist/index.mjs';
+import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { mkdirSync } from 'node:fs';
 import { Server } from 'node:http';
-import { mkdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { parentPort, threadId } from 'node:worker_threads';
-import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { stringify, uneval } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/devalue/index.js';
-import destr from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/destr/dist/index.mjs';
-import { withQuery, joinURL, withTrailingSlash, parseURL, withoutBase, getQuery, joinRelativeURL } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/ufo/dist/index.mjs';
-import { renderToString } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/vue/server-renderer/index.mjs';
-import { propsToString, renderSSRHead } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/@unhead/ssr/dist/index.mjs';
-import { createHooks } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/hookable/dist/index.mjs';
-import { createFetch as createFetch$1, Headers as Headers$1 } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/ofetch/dist/node.mjs';
-import { createCall, createFetch } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/unenv/runtime/fetch/index.mjs';
-import { klona } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/klona/dist/index.mjs';
-import defu, { defuFn } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/defu/dist/defu.mjs';
-import { snakeCase } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/scule/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/unstorage/drivers/fs.mjs';
-import { toRouteMatcher, createRouter } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/radix3/dist/index.mjs';
-import { getContext } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/unctx/dist/index.mjs';
+import { getRequestHeader, splitCookiesString, setResponseStatus, setResponseHeader, send, getRequestHeaders, defineEventHandler, handleCacheHeaders, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, setResponseHeaders, createError, getRouterParam, readBody, getQuery as getQuery$1, getCookie, getResponseStatusText } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/h3/dist/index.mjs';
+import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { stringify, uneval } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/devalue/index.js';
+import destr from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/destr/dist/index.mjs';
+import { withQuery, joinURL, withTrailingSlash, parseURL, withoutBase, getQuery, joinRelativeURL } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/ufo/dist/index.mjs';
+import { renderToString } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/vue/server-renderer/index.mjs';
+import { propsToString, renderSSRHead } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/@unhead/ssr/dist/index.mjs';
+import { createServerHead as createServerHead$1, CapoPlugin } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/unhead/dist/index.mjs';
+import { klona } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/klona/dist/index.mjs';
+import defu, { defuFn } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/defu/dist/defu.mjs';
+import { snakeCase } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/scule/dist/index.mjs';
+import { createHooks } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/hookable/dist/index.mjs';
+import { createFetch as createFetch$1, Headers as Headers$1 } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/ofetch/dist/node.mjs';
+import { createCall, createFetch } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/unenv/runtime/fetch/index.mjs';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { consola } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/consola/dist/index.mjs';
-import { captureRawStackTrace, parseRawStackTrace } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/errx/dist/index.js';
-import { isVNode, unref, version } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/vue/index.mjs';
-import { hash } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/ohash/dist/index.mjs';
-import { createServerHead as createServerHead$1, CapoPlugin } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/unhead/dist/index.mjs';
-import { defineHeadPlugin } from 'file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/node_modules/@unhead/shared/dist/index.mjs';
+import { consola } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/consola/dist/index.mjs';
+import { getContext } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/unctx/dist/index.mjs';
+import { captureRawStackTrace, parseRawStackTrace } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/errx/dist/index.js';
+import { isVNode, unref, version } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/vue/index.mjs';
+import { hash } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/ohash/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/unstorage/drivers/fs.mjs';
+import { toRouteMatcher, createRouter } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/radix3/dist/index.mjs';
+import { defineHeadPlugin } from 'file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/node_modules/@unhead/shared/dist/index.mjs';
 
 function hasReqHeader(event, name, includes) {
   const value = getRequestHeader(event, name);
@@ -161,7 +161,7 @@ const errorHandler = (async function errorhandler(error, event) {
   return send(event, html);
 });
 
-const rootDir = "/home/ali-mpp/Desktop/dev/shop-nuxtjs";
+const rootDir = "C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs";
 
 const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
 
@@ -180,7 +180,7 @@ const devReducers = {
   URL: (data) => data instanceof URL ? data.toString() : void 0
 };
 const asyncContext = getContext("nuxt-dev", { asyncContext: true, AsyncLocalStorage });
-const _0CywslMcYh = (nitroApp) => {
+const _4JEUlM21pM = (nitroApp) => {
   const handler = nitroApp.h3App.handler;
   nitroApp.h3App.handler = (event) => {
     return asyncContext.callAsync({ logs: [], event }, () => handler(event));
@@ -250,19 +250,19 @@ function onConsoleLog(callback) {
 }
 
 const plugins = [
-  _0CywslMcYh
+  _4JEUlM21pM
 ];
 
-const _lazy_K9K9SC = () => Promise.resolve().then(function () { return ____path_$1; });
-const _lazy_QUVk6V = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_wZrlyv = () => Promise.resolve().then(function () { return ____path_$1; });
+const _lazy_hjqW8P = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '/api/**:path', handler: _lazy_K9K9SC, lazy: true, middleware: false, method: undefined },
-  { route: '/__nuxt_error', handler: _lazy_QUVk6V, lazy: true, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_QUVk6V, lazy: true, middleware: false, method: undefined }
+  { route: '/api/**:path', handler: _lazy_wZrlyv, lazy: true, middleware: false, method: undefined },
+  { route: '/__nuxt_error', handler: _lazy_hjqW8P, lazy: true, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_hjqW8P, lazy: true, middleware: false, method: undefined }
 ];
 
-const serverAssets = [{"baseName":"server","dir":"/home/ali-mpp/Desktop/dev/shop-nuxtjs/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/server/assets"}];
 
 const assets = createStorage();
 
@@ -274,11 +274,11 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets);
 
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/home/ali-mpp/Desktop/dev/shop-nuxtjs","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/home/ali-mpp/Desktop/dev/shop-nuxtjs/server","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/home/ali-mpp/Desktop/dev/shop-nuxtjs/.nuxt","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/home/ali-mpp/Desktop/dev/shop-nuxtjs/.nuxt/cache","ignore":["**/node_modules/**","**/.git/**"]}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/home/ali-mpp/Desktop/dev/shop-nuxtjs/.data/kv","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"C:\\Users\\asus\\Desktop\\dev\\front_end\\shop-nuxtjs","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"C:\\Users\\asus\\Desktop\\dev\\front_end\\shop-nuxtjs\\server","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"C:\\Users\\asus\\Desktop\\dev\\front_end\\shop-nuxtjs\\.nuxt","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"C:\\Users\\asus\\Desktop\\dev\\front_end\\shop-nuxtjs\\.nuxt\\cache","ignore":["**/node_modules/**","**/.git/**"]}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"C:\\Users\\asus\\Desktop\\dev\\front_end\\shop-nuxtjs\\.data\\kv","ignore":["**/node_modules/**","**/.git/**"]}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -735,11 +735,6 @@ new Proxy(/* @__PURE__ */ Object.create(null), {
     }
     return void 0;
   }
-});
-
-getContext("nitro-app", {
-  asyncContext: false,
-  AsyncLocalStorage: void 0
 });
 
 const config = useRuntimeConfig();
@@ -1217,8 +1212,8 @@ function publicAssetsURL(...path) {
 
 globalThis.__buildAssetsURL = buildAssetsURL;
 globalThis.__publicAssetsURL = publicAssetsURL;
-const getClientManifest = () => import('file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
-const getServerEntry = () => import('file:///home/ali-mpp/Desktop/dev/shop-nuxtjs/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
+const getClientManifest = () => import('file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getServerEntry = () => import('file://C:/Users/asus/Desktop/dev/front_end/shop-nuxtjs/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
 const getSSRStyles = lazyCachedFunction(() => Promise.resolve().then(function () { return styles$1; }).then((r) => r.default || r));
 const getSSRRenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();

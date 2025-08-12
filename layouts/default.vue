@@ -1,11 +1,11 @@
 <template>
-    <LayoutsApp />
+  <LayoutsShop />
 </template>
 
 <script setup>
-import { userController } from '~/controllers/User';
+import { userController } from "~/controllers/User";
 
 onMounted(async () => {
-    await userController.profile()
-})
+  await userController.profile();
+});
 </script>
