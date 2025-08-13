@@ -18,9 +18,9 @@
       <div class="router-content">
         <NuxtPage />
         <Compose @signal="modalsController" />
-        <NoteModalsAddNote
-          :isOpen="modals.addNote"
-          @close="modalsController('addNote')"
+        <Chat
+          :isOpen="modals.chat"
+          @close="modalsController('support')"
         />
       </div>
     </div>
@@ -39,20 +39,15 @@ const appTheme = computed(() => {
 });
 
 const modals = ref({
-  addNote: false,
-  createProject: false,
-  createPost: false,
+  chat: false,
 });
 
 const modalsController = (data) => {
   switch (data) {
-    case "addNote":
-      modals.value.addNote = !modals.value.addNote;
+    case "support":
+      modals.value.chat = !modals.value.chat;
       break;
-    case "createProject":
-      break;
-    case "createPost":
-      break;
+    
     default:
       throw new Error("Bad Signal . . . ");
   }

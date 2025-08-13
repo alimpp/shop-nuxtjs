@@ -2,7 +2,7 @@
   <div
     class="orders-content-style border-rounded w-200-px h-40-px bg-primary slid-left-animation-3"
     v-if="activeCompose"
-    @click="emited('createPost')"
+    @click="emited('')"
   >
     <BaseIcon class="mx-5" width="28" height="28" name="hugeicons:note" />
     <span class="f-s-14 f-w-500">Orders</span>
@@ -10,7 +10,7 @@
   <div
     class="basket-content-style border-rounded w-200-px h-40-px bg-primary slid-left-animation-5"
     v-if="activeCompose"
-    @click="emited('addNote')"
+    @click="emited('')"
   >
     <BaseIcon class="mx-5" width="28" height="28" name="solar:bag-2-linear" />
     <span class="f-s-14 f-w-500">Basket</span>
@@ -18,7 +18,7 @@
   <div
     class="profile-content-style border-rounded w-200-px h-40-px bg-primary slid-left-animation-8"
     v-if="activeCompose"
-    @click="emited('createProject')"
+    @click="emited('')"
   >
     <BaseIcon class="mx-5" width="28" height="28" name="solar:user-broken" />
     <span class="f-s-14 f-w-500">Profile</span>
@@ -26,7 +26,7 @@
   <div
     class="support-content-style border-rounded w-200-px h-40-px bg-primary slid-left-animation-1s"
     v-if="activeCompose"
-    @click="emited('createProject')"
+    @click="emited('support')"
   >
     <BaseIcon
       class="mx-5"
