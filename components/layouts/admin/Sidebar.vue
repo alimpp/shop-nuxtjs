@@ -2,14 +2,21 @@
   <div
     class="container flex flex-column custom-style"
     v-if="isOpen"
-    :class="{'bg-dark': appTheme == 'dark', 'bg-app-light': appTheme == 'light'}"
+    :class="{
+      'bg-dark': appTheme == 'dark',
+      'bg-app-light': appTheme == 'light',
+    }"
   >
     <div class="w-100 flex justify-end py-10 close-container">
-      <BaseIcon class="cursor-pointer mx-20 mt-10" @click="chnageSideMenuState" name="line-md:menu-to-close-alt-transition" />
+      <BaseIcon
+        class="cursor-pointer mx-20 mt-10"
+        @click="chnageSideMenuState"
+        name="line-md:menu-to-close-alt-transition"
+      />
     </div>
     <div class="flex flex-column px-10 pt-10">
       <div class="flex justify-center">
-        <img src="/public/logo/logo.png" alt="logo" width="100">
+        <img src="/public/logo/logo.png" alt="logo" width="100" />
       </div>
       <BaseDivider class="mt-10" />
       <div
@@ -19,10 +26,7 @@
         @click="navigate(`${item.path}`)"
         :class="{ 'active-path': route.path == item.path }"
       >
-        <BaseIcon
-          width="18px"
-          :name="item.icon"
-        />
+        <BaseIcon width="18px" :name="item.icon" />
         <span class="px-5">
           {{ item.name }}
         </span>
@@ -49,9 +53,18 @@ const chnageSideMenuState = () => {
 };
 
 const items = ref([
-  { id: 0, name: "Friends", path: "/dashboard/friends", icon: "line-md:emoji-grin" },
-  { id: 1, name: "Posts", path: "/dashboard/posts", icon: "line-md:text-box-multiple" },
-  { id: 2, name: "Notes", path: "/dashboard/notes", icon: "line-md:file-document-twotone" },
+  {
+    id: 0,
+    name: "Dashboard",
+    path: "/admin/dashboard",
+    icon: "mage:dashboard-chart",
+  },
+  {
+    id: 1,
+    name: "Support",
+    path: "/admin/support",
+    icon: "mynaui:message-dots",
+  },
 ]);
 
 const navigate = (path) => {
@@ -62,10 +75,10 @@ const navigate = (path) => {
   }
 };
 
-const applicationStore = useApplicationStore()
+const applicationStore = useApplicationStore();
 const appTheme = computed(() => {
-    return applicationStore._state.theme
-})
+  return applicationStore._state.theme;
+});
 </script>
 
 <style scoped lang="scss">

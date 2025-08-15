@@ -3,9 +3,9 @@
 </template>
 
 <script setup>
-import { userController } from "~/controllers/User";
+import { adminController } from "@/controllers/Admin";
 
 onMounted(async () => {
-  await userController.profile();
+  await adminController.getInfo();
 });
 </script>
