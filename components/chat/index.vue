@@ -7,9 +7,9 @@
             'bg-app-light': appTheme == 'light',
         }"
        >
-       <ChatHeader @close="emit('close')" />
-       <ChatContent />
-       <ChatInput />
+       <ChatHeader :info="info" :loading="loading" @close="emit('close')" />
+       <ChatContent :messages="messages" :loading="loading" />
+       <ChatInput :sendLoading="sendLoading" @send="send" />
        </div>
     </div>
 </template>
@@ -20,14 +20,38 @@ const appTheme = computed(() => {
   return applicationStore._state.theme;
 });
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close', 'send'])
 
 const props = defineProps({
     isOpen: {
         type: Boolean,
         default: false
+    },
+    loading: {
+        type: Boolean,
+        default: false
+    },
+    sendLoading: {
+      type: Boolean,
+      default: false
+    },
+    messages: {
+      type: Array,
+      default: []
+    },
+    chatId: {
+      type: String,
+      default: ""
+    },
+    info: {
+      type: Object,
+      default: {}
     }
 })
+
+const send = (data) => {
+  emit('send', data)
+}
 </script>
 
 

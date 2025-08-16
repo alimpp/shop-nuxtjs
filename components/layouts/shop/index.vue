@@ -20,7 +20,12 @@
         <Compose @signal="modalsController" />
         <Chat
           :isOpen="modals.chat"
+          :loading="loading"
+          :sendLoading="sendLoading"
+          :messages="messages"
+          :info="chatInfo"
           @close="modalsController('support')"
+          @send="send"
         />
       </div>
     </div>
@@ -52,6 +57,24 @@ const modalsController = (data) => {
       throw new Error("Bad Signal . . . ");
   }
 };
+
+const sendLoading = ref(false)
+const loading = ref(false)
+
+const messages = computed(() => {
+  return []
+})
+
+const chatInfo = computed(() => {
+  return {
+    name: "Admin Webiste",
+    sub: "Admin"
+  }
+})
+
+const send = (data) => {
+  console.log(data);
+}
 </script>
 
 <style scoped>

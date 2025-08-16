@@ -27,6 +27,19 @@
     </div>
 </template>
 
+<script setup>
+const props = defineProps({
+    loading: {
+        type: Boolean,
+        default: false
+    },
+    messages: {
+      type: Array,
+      default: []
+    },
+})
+</script>
+
 <style scoped>
 .chat-content{
     overflow-y: scroll;
