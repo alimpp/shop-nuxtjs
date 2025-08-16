@@ -9,7 +9,7 @@
    <div class="w-50 flex align-center px-10">
       <BaseAvatar :character="info.name[0]"  />
       <div class="flex flex-column px-10 justify-center">
-         <span class="f-s-12 f-w-500">{{ info.name }}</span>
+         <span class="f-s-12 f-w-500">{{ info.name ? info.name : info.phone }}</span>
          <span class="f-s-10 f-w-100">{{ info.sub }}</span>
       </div>
    </div>
