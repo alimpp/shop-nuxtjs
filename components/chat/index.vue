@@ -1,14 +1,18 @@
 <template>
     <div class="container" v-if="isOpen">
        <div 
-        class="content flex flex-column slid-right-animation-8 w-380-px h-100-dvh"
+        class="content flex flex-column slid-right-animation-8 h-100-dvh"
         :class="{
             'bg-app-dark': appTheme == 'dark',
             'bg-app-light': appTheme == 'light',
+            'w-100': width < 400,
+            'w-400-px': width > 400
         }"
        >
        <ChatHeader :info="info" :loading="loading" @close="emit('close')" />
-       <ChatContent :messages="messages" :loading="loading" />
+       
+       <ChatContent :messages="messages" :loading="loading" @seen="seen" />
+       
        <ChatInput :sendLoading="sendLoading" @send="send" />
        </div>
     </div>
@@ -20,7 +24,7 @@ const appTheme = computed(() => {
   return applicationStore._state.theme;
 });
 
-const emit = defineEmits(['close', 'send'])
+const emit = defineEmits(['close', 'send', 'seen'])
 
 const props = defineProps({
     isOpen: {
@@ -52,6 +56,12 @@ const props = defineProps({
 const send = (data) => {
   emit('send', data)
 }
+
+const seen = (data) => {
+  emit('seen', data)
+}
+
+const { width } = useScreenSize();
 </script>
 
 
@@ -72,7 +82,6 @@ const send = (data) => {
 }
 
 .content{
-  border-radius: 0 15px 15px 0;
   background-repeat: no-repeat;
   background-position: center;
   background-size: calc();

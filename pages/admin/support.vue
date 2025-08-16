@@ -1,6 +1,12 @@
 <template>
   <div class="w-100 flex flex-column">
     <BaseBreadCrumbs />
+    <SupportChatListCard
+     v-for="(item,index) in chatList"
+     :key="index"
+     :data="item"
+     @clickOnChat="clickOnChat"
+    />
     <Chat
       :isOpen="chatState"
       :loading="loading"
@@ -9,33 +15,67 @@
       :info="chatInfo"
       @close="closeChat"
       @send="send"
+      @seen="seen"
     />
   </div>
 </template>
 
 <script setup>
+import { supportController } from '~/controllers/Support';
+
 definePageMeta({
   middleware: "auth",
   layout: "admin",
 });
 
+const supportStore = useSupportStore()
+
 const chatState = ref(false)
 const sendLoading = ref(false)
 const loading = ref(false)
 
+const chatList = computed(() => {
+  return supportStore.getChatList
+})
+
 const messages = computed(() => {
-  return []
+  return supportStore.getMessages
 })
 
 const chatInfo = computed(() => {
-  return {}
+  return supportStore.getChatInfo
 })
 
 const send = (data) => {
   console.log(data);
 }
 
+const seen = async (data) => {
+  await supportController.seen({id: data.id, chatId: data.chatId})
+}
+
 const closeChat = () => {
+  supportStore.resetMessages()
   chatState.value = false
 }
+
+const clickOnChat = async (data) => {
+  supportStore.setChatInfo(
+    {
+      chatId: data.chatId, 
+      name: data.user.firstname ? data.user.firstname + ' ' + data.user.lastname : data.user.phone,
+      sub: data.user.firstname ? data.user.phone : 'Customer Website'
+    }
+  )
+  chatState.value = true
+  await supportController.getChat(data.chatId)
+}
+
+onMounted(async () => {  
+  supportController.startPolling();
+});
+
+onUnmounted(() => {
+  supportController.stopPolling();
+});
 </script>

@@ -8,13 +8,16 @@
     >
       <textarea 
         placeholder="Enter message" 
-        class="w-335-px f-s-16 f-w-500" 
+        class="w-330-px f-s-16 f-w-500" 
         v-model="message">
       </textarea>
-      <baseIcon 
-        name="emojione-monotone:up-arrow" 
-        @click="send"
-      />
+      <div class="w-70-px flex align-center justify-center">
+        <baseIcon 
+          name="emojione-monotone:up-arrow" 
+          @click="send"
+          class="cursor-pointer"
+        />
+      </div>
     </div>
 </template>
 
@@ -44,7 +47,6 @@ const send = () => {
 
 <style scoped>
 .chat-input {
-    border-radius: 20px 20px 0 0;
 }
 textarea {
     background: none;
@@ -52,5 +54,9 @@ textarea {
     outline: none;
     color: #fff;
     resize: none;
+    padding-left: 15px;
+}
+textarea::-webkit-scrollbar {
+  display: none;
 }
 </style>

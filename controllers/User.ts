@@ -7,7 +7,7 @@ interface IUpdateProfile {
   email: string
 }
 
-export class UserController extends UserDataModel {
+class UserController extends UserDataModel {
   
   constructor() {
     super();
