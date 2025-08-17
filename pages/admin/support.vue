@@ -61,7 +61,7 @@ const closeChat = () => {
   chatState.value = false
 }
 
-const clickOnChat = async (data) => {
+const clickOnChat = (data) => {
   supportStore.setChatInfo(
     {
       chatId: data.chatId, 
@@ -70,14 +70,12 @@ const clickOnChat = async (data) => {
     }
   )
   chatState.value = true
-  await supportController.getChat(data.chatId)
+  setTimeout( async () => {
+    await supportController.getChat(data.chatId)
+  }, 1000);
 }
 
 onMounted(async () => {  
-  supportController.startPolling();
-});
-
-onUnmounted(() => {
-  supportController.stopPolling();
+  await supportController.getChatList()
 });
 </script>

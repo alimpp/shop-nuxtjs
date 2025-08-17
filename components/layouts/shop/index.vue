@@ -26,6 +26,7 @@
           :info="chatInfo"
           @close="modalsController('support')"
           @send="send"
+          @seen="seen"
         />
       </div>
     </div>
@@ -33,6 +34,11 @@
 </template>
 
 <script setup>
+import { supportController } from '~/controllers/Support';
+
+const supportStore = useSupportStore()
+const userStore = useUserStore()
+
 const sideMenuState = ref(false);
 const chnageSideMenuState = () => {
   sideMenuState.value = !sideMenuState.value;
@@ -50,7 +56,11 @@ const modals = ref({
 const modalsController = (data) => {
   switch (data) {
     case "support":
-      modals.value.chat = !modals.value.chat;
+      supportStore.resetMessages()
+      modals.value.chat = !modals.value.chat;      
+      setTimeout( async () => {
+        await supportController.getChat(userStore.getUser.id)
+      }, 1000);
       break;
     
     default:
@@ -62,7 +72,7 @@ const sendLoading = ref(false)
 const loading = ref(false)
 
 const messages = computed(() => {
-  return []
+  return supportStore.getMessages
 })
 
 const chatInfo = computed(() => {
@@ -72,8 +82,15 @@ const chatInfo = computed(() => {
   }
 })
 
-const send = (data) => {
+const send = async (data) => {
+  sendLoading.value = true 
+  await supportController.sendMsgAdmin({chatId: userStore.getUser.id, ...data})
   console.log(data);
+  sendLoading.value = false 
+}
+
+const seen = async (data) => {
+  await supportController.seen({id: data.id, chatId: data.chatId})
 }
 </script>
 

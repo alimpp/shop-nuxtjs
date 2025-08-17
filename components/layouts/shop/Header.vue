@@ -46,7 +46,7 @@ const userStore = useUserStore();
 const { width } = useScreenSize();
 
 const user = computed(() => {
-  return userStore.getUser();
+  return userStore.getUser;
 });
 
 const emit = defineEmits(["chnageSideMenuState"]);

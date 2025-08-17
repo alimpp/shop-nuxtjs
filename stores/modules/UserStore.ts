@@ -50,7 +50,7 @@ export class UserStore extends BaseStore<IUserState> {
     this._state.jwtToken = jwt;
   }
 
-  getUser() {
+  get getUser() {
     return this._state.user
   }
 

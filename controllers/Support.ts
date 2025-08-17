@@ -16,7 +16,6 @@ class SupportController extends SupportDataModel {
     await this.Get('/api/support/chat-list')
     .then(async (res: any) => {
         const parsedList = await this.chatListParsed(res)
-        console.log(parsedList);
         this.supportStore.setChatList(parsedList)
     })
     .catch(error => {
@@ -58,6 +57,14 @@ class SupportController extends SupportDataModel {
 
    async sendMsgAdmin(body: {chatId: string, content: string, type: string}) {
       await this.Post('/api/support/admin/send-message', body)
+      .then( async (res: any)=> {
+          const newMessage = await this.generateMessage(res)
+          this.supportStore.addToMessages(newMessage)
+      }).catch((err)=>{err})
+   }
+
+   async sendMsgUser(body: {chatId: string, content: string, type: string}) {
+      await this.Post('/api/support/send-message', body)
       .then( async (res: any)=> {
           const newMessage = await this.generateMessage(res)
           this.supportStore.addToMessages(newMessage)

@@ -17,11 +17,6 @@
       <LayoutsAdminHeader @chnageSideMenuState="chnageSideMenuState" />
       <div class="router-content">
         <NuxtPage />
-        <Compose @signal="modalsController" />
-        <NoteModalsAddNote
-          :isOpen="modals.addNote"
-          @close="modalsController('addNote')"
-        />
       </div>
     </div>
   </div>
@@ -37,26 +32,6 @@ const applicationStore = useApplicationStore();
 const appTheme = computed(() => {
   return applicationStore._state.theme;
 });
-
-const modals = ref({
-  addNote: false,
-  createProject: false,
-  createPost: false,
-});
-
-const modalsController = (data) => {
-  switch (data) {
-    case "addNote":
-      modals.value.addNote = !modals.value.addNote;
-      break;
-    case "createProject":
-      break;
-    case "createPost":
-      break;
-    default:
-      throw new Error("Bad Signal . . . ");
-  }
-};
 </script>
 
 <style scoped>
