@@ -13,9 +13,10 @@
       </textarea>
       <div class="w-70-px flex align-center justify-center">
         <baseIcon 
-          name="emojione-monotone:up-arrow" 
+          :name=" sendLoading ? 'svg-spinners:eclipse-half' : 'emojione-monotone:up-arrow'" 
           @click="send"
           class="cursor-pointer"
+          size="40"
         />
       </div>
     </div>
@@ -40,14 +41,13 @@ const props = defineProps({
 
 const send = () => {
   if(message.value) {
-    emit('send', message)
+    emit('send', {content: message.value, type: 'txt'})
+    message.value = ''
   }
 }
 </script>
 
 <style scoped>
-.chat-input {
-}
 textarea {
     background: none;
     border: none;

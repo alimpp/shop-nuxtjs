@@ -1,6 +1,6 @@
 import { SupportDataModel } from "~/model/Support";
 import { useSupportStore } from "~/stores";
-import type { IChatList } from "~/types/Support";
+import type { IChatList, IMessage } from "~/types/Support";
 
 class SupportController extends SupportDataModel {
    private intervalId: NodeJS.Timeout | null = null;
@@ -54,6 +54,14 @@ class SupportController extends SupportDataModel {
        const parsedList = await this.chatParsed(res) 
        this.supportStore.setMessages(parsedList)
      })
+   }
+
+   async sendMsgAdmin(body: {chatId: string, content: string, type: string}) {
+      await this.Post('/api/support/admin/send-message', body)
+      .then( async (res: any)=> {
+          const newMessage = await this.generateMessage(res)
+          this.supportStore.addToMessages(newMessage)
+      }).catch((err)=>{err})
    }
 
    async seen(body: {id: string, chatId: string}) {

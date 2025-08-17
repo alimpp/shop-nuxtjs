@@ -46,8 +46,10 @@ const chatInfo = computed(() => {
   return supportStore.getChatInfo
 })
 
-const send = (data) => {
-  console.log(data);
+const send = async (data) => {
+  sendLoading.value = true
+  await supportController.sendMsgAdmin({chatId: supportStore.getChatInfo.chatId, ...data})
+  sendLoading.value = false
 }
 
 const seen = async (data) => {

@@ -51,6 +51,10 @@ export class SupportStore extends BaseStore<ISupportState> {
     this._state.messages = messages
   }
 
+  public addToMessages(messages: IMessage){
+    this._state.messages.push(messages)
+  }
+
   public get getMessages() {
     return this._state.messages
   }

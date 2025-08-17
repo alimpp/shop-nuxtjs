@@ -54,4 +54,15 @@ export class SupportDataModel extends BaseApp<any> {
 
     return list;
   }
+
+   async generateMessage(apiResponse: IMessage) {
+      const isoString = apiResponse.created_at
+      const date = parseDate(isoString)
+      const dateFormt = formatDateTime(date)
+      const message = {
+        ...apiResponse,
+        created_at: dateFormt     
+      }
+      return message
+  }
 }
