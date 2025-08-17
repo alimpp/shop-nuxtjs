@@ -25,7 +25,7 @@ const props = defineProps({
   },
   scrollThreshold: {
     type: Number,
-    default: 100 // pixels from bottom to consider "near bottom"
+    default: 100 
   }
 })
 
@@ -37,7 +37,6 @@ const containerHeight = ref(0)
 const totalHeight = computed(() => props.items.length * props.itemSize)
 const isNearBottom = ref(true)
 
-// Calculate visible items
 const visibleRange = computed(() => {
   if (!containerHeight.value) return { start: 0, end: 0 }
 
@@ -50,7 +49,6 @@ const visibleRange = computed(() => {
   return { start: startIdx, end: endIdx }
 })
 
-// Visible items with their positions
 const visibleItems = computed(() => {
   return props.items.slice(visibleRange.value.start, visibleRange.value.end + 1).map((item, i) => ({
     data: item,
@@ -59,7 +57,6 @@ const visibleItems = computed(() => {
   }))
 })
 
-// Update container height on resize
 const resizeObserver = new ResizeObserver(entries => {
   if (entries[0]) {
     containerHeight.value = entries[0].contentRect.height
@@ -75,7 +72,6 @@ onMounted(() => {
   }
 })
 
-// Auto scroll to bottom when new items are added and we're near bottom
 watch(() => props.items.length, (newLength, oldLength) => {
   if (newLength > oldLength && (isNearBottom.value || props.autoScrollToBottom)) {
     nextTick(() => {
@@ -97,12 +93,10 @@ function checkIfNearBottom() {
   isNearBottom.value = scrollBottom >= totalHeight.value - props.scrollThreshold
 }
 
-// Watch for range changes
 watch(visibleRange, (newRange) => {
   emit('range-change', newRange)
 }, { immediate: true })
 
-// Scroll to specific item
 function scrollToIndex(index: number, behavior: ScrollBehavior = 'auto') {
   if (!containerRef.value) return
   const position = index * props.itemSize
@@ -112,7 +106,6 @@ function scrollToIndex(index: number, behavior: ScrollBehavior = 'auto') {
   })
 }
 
-// Scroll to bottom
 function scrollToBottom(behavior: ScrollBehavior = 'auto') {
   if (!containerRef.value) return
   containerRef.value.scrollTo({
