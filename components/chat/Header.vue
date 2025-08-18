@@ -38,8 +38,3 @@ const props = defineProps({
     }
 })
 </script>
-
-<style scoped>
-.chat-header {
-}
-</style>

@@ -1,19 +1,12 @@
 <template>
     <div class="chat-content h-80-dvh flex flex-column">
-      <DynamicVirtualScroller
-        :items="messages"
-        :item-size="60"
-        ref="scroller"
-        :auto-scroll-to-bottom="true"
-      >
-        <template #default="{ item }">
-          <SupportChatCard
-            :data="item"
-            @seen="seen"
-            :ref="item.id"
-          />
-        </template>
-      </DynamicVirtualScroller>
+      <SupportChatCard
+        v-for="item in messages"
+        :key="item.id"
+        :ref="item.id"
+        :data="item"
+        @seen="seen"
+      />
     </div>
 </template>
 
