@@ -12,7 +12,7 @@
            </div>
            <div class="flex flex-column justify-center px-10">
             <span class="f-s-14 f-w-500">
-                {{ data.user.firstname ? data.user.firstname + ' ' + data.user.lastname : data.user.phone }}
+                {{ data.user.fullname ? data.user.fullname : data.user.phone }}
             </span>
             <span class="f-s-11 f-w-100 color-gray pt-10">{{ data.lastMessageContent }}</span>
            </div>
@@ -20,7 +20,7 @@
         <div class="flex flex-column w-30 align-end">
             <span class="f-s-10 f-w-100 color-gray pt-5">{{ data.lastMessageTime }}</span>
            <div class="h-20-px mt-10">
-            <span class="bg-red px-8 py-4 border-circle" :class="{'px-5': data.badge < 9}" v-show="data.badge > 0">
+            <span class="bg-red w-30-px h-30-px border-circle flex align-center justify-center" v-show="data.badge > 0">
             {{ data.badge }}
            </span>
            </div>

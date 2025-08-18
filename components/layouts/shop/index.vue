@@ -84,13 +84,14 @@ const chatInfo = computed(() => {
 
 const send = async (data) => {
   sendLoading.value = true 
-  await supportController.sendMsgAdmin({chatId: userStore.getUser.id, ...data})
-  console.log(data);
+  await supportController.sendMsgUser({chatId: userStore.getUser.id, ...data})
   sendLoading.value = false 
 }
 
-const seen = async (data) => {
-  await supportController.seen({id: data.id, chatId: data.chatId})
+const seen = (data) => {
+  setTimeout( async () => {
+    await supportController.seen({id: data.id, chatId: data.chatId})
+  }, 1000);
 }
 </script>
 

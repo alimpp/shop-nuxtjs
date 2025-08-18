@@ -65,8 +65,8 @@ const clickOnChat = (data) => {
   supportStore.setChatInfo(
     {
       chatId: data.chatId, 
-      name: data.user.firstname ? data.user.firstname + ' ' + data.user.lastname : data.user.phone,
-      sub: data.user.firstname ? data.user.phone : 'Customer Website'
+      name: data.user.fullname ? data.user.fullname : data.user.phone,
+      sub: data.user.fullname ? data.user.phone : 'Customer Website'
     }
   )
   chatState.value = true
@@ -76,6 +76,10 @@ const clickOnChat = (data) => {
 }
 
 onMounted(async () => {  
-  await supportController.getChatList()
+  supportController.startPolling()
+});
+
+onUnmounted(async ()=> {
+  supportController.stopPolling()
 });
 </script>

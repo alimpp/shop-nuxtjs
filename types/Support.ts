@@ -5,6 +5,7 @@ export interface IUser {
   email: string;
   avatarUrl: string;
   phone: string;
+  fullname: string,
   created_at: string;
 }
 

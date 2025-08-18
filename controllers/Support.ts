@@ -52,6 +52,14 @@ class SupportController extends SupportDataModel {
      .then( async (res: any)=> {
        const parsedList = await this.chatParsed(res) 
        this.supportStore.setMessages(parsedList)
+       const targetChat = this.supportStore.getChatList.find((chat: IChatList) => {
+        return chat.chatId == chatId
+       })
+       if(targetChat) {
+          if(targetChat.badge != 0) {
+            targetChat.badge = 0
+          }
+       }
      })
    }
 
@@ -60,10 +68,11 @@ class SupportController extends SupportDataModel {
       .then( async (res: any)=> {
           const newMessage = await this.generateMessage(res)
           this.supportStore.addToMessages(newMessage)
+          await this.getChatList()
       }).catch((err)=>{err})
    }
 
-   async sendMsgUser(body: {chatId: string, content: string, type: string}) {
+   async sendMsgUser(body: {chatId: string, content: string, type: string}) {    
       await this.Post('/api/support/send-message', body)
       .then( async (res: any)=> {
           const newMessage = await this.generateMessage(res)
