@@ -43,14 +43,11 @@ class SupportController extends SupportDataModel {
     }
    }
 
-   // Start polling for a specific chat
    startChatPolling(chatId: string, intervalTime: number = 10000) {
-    this.stopChatPolling(chatId); // Stop any existing polling for this chat
+    this.stopChatPolling(chatId); 
     
-    // Initial fetch
     this.getChat(chatId);
     
-    // Set up interval for polling
     const intervalId = setInterval(async () => {
       await this.getChat(chatId);
     }, intervalTime);
@@ -58,7 +55,6 @@ class SupportController extends SupportDataModel {
     this.chatIntervalIds.set(chatId, intervalId);
    }
 
-   // Stop polling for a specific chat
    stopChatPolling(chatId: string) {
     const intervalId = this.chatIntervalIds.get(chatId);
     if (intervalId) {
@@ -67,7 +63,6 @@ class SupportController extends SupportDataModel {
     }
    }
 
-   // Stop all chat polling
    stopAllChatPolling() {
     this.chatIntervalIds.forEach((intervalId, chatId) => {
       clearInterval(intervalId);
@@ -96,7 +91,7 @@ class SupportController extends SupportDataModel {
      })
      .catch(error => {
         console.error(`Error fetching chat ${chatId}:`, error);
-        this.stopChatPolling(chatId); // Stop polling on error
+        this.stopChatPolling(chatId);
      });
    }
 
@@ -121,7 +116,6 @@ class SupportController extends SupportDataModel {
     await this.Patch(`/api/support/${body.id}`, {seen: true, chatId: body.chatId})
    }
 
-   // Clean up all intervals when the controller is no longer needed
    destroy() {
     this.stopPolling();
     this.stopAllChatPolling();
