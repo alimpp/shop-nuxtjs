@@ -14,12 +14,13 @@
         >
       </div>
       <BaseIcon
-        @click="navigateTo('/profile/notifications')"
+        @click="navigateTo('/profile/notification')"
         class="cursor-pointer mx-5"
         name="solar:bell-broken"
         width="25"
         height="25"
       />
+      <span class="bg-red flex align-center justify-center w-30-px h-28-px border-circle pt-2 mb-20" v-if="notificationCount != 0">{{ notificationCount }}</span>
       <BaseIcon
         @click="navigateTo('/basket')"
         name="solar:bag-2-linear"
@@ -45,9 +46,11 @@ const route = useRoute();
 const userStore = useUserStore();
 const { width } = useScreenSize();
 
-const user = computed(() => {
-  return userStore.getUser;
-});
+const notificationStore = useNotificationStore()
+
+const notificationCount = computed(() => {
+  return notificationStore.getNotificationCount
+})
 
 const emit = defineEmits(["chnageSideMenuState"]);
 

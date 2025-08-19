@@ -9,6 +9,7 @@
         >
           <span class="f-s-16 f-w-500">{{ data.content }}</span>
           <div class="flex justify-end mt-6">
+            <span class="f-s-10 f-w-100 bg-red border-rounded px-5 mx-5" v-if="!data.seen && !data.itsMe">New</span>
             <span class="f-s-10 f-w-100 color-gray">{{ data.created_at }}</span>
           </div>
        </div>
