@@ -58,6 +58,7 @@ const seen = async (data) => {
 
 const closeChat = () => {
   supportStore.resetMessages()
+  supportController.stopChatPolling(supportStore.getChatInfo.chatId)
   chatState.value = false
 }
 
@@ -71,7 +72,7 @@ const clickOnChat = (data) => {
   )
   chatState.value = true
   setTimeout( async () => {
-    await supportController.getChat(data.chatId)
+    supportController.startChatPolling(data.chatId)
   }, 1000);
 }
 

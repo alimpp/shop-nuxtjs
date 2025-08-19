@@ -4,6 +4,7 @@ import type { IChatList, IMessage } from "~/types/Support";
 
 class SupportController extends SupportDataModel {
    private intervalId: NodeJS.Timeout | null = null;
+   private chatIntervalIds: Map<string, NodeJS.Timeout> = new Map();
    private isPolling: boolean = false;
    
    constructor() {
@@ -42,6 +43,38 @@ class SupportController extends SupportDataModel {
     }
    }
 
+   // Start polling for a specific chat
+   startChatPolling(chatId: string, intervalTime: number = 10000) {
+    this.stopChatPolling(chatId); // Stop any existing polling for this chat
+    
+    // Initial fetch
+    this.getChat(chatId);
+    
+    // Set up interval for polling
+    const intervalId = setInterval(async () => {
+      await this.getChat(chatId);
+    }, intervalTime);
+    
+    this.chatIntervalIds.set(chatId, intervalId);
+   }
+
+   // Stop polling for a specific chat
+   stopChatPolling(chatId: string) {
+    const intervalId = this.chatIntervalIds.get(chatId);
+    if (intervalId) {
+      clearInterval(intervalId);
+      this.chatIntervalIds.delete(chatId);
+    }
+   }
+
+   // Stop all chat polling
+   stopAllChatPolling() {
+    this.chatIntervalIds.forEach((intervalId, chatId) => {
+      clearInterval(intervalId);
+    });
+    this.chatIntervalIds.clear();
+   }
+
    restartPolling(intervalTime: number = 30000) {
     this.stopPolling();
     this.startPolling(intervalTime);
@@ -61,6 +94,10 @@ class SupportController extends SupportDataModel {
           }
        }
      })
+     .catch(error => {
+        console.error(`Error fetching chat ${chatId}:`, error);
+        this.stopChatPolling(chatId); // Stop polling on error
+     });
    }
 
    async sendMsgAdmin(body: {chatId: string, content: string, type: string}) {
@@ -83,7 +120,12 @@ class SupportController extends SupportDataModel {
    async seen(body: {id: string, chatId: string}) {
     await this.Patch(`/api/support/${body.id}`, {seen: true, chatId: body.chatId})
    }
+
+   // Clean up all intervals when the controller is no longer needed
+   destroy() {
+    this.stopPolling();
+    this.stopAllChatPolling();
+   }
 }
 
 export const supportController = new SupportController();
-

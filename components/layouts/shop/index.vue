@@ -24,7 +24,7 @@
           :sendLoading="sendLoading"
           :messages="messages"
           :info="chatInfo"
-          @close="modalsController('support')"
+          @close="closeChat"
           @send="send"
           @seen="seen"
         />
@@ -53,14 +53,23 @@ const modals = ref({
   chat: false,
 });
 
+const openChat = async () => {
+  supportStore.resetMessages()
+  modals.value.chat = !modals.value.chat;      
+  setTimeout( async () => {
+    supportController.startChatPolling(userStore.getUser.id)
+  }, 1000);
+}
+
+const closeChat = () => {
+  supportController.stopChatPolling(userStore.getUser.id)
+  modals.value.chat = !modals.value.chat;
+}
+
 const modalsController = (data) => {
   switch (data) {
     case "support":
-      supportStore.resetMessages()
-      modals.value.chat = !modals.value.chat;      
-      setTimeout( async () => {
-        await supportController.getChat(userStore.getUser.id)
-      }, 1000);
+        openChat()
       break;
     
     default:
