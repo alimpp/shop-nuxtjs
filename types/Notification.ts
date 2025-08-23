@@ -6,3 +6,4 @@ export interface INotification {
     created_at: string
     type: string
 }
+
