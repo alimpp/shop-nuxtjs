@@ -4,4 +4,5 @@ export interface INotification {
     content: string,
     seen: boolean,
     created_at: string
+    type: string
 }
