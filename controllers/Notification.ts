@@ -32,23 +32,21 @@ class NotificationController extends NotificationDataModel {
     })
     .catch((err) => { 
       console.error('Error fetching notifications:', err);
-      this.stopPolling(); // Stop polling on error
+      this.stopPolling();
     })
   }
 
-  // Start polling for notifications
   startPolling(intervalTime: number = 30000) {
     if (this.isPolling) return;
     
     this.isPolling = true;
-    this.getNotification(); // Initial fetch
+    this.getNotification();
     
     this.intervalId = setInterval(async () => {
       await this.getNotification();
     }, intervalTime);
   }
 
-  // Stop polling for notifications
   stopPolling() {
     if (this.intervalId) {
       clearInterval(this.intervalId);
@@ -57,30 +55,23 @@ class NotificationController extends NotificationDataModel {
     }
   }
 
-  // Restart polling with optional new interval
   restartPolling(intervalTime: number = 30000) {
     this.stopPolling();
     this.startPolling(intervalTime);
   }
 
-  // Check if polling is active
   isPollingActive(): boolean {
     return this.isPolling;
   }
 
-  // Get current polling interval (if active)
   getPollingInterval(): number | null {
     if (!this.intervalId) return null;
-    
-    // Note: This is a simplified approach since we can't directly get the interval time
-    // from a NodeJS.Timeout object. You might want to store the interval time separately.
-    return 30000; // Default or stored value
+    return 30000; 
   }
 
   public async seen(id: string) {
     await this.Patch(`/api/notification/${id}`, { seen: true })
     .then(() => {
-      // Optionally refresh notifications after marking as seen
       this.getNotification();
     })
     .catch((err) => { 
@@ -88,7 +79,6 @@ class NotificationController extends NotificationDataModel {
     })
   }
 
-  // Clean up when controller is no longer needed
   destroy() {
     this.stopPolling();
   }
