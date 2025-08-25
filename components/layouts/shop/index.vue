@@ -34,10 +34,11 @@
 </template>
 
 <script setup>
+import { navigateTo } from 'nuxt/app';
 import { supportController } from '~/controllers/Support';
 
-const supportStore = useSupportStore()
-const userStore = useUserStore()
+const supportStore = useSupportStore();
+const userStore = useUserStore();
 
 const sideMenuState = ref(false);
 const chnageSideMenuState = () => {
@@ -54,54 +55,59 @@ const modals = ref({
 });
 
 const openChat = async () => {
-  supportStore.resetMessages()
-  modals.value.chat = !modals.value.chat;      
-  setTimeout( async () => {
-    supportController.startChatPolling(userStore.getUser.id)
+  supportStore.resetMessages();
+  modals.value.chat = !modals.value.chat;
+  setTimeout(async () => {
+    supportController.startChatPolling(userStore.getUser.id);
   }, 1000);
-}
+};
 
 const closeChat = () => {
-  supportController.stopChatPolling(userStore.getUser.id)
+  supportController.stopChatPolling(userStore.getUser.id);
   modals.value.chat = !modals.value.chat;
-}
+};
 
 const modalsController = (data) => {
   switch (data) {
-    case "support":
-        openChat()
+    case 'support':
+      openChat();
       break;
-    
+    case 'profile':
+      navigateTo('/profile');
+      break;
     default:
-      throw new Error("Bad Signal . . . ");
+      throw new Error('Bad Signal . . . ');
   }
 };
 
-const sendLoading = ref(false)
-const loading = ref(false)
+const sendLoading = ref(false);
+const loading = ref(false);
 
 const messages = computed(() => {
-  return supportStore.getMessages
-})
+  return supportStore.getMessages;
+});
 
 const chatInfo = computed(() => {
   return {
-    name: "Admin Webiste",
-    sub: "Admin"
-  }
-})
+    name: 'Admin Webiste',
+    sub: 'Admin',
+  };
+});
 
 const send = async (data) => {
-  sendLoading.value = true 
-  await supportController.sendMsgUser({chatId: userStore.getUser.id, ...data})
-  sendLoading.value = false 
-}
+  sendLoading.value = true;
+  await supportController.sendMsgUser({
+    chatId: userStore.getUser.id,
+    ...data,
+  });
+  sendLoading.value = false;
+};
 
 const seen = (data) => {
-  setTimeout( async () => {
-    await supportController.seen({id: data.id, chatId: data.chatId})
+  setTimeout(async () => {
+    await supportController.seen({ id: data.id, chatId: data.chatId });
   }, 1000);
-}
+};
 </script>
 
 <style scoped>

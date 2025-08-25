@@ -1,8 +1,11 @@
 <template>
-  <div class="base-modal-content fade-animation" v-if="isOpen">
+  <div class="base-modal-content fade-animation-1s" v-if="isOpen">
     <div
-      :class="{'bg-app-dark': appTheme == 'dark', 'bg-app-light': appTheme == 'light'}"
-      class="content bg-primary-white flex flex-column"
+      :class="{
+        'bg-app-dark': appTheme == 'dark',
+        'bg-app-light': appTheme == 'light',
+      }"
+      class="content bg-primary-white flex flex-column fade-animation-2s"
       :style="{ width: width, height: height, borderRadius: borderRadius }"
     >
       <div class="flex w-100 py-8 border-bottom" v-if="hasHeader">
@@ -14,12 +17,20 @@
           </div>
         </div>
         <div class="flex align-center px-4">
-          <BaseIcon name="line-md:menu-to-close-alt-transition" class="cursor-pointer" @click="emit('close')" />
+          <BaseIcon
+            name="line-md:menu-to-close-alt-transition"
+            class="cursor-pointer"
+            @click="emit('close')"
+          />
         </div>
       </div>
       <div class="flex justify-end w-100 py-8" v-else>
-        <div class="flex  align-center px-4">
-          <BaseIcon name="line-md:menu-to-close-alt-transition" class="cursor-pointer" @click="emit('close')" />
+        <div class="flex align-center px-4">
+          <BaseIcon
+            name="line-md:menu-to-close-alt-transition"
+            class="cursor-pointer"
+            @click="emit('close')"
+          />
         </div>
       </div>
       <div class="flex w-100 py-10">
@@ -37,10 +48,10 @@
 </template>
 
 <script setup>
-const applicationStore = useApplicationStore()
+const applicationStore = useApplicationStore();
 const appTheme = computed(() => {
-    return applicationStore._state.theme
-})
+  return applicationStore._state.theme;
+});
 
 const props = defineProps({
   isOpen: {
@@ -49,23 +60,23 @@ const props = defineProps({
   },
   width: {
     type: String,
-    default: "380px",
+    default: '380px',
   },
   height: {
     type: String,
-    default: "auto",
+    default: 'auto',
   },
   borderRadius: {
     type: String,
-    default: "10px",
+    default: '10px',
   },
   title: {
     type: String,
-    default: "",
+    default: '',
   },
   text: {
     type: String,
-    default: "",
+    default: '',
   },
   hasFooter: {
     type: Boolean,
@@ -77,7 +88,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(['close']);
 </script>
 
 <style scoped>

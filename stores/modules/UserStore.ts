@@ -1,12 +1,13 @@
-import { BaseStore } from "../../core/BaseStore";
-import { StoreManager } from "../../core/StoreManager";
-import type { IUser } from "@/types/User";
+import type { IUser } from '@/types/user';
+import { navigateTo } from 'nuxt/app';
+import { BaseStore } from '../../core/BaseStore';
+import { StoreManager } from '../../core/StoreManager';
 
 interface IUserState {
   user: IUser;
   jwtToken: string;
   isAuthenticated: boolean;
-  moduleState: string
+  moduleState: string;
 }
 
 export class UserStore extends BaseStore<IUserState> {
@@ -20,30 +21,30 @@ export class UserStore extends BaseStore<IUserState> {
   }
 
   private constructor() {
-    super("user", {
+    super('user', {
       user: {
         id: 0,
-        fristname: "",
-        lastname: "",
-        email: "",
-        phone: "",
-        fullname: "",
-        fristChar: "",
+        fristname: '',
+        lastname: '',
+        email: '',
+        phone: '',
+        fullname: '',
+        fristChar: '',
       },
-      jwtToken: "",
+      jwtToken: '',
       isAuthenticated: false,
-      moduleState: ''
+      moduleState: '',
     });
 
     StoreManager.register(this);
   }
 
   get getModuleState(): string {
-    return this._state.moduleState
+    return this._state.moduleState;
   }
 
   public setModuleState(moduleState: string) {
-    this._state.moduleState = moduleState
+    this._state.moduleState = moduleState;
   }
 
   setJwt(jwt: string) {
@@ -51,11 +52,11 @@ export class UserStore extends BaseStore<IUserState> {
   }
 
   get getUser() {
-    return this._state.user
+    return this._state.user;
   }
 
   get getUserPhone() {
-    return this._state.user.phone
+    return this._state.user.phone;
   }
 
   setUser(user: IUser) {
@@ -70,18 +71,24 @@ export class UserStore extends BaseStore<IUserState> {
     this._state.isAuthenticated = flag;
   }
 
+  public logout() {
+    this.reset();
+    useCookie('token').value = null;
+    navigateTo('/auth/request-otp');
+  }
+
   public reset() {
     (this._state.user = {
       id: 0,
-      fristname: "",
-      lastname: "",
-      email: "",
-      phone: "",
-      fullname: "",
-      fristChar: "",
+      fristname: '',
+      lastname: '',
+      email: '',
+      phone: '',
+      fullname: '',
+      fristChar: '',
     }),
-      (this._state.jwtToken = "");
+      (this._state.jwtToken = '');
     this._state.isAuthenticated = false;
-    this._state.moduleState = ''
+    this._state.moduleState = '';
   }
 }
