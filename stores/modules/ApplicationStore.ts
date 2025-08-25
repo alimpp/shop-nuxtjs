@@ -1,5 +1,5 @@
-import { BaseStore } from "../../core/BaseStore";
-import { StoreManager } from "../../core/StoreManager";
+import { BaseStore } from '../../core/BaseStore';
+import { StoreManager } from '../../core/StoreManager';
 
 interface IToast {
   title: string;
@@ -35,17 +35,17 @@ export class ApplicationStore extends BaseStore<IApplication> {
   }
 
   private constructor() {
-    super("application", {
-      theme: "dark",
+    super('application', {
+      theme: 'dark',
       toastMessages: [],
       alert: {
-        title: "",
-        text: "",
-        type: "",
-        id: "",
+        title: '',
+        text: '',
+        type: '',
+        id: '',
         timeout: 0,
       },
-      compose: false
+      compose: false,
     });
     StoreManager.register(this);
   }
@@ -66,33 +66,35 @@ export class ApplicationStore extends BaseStore<IApplication> {
 
   public resetAlert() {
     this._state.alert = {
-      title: "",
-      text: "",
-      type: "",
-      id: "",
+      title: '',
+      text: '',
+      type: '',
+      id: '',
       timeout: 0,
     };
   }
 
   public setCompose(state?: boolean) {
-    state ? this._state.compose = state : this._state.compose = !this._state.compose
+    state
+      ? (this._state.compose = state)
+      : (this._state.compose = !this._state.compose);
   }
 
   get getComposeState(): boolean {
-    return this._state.compose
+    return this._state.compose;
   }
 
   public reset() {
-    this._state.theme = "dark";
+    this._state.theme = 'dark';
     this._state.toastMessages = [];
     this._state.alert = {
-      title: "",
-      text: "",
-      type: "",
-      id: "",
+      title: '',
+      text: '',
+      type: '',
+      id: '',
       timeout: 0,
     };
-    this._state.compose = false
+    this._state.compose = false;
   }
 
   private generateId(): string {

@@ -18,6 +18,49 @@
     </div>
     <BaseDivider class="mt-20" title="My Orders" />
     <OrdersMyOrders class="mt-20" />
+    <BaseDivider class="mt-20" title="Theme" />
+    <div class="flex flex-column">
+      <div class="flex mt-15">
+        <span
+          :class="{ 'bg-primary': appTheme == 'dark' }"
+          class="flex align-center f-s-12 f-w-600 px-15 py-5 border-rounded cursor-pointer"
+          @click="setTheme('dark')"
+        >
+          <BaseIcon
+            width="18px"
+            name="fa6-solid:hand-point-right"
+            v-if="appTheme == 'dark'"
+            class="mx-5"
+          />
+          <BaseIcon
+            class="mx-5"
+            width="18px"
+            name="mdi:hand-back-right"
+            v-else
+          />
+          Dark
+        </span>
+        <span
+          :class="{ 'bg-primary': appTheme == 'light' }"
+          class="flex align-center f-s-12 f-w-600 px-15 py-5 border-rounded cursor-pointer mx-10"
+          @click="setTheme('light')"
+        >
+          <BaseIcon
+            width="18px"
+            name="fa6-solid:hand-point-right"
+            v-if="appTheme == 'light'"
+            class="mx-5"
+          />
+          <BaseIcon
+            class="mx-5"
+            width="18px"
+            name="mdi:hand-back-right"
+            v-else
+          />
+          Light
+        </span>
+      </div>
+    </div>
     <div
       class="flex align-center mt-20 cursor-pointer"
       @click="modalUpdatePorfileState = true"
@@ -67,6 +110,15 @@
 import UpdateProfile from '../../components/profile/modal/updateProfile.vue';
 
 const userStore = useUserStore();
+const applicationStore = useApplicationStore();
+
+const setTheme = (theme) => {
+  applicationStore.setTheme(theme);
+};
+
+const appTheme = computed(() => {
+  return applicationStore._state.theme;
+});
 
 const modalUpdatePorfileState = ref(false);
 

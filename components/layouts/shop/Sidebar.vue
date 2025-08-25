@@ -35,45 +35,47 @@
 </template>
 
 <script setup>
-import { useRoute } from "vue-router";
+const { goTo } = useNavigate();
+
+import { useRoute } from 'vue-router';
 const route = useRoute();
 
-const emit = defineEmits(["chnageSideMenuState"]);
+const emit = defineEmits(['chnageSideMenuState']);
 
 const props = defineProps({
   isOpen: {
-    default: "true",
+    default: 'true',
     type: Boolean,
   },
 });
 
 const chnageSideMenuState = () => {
-  emit("chnageSideMenuState");
+  emit('chnageSideMenuState');
 };
 
 const menuItems = ref([
   {
-    name: "Home",
-    path: "/",
+    name: 'Home',
+    path: '/',
   },
   {
-    name: "Products",
-    path: "/products",
+    name: 'Products',
+    path: '/products',
   },
   {
-    name: "Blogs",
-    path: "/blogs",
+    name: 'Blogs',
+    path: '/blogs',
   },
   {
-    name: "Support",
-    path: "/support",
+    name: 'Support',
+    path: '/support',
   },
 ]);
 const navigate = (path) => {
   const osWidth = window.screen.width;
-  navigateTo(path);
+  goTo(path);
   if (osWidth < 650) {
-    emit("chnageSideMenuState");
+    emit('chnageSideMenuState');
   }
 };
 
@@ -84,7 +86,7 @@ const appTheme = computed(() => {
 </script>
 
 <style scoped lang="scss">
-@import url("@/assets/scss/theme_colors.scss");
+@import url('@/assets/scss/theme_colors.scss');
 
 .custom-style {
   box-shadow: 1px 0px 0px 0px #53535320;

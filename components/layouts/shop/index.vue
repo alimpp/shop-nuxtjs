@@ -34,7 +34,8 @@
 </template>
 
 <script setup>
-import { navigateTo } from 'nuxt/app';
+const { goTo } = useNavigate();
+
 import { supportController } from '~/controllers/Support';
 
 const supportStore = useSupportStore();
@@ -73,7 +74,7 @@ const modalsController = (data) => {
       openChat();
       break;
     case 'profile':
-      navigateTo('/profile');
+      goTo('/profile');
       break;
     default:
       throw new Error('Bad Signal . . . ');

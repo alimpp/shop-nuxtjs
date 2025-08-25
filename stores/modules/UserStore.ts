@@ -1,7 +1,8 @@
 import type { IUser } from '@/types/user';
-import { navigateTo } from 'nuxt/app';
 import { BaseStore } from '../../core/BaseStore';
 import { StoreManager } from '../../core/StoreManager';
+
+const { goTo } = useNavigate();
 
 interface IUserState {
   user: IUser;
@@ -74,7 +75,7 @@ export class UserStore extends BaseStore<IUserState> {
   public logout() {
     this.reset();
     useCookie('token').value = null;
-    navigateTo('/auth/request-otp');
+    goTo('/auth/request-otp');
   }
 
   public reset() {

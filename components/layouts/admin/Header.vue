@@ -9,7 +9,7 @@
     </div>
     <div class="w-50 flex justify-end px-10 align-center">
       <BaseIcon
-        @click="navigateTo('/dashboard/settings')"
+        @click="goTo('/dashboard/settings')"
         class="cursor-pointer mx-5"
         name="solar:settings-outline"
         width="25"
@@ -26,16 +26,18 @@
 </template>
 
 <script setup>
+const { goTo } = useNavigate();
+
 const adminStore = useAdminStore();
 
 const admin = computed(() => {
   return adminStore.getAdmin();
 });
 
-const emit = defineEmits(["chnageSideMenuState"]);
+const emit = defineEmits(['chnageSideMenuState']);
 
 const chnageSideMenuState = () => {
-  emit("chnageSideMenuState");
+  emit('chnageSideMenuState');
 };
 </script>
 

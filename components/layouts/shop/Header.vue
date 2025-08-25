@@ -10,19 +10,24 @@
           :class="{ 'border-bottom-primary': route.path == item.path }"
           v-for="(item, index) in menuItems"
           :key="index"
+          @click="goTo(item.path)"
           >{{ item.name }}</span
         >
       </div>
       <BaseIcon
-        @click="navigateTo('/profile/notification')"
+        @click="goTo('/notification')"
         class="cursor-pointer mx-5"
         name="solar:bell-broken"
         width="25"
         height="25"
       />
-      <span class="bg-red flex align-center justify-center w-30-px h-28-px border-circle pt-2 mb-20" v-if="notificationCount != 0">{{ notificationCount }}</span>
+      <span
+        class="bg-red flex align-center justify-center w-30-px h-28-px border-circle pt-2 mb-20"
+        v-if="notificationCount != 0"
+        >{{ notificationCount }}</span
+      >
       <BaseIcon
-        @click="navigateTo('/basket')"
+        @click="goTo('/basket')"
         name="solar:bag-2-linear"
         width="28"
         height="28"
@@ -40,41 +45,43 @@
 </template>
 
 <script setup>
-import { useRoute } from "#vue-router";
+const { goTo } = useNavigate();
+
+import { useRoute } from '#vue-router';
 const route = useRoute();
 
 const userStore = useUserStore();
 const { width } = useScreenSize();
 
-const notificationStore = useNotificationStore()
+const notificationStore = useNotificationStore();
 
 const notificationCount = computed(() => {
-  return notificationStore.getNotificationCount
-})
+  return notificationStore.getNotificationCount;
+});
 
-const emit = defineEmits(["chnageSideMenuState"]);
+const emit = defineEmits(['chnageSideMenuState']);
 
 const menuItems = ref([
   {
-    name: "Support",
-    path: "/support",
+    name: 'Support',
+    path: '/support',
   },
   {
-    name: "Blogs",
-    path: "/blogs",
+    name: 'Blogs',
+    path: '/blogs',
   },
   {
-    name: "Products",
-    path: "/products",
+    name: 'Products',
+    path: '/products',
   },
   {
-    name: "Home",
-    path: "/",
+    name: 'Home',
+    path: '/',
   },
 ]);
 
 const chnageSideMenuState = () => {
-  emit("chnageSideMenuState");
+  emit('chnageSideMenuState');
 };
 </script>
 
