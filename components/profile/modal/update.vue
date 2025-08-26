@@ -65,6 +65,7 @@ import { userController } from '@/controllers/User';
 const userStore = useUserStore();
 
 const loading = ref(false);
+  
 const form = ref({
   fristname: '',
   lastname: '',
@@ -72,14 +73,14 @@ const form = ref({
   phone: '',
 });
 
-const emit = defineEmits(['close']);
 const props = defineProps({
   isOpen: {
     type: Boolean,
     default: false,
   },
 });
-
+  
+const emit = defineEmits(['close'])
 const close = () => {
   emit('close');
 };
