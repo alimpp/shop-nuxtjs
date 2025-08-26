@@ -3,7 +3,7 @@
     <div class="w-100 flex">
       <div class="flex flex-column w-70">
         <BaseIcon
-          icon="material-symbols-light:mail-outline-rounded"
+          name="material-symbols-light:mail-outline-rounded"
           size="20"
           v-if="data.type == 'message'"
         />

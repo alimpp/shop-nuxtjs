@@ -2,7 +2,7 @@ import { AdminDataModel } from '~/model/Admin';
 import type { IAdminInfo } from '~/types/Admin';
 const { success, error } = useToast();
 
-const { goTo } = useNavigate();
+import { useRouter } from 'vue-router';
 class AdminController extends AdminDataModel {
   constructor() {
     super();
@@ -18,13 +18,14 @@ class AdminController extends AdminDataModel {
   }
 
   async login(body: { username: string; password: string }) {
+    const router = useRouter();
     await this.Post('/api/auth/login', body)
       .then((res: unknown) => {
         const response = res as { token: string };
         const tokenCookie = useCookie('token', { maxAge: 60 * 60 * 24 });
         tokenCookie.value = response.token;
         success('Authenticated Success');
-        goTo('/admin/dashboard');
+        router.push('/admin/dashboard');
       })
       .catch((err) => {
         err('Username or password is not valid');

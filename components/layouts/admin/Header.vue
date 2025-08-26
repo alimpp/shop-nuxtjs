@@ -9,7 +9,7 @@
     </div>
     <div class="w-50 flex justify-end px-10 align-center">
       <BaseIcon
-        @click="goTo('/dashboard/settings')"
+        @click="router.push('/dashboard/settings')"
         class="cursor-pointer mx-5"
         name="solar:settings-outline"
         width="25"
@@ -26,7 +26,8 @@
 </template>
 
 <script setup>
-const { goTo } = useNavigate();
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 const adminStore = useAdminStore();
 

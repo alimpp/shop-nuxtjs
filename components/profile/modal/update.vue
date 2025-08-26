@@ -6,7 +6,7 @@
     text="Update Profile Information"
   >
     <template #icon>
-      <BaseIcon icon="fluent:data-usage-edit-20-regular" />
+      <BaseIcon name="fluent:data-usage-edit-20-regular" />
     </template>
     <template #content>
       <div class="flex flex-column w-100 px-5">

@@ -44,14 +44,14 @@
   <div class="float-button bg-info" v-if="route.path != '/profile'">
     <BaseIcon
       color="#7d7be5"
-      icon="line-md:close"
+      name="line-md:close"
       v-if="activeCompose"
       @click="handleActiveCompose"
     />
     <BaseIcon
       v-else
       color="#7d7be5"
-      icon="solar:user-rounded-linear"
+      name="solar:user-rounded-linear"
       width="28"
       height="28"
       @click="handleActiveCompose"

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100 flex flex-column pt-10">
+  <div class="flex flex-column w-100 pt-10 slid-left-animation-8">
     <div class="flex w-100">
       <BaseAvatar
         width="50px"
@@ -16,115 +16,86 @@
         }}</span>
       </div>
     </div>
+
     <BaseDivider class="mt-20" title="My Orders" />
     <OrdersMyOrders class="mt-20" />
     <BaseDivider class="mt-20" title="Theme" />
-    <div class="flex flex-column">
-      <div class="flex mt-15">
-        <span
-          :class="{ 'bg-primary': appTheme == 'dark' }"
-          class="flex align-center f-s-12 f-w-600 px-15 py-5 border-rounded cursor-pointer"
-          @click="setTheme('dark')"
-        >
-          <BaseIcon
-            width="18px"
-            name="fa6-solid:hand-point-right"
-            v-if="appTheme == 'dark'"
-            class="mx-5"
-          />
-          <BaseIcon
-            class="mx-5"
-            width="18px"
-            name="mdi:hand-back-right"
-            v-else
-          />
-          Dark
-        </span>
-        <span
-          :class="{ 'bg-primary': appTheme == 'light' }"
-          class="flex align-center f-s-12 f-w-600 px-15 py-5 border-rounded cursor-pointer mx-10"
-          @click="setTheme('light')"
-        >
-          <BaseIcon
-            width="18px"
-            name="fa6-solid:hand-point-right"
-            v-if="appTheme == 'light'"
-            class="mx-5"
-          />
-          <BaseIcon
-            class="mx-5"
-            width="18px"
-            name="mdi:hand-back-right"
-            v-else
-          />
-          Light
-        </span>
+    <SwitchTheme />
+    <div class="flex flex-column" v-for="item in listItems" :key="item.key">
+      <div
+        class="flex align-center mt-20 cursor-pointer"
+        @click="signalController(item.signal)"
+      >
+        <BaseIcon :name="item.icon" :size="item.size" />
+        <span class="f-s-14 f-w-500 px-5">{{ item.name }}</span>
       </div>
+      <BaseDivider class="mt-5" />
     </div>
-    <div
-      class="flex align-center mt-20 cursor-pointer"
-      @click="modalUpdatePorfileState = true"
-    >
-      <BaseIcon icon="fluent:data-usage-edit-20-regular" size="25" />
-      <span class="f-s-14 f-w-500 px-5">Profile Information</span>
-    </div>
-    <BaseDivider class="mt-5" />
-    <div class="flex align-center mt-10 cursor-pointer">
-      <BaseIcon icon="hugeicons:note" size="25" />
-      <span class="f-s-14 f-w-500 px-5">Orders</span>
-    </div>
-    <BaseDivider class="mt-5" />
-    <div class="flex align-center mt-10 cursor-pointer">
-      <BaseIcon icon="solar:bag-2-linear" size="25" />
-      <span class="f-s-14 f-w-500 px-5">Basket</span>
-    </div>
-    <BaseDivider class="mt-5" />
-    <div class="flex align-center mt-10 cursor-pointer">
-      <BaseIcon icon="clarity:chat-bubble-line" size="25" />
-      <span class="f-s-14 f-w-500 px-5">Support</span>
-    </div>
-    <BaseDivider class="mt-5" />
-    <div class="flex align-center mt-10 cursor-pointer">
-      <BaseIcon icon="icon-park-outline:like" size="25" />
-      <span class="f-s-14 f-w-500 px-5">Favorite</span>
-    </div>
-    <BaseDivider class="mt-5" />
-    <div class="flex align-center mt-10 cursor-pointer">
-      <BaseIcon icon="solar:bell-broken" size="25" />
-      <span class="f-s-14 f-w-500 px-5">Notification</span>
-    </div>
-    <BaseDivider class="mt-5" />
     <div class="flex align-center mt-10 cursor-pointer" @click="logout">
-      <BaseIcon icon="game-icons:exit-door" size="25" color="#eb5f5f" />
+      <BaseIcon name="game-icons:exit-door" size="25" color="#eb5f5f" />
       <span class="f-s-14 f-w-500 px-5 color-danger">LogOut</span>
     </div>
-    <BaseDivider class="mt-5" />
   </div>
-  <UpdateProfile
-    :isOpen="modalUpdatePorfileState"
-    @close="modalUpdatePorfileState = false"
-  />
 </template>
 
 <script setup>
-import UpdateProfile from '../../components/profile/modal/updateProfile.vue';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 const userStore = useUserStore();
-const applicationStore = useApplicationStore();
-
-const setTheme = (theme) => {
-  applicationStore.setTheme(theme);
-};
-
-const appTheme = computed(() => {
-  return applicationStore._state.theme;
-});
-
-const modalUpdatePorfileState = ref(false);
 
 const profile = computed(() => {
   return userStore._state.user;
 });
+
+const listItems = ref([
+  {
+    id: 0,
+    name: 'Profile Information',
+    signal: 'profileInformation',
+    icon: 'fluent:data-usage-edit-20-regular',
+    size: '25',
+  },
+  {
+    id: 1,
+    name: 'Orders',
+    signal: 'orders',
+    icon: 'hugeicons:note',
+    size: '25',
+  },
+  {
+    id: 2,
+    name: 'Basket',
+    signal: 'basket',
+    icon: 'solar:bag-2-linear',
+    size: '25',
+  },
+  {
+    id: 3,
+    name: 'Favorite',
+    signal: 'favorite',
+    icon: 'icon-park-outline:like',
+    size: '25',
+  },
+  {
+    id: 4,
+    name: 'Notification',
+    signal: 'notification',
+    icon: 'solar:bell-broken',
+    size: '25',
+  },
+]);
+
+const signalController = (signal) => {
+  switch (signal) {
+    case 'profileInformation':
+      router.push('/profile/update');
+      break;
+
+    default:
+      break;
+  }
+};
 
 const logout = () => {
   userStore.logout();

@@ -7,8 +7,7 @@ interface IUpdateProfile {
   email: string;
 }
 
-const { goTo } = useNavigate();
-
+import { useRouter } from 'vue-router';
 class UserController extends UserDataModel {
   constructor() {
     super();
@@ -24,11 +23,13 @@ class UserController extends UserDataModel {
   }
 
   public async requestOtp(phoneNumber: string) {
+    const router = useRouter();
+
     await this.Post('/api/auth/request-otp', { phoneNumber })
       .then((res: unknown) => {
         success(`Send otp code to ${phoneNumber}`);
         this.userStore.setUserPhone(phoneNumber);
-        goTo('/auth/verify-otp');
+        router.push('/auth/verify-otp');
       })
       .catch((err) => {
         error(`Send otp has error please try again`);
@@ -36,13 +37,15 @@ class UserController extends UserDataModel {
   }
 
   public async verifyOtp(payload: { phoneNumber: string; otp: string }) {
+    const router = useRouter();
+
     await this.Post('/api/auth/verify-otp', payload)
       .then((res: unknown) => {
         const response = res as { accessToken: string };
         const tokenCookie = useCookie('token', { maxAge: 60 * 60 * 24 });
         tokenCookie.value = response.accessToken;
         success('Authenticated Success');
-        goTo('/');
+        router.push('/');
       })
       .catch((err) => {
         error('Otp code is invalid!');
@@ -67,10 +70,12 @@ class UserController extends UserDataModel {
   }
 
   public logout() {
+    const router = useRouter();
+
     const token = useCookie('token');
     token.value = '';
     this.clearStorage();
-    goTo('/auth/login');
+    router.push('/auth/login');
   }
 }
 

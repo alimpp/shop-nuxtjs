@@ -34,7 +34,8 @@
 </template>
 
 <script setup>
-const { goTo } = useNavigate();
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 import { supportController } from '~/controllers/Support';
 
@@ -74,7 +75,7 @@ const modalsController = (data) => {
       openChat();
       break;
     case 'profile':
-      goTo('/profile');
+      router.push('/profile');
       break;
     default:
       throw new Error('Bad Signal . . . ');
@@ -115,6 +116,7 @@ const seen = (data) => {
 .router-content {
   height: 90dvh;
   overflow-y: scroll;
+  overflow-x: hidden;
   padding: 10px 30px;
 }
 .router-content::-webkit-scrollbar {

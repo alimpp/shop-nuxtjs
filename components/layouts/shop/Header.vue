@@ -10,12 +10,12 @@
           :class="{ 'border-bottom-primary': route.path == item.path }"
           v-for="(item, index) in menuItems"
           :key="index"
-          @click="goTo(item.path)"
+          @click="router.push(item.path)"
           >{{ item.name }}</span
         >
       </div>
       <BaseIcon
-        @click="goTo('/notification')"
+        @click="router.push('/notification')"
         class="cursor-pointer mx-5"
         name="solar:bell-broken"
         width="25"
@@ -27,7 +27,7 @@
         >{{ notificationCount }}</span
       >
       <BaseIcon
-        @click="goTo('/basket')"
+        @click="router.push('/basket')"
         name="solar:bag-2-linear"
         width="28"
         height="28"
@@ -45,7 +45,8 @@
 </template>
 
 <script setup>
-const { goTo } = useNavigate();
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 import { useRoute } from '#vue-router';
 const route = useRoute();

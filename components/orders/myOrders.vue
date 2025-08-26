@@ -1,7 +1,7 @@
 <template>
   <div class="w-100 flex align-center justify-center">
     <div class="w-30 flex flex-column align-center justify-center">
-      <BaseIcon icon="mi:switch" size="50" />
+      <BaseIcon name="mi:switch" size="50" />
       <div class="flex align-center f-s-14 f-w-600">
         <span class="px-5">Active</span>
         <div
@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="w-30 flex flex-column align-center justify-center">
-      <BaseIcon icon="lsicon:order-done-outline" size="50" />
+      <BaseIcon name="lsicon:order-done-outline" size="50" />
       <div class="flex align-center f-s-14 f-w-600">
         <span class="px-5">Completed</span>
         <div
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="w-30 flex flex-column align-center justify-center">
-      <BaseIcon icon="tabler:shopping-cart-cancel" size="50" />
+      <BaseIcon name="tabler:shopping-cart-cancel" size="50" />
       <div class="flex align-center f-s-14 f-w-600">
         <span class="px-5">Cancel</span>
         <div

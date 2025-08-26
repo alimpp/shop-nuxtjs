@@ -35,7 +35,8 @@
 </template>
 
 <script setup>
-const { goTo } = useNavigate();
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 import { useRoute } from 'vue-router';
 const route = useRoute();
@@ -73,7 +74,7 @@ const menuItems = ref([
 ]);
 const navigate = (path) => {
   const osWidth = window.screen.width;
-  goTo(path);
+  router.push(path);
   if (osWidth < 650) {
     emit('chnageSideMenuState');
   }
