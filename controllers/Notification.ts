@@ -1,15 +1,16 @@
-import { NotificationDataModel } from "~/model/Notification";
-import type { INotification } from "~/types/Notification";
+import { NotificationDataModel } from '~/model/Notification';
+import type { INotification } from '~/types/Notification';
 
 class NotificationController extends NotificationDataModel {
   private intervalId: NodeJS.Timeout | null = null;
   private isPolling: boolean = false;
-  
+
   constructor() {
-    super()
+    super();
   }
 
-  private notificationStore = useNotificationStore()
+  private notificationStore = useNotificationStore();
+  private userStore = useUserStore();
 
   private getCacheData() {
     const cacheData = this.readObject();
@@ -19,32 +20,34 @@ class NotificationController extends NotificationDataModel {
   }
 
   public async getNotification() {
-    this.getCacheData()
+    this.getCacheData();
     await this.Get('/api/notification/list')
-    .then( async (res: any)=> {
-      const parsedList: INotification[] = await this.notificationParsed(res)
-      this.saveAllItems(parsedList)
-      this.notificationStore.setNotification(parsedList)
-      const count = parsedList.filter((item: INotification) => {
-        return item.seen == false
+      .then(async (res: any) => {
+        const parsedList: INotification[] = await this.notificationParsed(res);
+        this.saveAllItems(parsedList);
+        this.notificationStore.setNotification(parsedList);
+        const count = parsedList.filter((item: INotification) => {
+          return item.seen == false;
+        });
+        this.notificationStore.setNotificationCount(count.length);
       })
-      this.notificationStore.setNotificationCount(count.length)
-    })
-    .catch((err) => { 
-      console.error('Error fetching notifications:', err);
-      this.stopPolling();
-    })
+      .catch((err) => {
+        console.error('Error fetching notifications:', err);
+        this.stopPolling();
+      });
   }
 
   startPolling(intervalTime: number = 30000) {
-    if (this.isPolling) return;
-    
-    this.isPolling = true;
-    this.getNotification();
-    
-    this.intervalId = setInterval(async () => {
-      await this.getNotification();
-    }, intervalTime);
+    if (this.userStore.getAuthenticated) {
+      if (this.isPolling) return;
+
+      this.isPolling = true;
+      this.getNotification();
+
+      this.intervalId = setInterval(async () => {
+        await this.getNotification();
+      }, intervalTime);
+    }
   }
 
   stopPolling() {
@@ -66,17 +69,17 @@ class NotificationController extends NotificationDataModel {
 
   getPollingInterval(): number | null {
     if (!this.intervalId) return null;
-    return 30000; 
+    return 30000;
   }
 
   public async seen(id: string) {
     await this.Patch(`/api/notification/${id}`, { seen: true })
-    .then(() => {
-      this.getNotification();
-    })
-    .catch((err) => { 
-      console.error('Error marking notification as seen:', err);
-    })
+      .then(() => {
+        this.getNotification();
+      })
+      .catch((err) => {
+        console.error('Error marking notification as seen:', err);
+      });
   }
 
   destroy() {
@@ -84,4 +87,4 @@ class NotificationController extends NotificationDataModel {
   }
 }
 
-export const notificationController = new NotificationController()
+export const notificationController = new NotificationController();

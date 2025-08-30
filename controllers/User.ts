@@ -7,7 +7,7 @@ interface IUpdateProfile {
   email: string;
 }
 
-import { useRouter } from 'vue-router';
+import { navigateTo } from 'nuxt/app';
 class UserController extends UserDataModel {
   constructor() {
     super();
@@ -23,13 +23,11 @@ class UserController extends UserDataModel {
   }
 
   public async requestOtp(phoneNumber: string) {
-    const router = useRouter();
-
     await this.Post('/api/auth/request-otp', { phoneNumber })
       .then((res: unknown) => {
         success(`Send otp code to ${phoneNumber}`);
         this.userStore.setUserPhone(phoneNumber);
-        router.push('/auth/verify-otp');
+        navigateTo('/auth/verify-otp');
       })
       .catch((err) => {
         error(`Send otp has error please try again`);
@@ -37,15 +35,13 @@ class UserController extends UserDataModel {
   }
 
   public async verifyOtp(payload: { phoneNumber: string; otp: string }) {
-    const router = useRouter();
-
     await this.Post('/api/auth/verify-otp', payload)
       .then((res: unknown) => {
         const response = res as { accessToken: string };
         const tokenCookie = useCookie('token', { maxAge: 60 * 60 * 24 });
         tokenCookie.value = response.accessToken;
         success('Authenticated Success');
-        router.push('/');
+        navigateTo('/');
       })
       .catch((err) => {
         error('Otp code is invalid!');
@@ -56,10 +52,12 @@ class UserController extends UserDataModel {
     this.getCacheData();
     const token = useCookie('token');
     this.userStore.setJwt(token.value ? token.value : '');
-    const requestResponse = await this.Get('/api/users/profile');
-    if (requestResponse) this.userStore.setAuthenticated(true);
-    const user = await this.profileParsed(requestResponse);
-    this.userStore.setUser(user);
+    if (token.value) {
+      const requestResponse = await this.Get('/api/users/profile');
+      if (requestResponse) this.userStore.setAuthenticated(true);
+      const user = await this.profileParsed(requestResponse);
+      this.userStore.setUser(user);
+    }
   }
 
   async updateProfile(body: IUpdateProfile) {
@@ -70,12 +68,11 @@ class UserController extends UserDataModel {
   }
 
   public logout() {
-    const router = useRouter();
-
     const token = useCookie('token');
     token.value = '';
     this.clearStorage();
-    router.push('/auth/login');
+    this.userStore.logout();
+    navigateTo('/');
   }
 }
 

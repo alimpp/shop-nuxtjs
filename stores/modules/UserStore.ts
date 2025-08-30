@@ -2,7 +2,6 @@ import type { IUser } from '@/types/user';
 import { BaseStore } from '../../core/BaseStore';
 import { StoreManager } from '../../core/StoreManager';
 
-import { useRouter } from 'vue-router';
 interface IUserState {
   user: IUser;
   jwtToken: string;
@@ -71,12 +70,12 @@ export class UserStore extends BaseStore<IUserState> {
     this._state.isAuthenticated = flag;
   }
 
-  public logout() {
-    const router = useRouter();
+  public get getAuthenticated() {
+    return this._state.isAuthenticated;
+  }
 
+  public logout() {
     this.reset();
-    useCookie('token').value = null;
-    router.push('/auth/request-otp');
   }
 
   public reset() {

@@ -23,4 +23,8 @@ const seen = (id) => {
     await notificationController.seen(id);
   }, 1000);
 };
+
+definePageMeta({
+  middleware: 'auth',
+});
 </script>

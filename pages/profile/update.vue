@@ -84,4 +84,8 @@ onMounted(async () => {
   form.value.lastname = userStore.getUser.lastname;
   form.value.email = userStore.getUser.email;
 });
+
+definePageMeta({
+  middleware: 'auth',
+});
 </script>

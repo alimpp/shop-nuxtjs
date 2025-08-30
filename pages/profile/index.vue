@@ -39,6 +39,8 @@
 </template>
 
 <script setup>
+import { userController } from '../../controllers/User';
+
 import { useRouter } from 'vue-router';
 const router = useRouter();
 
@@ -92,13 +94,17 @@ const signalController = (signal) => {
       router.push('/profile/update');
       break;
 
+    case 'notification':
+      router.push('/notification');
+      break;
+
     default:
       break;
   }
 };
 
 const logout = () => {
-  userStore.logout();
+  userController.logout();
 };
 
 definePageMeta({
