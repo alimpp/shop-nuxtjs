@@ -72,7 +72,11 @@ const closeChat = () => {
 const modalsController = (data) => {
   switch (data) {
     case 'support':
-      openChat();
+      if (userStore.getAuthenticated) {
+        openChat();
+      } else {
+        router.push('/auth/request-otp');
+      }
       break;
     case 'profile':
       router.push('/profile');

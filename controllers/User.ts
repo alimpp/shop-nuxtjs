@@ -72,8 +72,10 @@ class UserController extends UserDataModel {
     token.value = '';
     this.clearStorage();
     this.userStore.logout();
-    location.reload()
     navigateTo('/');
+    setTimeout(() => {
+      location.reload();
+    }, 10);
   }
 }
 

@@ -16,7 +16,7 @@
       <div class="flex align-center f-s-14 f-w-600">
         <span class="px-5">Completed</span>
         <div
-          class="bg-success border-rounded flex align-center justify-center w-25-px h-25-px"
+          class="bg-success color-white border-rounded flex align-center justify-center w-25-px h-25-px"
         >
           5
         </div>
