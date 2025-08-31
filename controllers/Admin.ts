@@ -4,6 +4,7 @@ const { success, error } = useToast();
 
 import { useRouter } from 'vue-router';
 class AdminController extends AdminDataModel {
+  
   constructor() {
     super();
   }
@@ -38,6 +39,7 @@ class AdminController extends AdminDataModel {
     const parsedData = await this.profileParsed(response);
     this.adminStore.setAdmin(parsedData);
   }
+  
 }
 
 export const adminController = new AdminController();
