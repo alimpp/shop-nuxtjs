@@ -2,6 +2,7 @@ import { NotificationDataModel } from '~/model/Notification';
 import type { INotification } from '~/types/Notification';
 
 class NotificationController extends NotificationDataModel {
+  
   private intervalId: NodeJS.Timeout | null = null;
   private isPolling: boolean = false;
 
@@ -85,6 +86,7 @@ class NotificationController extends NotificationDataModel {
   destroy() {
     this.stopPolling();
   }
+  
 }
 
 export const notificationController = new NotificationController();
