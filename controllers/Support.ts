@@ -3,6 +3,7 @@ import { useSupportStore } from "~/stores";
 import type { IChatList, IMessage } from "~/types/Support";
 
 class SupportController extends SupportDataModel {
+   
    private intervalId: NodeJS.Timeout | null = null;
    private chatIntervalIds: Map<string, NodeJS.Timeout> = new Map();
    private isPolling: boolean = false;
@@ -120,6 +121,7 @@ class SupportController extends SupportDataModel {
     this.stopPolling();
     this.stopAllChatPolling();
    }
+   
 }
 
 export const supportController = new SupportController();
