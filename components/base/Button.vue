@@ -1,17 +1,15 @@
 <template>
-    <button
-      class="base-button"
-      :style="{ width: width, height: height }"
-      :class="[bg, color, border]"
-      :disabled="disabled || loading"
+  <button
+    class="base-button"
+    :style="{ width: width, height: height }"
+    :class="[bg, color, border]"
+    :disabled="disabled || loading"
+  >
+    <span :class="[fontSize, fontWeight, color]" class="px-2" v-if="name">
+      {{ name }}</span
     >
-    <span :class="[fontSize, fontWeight, color]" class="px-2" v-if="name"> {{ name }}</span>
     <BaseIcon name="line-md:loading-loop" v-if="loading" />
-    <BaseIcon
-      :name="icon"
-      v-if="!loading && icon"
-      :size="iconSize"
-    />
+    <BaseIcon :name="icon" v-if="!loading && icon" :size="iconSize" />
   </button>
 </template>
 
@@ -19,23 +17,23 @@
 const props = defineProps({
   bg: {
     type: String,
-    default: "bg-primary",
+    default: 'btn-primary',
   },
   color: {
     type: String,
-    default: "color-primary-white",
+    default: 'color-primary-white',
   },
   fontSize: {
     type: String,
-    default: "f-s-12",
+    default: 'f-s-12',
   },
   fontWeight: {
     type: String,
-    default: "f-w-500",
+    default: 'f-w-500',
   },
   name: {
     type: String,
-    default: "",
+    default: '',
   },
   loading: {
     type: Boolean,
@@ -47,27 +45,27 @@ const props = defineProps({
   },
   border: {
     type: String,
-    default: "",
+    default: '',
   },
   icon: {
     type: String,
-    default: "",
+    default: '',
   },
   width: {
     type: String,
-    default: "90px",
+    default: '90px',
   },
   height: {
     type: String,
-    default: "35px",
+    default: '35px',
   },
   iconSize: {
     type: String,
-    default: "20px",
+    default: '20px',
   },
   padding: {
     type: String,
-    default: "10px 10px",
+    default: '10px 10px',
   },
 });
 </script>
