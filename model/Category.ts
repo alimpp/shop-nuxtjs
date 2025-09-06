@@ -1,0 +1,19 @@
+import { BaseApp } from '../core/BaseApp';
+import { ICategory } from '../types/Category';
+
+export class CategoryDataModel extends BaseApp<any> {
+  constructor() {
+    super('category');
+  }
+
+  public categoryParsed(apiResponse: ICategory[]) {
+    if (!Array.isArray(apiResponse)) {
+      throw new Error('Invalid list data format');
+    }
+    let list: ICategory[] = [];
+    apiResponse.map((category) => {
+      list.push(category);
+    });
+    return list;
+  }
+}

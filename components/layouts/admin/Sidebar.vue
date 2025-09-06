@@ -68,6 +68,12 @@ const items = ref([
     path: '/admin/support',
     icon: 'mynaui:message-dots',
   },
+  {
+    id: 2,
+    name: 'Category',
+    path: '/admin/category',
+    icon: 'iconamoon:category-light',
+  },
 ]);
 
 const navigate = (path) => {
