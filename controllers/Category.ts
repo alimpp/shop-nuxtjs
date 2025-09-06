@@ -7,12 +7,19 @@ export class CategoryController extends CategoryDataModel {
     super();
   }
 
-  public getCacheData() {}
+  private categoryStore = useCategoryStore();
+
+  public getCacheData() {
+    const cacheData = this.readObject();
+    if (cacheData) {
+      this.categoryStore.setList(cacheData);
+    }
+  }
 
   public async list() {
     await this.Get('/api/category/all').then((res: any) => {
       const result = this.categoryParsed(res);
-      console.log(result);
+      this.categoryStore.setList(result);
     });
   }
 
@@ -28,3 +35,4 @@ export class CategoryController extends CategoryDataModel {
 }
 
 export const categoryController = new CategoryController();
+
