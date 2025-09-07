@@ -1,6 +1,8 @@
 import { BaseApp } from '../core/BaseApp';
 import { ICategory } from '../types/Category';
 
+const { formatDateTime, parseDate } = useDate();
+
 export class CategoryDataModel extends BaseApp<any> {
   constructor() {
     super('category');
@@ -12,8 +14,13 @@ export class CategoryDataModel extends BaseApp<any> {
     }
     let list: ICategory[] = [];
     apiResponse.map((category) => {
-      list.push(category);
+      const obj = {
+        ...category,
+        created_at: category.created_at.slice(0, 10),
+      };
+      list.push(obj);
     });
+    console.log(list);
     return list;
   }
 }

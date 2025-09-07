@@ -27,6 +27,7 @@ export class CategoryController extends CategoryDataModel {
     await this.Post('/api/category/add', { name })
       .then((res) => {
         success(`Category ${name} added`);
+        this.list();
       })
       .catch((err) => {
         error(`Add category failed`);
@@ -35,4 +36,3 @@ export class CategoryController extends CategoryDataModel {
 }
 
 export const categoryController = new CategoryController();
-
