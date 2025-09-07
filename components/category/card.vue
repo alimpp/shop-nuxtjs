@@ -11,7 +11,7 @@
             size="17"
             class="cursor-pointer mx-5"
             v-if="!updateState"
-            @click="updateState = !updateState"
+            @click="changeUpdateState"
           />
           <BaseIcon
             name="line-md:menu-to-close-alt-transition"
@@ -29,7 +29,7 @@
         <BaseInput
           validate="true"
           v-model:access="access"
-          v-model="data.name"
+          v-model="name"
           rules="length"
           min-length="3"
           max-length="15"
@@ -70,8 +70,15 @@ const props = defineProps({
 const updateState = ref(false);
 const access = ref(false);
 
+const name = ref('');
+
+const changeUpdateState = () => {
+  updateState.value = !updateState.value;
+  name.value = props.data.name;
+};
+
 watch(updateState, (o, n) => {
-  if (props.data.name) {
+  if (name) {
     access.value = true;
   }
 });
