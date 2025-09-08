@@ -15,7 +15,6 @@ export const useDate = () => {
   const formatRelativeTime = (date: Date): string => {
     const now = new Date()
     const diffInSeconds = Math.floor((date.getTime() - now.getTime()) / 1000)
-
     const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' })
     
     const units = [
