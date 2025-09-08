@@ -86,6 +86,13 @@ const listItems = ref([
     icon: 'solar:bell-broken',
     size: '25',
   },
+  {
+    id: 5,
+    name: 'Address',
+    signal: 'address',
+    icon: 'line-md:my-location-loop',
+    size: '25',
+  },
 ]);
 
 const signalController = (signal) => {
@@ -96,6 +103,10 @@ const signalController = (signal) => {
 
     case 'notification':
       router.push('/notification');
+      break;
+
+    case 'address':
+      router.push('/profile/address');
       break;
 
     default:

@@ -41,7 +41,10 @@
     />
     <span class="f-s-12 f-w-500 color-primary">Support</span>
   </div>
-  <div class="float-button bg-info" v-if="route.path != '/profile'">
+  <div
+    class="float-button bg-info"
+    v-if="route.path != '/profile' && route.path != '/profile/address'"
+  >
     <BaseIcon
       color="#7d7be5"
       name="line-md:close"
