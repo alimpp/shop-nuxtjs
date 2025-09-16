@@ -1,29 +1,29 @@
-import { BaseApp } from "../core/BaseApp";
-import type { IChatList, IMessage } from "@/types/Support";
+import type { IChatList, IMessage } from '@/types/Support';
+import { BaseApp } from '../core/BaseApp';
 
-const { formatDateTime, parseDate } = useDate()
+const { formatDateTime, parseDate } = useDate();
 
 export class SupportDataModel extends BaseApp<any> {
   constructor() {
-    super("support");
+    super('support');
   }
 
   async chatListParsed(apiResponse: IChatList[]): Promise<IChatList[]> {
     if (!Array.isArray(apiResponse)) {
-      throw new Error("Invalid list data format");
+      throw new Error('Invalid list data format');
     }
-    
-    let list = []
 
-    for(let key of apiResponse) {
-      const isoString = key.lastMessageTime
-      const date = parseDate(isoString)
-      const dateFormt = formatDateTime(date)
+    let list = [];
+
+    for (let key of apiResponse) {
+      const isoString = key.lastMessageTime;
+      const date = parseDate(isoString);
+      const dateFormt = formatDateTime(date);
       const obj = {
         ...key,
-        lastMessageTime: dateFormt
-      }
-      list.push(obj)
+        lastMessageTime: dateFormt,
+      };
+      list.push(obj);
     }
 
     const sortedChats = [...list].sort((a, b) => {
@@ -36,33 +36,43 @@ export class SupportDataModel extends BaseApp<any> {
 
   async chatParsed(apiResponse: IMessage[]): Promise<IMessage[]> {
     if (!Array.isArray(apiResponse)) {
-      throw new Error("Invalid list data format");
+      throw new Error('Invalid list data format');
     }
-    
-    let list = []
 
-    for(let key of apiResponse) {
-      const isoString = key.created_at
-      const date = parseDate(isoString)
-      const dateFormt = formatDateTime(date)
+    let list = [];
+
+    for (let key of apiResponse) {
+      const isoString = key.created_at;
+      const date = parseDate(isoString);
+      const dateFormt = formatDateTime(date);
+      let content;
+      switch (key.type) {
+        case 'txt':
+          content = key.content.replace(/\n/g, '<br>');
+          break;
+
+        default:
+          break;
+      }
       const obj = {
         ...key,
-        created_at: dateFormt     
-       }
-      list.push(obj)
+        content,
+        created_at: dateFormt,
+      };
+      list.push(obj);
     }
 
     return list;
   }
 
-   async generateMessage(apiResponse: IMessage) {
-      const isoString = apiResponse.created_at
-      const date = parseDate(isoString)
-      const dateFormt = formatDateTime(date)
-      const message = {
-        ...apiResponse,
-        created_at: dateFormt     
-      }
-      return message
+  async generateMessage(apiResponse: IMessage) {
+    const isoString = apiResponse.created_at;
+    const date = parseDate(isoString);
+    const dateFormt = formatDateTime(date);
+    const message = {
+      ...apiResponse,
+      created_at: dateFormt,
+    };
+    return message;
   }
 }
