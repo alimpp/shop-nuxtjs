@@ -17,7 +17,7 @@
 const props = defineProps({
   bg: {
     type: String,
-    default: 'btn-primary',
+    default: 'bg-primary-gr ',
   },
   color: {
     type: String,
