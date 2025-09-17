@@ -3,20 +3,20 @@
 .btn-primary {
   color: var(--white-);
   transition: 0.5s;
-  background: #FFF;
-  background: linear-gradient(62deg, rgba(255, 255, 255, 1) 0%, rgba(125, 123, 229, 1) 30%);
+  background: #aeacf2;
+  background: linear-gradient(62deg, rgba(174, 172, 242, 0.55) 0%, rgba(125, 123, 229, 1) 30%);
 }
 .btn-secondary {
   color: var(--white-);
   transition: 0.5s;
-  background: #8bbae8;
-  background: linear-gradient(90deg, rgba(139, 186, 232, 1) 0%, rgba(17, 68, 119, 1) 58%);
+  background: #114477;
+  background: linear-gradient(62deg, rgba(17, 68, 119, 0.55) 0%, rgba(17, 68, 119, 1) 30%);
 }
 .btn-success {
   color: var(--dark-);
   transition: 0.5s;
-  background: #60eb85;
-  background: linear-gradient(90deg, rgba(96, 235, 133, 1) 0%, rgba(7, 143, 43, 1) 58%);
+  background: #078F2B;
+  background: linear-gradient(62deg, rgba(7, 143, 43, 0.55) 0%, rgba(7, 143, 43, 1) 30%);
 }
 
 .bg-primary {
