@@ -5,7 +5,7 @@
         'bg-app-dark': appTheme == 'dark',
         'bg-app-light': appTheme == 'light',
       }"
-      class="content bg-primary-white flex flex-column fade-animation-2s"
+      class="content bg-primary-white flex flex-column slid-left-animation-5"
       :style="{ width: width, height: height, borderRadius: borderRadius }"
     >
       <div class="flex w-100 py-8 border-bottom" v-if="hasHeader">
@@ -97,7 +97,6 @@ const emit = defineEmits(['close']);
   height: 100dvh;
   position: fixed;
   z-index: 1000;
-  background: #ffffff8e;
   top: 0;
   bottom: 0;
   left: 0;
@@ -105,6 +104,11 @@ const emit = defineEmits(['close']);
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #0000006c;
+}
+
+.content {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .border-top {
