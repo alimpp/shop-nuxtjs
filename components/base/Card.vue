@@ -23,22 +23,22 @@ const appTheme = computed(() => {
 const props = defineProps({
   bgClass: {
     type: String,
-    default: "",
+    default: '',
   },
   px: {
     type: String,
-    default: "px-5",
+    default: 'px-5',
   },
   py: {
     type: String,
-    default: "py-5",
+    default: 'py-5',
   },
 });
 </script>
 
 <style scoped>
 .base-card {
-  /* box-shadow: 3px 2px 1px #7d7be515; */
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   overflow: hidden;
 }
 </style>
