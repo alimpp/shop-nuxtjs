@@ -6,7 +6,7 @@
     text="Create new address"
   >
     <template #icon>
-      <BaseIcon name="line-md:my-location" size="30" />
+      <BaseIcon name="entypo:address" size="30" />
     </template>
     <template #content>
       <div class="flex flex-column w-100 px-5">
@@ -61,7 +61,7 @@
           @click="close"
           icon="line-md:close"
           class="mx-5"
-          bg="bg-danger-3"
+          bg="bg-danger-2"
         />
       </div>
     </template>

@@ -39,17 +39,17 @@
       <BaseIcon name="solar:arrow-left-linear" size="25" />
       <span class="f-s-14 f-w-500 px-5 color-danger">LogOut</span>
     </div>
+    <Chat
+      :isOpen="modals.chat"
+      :loading="loading"
+      :sendLoading="sendLoading"
+      :messages="messages"
+      :info="chatInfo"
+      @close="closeChat"
+      @send="send"
+      @seen="seen"
+    />
   </div>
-  <Chat
-    :isOpen="modals.chat"
-    :loading="loading"
-    :sendLoading="sendLoading"
-    :messages="messages"
-    :info="chatInfo"
-    @close="closeChat"
-    @send="send"
-    @seen="seen"
-  />
 </template>
 
 <script setup>
@@ -113,7 +113,7 @@ const listItems = ref([
     id: 5,
     name: 'Address',
     signal: 'address',
-    icon: 'line-md:my-location-loop',
+    icon: 'entypo:address',
     size: '25',
   },
   {
