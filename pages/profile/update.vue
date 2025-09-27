@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-column w-100 slid-left-animation-8">
+  <div class="flex flex-column w-100">
     <div class="flex w-100">
       <BaseAvatar
         width="50px"

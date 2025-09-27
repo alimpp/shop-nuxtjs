@@ -1,6 +1,6 @@
-import type { PluginOptions } from 'vue-toastification'
-import Toast, { POSITION } from 'vue-toastification'
-import 'vue-toastification/dist/index.css'
+import type { PluginOptions } from 'vue-toastification';
+import Toast, { POSITION } from 'vue-toastification';
+import 'vue-toastification/dist/index.css';
 
 export default defineNuxtPlugin((nuxtApp) => {
   const options: PluginOptions = {
@@ -15,10 +15,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     hideProgressBar: false,
     closeButton: 'button',
     icon: true,
-    transition: "Vue-Toastification__slideBlurred",
+    transition: 'Vue-Toastification__slideBlurred',
     maxToasts: 30,
-    newestOnTop: true
-  }
+    newestOnTop: true,
+  };
 
-  nuxtApp.vueApp.use(Toast, options)
-})
+  nuxtApp.vueApp.use(Toast, options);
+});
