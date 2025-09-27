@@ -8,10 +8,10 @@
         avatar="/image/avatar.jpg"
       />
       <div class="flex flex-column justify-center px-10">
-        <span class="f-s-14 f-w-500 color-primary">{{
+        <span class="f-s-14 f-w-500 color-primary-4">{{
           profile.fristname ? profile.fullname : profile.phone
         }}</span>
-        <span class="f-s-11 f-w-500">{{
+        <span class="f-s-11 f-w-500 color-primary-2">{{
           profile.fristname ? profile.phone : 'Active User'
         }}</span>
       </div>
@@ -30,14 +30,14 @@
         class="flex align-center mt-20 cursor-pointer"
         @click="signalController(item.signal)"
       >
-        <BaseIcon :name="item.icon" :size="item.size" />
-        <span class="f-s-14 f-w-500 px-5">{{ item.name }}</span>
+        <BaseIcon :name="item.icon" :size="item.size" color="#FDAAAA" />
+        <span class="f-s-14 f-w-500 px-5 color-primary-4">{{ item.name }}</span>
       </div>
       <BaseDivider class="mt-10" />
     </div>
     <div class="flex align-center mt-10 cursor-pointer" @click="logout">
-      <BaseIcon name="solar:arrow-left-linear" size="25" />
-      <span class="f-s-14 f-w-500 px-5 color-danger">LogOut</span>
+      <BaseIcon name="solar:arrow-left-linear" size="25" color="#FDAAAA" />
+      <span class="f-s-14 f-w-500 px-5 color-primary-4">LogOut</span>
     </div>
     <Chat
       :isOpen="modals.chat"

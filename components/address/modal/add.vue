@@ -9,9 +9,9 @@
       <BaseIcon name="entypo:address" size="30" />
     </template>
     <template #content>
-      <div class="flex flex-column w-100 px-5">
+      <div class="flex flex-column w-100 px-5 py-30">
         <BaseInput
-          validate="true"
+          :validate="true"
           v-model:access="access"
           v-model="form.name"
           rules="length"
@@ -22,7 +22,7 @@
           label="Name"
         />
         <BaseInput
-          validate="true"
+          :validate="true"
           v-model:access="access"
           v-model="form.content"
           rules="length"
@@ -33,7 +33,7 @@
           label="Content"
         />
         <BaseInput
-          validate="true"
+          :validate="true"
           v-model:access="access"
           v-model="form.postalCode"
           rules="length"

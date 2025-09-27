@@ -14,14 +14,12 @@
       :class="{
         error: errorMessage,
         disabled: disabled,
-        'color-dark': appTheme == 'white',
-        'color-white': appTheme == 'dark',
       }"
       :disabled="disabled"
       :placeholder="placeholder"
       class="mt-2"
     />
-    <span v-if="errorMessage" class="color-danger f-s-12 f-w-500 pt-5">
+    <span v-if="errorMessage" class="color-danger-3 f-s-12 f-w-500 pt-5">
       {{ errorMessage }}
     </span>
   </div>
@@ -161,6 +159,7 @@ input {
   outline: none;
   border: 1px solid #8481812f;
   border-radius: 6px;
+  color: #303030;
 }
 
 .disabled {

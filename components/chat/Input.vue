@@ -2,7 +2,7 @@
   <div
     class="chat-input w-100 h-10-dvh flex align-center"
     :class="{
-      'bg-dark': appTheme == 'dark',
+      'bg-dark-1': appTheme == 'dark',
       'bg-app-light': appTheme == 'light',
     }"
   >
@@ -10,7 +10,7 @@
       placeholder="Enter message"
       class="w-330-px f-s-16 f-w-500"
       :class="{
-        'color-dark': appTheme == 'white',
+        'color-dark-1': appTheme == 'white',
         'color-white': appTheme == 'dark',
       }"
       v-model="message"

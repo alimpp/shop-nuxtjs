@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-layout bg-primary-3">
+  <div class="auth-layout bg-app-light">
     <img src="/public/logo/logo.png" alt="logo" width="150" height="150" />
     <div class="flex flex-column w-380-px">
       <NuxtPage />

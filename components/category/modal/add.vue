@@ -9,9 +9,9 @@
       <BaseIcon name="line-md:plus" />
     </template>
     <template #content>
-      <div class="flex flex-column w-100 px-5">
+      <div class="flex flex-column w-100 px-5 py-30">
         <BaseInput
-          validate="true"
+          :validate="true"
           v-model:access="access"
           v-model="name"
           rules="length"

@@ -1,7 +1,11 @@
 <template>
   <div class="flex flex-column">
-    <span class="f-s-13 f-w-500 color-primary" v-if="title">{{ title }}</span>
-    <div class="style" :style="{ width: width, height: height }"></div>
+    <span class="f-s-13 f-w-500 color-primary-4" v-if="title">{{ title }}</span>
+    <div
+      class="style"
+      :class="{ 'mt-5': title }"
+      :style="{ width: width, height: height }"
+    ></div>
   </div>
 </template>
 

@@ -15,6 +15,13 @@
         >
       </div>
       <BaseIcon
+        @click="router.push('/profile')"
+        class="cursor-pointer"
+        name="solar:user-hand-up-broken"
+        width="25"
+        height="25"
+      />
+      <BaseIcon
         @click="router.push('/notification')"
         class="cursor-pointer mx-5"
         name="solar:bell-broken"

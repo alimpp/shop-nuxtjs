@@ -1,8 +1,8 @@
 <template>
   <div class="w-100 flex flex-column">
     <div class="w-100 flex flex-column justify-start">
-      <span class="f-s-16 f-w-500">Please enter otp code</span>
-      <span class="f-s-12 f-w-500 color-primary pt-5"
+      <span class="f-s-16 f-w-500 color-primary-4">Please enter otp code</span>
+      <span class="f-s-12 f-w-500 color-primary-1 pt-5"
         >Authentication with otp code</span
       >
     </div>
@@ -13,6 +13,15 @@
         @complete="sendOtp"
         ref="otpInputRef"
         :loading="loading"
+      />
+      <BaseButton
+        class="mt-15"
+        name="Confrim Otp Code"
+        width="100%"
+        height="40px"
+        :loading="loading"
+        :disabled="true"
+        @click="sendPhone"
       />
     </div>
   </div>

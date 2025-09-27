@@ -2,7 +2,7 @@
   <div
     class="w-100 h-10-dvh chat-header flex align-center"
     :class="{
-      'bg-dark': appTheme == 'dark',
+      'bg-dark-1': appTheme == 'dark',
       'bg-app-light': appTheme == 'light',
     }"
   >

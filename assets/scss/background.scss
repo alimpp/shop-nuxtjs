@@ -85,8 +85,17 @@
   color: var(--white-);
 }
 
-.bg-dark {
-  background: var(--dark-);
+// dark background
+.bg-dark-1 {
+  background: var(--dark1-);
+  color: var(--white-);
+}
+.bg-dark-2 {
+  background: var(--dark2-);
+  color: var(--white-);
+}
+.bg-dark-3 {
+  background: var(--dark3-);
   color: var(--white-);
 }
 
@@ -109,7 +118,6 @@
   background: var(--light-bg-);
   color: var(--dark-);
 }
-
 // ** Application theme class ** //
 
 // ** Application base card theme class ** //

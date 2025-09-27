@@ -3,7 +3,7 @@
     class="container flex flex-column custom-style"
     v-if="isOpen"
     :class="{
-      'bg-dark': appTheme == 'dark',
+      'bg-app-dark': appTheme == 'dark',
       'bg-app-light': appTheme == 'light',
     }"
   >

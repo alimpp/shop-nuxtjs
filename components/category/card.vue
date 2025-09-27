@@ -43,7 +43,7 @@
       <BaseDivider />
       <div class="flex flex-column" v-if="updateState">
         <BaseInput
-          validate="true"
+          :validate="true"
           v-model:access="access"
           v-model="name"
           rules="length"

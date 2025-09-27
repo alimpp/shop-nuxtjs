@@ -1,13 +1,15 @@
 <template>
   <div class="w-100 flex flex-column">
     <div class="w-100 flex flex-column justify-start">
-      <span class="f-s-16 f-w-500">Welcome back to admin pannel</span>
-      <span class="f-s-12 f-w-100 color-primary pt-5"
+      <span class="f-s-16 f-w-500 color-primary-4"
+        >Welcome back to admin pannel</span
+      >
+      <span class="f-s-12 f-w-100 color-primary-1 pt-5"
         >Please authentication with username and password</span
       >
     </div>
     <BaseInput
-      validate="true"
+      :validate="true"
       v-model:access="access"
       v-model="form.username"
       rules="length"
@@ -18,7 +20,7 @@
       placeholder="Please Enter Username"
     />
     <BaseInput
-      validate="true"
+      :validate="true"
       v-model:access="access"
       v-model="form.password"
       rules="length"
