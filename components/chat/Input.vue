@@ -8,7 +8,7 @@
   >
     <textarea
       placeholder="Enter message"
-      class="w-330-px f-s-16 f-w-500"
+      class="w-340-px f-s-16 f-w-500"
       :class="{
         'color-dark-1': appTheme == 'white',
         'color-white': appTheme == 'dark',
@@ -16,16 +16,14 @@
       v-model="message"
     >
     </textarea>
-    <div class="w-70-px flex align-center justify-center">
+    <div
+      class="w-35-px h-35-px flex align-center justify-center bg-secondary-1 border-circle"
+    >
       <baseIcon
-        :name="
-          sendLoading
-            ? 'svg-spinners:eclipse-half'
-            : 'emojione-monotone:up-arrow'
-        "
+        :name="sendLoading ? 'svg-spinners:eclipse-half' : 'line-md:arrow-up'"
         @click="send"
         class="cursor-pointer"
-        size="40"
+        size="25"
       />
     </div>
   </div>

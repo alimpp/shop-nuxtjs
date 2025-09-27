@@ -45,13 +45,13 @@ onMounted(() => {
   white-space: normal;
 }
 .its-me-style {
-  background: #e9dcdc;
-  color: #303030;
+  background: #89cff3;
+  color: #cdf5fd;
   border-radius: 15px 2px 15px 15px;
 }
 .not-its-me-style {
-  background: #2ef08f;
-  color: #303030;
+  background: #59ac77;
+  color: #fff;
   border-radius: 2px 15px 15px 15px;
 }
 </style>
