@@ -17,31 +17,12 @@
       <LayoutsShopHeader @chnageSideMenuState="chnageSideMenuState" />
       <div class="router-content">
         <NuxtPage />
-        <Compose @signal="modalsController" />
-        <Chat
-          :isOpen="modals.chat"
-          :loading="loading"
-          :sendLoading="sendLoading"
-          :messages="messages"
-          :info="chatInfo"
-          @close="closeChat"
-          @send="send"
-          @seen="seen"
-        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
-const router = useRouter();
-
-import { supportController } from '~/controllers/Support';
-
-const supportStore = useSupportStore();
-const userStore = useUserStore();
-
 const sideMenuState = ref(false);
 const chnageSideMenuState = () => {
   sideMenuState.value = !sideMenuState.value;
@@ -51,69 +32,6 @@ const applicationStore = useApplicationStore();
 const appTheme = computed(() => {
   return applicationStore._state.theme;
 });
-
-const modals = ref({
-  chat: false,
-});
-
-const openChat = async () => {
-  supportStore.resetMessages();
-  modals.value.chat = !modals.value.chat;
-  setTimeout(async () => {
-    supportController.startChatPolling(userStore.getUser.id);
-  }, 1000);
-};
-
-const closeChat = () => {
-  supportController.stopChatPolling(userStore.getUser.id);
-  modals.value.chat = !modals.value.chat;
-};
-
-const modalsController = (data) => {
-  switch (data) {
-    case 'support':
-      if (userStore.getAuthenticated) {
-        openChat();
-      } else {
-        router.push('/auth/request-otp');
-      }
-      break;
-    case 'profile':
-      router.push('/profile');
-      break;
-    default:
-      throw new Error('Bad Signal . . . ');
-  }
-};
-
-const sendLoading = ref(false);
-const loading = ref(false);
-
-const messages = computed(() => {
-  return supportStore.getMessages;
-});
-
-const chatInfo = computed(() => {
-  return {
-    name: 'Admin Webiste',
-    sub: 'Admin',
-  };
-});
-
-const send = async (data) => {
-  sendLoading.value = true;
-  await supportController.sendMsgUser({
-    chatId: userStore.getUser.id,
-    ...data,
-  });
-  sendLoading.value = false;
-};
-
-const seen = (data) => {
-  setTimeout(async () => {
-    await supportController.seen({ id: data.id, chatId: data.chatId });
-  }, 1000);
-};
 </script>
 
 <style scoped>

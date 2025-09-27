@@ -1,21 +1,21 @@
 <template>
-    <div class="container" v-if="isOpen">
-       <div 
-        class="content flex flex-column slid-right-animation-8 h-100-dvh"
-        :class="{
-            'bg-app-dark': appTheme == 'dark',
-            'bg-app-light': appTheme == 'light',
-            'w-100': width < 400,
-            'w-400-px': width > 400
-        }"
-       >
-       <ChatHeader :info="info" :loading="loading" @close="emit('close')" />
-       
-       <ChatContent :messages="messages" :loading="loading" @seen="seen" />
-       
-       <ChatInput :sendLoading="sendLoading" @send="send" />
-       </div>
+  <div class="container" v-if="isOpen">
+    <div
+      class="content flex flex-column slid-right-animation-8 h-100-dvh"
+      :class="{
+        'bg-app-dark': appTheme == 'dark',
+        'bg-app-light': appTheme == 'light',
+        'w-100': width < 400,
+        'w-400-px': width > 400,
+      }"
+    >
+      <ChatHeader :info="info" :loading="loading" @close="emit('close')" />
+      <BaseDivider />
+      <ChatContent :messages="messages" :loading="loading" @seen="seen" />
+      <BaseDivider />
+      <ChatInput :sendLoading="sendLoading" @send="send" />
     </div>
+  </div>
 </template>
 
 <script setup>
@@ -24,46 +24,45 @@ const appTheme = computed(() => {
   return applicationStore._state.theme;
 });
 
-const emit = defineEmits(['close', 'send', 'seen'])
+const emit = defineEmits(['close', 'send', 'seen']);
 
 const props = defineProps({
-    isOpen: {
-        type: Boolean,
-        default: false
-    },
-    loading: {
-        type: Boolean,
-        default: false
-    },
-    sendLoading: {
-      type: Boolean,
-      default: false
-    },
-    messages: {
-      type: Array,
-      default: []
-    },
-    chatId: {
-      type: String,
-      default: ""
-    },
-    info: {
-      type: Object,
-      default: {}
-    }
-})
+  isOpen: {
+    type: Boolean,
+    default: false,
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+  sendLoading: {
+    type: Boolean,
+    default: false,
+  },
+  messages: {
+    type: Array,
+    default: [],
+  },
+  chatId: {
+    type: String,
+    default: '',
+  },
+  info: {
+    type: Object,
+    default: {},
+  },
+});
 
 const send = (data) => {
-  emit('send', data)
-}
+  emit('send', data);
+};
 
 const seen = (data) => {
-  emit('seen', data)
-}
+  emit('seen', data);
+};
 
 const { width } = useScreenSize();
 </script>
-
 
 <style scoped>
 .container {
@@ -81,7 +80,7 @@ const { width } = useScreenSize();
   align-items: center;
 }
 
-.content{
+.content {
   background-repeat: no-repeat;
   background-position: center;
   background-size: calc();

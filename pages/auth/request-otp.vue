@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100 flex flex-column fade-animation-1s">
+  <div class="w-100 flex flex-column">
     <div class="w-100 flex flex-column justify-start">
       <span class="f-s-16 f-w-500">Welcome back to online shop</span>
       <span class="f-s-12 f-w-100 color-primary pt-5"

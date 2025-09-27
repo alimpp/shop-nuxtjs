@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100 flex flex-column fade-animation-1s">
+  <div class="w-100 flex flex-column">
     <div class="w-100 flex flex-column justify-start">
       <span class="f-s-16 f-w-500">Welcome back to admin pannel</span>
       <span class="f-s-12 f-w-100 color-primary pt-5"
@@ -41,18 +41,18 @@
 </template>
 
 <script setup>
-import { adminController } from "@/controllers/Admin";
+import { adminController } from '@/controllers/Admin';
 
 definePageMeta({
-  layout: "auth",
+  layout: 'auth',
 });
 
 const access = ref(false);
 const loading = ref(false);
 
 const form = ref({
-  username: "",
-  password: "",
+  username: '',
+  password: '',
 });
 
 const disabled = computed(() => {

@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-column">
     <span class="f-s-13 f-w-500 color-primary" v-if="title">{{ title }}</span>
-    <div class="color mt-5" :style="{ width: width, height: height }"></div>
+    <div class="style" :style="{ width: width, height: height }"></div>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ const props = defineProps({
 </script>
 
 <style scoped>
-.color {
-  background: #6a69692a;
+.style {
+  background: #c9b9b944;
 }
 </style>

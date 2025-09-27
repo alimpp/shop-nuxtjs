@@ -21,7 +21,11 @@
     <OrdersMyOrders class="mt-20" />
     <BaseDivider class="mt-20" title="Theme" />
     <SwitchTheme />
-    <div class="flex flex-column" v-for="item in listItems" :key="item.key">
+    <div
+      class="flex flex-column mt-2"
+      v-for="item in listItems"
+      :key="item.key"
+    >
       <div
         class="flex align-center mt-20 cursor-pointer"
         @click="signalController(item.signal)"
@@ -29,26 +33,45 @@
         <BaseIcon :name="item.icon" :size="item.size" />
         <span class="f-s-14 f-w-500 px-5">{{ item.name }}</span>
       </div>
-      <BaseDivider class="mt-5" />
+      <BaseDivider class="mt-10" />
     </div>
     <div class="flex align-center mt-10 cursor-pointer" @click="logout">
-      <BaseIcon name="game-icons:exit-door" size="25" color="#eb5f5f" />
+      <BaseIcon name="solar:arrow-left-linear" size="25" />
       <span class="f-s-14 f-w-500 px-5 color-danger">LogOut</span>
     </div>
   </div>
+  <Chat
+    :isOpen="modals.chat"
+    :loading="loading"
+    :sendLoading="sendLoading"
+    :messages="messages"
+    :info="chatInfo"
+    @close="closeChat"
+    @send="send"
+    @seen="seen"
+  />
 </template>
 
 <script setup>
+import { supportController } from '~/controllers/Support';
 import { userController } from '../../controllers/User';
 
 import { useRouter } from 'vue-router';
 const router = useRouter();
 
+const supportStore = useSupportStore();
 const userStore = useUserStore();
 
 const profile = computed(() => {
   return userStore._state.user;
 });
+
+const modals = ref({
+  chat: false,
+});
+
+const sendLoading = ref(false);
+const loading = ref(false);
 
 const listItems = ref([
   {
@@ -93,7 +116,53 @@ const listItems = ref([
     icon: 'line-md:my-location-loop',
     size: '25',
   },
+  {
+    id: 6,
+    name: 'Support',
+    signal: 'support',
+    icon: 'solar:chat-round-line-linear',
+    size: '25',
+  },
 ]);
+
+const messages = computed(() => {
+  return supportStore.getMessages;
+});
+
+const chatInfo = computed(() => {
+  return {
+    name: 'Admin Webiste',
+    sub: 'Admin',
+  };
+});
+
+const openChat = async () => {
+  supportStore.resetMessages();
+  modals.value.chat = !modals.value.chat;
+  setTimeout(async () => {
+    supportController.startChatPolling(userStore.getUser.id);
+  }, 1000);
+};
+
+const closeChat = () => {
+  supportController.stopChatPolling(userStore.getUser.id);
+  modals.value.chat = !modals.value.chat;
+};
+
+const send = async (data) => {
+  sendLoading.value = true;
+  await supportController.sendMsgUser({
+    chatId: userStore.getUser.id,
+    ...data,
+  });
+  sendLoading.value = false;
+};
+
+const seen = (data) => {
+  setTimeout(async () => {
+    await supportController.seen({ id: data.id, chatId: data.chatId });
+  }, 1000);
+};
 
 const signalController = (signal) => {
   switch (signal) {
@@ -107,6 +176,14 @@ const signalController = (signal) => {
 
     case 'address':
       router.push('/profile/address');
+      break;
+
+    case 'support':
+      if (userStore.getAuthenticated) {
+        openChat();
+      } else {
+        router.push('/auth/request-otp');
+      }
       break;
 
     default:

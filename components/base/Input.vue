@@ -14,6 +14,8 @@
       :class="{
         error: errorMessage,
         disabled: disabled,
+        'color-dark': appTheme == 'white',
+        'color-white': appTheme == 'dark',
       }"
       :disabled="disabled"
       :placeholder="placeholder"
@@ -26,12 +28,17 @@
 </template>
 
 <script setup>
-import { useValidations } from "~/composables/useValidations";
+import { useValidations } from '~/composables/useValidations';
 
-const errorMessage = ref("");
-const emit = defineEmits(["update:access"]);
+const applicationStore = useApplicationStore();
+const appTheme = computed(() => {
+  return applicationStore._state.theme;
+});
 
-const access = defineModel("access");
+const errorMessage = ref('');
+const emit = defineEmits(['update:access']);
+
+const access = defineModel('access');
 
 const props = defineProps({
   disabled: {
@@ -41,31 +48,31 @@ const props = defineProps({
   },
   label: {
     type: String,
-    default: "",
+    default: '',
     required: false,
   },
   type: {
     type: String,
-    default: "",
+    default: '',
     required: false,
   },
   modelValue: {
     type: String,
-    default: "",
+    default: '',
     required: false,
   },
   placeholder: {
     type: String,
-    default: "",
+    default: '',
     required: false,
   },
   height: {
     type: String,
-    default: "40px",
+    default: '40px',
   },
   width: {
     type: String,
-    default: "",
+    default: '',
   },
   validate: {
     type: Boolean,
@@ -73,7 +80,7 @@ const props = defineProps({
   },
   rules: {
     type: String,
-    default: "",
+    default: '',
   },
   minLength: {
     type: Number,
@@ -90,34 +97,34 @@ watch(
   (nVal, oval) => {
     if (props.validate) {
       switch (props.rules) {
-        case "email":
-          if (props.modelValue != "") {
-            const { validEmail } = useValidations()
+        case 'email':
+          if (props.modelValue != '') {
+            const { validEmail } = useValidations();
             if (validEmail(props.modelValue)) {
               access.value = true;
-              errorMessage.value = "";
+              errorMessage.value = '';
             } else {
               access.value = false;
-              errorMessage.value = "email not valid";
+              errorMessage.value = 'email not valid';
             }
           } else {
-            errorMessage.value = "";
+            errorMessage.value = '';
           }
           break;
 
-        case "required":
-          const { validEmpty } = useValidations()
+        case 'required':
+          const { validEmpty } = useValidations();
           if (validEmpty(props.modelValue)) {
             access.value = true;
-            errorMessage.value = "";
+            errorMessage.value = '';
           } else {
             access.value = false;
-            errorMessage.value = "Field is required";
+            errorMessage.value = 'Field is required';
           }
           break;
 
-        case "length":
-          const { validLength } = useValidations()
+        case 'length':
+          const { validLength } = useValidations();
           const result = validLength(
             props.modelValue,
             props.minLength,
@@ -131,14 +138,14 @@ watch(
             errorMessage.value = result.message;
           }
           break;
-        case "phone":
-          const { ValidationIranianPhoneNumber } = useValidations()
+        case 'phone':
+          const { ValidationIranianPhoneNumber } = useValidations();
           if (ValidationIranianPhoneNumber(props.modelValue)) {
             access.value = true;
-            errorMessage.value = "";
+            errorMessage.value = '';
           } else {
             access.value = false;
-            errorMessage.value = "Phone number is not valid";
+            errorMessage.value = 'Phone number is not valid';
           }
           break;
       }
@@ -154,7 +161,6 @@ input {
   outline: none;
   border: 1px solid #8481812f;
   border-radius: 6px;
-  color: black;
 }
 
 .disabled {
