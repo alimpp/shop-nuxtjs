@@ -1,5 +1,5 @@
 @import url("./theme_colors.scss");
-
+// gr background
 .bg-primary-gr  {
   color: var(--white-);
   background: #59AC77;
@@ -11,6 +11,7 @@
   background: linear-gradient(130deg, rgba(0, 169, 255, 0.99) 0%, rgba(137, 207, 243, 1) 61%, rgba(160, 233, 255, 1) 100%);
 }
 
+// primary background
 .bg-primary-1 {
   background: var(--primary1-);
   color: var(--white-);
@@ -28,6 +29,7 @@
   color: var(--white-);
 }
 
+// secondary background
 .bg-secondary-1 {
   background: var(--secondary1-);
   color: var(--white-);
@@ -45,6 +47,7 @@
   color: var(--white-);
 }
 
+// warning background 
 .bg-warning-1 {
   background: var(--warning1-);
   color: var(--dark-);
@@ -54,6 +57,7 @@
   color: var(--dark-);
 }
 
+// gray background
 .bg-gray-1 {
   background: var(--gray1-);
   color: var(--dark-);
@@ -67,6 +71,7 @@
   color: var(--dark-);
 }
 
+// danger background
 .bg-danger-1 {
   background: var(--danger1-);
   color: var(--white-);
