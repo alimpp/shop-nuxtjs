@@ -4,7 +4,12 @@
     :class="[bgClass]"
     :style="{ 'min-width': width, 'min-height': height, background: bg }"
   >
-    <img :src="avatar" alt="PROFILE" v-if="avatar" :style="{ 'width': width, 'height': height }" />
+    <img
+      :src="avatar"
+      alt="PROFILE"
+      v-if="avatar"
+      :style="{ width: width, height: height }"
+    />
     <span v-else class="color-primary-white" :class="[characterSize]">{{
       character
     }}</span>
@@ -15,31 +20,31 @@
 const props = defineProps({
   avatar: {
     type: String,
-    default: "",
+    default: '',
   },
   width: {
     type: String,
-    default: "35px",
+    default: '35px',
   },
   height: {
     type: String,
-    default: "35px",
+    default: '35px',
   },
   character: {
     type: String,
-    default: "A",
+    default: 'A',
   },
   bgClass: {
     type: String,
-    default: "bg-primary",
+    default: 'bg-primary-1',
   },
   bg: {
     type: String,
-    default: "",
+    default: '',
   },
   characterSize: {
     type: String,
-    default: "f-s-20",
+    default: 'f-s-20',
   },
 });
 </script>

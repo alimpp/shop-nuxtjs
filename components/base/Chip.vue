@@ -23,48 +23,48 @@
 </template>
 
 <script setup>
-const emit = defineEmits(["handleClick"]);
+const emit = defineEmits(['handleClick']);
 
 const props = defineProps({
   bg: {
     type: String,
-    default: "bg-primary",
+    default: 'bg-primary-1',
   },
   color: {
     type: String,
-    default: "color-primary-white",
+    default: 'color-primary-white',
   },
   fontSize: {
     type: String,
-    default: "f-s-12",
+    default: 'f-s-12',
   },
   fontWight: {
     type: String,
-    default: "f-w-500",
+    default: 'f-w-500',
   },
   name: {
     type: String,
-    default: "",
+    default: '',
   },
   border: {
     type: String,
-    default: "",
+    default: '',
   },
   width: {
     type: String,
-    default: "70px",
+    default: '70px',
   },
   height: {
     type: String,
-    default: "30px",
+    default: '30px',
   },
   icon: {
     type: String,
-    default: "",
+    default: '',
   },
   iconLocation: {
     type: String,
-    default: "right",
+    default: 'right',
   },
 });
 </script>

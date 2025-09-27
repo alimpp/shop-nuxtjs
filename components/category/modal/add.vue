@@ -38,7 +38,7 @@
           @click="close"
           icon="line-md:close"
           class="mx-5"
-          bg="bg-red"
+          bg="bg-danger-3"
         />
       </div>
     </template>

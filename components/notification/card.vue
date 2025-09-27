@@ -14,7 +14,7 @@
           data.created_at
         }}</span>
         <span
-          class="bg-red border-rounded f-s-11 f-w-100 px-5 mt-15"
+          class="bg-danger-3 border-rounded f-s-11 f-w-100 px-5 mt-15"
           v-if="!data.seen"
           >New</span
         >

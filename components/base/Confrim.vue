@@ -3,8 +3,7 @@
     <div
       class="content flex flex-column py-50"
       :class="{
-        'bg-danger': type == 'error',
-        'bg-success': type == 'success',
+        'bg-danger-1': type == 'error',
       }"
       :style="{ width: width, height: height, borderRadius: borderRadius }"
     >
@@ -36,7 +35,7 @@
 const props = defineProps({
   type: {
     type: String,
-    default: "",
+    default: '',
   },
   isOpen: {
     type: Boolean,
@@ -44,23 +43,23 @@ const props = defineProps({
   },
   width: {
     type: String,
-    default: "380px",
+    default: '380px',
   },
   height: {
     type: String,
-    default: "auto",
+    default: 'auto',
   },
   borderRadius: {
     type: String,
-    default: "10px",
+    default: '10px',
   },
   title: {
     type: String,
-    default: "",
+    default: '',
   },
   text: {
     type: String,
-    default: "",
+    default: '',
   },
   hasFooter: {
     type: Boolean,
@@ -68,7 +67,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(['close']);
 </script>
 
 <style scoped>

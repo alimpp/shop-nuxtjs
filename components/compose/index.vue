@@ -1,6 +1,6 @@
 <template>
   <div
-    class="orders-content-style border-rounded w-200-px h-40-px bg-info slid-left-animation-3"
+    class="orders-content-style border-rounded w-200-px h-40-px bg-primary-2 slid-left-animation-3"
     v-if="activeCompose"
     @click="emited('')"
   >
@@ -8,7 +8,7 @@
     <span class="f-s-12 f-w-500 color-primary">Orders</span>
   </div>
   <div
-    class="basket-content-style border-rounded w-200-px h-40-px bg-info slid-left-animation-5"
+    class="basket-content-style border-rounded w-200-px h-40-px bg-primary-2 slid-left-animation-5"
     v-if="activeCompose"
     @click="emited('')"
   >
@@ -21,7 +21,7 @@
     <span class="f-s-12 f-w-500 color-primary">Basket</span>
   </div>
   <div
-    class="profile-content-style border-rounded w-200-px h-40-px bg-info slid-left-animation-8"
+    class="profile-content-style border-rounded w-200-px h-40-px bg-primary-2 slid-left-animation-8"
     v-if="activeCompose"
     @click="emited('profile')"
   >
@@ -29,7 +29,7 @@
     <span class="f-s-12 f-w-500 color-primary">Profile</span>
   </div>
   <div
-    class="support-content-style border-rounded w-200-px h-40-px bg-info slid-left-animation-1s"
+    class="support-content-style border-rounded w-200-px h-40-px bg-primary-2 slid-left-animation-1s"
     v-if="activeCompose"
     @click="emited('support')"
   >
@@ -42,7 +42,7 @@
     <span class="f-s-12 f-w-500 color-primary">Support</span>
   </div>
   <div
-    class="float-button bg-info"
+    class="float-button bg-primary-2"
     v-if="route.path != '/profile' && route.path != '/profile/address'"
   >
     <BaseIcon

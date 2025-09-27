@@ -3,67 +3,98 @@
 .bg-primary-gr  {
   color: var(--white-);
   transition: 0.5s;
-  background: #aeacf2;
-  background: linear-gradient(62deg, rgba(174, 172, 242, 0.55) 0%, rgba(125, 123, 229, 1) 30%);
+  background: #59AC77;
+  background: linear-gradient(130deg, rgba(89, 172, 119, 0.99) 0%, rgba(253, 170, 170, 1) 61%, rgba(255, 213, 213, 1) 100%);
 }
 .bg-secondary-gr {
   color: var(--white-);
   transition: 0.5s;
-  background: #114477;
-  background: linear-gradient(62deg, rgba(17, 68, 119, 0.55) 0%, rgba(17, 68, 119, 1) 30%);
+  background: #00A9FF;
+  background: linear-gradient(130deg, rgba(0, 169, 255, 0.99) 0%, rgba(137, 207, 243, 1) 61%, rgba(160, 233, 255, 1) 100%);
 }
-.bg-success-gr {
+
+.bg-primary-1 {
+  background: var(--primary1-);
+  color: var(--white-);
+  transition: 0.5s;
+}
+.bg-primary-2 {
+  background: var(--primary2-);
+  color: var(--white-);
+  transition: 0.5s;
+}
+.bg-primary-3 {
+  background: var(--primary3-);
+  color: var(--white-);
+  transition: 0.5s;
+}
+.bg-primary-4 {
+  background: var(--primary4-);
+  color: var(--white-);
+  transition: 0.5s;
+}
+
+.bg-secondary-1 {
+  background: var(--secondary1-);
+  color: var(--white-);
+  transition: 0.5s;
+}
+.bg-secondary-2 {
+  background: var(--secondary2-);
+  color: var(--white-);
+  transition: 0.5s;
+}
+.bg-secondary-3 {
+  background: var(--secondary3-);
+  color: var(--white-);
+  transition: 0.5s;
+}
+.bg-secondary-4 {
+  background: var(--secondary4-);
+  color: var(--white-);
+  transition: 0.5s;
+}
+
+.bg-warning-1 {
+  background: var(--warning1-);
   color: var(--dark-);
   transition: 0.5s;
-  background: #078F2B;
-  background: linear-gradient(62deg, rgba(7, 143, 43, 0.55) 0%, rgba(7, 143, 43, 1) 30%);
 }
-
-.bg-primary {
-  background: var(--primary-);
-  color: var(--white-);
-  transition: 0.5s;
-}
-
-.bg-secondary {
-  background: var(--secondary-);
-  color: var(--white-);
-  transition: 0.5s;
-}
-
-.bg-success {
-  background: var(--success-);
-  color: var(--success-100);
-  transition: 0.5s;
-}
-
-.bg-info {
-  background: var(--info-);
-  color: var(--white-);
-  transition: 0.5s;
-}
-
-.bg-warning {
-  background: var(--warning-);
+.bg-warning-2 {
+  background: var(--warning2-);
   color: var(--dark-);
   transition: 0.5s;
 }
 
-.bg-danger {
-  background: var(--danger-);
-  color: var(--white-);
-  transition: 0.5s;
-}
-
-.bg-red {
-  background: var(--red-);
-  color: var(--white-);
-  transition: 0.5s;
-}
-
-.bg-gray {
-  background: var(--gray-);
+.bg-gray-1 {
+  background: var(--gray1-);
   color: var(--dark-);
+  transition: 0.5s;
+}
+.bg-gray-2 {
+  background: var(--gray2-);
+  color: var(--dark-);
+  transition: 0.5s;
+}
+.bg-gray-3 {
+  background: var(--gray3-);
+  color: var(--dark-);
+  transition: 0.5s;
+}
+
+.bg-danger-1 {
+  background: var(--danger1-);
+  color: var(--white-);
+  transition: 0.5s;
+}
+.bg-danger-2 {
+  background: var(--danger2-);
+  color: var(--white-);
+  transition: 0.5s;
+}
+.bg-danger-3 {
+  background: var(--danger3-);
+  color: var(--white-);
   transition: 0.5s;
 }
 

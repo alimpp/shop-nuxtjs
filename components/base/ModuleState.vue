@@ -1,6 +1,6 @@
 <template>
   <div
-    class="content color-primary bg-info border-rounded py-5 px-5 fade-animation-2s"
+    class="content color-primary bg-primary-2 border-rounded py-5 px-5 fade-animation-2s"
   >
     <BaseIcon name="svg-spinners:blocks-shuffle-3" class="" />
     <div class="typing-text px-5">{{ text }}</div>
@@ -31,7 +31,8 @@ const props = defineProps({
   overflow: hidden;
   border-right: 1px solid #7d7be5;
   width: 0;
-  animation: typing 4s steps(40, end) infinite,
+  animation:
+    typing 4s steps(40, end) infinite,
     blink-caret 0.75s step-end infinite;
 }
 

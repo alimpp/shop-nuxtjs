@@ -22,7 +22,7 @@
         height="25"
       />
       <span
-        class="bg-red flex align-center justify-center w-30-px h-28-px border-circle pt-2 mb-20"
+        class="bg-danger-3 flex align-center justify-center w-30-px h-28-px border-circle pt-2 mb-20"
         v-if="notificationCount != 0"
         >{{ notificationCount }}</span
       >

@@ -52,7 +52,7 @@
           @click="emit('close')"
           icon="line-md:close"
           class="mx-5"
-          bg="bg-red"
+          bg="bg-danger-3"
         />
       </div>
     </template>
@@ -65,7 +65,7 @@ import { userController } from '@/controllers/User';
 const userStore = useUserStore();
 
 const loading = ref(false);
-  
+
 const form = ref({
   fristname: '',
   lastname: '',
@@ -79,8 +79,8 @@ const props = defineProps({
     default: false,
   },
 });
-  
-const emit = defineEmits(['close'])
+
+const emit = defineEmits(['close']);
 const close = () => {
   emit('close');
 };

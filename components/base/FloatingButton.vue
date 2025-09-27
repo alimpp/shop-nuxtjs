@@ -1,5 +1,5 @@
 <template>
-  <div class="float-button bg-info" @click="emit('eventHandler')">
+  <div class="float-button bg-primary-2" @click="emit('eventHandler')">
     <BaseIcon color="#7d7be5" name="line-md:plus" />
   </div>
 </template>

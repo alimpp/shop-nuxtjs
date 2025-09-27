@@ -8,7 +8,7 @@
         <div class="flex w-50 justify-end pt-5">
           <BaseIconContent
             class="mx-4"
-            bgClass="bg-success"
+            bgClass="bg-primary-2"
             width="25px"
             height="25px"
             v-if="!updateState"
@@ -21,7 +21,7 @@
             />
           </BaseIconContent>
           <BaseIconContent
-            bgClass="bg-red"
+            bgClass="bg-danger-3"
             width="25px"
             height="25px"
             v-if="!updateState"
@@ -54,13 +54,13 @@
         <div class="flex py-10">
           <BaseButton
             name="Update"
-            bg="bg-success"
+            bg="bg-primary-2"
             icon="gg:check-o"
             :disabled="!access"
           />
           <BaseButton
             name="Cancel"
-            bg="bg-red"
+            bg="bg-danger-3"
             class="mx-5"
             icon="line-md:close"
             @click="updateState = !updateState"

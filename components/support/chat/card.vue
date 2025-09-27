@@ -10,7 +10,7 @@
       <span class="f-s-16 f-w-500" v-html="data.content"></span>
       <div class="flex justify-end mt-6">
         <span
-          class="f-s-10 f-w-100 bg-red border-rounded px-5 mx-5"
+          class="f-s-10 f-w-100 bg-danger-3 border-rounded px-5 mx-5"
           v-if="!data.seen && !data.itsMe"
           >New</span
         >

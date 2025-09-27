@@ -2,9 +2,8 @@
   <div
     class="base-toast-content slid-left-animation-3"
     :class="{
-      'bg-danger': toast.type == 'danger',
-      'bg-warning': toast.type == 'warning',
-      'bg-success': toast.type == 'success',
+      'bg-danger-1': toast.type == 'danger',
+      'bg-warning-1': toast.type == 'warning',
     }"
   >
     <div class="icon-content">
@@ -42,15 +41,15 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["remove"]);
+const emit = defineEmits(['remove']);
 
 const remove = () => {
-  emit("remove", props.toast.id);
+  emit('remove', props.toast.id);
 };
 
 onMounted(() => {
   setTimeout(() => {
-    emit("remove", props.toast.id);
+    emit('remove', props.toast.id);
   }, props.toast.timeout);
 });
 </script>
