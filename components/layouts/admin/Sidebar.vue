@@ -4,7 +4,7 @@
     v-if="isOpen"
     :class="{
       'bg-dark-1': appTheme == 'dark',
-      'bg-app-light': appTheme == 'light',
+      'bg-secondary-1': appTheme == 'light',
     }"
   >
     <div class="w-100 flex justify-end py-10 close-container">
@@ -20,13 +20,13 @@
       </div>
       <BaseDivider class="mt-10" />
       <div
-        class="f-s-12 f-w-400 h-30-px flex align-center color-gray cursor-pointer mt-5"
+        class="f-s-14 f-w-400 h-30-px flex align-center color-gray cursor-pointer mt-5"
         v-for="item in items"
         :key="item.id"
         @click="navigate(`${item.path}`)"
         :class="{ 'active-path': route.path == item.path }"
       >
-        <BaseIcon width="18px" :name="item.icon" />
+        <BaseIcon :name="item.icon" size="25" />
         <span class="px-5">
           {{ item.name }}
         </span>
@@ -100,6 +100,7 @@ const appTheme = computed(() => {
 .container {
   width: 350px;
   height: 100dvh;
+  border-radius: 0 20px 20px 0;
 }
 
 .close-container {
@@ -107,8 +108,8 @@ const appTheme = computed(() => {
 }
 
 .active-path {
-  background: var(--primary1-);
-  color: var(--white-);
+  background: var(--secondary3-);
+  color: var(--secondary1-);
   border-radius: 5px;
   padding: 0 10px;
   transition: 1s;

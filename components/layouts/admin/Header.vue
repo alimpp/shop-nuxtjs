@@ -44,6 +44,6 @@ const chnageSideMenuState = () => {
 
 <style scoped>
 .custom-style {
-  box-shadow: 0px 1px 0px 0px #53535320;
+  border-bottom: 1px solid #aca5a542;
 }
 </style>
