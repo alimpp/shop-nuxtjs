@@ -1,32 +1,36 @@
 <template>
   <div class="w-100 flex flex-column">
     <BaseBreadCrumbs />
-    <BaseCard class="px-20 py-20 mt-10">
-      <BaseTable
-        :data="users"
-        :columns="columns"
-        searchable
-        exportable
-        editable
-        deletable
-        show-column-toggle
-        :page-size="10"
-        :page-size-options="[5, 10, 25, 50]"
-        search-placeholder="Search users..."
-        @row-click="handleRowClick"
-        @edit="handleEdit"
-        @delete="handleDelete"
-        @export="handleExport"
-      >
-        <template #actions="{ row }"></template>
-        <template #empty>
-          <div class="custom-empty">
-            <p>No users found</p>
-            <button @click="refreshData">Refresh</button>
-          </div>
-        </template>
-      </BaseTable>
-    </BaseCard>
+    <BaseTable
+      :data="users"
+      :columns="columns"
+      searchable
+      exportable
+      editable
+      deletable
+      show-column-toggle
+      :page-size="10"
+      :page-size-options="[5, 10, 25, 50]"
+      search-placeholder="Search users..."
+      @row-click="handleRowClick"
+      @edit="handleEdit"
+      @delete="handleDelete"
+      @export="handleExport"
+    >
+      <template #actions="{ row }"></template>
+      <template #empty>
+        <div class="w-100 flex flex-column align-center justify-center">
+          <span class="f-s-14 f-w-500">User Not Found</span>
+          <BaseButton
+            width="150px"
+            name="Refresh Table Data"
+            @click="refreshData"
+            bg="bg-secondary-1"
+            icon="system-uicons:refresh"
+          />
+        </div>
+      </template>
+    </BaseTable>
   </div>
 </template>
 

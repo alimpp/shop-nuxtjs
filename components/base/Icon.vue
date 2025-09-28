@@ -1,10 +1,10 @@
 <script setup>
-import { Icon } from "@iconify/vue";
+import { Icon } from '@iconify/vue';
 
 defineProps({
   name: { type: String, required: true },
   size: { type: [String, Number], default: 24 },
-  color: { type: String, default: "currentColor" },
+  color: { type: String, default: 'currentColor' },
 });
 </script>
 

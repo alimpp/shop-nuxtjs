@@ -128,6 +128,7 @@
             :class="[getRowClass(row, index), { selected: isSelected(row) }]"
             @click="onRowClick(row)"
             @dblclick="onRowDblClick(row)"
+            class="f-s-12"
           >
             <!-- Select Checkbox -->
             <td v-if="selectable" class="select-column">
@@ -167,8 +168,8 @@
           <tr v-if="paginatedData.length === 0">
             <td :colspan="totalColumns" class="empty-state">
               <slot name="empty">
-                <div class="empty-content">
-                  <span>No data available</span>
+                <div class="flex w-100 align-center justify-center">
+                  <span class="f-s-14 f-w-500">No data available</span>
                 </div>
               </slot>
             </td>
@@ -617,7 +618,6 @@ watch(
 }
 
 .base-table__table thead {
-  background: #ccc8c827;
   border-bottom: 1px solid #ccc8c885;
 }
 
@@ -625,6 +625,7 @@ watch(
 .base-table__table td {
   padding: 0.75rem;
   text-align: left;
+  border-bottom: 1px solid #ccc8c885;
 }
 
 .base-table__table th {

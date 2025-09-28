@@ -1,14 +1,29 @@
 <template>
   <div class="w-100 flex flex-column">
     <BaseBreadCrumbs />
-    <div class="w-100 flex flex-wrap justify-center">
-      <CategoryCard
-        class="w-350-px mx-5 mt-10"
-        v-for="data in dataSource"
-        :key="data.id"
-        :data="data"
-      />
-    </div>
+    <BaseTable
+      :data="dataSource"
+      :columns="columns"
+      searchable
+      showColumnToggle
+    >
+      <template #actions="{ row }">
+        <div class="flex">
+          <BaseIconContent
+            bgClass="bg-primary-2"
+            name="solar:pen-linear"
+            size="20"
+            class="mx-5 cursor-pointer"
+          />
+          <BaseIconContent
+            bgClass="bg-danger-2"
+            name="solar:trash-bin-minimalistic-linear"
+            size="20"
+            class="mx-5 cursor-pointer"
+          />
+        </div>
+      </template>
+    </BaseTable>
     <BaseFloatingButton @eventHandler="modalController" />
     <CategoryModalAdd :isOpen="modalState" @close="modalController" />
   </div>
@@ -21,6 +36,13 @@ definePageMeta({
   middleware: 'auth',
   layout: 'admin',
 });
+
+const columns = ref([
+  { key: 'id', label: 'Category Id', sortable: true, visible: true },
+  { key: 'created_at', label: 'Create Time', sortable: true, visible: true },
+  { key: 'name', label: 'Name', sortable: true, visible: true },
+  { key: 'submiter', label: 'Create By', sortable: true, visible: true },
+]);
 
 const categoryStore = useCategoryStore();
 

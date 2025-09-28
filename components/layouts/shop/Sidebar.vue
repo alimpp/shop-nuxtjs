@@ -96,7 +96,6 @@ const appTheme = computed(() => {
 .container {
   width: 350px;
   height: 100dvh;
-  border-radius: 0 50px 50px 0;
 }
 
 .close-container {

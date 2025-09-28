@@ -9,8 +9,8 @@
       <div class="flex w-70">
         <div class="flex">
           <BaseAvatar
-            width="50px"
-            height="50px"
+            width="55px"
+            height="55px"
             :character="data.user.firstname ? data.user.firstname[0] : ''"
             avatar="/image/avatar.jpg"
           />
