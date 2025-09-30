@@ -39,7 +39,7 @@ const appTheme = computed(() => {
   height: 90dvh;
   overflow-y: scroll;
   overflow-x: hidden;
-  padding: 10px 30px;
+  padding: 10px 300px;
 }
 .router-content::-webkit-scrollbar {
   width: 0px;
@@ -57,9 +57,21 @@ const appTheme = computed(() => {
   background: #cac8c8;
 }
 
+@media (max-width: 1440px) {
+  .router-content {
+    padding: 10px 150px;
+  }
+}
+
+@media (max-width: 1140px) {
+  .router-content {
+    padding: 10px 80px;
+  }
+}
+
 @media (max-width: 800px) {
   .router-content {
-    padding: 10px 10px;
+    padding: 10px 20px;
   }
 }
 </style>

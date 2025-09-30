@@ -79,7 +79,7 @@ export class UserStore extends BaseStore<IUserState> {
   }
 
   public reset() {
-    (this._state.user = {
+    ((this._state.user = {
       id: 0,
       fristname: '',
       lastname: '',
@@ -88,7 +88,7 @@ export class UserStore extends BaseStore<IUserState> {
       fullname: '',
       fristChar: '',
     }),
-      (this._state.jwtToken = '');
+      (this._state.jwtToken = ''));
     this._state.isAuthenticated = false;
     this._state.moduleState = '';
   }

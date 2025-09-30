@@ -14,31 +14,42 @@
           >{{ item.name }}</span
         >
       </div>
-      <BaseIcon
-        @click="router.push('/profile')"
-        class="cursor-pointer"
-        name="solar:user-hand-up-broken"
-        width="25"
-        height="25"
-      />
-      <BaseIcon
-        @click="router.push('/notification')"
-        class="cursor-pointer mx-5"
-        name="solar:bell-broken"
-        width="25"
-        height="25"
-      />
-      <span
-        class="bg-danger-3 flex align-center justify-center w-30-px h-28-px border-circle pt-2 mb-20"
-        v-if="notificationCount != 0"
-        >{{ notificationCount }}</span
-      >
-      <BaseIcon
-        @click="router.push('/basket')"
-        name="solar:bag-2-linear"
-        width="28"
-        height="28"
-        class="cursor-pointer"
+      <div class="flex align-center" v-if="userStore.getAuthenticated">
+        <BaseIcon
+          @click="router.push('/profile')"
+          class="cursor-pointer"
+          name="solar:user-hand-up-broken"
+          width="25"
+          height="25"
+        />
+        <BaseIcon
+          @click="router.push('/notification')"
+          class="cursor-pointer mx-5"
+          name="solar:bell-broken"
+          width="25"
+          height="25"
+        />
+        <span
+          class="bg-danger-3 flex align-center justify-center w-30-px h-28-px border-circle pt-2 mb-20"
+          v-if="notificationCount != 0"
+          >{{ notificationCount }}</span
+        >
+        <BaseIcon
+          @click="router.push('/basket')"
+          name="solar:bag-2-linear"
+          width="28"
+          height="28"
+          class="cursor-pointer"
+        />
+      </div>
+      <BaseButton
+        v-else
+        name="Login"
+        bg="bg-secondary-3"
+        color="color-secondary-1"
+        icon="solar:login-2-linear"
+        class="mx-2"
+        @click="navigateTo('/auth/request-otp')"
       />
       <BaseIcon
         class="cursor-pointer"
@@ -56,6 +67,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 import { useRoute } from '#vue-router';
+import { navigateTo } from 'nuxt/app';
 const route = useRoute();
 
 const userStore = useUserStore();

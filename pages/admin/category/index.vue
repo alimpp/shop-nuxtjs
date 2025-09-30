@@ -1,6 +1,13 @@
 <template>
   <div class="w-100 flex flex-column">
-    <BaseBreadCrumbs />
+    <BaseBreadCrumbs>
+      <BaseButton
+        name="New Category"
+        width="150px"
+        icon="line-md:plus"
+        @click="modalController"
+      />
+    </BaseBreadCrumbs>
     <BaseTable
       :data="dataSource"
       :columns="columns"
@@ -24,7 +31,6 @@
         </div>
       </template>
     </BaseTable>
-    <BaseFloatingButton @eventHandler="modalController" />
     <CategoryModalAdd :isOpen="modalState" @close="modalController" />
   </div>
 </template>

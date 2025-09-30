@@ -27,11 +27,18 @@
       :key="item.key"
     >
       <div
-        class="flex align-center mt-20 cursor-pointer"
+        class="flex align-center mt-20 cursor-pointer w-100"
         @click="signalController(item.signal)"
       >
-        <BaseIcon :name="item.icon" :size="item.size" color="#FDAAAA" />
-        <span class="f-s-14 f-w-500 px-5 color-primary-4">{{ item.name }}</span>
+        <div class="flex align-center w-100">
+          <BaseIcon :name="item.icon" :size="item.size" color="#FDAAAA" />
+          <span class="f-s-14 f-w-500 px-5 color-primary-4">{{
+            item.name
+          }}</span>
+        </div>
+        <div class="flex align-center w-40-px">
+          <BaseIcon name="solar:alt-arrow-right-line-duotone" color="#3A6F43" />
+        </div>
       </div>
       <BaseDivider class="mt-10" />
     </div>
