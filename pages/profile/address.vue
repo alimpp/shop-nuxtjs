@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100 flex flex-column">
+  <div class="container">
     <div class="flex align-center w-100">
       <div class="flex align-center w-100">
         <BaseIcon name="entypo:address" size="30" />

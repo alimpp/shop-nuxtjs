@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-column w-100 pt-10">
-    <div class="flex w-100">
+  <div class="container">
+    <div class="flex w-100 mt-10">
       <BaseAvatar
         width="50px"
         height="50px"

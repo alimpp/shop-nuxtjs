@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="container flex">
     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae, eum
     repudiandae cum voluptates vitae assumenda temporibus itaque totam autem
     inventore maiores atque amet, dolor doloremque ea vero incidunt blanditiis

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-column w-100">
+  <div class="container">
     <NotificationCard
       v-for="data in notificationList"
       :key="data.id"

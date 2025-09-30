@@ -117,3 +117,25 @@
 .overflow-hidden {
   overflow: hidden;
 }
+
+.container {
+  padding: 10px 300px;
+}
+
+@media (max-width: 1440px) {
+  .container {
+    padding: 10px 150px;
+  }
+}
+
+@media (max-width: 1140px) {
+  .container {
+    padding: 10px 80px;
+  }
+}
+
+@media (max-width: 800px) {
+  .container {
+    padding: 10px 20px;
+  }
+}
