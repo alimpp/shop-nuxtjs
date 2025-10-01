@@ -1,11 +1,7 @@
 <template>
   <div
-    class="container-sidebar flex flex-column custom-style"
+    class="container-sidebar flex flex-column custom-style bg-app-dark"
     v-if="isOpen"
-    :class="{
-      'bg-dark-1': appTheme == 'dark',
-      'bg-secondary-1': appTheme == 'light',
-    }"
   >
     <div class="w-100 flex justify-end py-10 close-container">
       <BaseIcon
@@ -20,7 +16,7 @@
       </div>
       <BaseDivider class="mt-10" />
       <div
-        class="f-s-14 f-w-400 h-30-px flex align-center color-gray cursor-pointer mt-5"
+        class="f-s-14 f-w-400 h-30-px flex align-center color-gray cursor-pointer mt-10"
         v-for="item in items"
         :key="item.id"
         @click="navigate(`${item.path}`)"
@@ -75,10 +71,40 @@ const items = ref([
     icon: 'mynaui:message-dots',
   },
   {
-    id: 32,
+    id: 3,
     name: 'Category',
     path: '/admin/category',
     icon: 'iconamoon:category-light',
+  },
+  {
+    id: 4,
+    name: 'Property',
+    path: '/admin/property',
+    icon: 'hugeicons:property-new',
+  },
+  {
+    id: 5,
+    name: 'Products',
+    path: '/admin/products',
+    icon: 'eos-icons:products',
+  },
+  {
+    id: 6,
+    name: 'Blogs',
+    path: '/admin/blogs',
+    icon: 'carbon:blog',
+  },
+  {
+    id: 7,
+    name: 'Orders',
+    path: '/admin/orders',
+    icon: 'icon-park-outline:order',
+  },
+  {
+    id: 8,
+    name: 'Settings',
+    path: '/admin/settings',
+    icon: 'uil:setting',
   },
 ]);
 
@@ -122,10 +148,10 @@ const appTheme = computed(() => {
 }
 
 @media (max-width: 650px) {
-  .container {
+  .container-sidebar {
     position: fixed;
     z-index: 100;
-    width: 80%;
+    width: 95%;
   }
   .close-container {
     display: flex;
