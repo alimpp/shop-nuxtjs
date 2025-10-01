@@ -1,6 +1,6 @@
 <template>
   <div
-    class="container flex flex-column custom-style"
+    class="container-sidebar flex flex-column custom-style"
     v-if="isOpen"
     :class="{
       'bg-dark-1': appTheme == 'dark',
@@ -64,12 +64,18 @@ const items = ref([
   },
   {
     id: 1,
+    name: 'CMS',
+    path: '/admin/cms',
+    icon: 'streamline-plump:content-statistic',
+  },
+  {
+    id: 2,
     name: 'Support',
     path: '/admin/support',
     icon: 'mynaui:message-dots',
   },
   {
-    id: 2,
+    id: 32,
     name: 'Category',
     path: '/admin/category',
     icon: 'iconamoon:category-light',
@@ -97,7 +103,7 @@ const appTheme = computed(() => {
   box-shadow: 1px 0px 0px 0px #53535320;
 }
 
-.container {
+.container-sidebar {
   width: 350px;
   height: 100dvh;
   border-radius: 0 20px 20px 0;

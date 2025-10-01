@@ -1,81 +1,87 @@
 <script setup>
-import { ref, watch, onMounted, nextTick } from 'vue'
+import { nextTick, onMounted, ref, watch } from 'vue';
 
 const props = defineProps({
   tabs: {
     type: Array,
     required: true,
-    default: () => []
+    default: () => [],
   },
   initialTab: {
     type: String,
-    default: ''
+    default: '',
   },
   animationDuration: {
     type: Number,
-    default: 300
+    default: 300,
   },
   showScrollbar: {
     type: Boolean,
-    default: false
-  }
-})
+    default: false,
+  },
+});
 
-const activeTab = ref(props.initialTab || props.tabs[0]?.id || '')
-const direction = ref('right')
-const tabsHeaderRef = ref(null)
-const tabsContainerRef = ref(null)
-const isHovering = ref(false)
+const activeTab = ref(props.initialTab || props.tabs[0]?.id || '');
+const direction = ref('right');
+const tabsHeaderRef = ref(null);
+const tabsContainerRef = ref(null);
+const isHovering = ref(false);
 
 const setActiveTab = (tabId) => {
-  if (activeTab.value === tabId) return
-  
-  const currentIndex = props.tabs.findIndex(tab => tab.id === activeTab.value)
-  const newIndex = props.tabs.findIndex(tab => tab.id === tabId)
-  direction.value = newIndex > currentIndex ? 'right' : 'left'
-  
-  activeTab.value = tabId
-  
+  if (activeTab.value === tabId) return;
+
+  const currentIndex = props.tabs.findIndex(
+    (tab) => tab.id === activeTab.value
+  );
+  const newIndex = props.tabs.findIndex((tab) => tab.id === tabId);
+  direction.value = newIndex > currentIndex ? 'right' : 'left';
+
+  activeTab.value = tabId;
+
   nextTick(() => {
-    const activeButton = tabsHeaderRef.value?.querySelector(`.tab-button[data-tab="${tabId}"]`)
+    const activeButton = tabsHeaderRef.value?.querySelector(
+      `.tab-button[data-tab="${tabId}"]`
+    );
     if (activeButton) {
       activeButton.scrollIntoView({
         behavior: 'smooth',
         block: 'nearest',
-        inline: 'center'
-      })
+        inline: 'center',
+      });
     }
-  })
-}
+  });
+};
 
 const updateIndicator = () => {
-  if (!tabsHeaderRef.value) return
-  
-  const activeButton = tabsHeaderRef.value.querySelector(`.tab-button[data-tab="${activeTab.value}"]`)
-  if (!activeButton) return
-  
-  const indicator = tabsHeaderRef.value.querySelector('.tab-indicator')
-  if (indicator) {
-    indicator.style.width = `${activeButton.offsetWidth}px`
-    indicator.style.left = `${activeButton.offsetLeft}px`
-  }
-}
+  if (!tabsHeaderRef.value) return;
 
-watch(activeTab, updateIndicator)
+  const activeButton = tabsHeaderRef.value.querySelector(
+    `.tab-button[data-tab="${activeTab.value}"]`
+  );
+  if (!activeButton) return;
+
+  const indicator = tabsHeaderRef.value.querySelector('.tab-indicator');
+  if (indicator) {
+    indicator.style.width = `${activeButton.offsetWidth}px`;
+    indicator.style.left = `${activeButton.offsetLeft}px`;
+  }
+};
+
+watch(activeTab, updateIndicator);
 
 onMounted(() => {
-  updateIndicator()
-  window.addEventListener('resize', updateIndicator)
-})
+  updateIndicator();
+  window.addEventListener('resize', updateIndicator);
+});
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateIndicator)
-})
+  window.removeEventListener('resize', updateIndicator);
+});
 </script>
 
 <template>
   <div class="tabs-container" ref="tabsContainerRef">
-    <div 
+    <div
       class="tabs-header-wrapper"
       @mouseenter="isHovering = true"
       @mouseleave="isHovering = false"
@@ -87,18 +93,21 @@ onBeforeUnmount(() => {
           :key="tab.id"
           :data-tab="tab.id"
           @click="setActiveTab(tab.id)"
-          :class="{ 'active': activeTab === tab.id }"
+          :class="{ active: activeTab === tab.id }"
           class="tab-button"
         >
           <BaseIcon v-if="tab.icon" :name="tab.icon" />
           <span class="tab-label">{{ tab.label }}</span>
         </div>
-        <div class="tab-indicator" :style="{
-          transition: `all ${animationDuration}ms ease-in-out`
-        }" />
+        <div
+          class="tab-indicator"
+          :style="{
+            transition: `all ${animationDuration}ms ease-in-out`,
+          }"
+        />
       </div>
     </div>
-    
+
     <Transition :name="`slide-${direction}`" mode="out-in">
       <div class="tabs-content" :key="activeTab">
         <slot :name="activeTab" />
@@ -160,9 +169,7 @@ onBeforeUnmount(() => {
 
 .tab-button.active {
   font-weight: 600;
-  color: var(--primary-color);
-  background: #7d7be5;
-  color: #fff;
+  color: var(--primary1-);
   border-radius: 10px;
 }
 
@@ -170,7 +177,7 @@ onBeforeUnmount(() => {
   position: absolute;
   bottom: 0;
   height: 2px;
-  background-color: var(--primary-color);
+  background-color: var(--primary1-);
   will-change: width, left;
 }
 
