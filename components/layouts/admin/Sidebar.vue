@@ -90,6 +90,12 @@ const items = ref([
   },
   {
     id: 6,
+    name: 'Customers',
+    path: '/admin/customers',
+    icon: 'clarity:users-line',
+  },
+  {
+    id: 7,
     name: 'Settings',
     path: '/admin/settings',
     icon: 'uil:setting',
