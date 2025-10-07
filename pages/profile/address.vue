@@ -21,8 +21,13 @@
 </template>
 
 <script setup>
+import { addressController } from '~/controllers/Address';
+
 const modalState = ref(false);
 const modalController = () => {
   modalState.value = !modalState.value;
 };
+onMounted(async () => {
+  await addressController.list();
+});
 </script>

@@ -20,7 +20,6 @@ export class CategoryDataModel extends BaseApp<any> {
       };
       list.push(obj);
     });
-    console.log(list);
     return list;
   }
 }

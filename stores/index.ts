@@ -4,6 +4,7 @@ import { CategoryStore } from './modules/CategoryStore';
 import { NotificationStore } from './modules/NotificationStore';
 import { SupportStore } from './modules/SupportStore';
 import { UserStore } from './modules/UserStore';
+import { AddressStore } from './modules/AddressStore';
 
 export const initializeStores = () => {
   ApplicationStore.getInstance();
@@ -11,6 +12,7 @@ export const initializeStores = () => {
   AdminStore.getInstance();
   SupportStore.getInstance();
   NotificationStore.getInstance();
+  AddressStore.getInstance();
 };
 
 initializeStores();
@@ -21,3 +23,4 @@ export const useAdminStore = () => AdminStore.getInstance();
 export const useSupportStore = () => SupportStore.getInstance();
 export const useNotificationStore = () => NotificationStore.getInstance();
 export const useCategoryStore = () => CategoryStore.getInstance();
+export const useAddressStore = () => AddressStore.getInstance();
