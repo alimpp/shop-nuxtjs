@@ -1,4 +1,5 @@
 import { AddressDataModel } from '../model/Address';
+const { success, error } = useToast();
 
 export class AddressController extends AddressDataModel {
   constructor() {
@@ -17,6 +18,17 @@ export class AddressController extends AddressDataModel {
       const result = this.addressParsed(res);
       this.addressStore.setList(result);
     });
+  }
+
+  public async add(body: any) {
+    await this.Post('/api/address/add', body)
+      .then((res) => {
+        success(`Your ${body.name} address successfully added`);
+        this.list();
+      })
+      .catch((err) => {
+        error(`Add new address failed`);
+      });
   }
 }
 

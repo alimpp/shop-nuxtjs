@@ -69,6 +69,8 @@
 </template>
 
 <script setup>
+import { addressController } from '~/controllers/Address';
+
 const emit = defineEmits(['close']);
 const props = defineProps({
   isOpen: {
@@ -107,6 +109,7 @@ const close = () => {
 
 const create = async () => {
   loading.value = true;
+  await addressController.add(form.value);
   loading.value = false;
   close();
 };
