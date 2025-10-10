@@ -1,5 +1,5 @@
 <template>
-  <div class="container" v-if="isOpen">
+  <div class="chat-container" v-if="isOpen">
     <div
       class="content flex flex-column slid-right-animation-8 h-100-dvh"
       :class="{
@@ -65,7 +65,7 @@ const { width } = useScreenSize();
 </script>
 
 <style scoped>
-.container {
+.chat-container {
   width: 100%;
   height: 100dvh;
   position: fixed;
