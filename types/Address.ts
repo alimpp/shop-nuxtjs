@@ -5,3 +5,9 @@ export interface IAddress {
   userId: string;
   created_at: Date;
 }
+
+export interface IAddBody {
+  name: string;
+  content: string;
+  postalCode: string;
+}

@@ -15,18 +15,35 @@
       </div>
     </div>
     <BaseDivider class="mt-10" />
-    <BaseLoading text="Address waiting to loaded" />
+    <BaseLoading
+      :text="addressStore.getModuleState"
+      v-if="addressStore.getModuleState == 'loading' || dataSource == []"
+    />
+    <AddressCard
+      v-else
+      class="mt-10"
+      v-for="data in dataSource"
+      :key="data.id"
+      :data="data"
+    />
     <AddressModalAdd :isOpen="modalState" @close="modalController" />
   </div>
 </template>
 
 <script setup>
-import { addressController } from '~/controllers/Address';
+import { addressController } from "~/controllers/Address";
 
 const modalState = ref(false);
 const modalController = () => {
   modalState.value = !modalState.value;
 };
+
+const addressStore = useAddressStore();
+
+const dataSource = computed(() => {
+  return addressStore.getList;
+});
+
 onMounted(async () => {
   await addressController.list();
 });

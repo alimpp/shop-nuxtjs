@@ -1,4 +1,4 @@
-import { CategoryDataModel } from '../model/Category';
+import { CategoryDataModel } from "../model/Category";
 
 const { success, error } = useToast();
 
@@ -17,14 +17,16 @@ export class CategoryController extends CategoryDataModel {
   }
 
   public async list() {
-    await this.Get('/api/category/all').then((res: any) => {
+    this.getCacheData();
+    await this.Get("/api/category/all").then((res: any) => {
       const result = this.categoryParsed(res);
       this.categoryStore.setList(result);
+      this.saveAllItems(result);
     });
   }
 
   public async createCategory(name: string) {
-    await this.Post('/api/category/add', { name })
+    await this.Post("/api/category/add", { name })
       .then((res) => {
         success(`Category ${name} added`);
         this.list();

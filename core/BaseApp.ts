@@ -1,6 +1,6 @@
 type HttpMethod = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
 
-const { error } = useToast()
+const { error } = useToast();
 
 export abstract class BaseApp<T extends { id: string | number }> {
   private readonly storageKey: string;
@@ -27,7 +27,7 @@ export abstract class BaseApp<T extends { id: string | number }> {
       });
       return response as T;
     } catch (err) {
-      error(`HTTP ${method} request to ${url} failed`)
+      error(`HTTP ${method} request to ${url} failed`);
       throw error;
     }
   }
@@ -61,7 +61,7 @@ export abstract class BaseApp<T extends { id: string | number }> {
       });
       return response as T;
     } catch (err) {
-      error(`File upload to ${url} failed:`)
+      error(`File upload to ${url} failed:`);
       throw error;
     }
   }
@@ -84,7 +84,8 @@ export abstract class BaseApp<T extends { id: string | number }> {
   }
 
   public saveAllItems(items: T[]): void {
-    localStorage.setItem(this.storageKey, JSON.stringify(items));
+    const result = JSON.stringify(items);
+    localStorage.setItem(this.storageKey, result);
   }
 
   public create(item: Omit<T, "id">): T {

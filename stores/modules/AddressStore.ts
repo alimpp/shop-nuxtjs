@@ -1,6 +1,6 @@
-import { BaseStore } from '../../core/BaseStore';
-import { IAddress } from '../../types/Address';
-import { StoreManager } from '../../core/StoreManager';
+import { BaseStore } from "../../core/BaseStore";
+import { IAddress } from "../../types/Address";
+import { StoreManager } from "../../core/StoreManager";
 
 interface IAddressState {
   addressList: IAddress[];
@@ -18,9 +18,9 @@ export class AddressStore extends BaseStore<IAddressState> {
   }
 
   private constructor() {
-    super('address', {
+    super("addressList", {
       addressList: [],
-      moduleState: '',
+      moduleState: "",
     });
 
     StoreManager.register(this);
@@ -30,16 +30,20 @@ export class AddressStore extends BaseStore<IAddressState> {
     this._state.moduleState = moduleState;
   }
 
-  public setList(list: IAddress[]) {
-    this._state.addressList = list;
-  }
-
   get getModuleState(): string {
     return this._state.moduleState;
   }
 
+  public setList(list: IAddress[]) {
+    this._state.addressList = list;
+  }
+
+  public get getList() {
+    return this._state.addressList;
+  }
+
   public reset() {
     this._state.addressList = [];
-    this._state.moduleState = '';
+    this._state.moduleState = "";
   }
 }
