@@ -1,11 +1,7 @@
 import { UserDataModel } from '~/model/User';
+import { ISaveUserData, IUpdateProfile } from '../types/User';
 
 const { success, error } = useToast();
-interface IUpdateProfile {
-  fristname: string;
-  lastname: string;
-  email: string;
-}
 
 import { navigateTo } from 'nuxt/app';
 class UserController extends UserDataModel {
@@ -76,6 +72,19 @@ class UserController extends UserDataModel {
     setTimeout(() => {
       location.reload();
     }, 10);
+  }
+
+  public async userData() {
+    const body: ISaveUserData = {
+      userId: '',
+      os: window.navigator.userAgent,
+    };
+    if (this.userStore.getAuthenticated) {
+      body.userId = this.userStore._state.user.id;
+    } else {
+      body.userId = '';
+    }
+    await this.Post('/api/users-data/save/user/data', body);
   }
 }
 
