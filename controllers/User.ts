@@ -76,14 +76,10 @@ class UserController extends UserDataModel {
 
   public async userData() {
     const body: ISaveUserData = {
-      userId: '',
+      userId: this.userStore.getAuthenticated ? this.userStore._state.user.id : ""
       os: window.navigator.userAgent,
     };
-    if (this.userStore.getAuthenticated) {
-      body.userId = this.userStore._state.user.id;
-    } else {
-      body.userId = '';
-    }
+    
     await this.Post('/api/users-data/save/user/data', body);
   }
 }
