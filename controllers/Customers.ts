@@ -1,4 +1,5 @@
 import { CustomersDataModel } from '../model/Customers';
+
 const { success, error } = useToast();
 
 export class CustomersController extends CustomersDataModel {
