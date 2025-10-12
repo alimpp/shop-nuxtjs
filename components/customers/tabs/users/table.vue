@@ -9,7 +9,7 @@
           class="mx-5 cursor-pointer"
           width="28px"
           height="28px"
-          @Click="getData(row)"
+          @Click="getOsData(row)"
         />
         <BaseIconContent
           bgClass="bg-primary-1"
@@ -61,7 +61,7 @@ const dataSource = computed(() => {
   return dataStore.getCustomersList;
 });
 
-const getData = async (data) => {
+const getOsData = async (data) => {
   const res = await customersController.getUserData(data.id);
 
   if (res) {
