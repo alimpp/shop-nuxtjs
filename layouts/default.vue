@@ -4,10 +4,11 @@
 
 <script setup>
 import { notificationController } from '~/controllers/Notification';
-import { userController } from "~/controllers/User";
+import { userController } from '~/controllers/User';
 
 onMounted(async () => {
   await userController.profile();
-  notificationController.startPolling()
+  notificationController.startPolling();
+  await userController.userData();
 });
 </script>
