@@ -18,20 +18,27 @@
           width="28px"
           height="28px"
         />
+        <BaseIconContent
+          bgClass="bg-secondary-2"
+          name="solar:info-circle-linear"
+          size="20"
+          class="mx-5 cursor-pointer"
+          width="28px"
+          height="28px"
+        />
       </div>
     </template>
   </BaseTable>
-  dataSource {{ dataSource }}
 </template>
 
 <script setup>
 const categoryStore = useCategoryStore();
 
 const columns = ref([
-  { key: "id", label: "Category Id", sortable: true, visible: true },
-  { key: "created_at", label: "Create Time", sortable: true, visible: true },
-  { key: "name", label: "Name", sortable: true, visible: true },
-  { key: "submiter", label: "Create By", sortable: true, visible: true },
+  { key: 'id', label: 'Category Id', sortable: true, visible: true },
+  { key: 'created_at', label: 'Create Time', sortable: true, visible: true },
+  { key: 'name', label: 'Name', sortable: true, visible: true },
+  { key: 'submiter', label: 'Create By', sortable: true, visible: true },
 ]);
 
 const dataSource = computed(() => {

@@ -20,9 +20,8 @@
 
           <div v-if="showColumnToggle" class="column-toggle mt-5 mx-5">
             <BaseButton
-              width="150px"
+              width="40px"
               icon="mingcute:column-fill"
-              name="Columns"
               @click="showColumnsDropdown = !showColumnsDropdown"
               bg="bg-primary-1"
             />
@@ -49,9 +48,8 @@
 
           <div v-if="exportable" class="mt-5">
             <BaseButton
-              width="150px"
+              width="40px"
               icon="line-md:file-export"
-              name="Export"
               bg="bg-secondary-1"
               @click="onExport"
             />
@@ -682,8 +680,8 @@ watch(
 }
 
 .actions-column {
-  width: 150px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .action-buttons {
