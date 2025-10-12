@@ -2,7 +2,6 @@ import { NotificationDataModel } from '~/model/Notification';
 import type { INotification } from '~/types/Notification';
 
 class NotificationController extends NotificationDataModel {
-  
   private intervalId: NodeJS.Timeout | null = null;
   private isPolling: boolean = false;
 
@@ -22,20 +21,23 @@ class NotificationController extends NotificationDataModel {
 
   public async getNotification() {
     this.getCacheData();
-    await this.Get('/api/notification/list')
-      .then(async (res: any) => {
-        const parsedList: INotification[] = await this.notificationParsed(res);
-        this.saveAllItems(parsedList);
-        this.notificationStore.setNotification(parsedList);
-        const count = parsedList.filter((item: INotification) => {
-          return item.seen == false;
+    if (this.userStore.getAuthenticated) {
+      await this.Get('/api/notification/list')
+        .then(async (res: any) => {
+          const parsedList: INotification[] =
+            await this.notificationParsed(res);
+          this.saveAllItems(parsedList);
+          this.notificationStore.setNotification(parsedList);
+          const count = parsedList.filter((item: INotification) => {
+            return item.seen == false;
+          });
+          this.notificationStore.setNotificationCount(count.length);
+        })
+        .catch((err) => {
+          console.error('Error fetching notifications:', err);
+          this.stopPolling();
         });
-        this.notificationStore.setNotificationCount(count.length);
-      })
-      .catch((err) => {
-        console.error('Error fetching notifications:', err);
-        this.stopPolling();
-      });
+    }
   }
 
   startPolling(intervalTime: number = 30000) {
@@ -86,7 +88,6 @@ class NotificationController extends NotificationDataModel {
   destroy() {
     this.stopPolling();
   }
-  
 }
 
 export const notificationController = new NotificationController();

@@ -75,11 +75,32 @@ class UserController extends UserDataModel {
   }
 
   public async userData() {
+    const info = {
+      cores: navigator.hardwareConcurrency || 'Unknown',
+      memory: {
+        total: performance.memory
+          ? (performance.memory.total / (1024 * 1024 * 1024)).toFixed(2) + ' GB'
+          : 'Unknown',
+        used: performance.memory
+          ? (performance.memory.used / (1024 * 1024 * 1024)).toFixed(2) + ' GB'
+          : 'Unknown',
+        limit: performance.memory
+          ? (performance.memory.jsHeapSizeLimit / (1024 * 1024 * 1024)).toFixed(
+              2
+            ) + ' GB'
+          : 'Unknown',
+      },
+      platform: navigator.platform,
+      userAgent: navigator.userAgent,
+      deviceMemory: navigator.deviceMemory
+        ? navigator.deviceMemory + ' GB'
+        : 'Unknown',
+    };
     const body: ISaveUserData = {
       userId: this.userStore.getAuthenticated
         ? this.userStore._state.user.id
         : '',
-      os: window.navigator.userAgent,
+      os: JSON.stringify(info),
     };
 
     await this.Post('/api/users-data/save/user/data', body);
