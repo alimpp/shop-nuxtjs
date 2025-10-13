@@ -7,3 +7,10 @@ export interface ICustomers {
   phone: string;
   created_at: Date;
 }
+
+export interface IUserData {
+  id: string;
+  userId: string;
+  os: string;
+  created_at: Date;
+}

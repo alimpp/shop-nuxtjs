@@ -1,4 +1,7 @@
 import { CustomersDataModel } from '../model/Customers';
+
+import { ICustomers, IUserData } from '../types/Customers';
+
 const { success, error } = useToast();
 
 export class CustomersController extends CustomersDataModel {
@@ -9,35 +12,56 @@ export class CustomersController extends CustomersDataModel {
   private customersStore = useCustomersStore();
 
   public getCacheData() {
-    const cacheData = this.readObject();
-    if (cacheData) {
-      this.customersStore.setCustomersList(cacheData);
+    try {
+      const cacheData = this.readObject();
+      if (cacheData) {
+        this.customersStore.setCustomersList(cacheData);
+      }
+    } catch (err) {
+      const textError = 'CUSTOMER DATA CAHCING FIELD';
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
     }
   }
 
   public async customersList() {
     this.getCacheData();
-    this.customersStore.setModuleState('loading');
-    await this.Get('/api/users/all').then(async (res: any) => {
-      const result = await this.customersParser(res);
-      this.customersStore.setCustomersList(result);
+    try {
       this.customersStore.setModuleState('loading');
-    });
+      const serverResponse: ICustomers[] = await this.Get('/api/users/all');
+      const parseResult = await this.customersParser(serverResponse);
+      this.customersStore.setCustomersList(parseResult);
+      this.customersStore.setModuleState('');
+    } catch (err) {
+      const textError = 'CUSTOMER LIST FETCHING FIELD';
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
+    }
   }
 
   public async getUserData(id: string) {
-    let result;
-    await this.Post('/api/users-data/user/data', { userId: id }).then(
-      async (res) => {
-        if (res?.data) {
-          result = await this.parseUserData(res.data);
-        }
+    try {
+      const response: IUserData = await this.Post('/api/users-data/user/data', {
+        userId: id,
+      });
+      if (!response?.data) {
+        error('No user data found in response');
+        throw new Error('No user data found in response');
       }
-    );
-    if (result?.os) {
-      return result?.os;
-    } else {
-      error('Os system data no found');
+      const result = await this.parseUserData(response.data);
+      if (result?.os) {
+        return result.os;
+      } else {
+        error('OS system data not found for user');
+        return undefined;
+      }
+    } catch (err) {
+      const textError = `Error fetching user data for ID ${id}`;
+      error(textError);
+      console.error(err);
+      return undefined;
     }
   }
 }
