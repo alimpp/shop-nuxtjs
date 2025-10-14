@@ -11,7 +11,43 @@
     </template>
 
     <template #content>
-      {{ info }}
+      <div class="flex flex-column">
+        <div class="flex flex-column mt-5 mb-5">
+          <span class="f-s-15 f-w-500 color-primary-1">Cores</span>
+          <span class="f-s-12 f-w-500">{{ info.cores }}</span>
+          <BaseDivider class="mt-5" />
+        </div>
+        <div class="flex flex-column mt-5 mb-5">
+          <span class="f-s-15 f-w-500 color-primary-1">Memory Total</span>
+          <span class="f-s-12 f-w-500">{{ info.memory.total }}</span>
+          <BaseDivider class="mt-5" />
+        </div>
+        <div class="flex flex-column mt-5 mb-5">
+          <span class="f-s-15 f-w-500 color-primary-1">Memory Used</span>
+          <span class="f-s-12 f-w-500">{{ info.memory.used }}</span>
+          <BaseDivider class="mt-5" />
+        </div>
+        <div class="flex flex-column mt-5 mb-5">
+          <span class="f-s-15 f-w-500 color-primary-1">Memory Limit</span>
+          <span class="f-s-12 f-w-500">{{ info.memory.limit }}</span>
+          <BaseDivider />
+        </div>
+        <div class="flex flex-column mt-5 mb-5">
+          <span class="f-s-15 f-w-500 color-primary-1">Platform</span>
+          <span class="f-s-12 f-w-500">{{ info.platform }}</span>
+          <BaseDivider class="mt-5" />
+        </div>
+        <div class="flex flex-column mt-5 mb-5">
+          <span class="f-s-15 f-w-500 color-primary-1">User Agent</span>
+          <span class="f-s-12 f-w-500">{{ info.userAgent }}</span>
+          <BaseDivider class="mt-5" />
+        </div>
+        <div class="flex flex-column mt-5 mb-5">
+          <span class="f-s-15 f-w-500 color-primary-1">Device Memory</span>
+          <span class="f-s-12 f-w-500">{{ info.deviceMemory }}</span>
+          <BaseDivider class="mt-5" />
+        </div>
+      </div>
     </template>
   </BaseModal>
 </template>

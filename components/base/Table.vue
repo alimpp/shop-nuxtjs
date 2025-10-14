@@ -1,6 +1,5 @@
 <template>
   <div class="base-table">
-    <!-- Table Header -->
     <div v-if="showHeader" class="table-header">
       <div class="header-left">
         <slot name="header-left">
@@ -58,13 +57,10 @@
       </slot>
     </div>
 
-    <!-- Table Container -->
     <div class="table-container" :class="{ 'with-border': bordered }">
       <table class="base-table__table" :class="tableClass">
-        <!-- Table Head -->
         <thead>
           <tr>
-            <!-- Select All Checkbox -->
             <th v-if="selectable" class="select-column">
               <input
                 v-model="allSelected"
@@ -73,7 +69,6 @@
               />
             </th>
 
-            <!-- Column Headers -->
             <th
               v-for="column in visibleColumns"
               :key="column.key"
@@ -113,12 +108,10 @@
               </div>
             </th>
 
-            <!-- Actions Column -->
-            <th v-if="hasActions" class="actions-column">Actions</th>
+            <th v-if="hasActions" class="flex justify-center">Actions</th>
           </tr>
         </thead>
 
-        <!-- Table Body -->
         <tbody>
           <tr
             v-for="(row, index) in paginatedData"
@@ -128,7 +121,6 @@
             @dblclick="onRowDblClick(row)"
             class="f-s-12"
           >
-            <!-- Select Checkbox -->
             <td v-if="selectable" class="select-column">
               <input
                 v-model="selectedRows"
@@ -138,7 +130,6 @@
               />
             </td>
 
-            <!-- Data Cells -->
             <td
               v-for="column in visibleColumns"
               :key="column.key"
@@ -154,7 +145,6 @@
               </slot>
             </td>
 
-            <!-- Action Cells -->
             <td v-if="hasActions" class="actions-column">
               <slot name="actions" :row="row" :index="index">
                 <div class="action-buttons"></div>
@@ -162,7 +152,6 @@
             </td>
           </tr>
 
-          <!-- Empty State -->
           <tr v-if="paginatedData.length === 0">
             <td :colspan="totalColumns" class="empty-state">
               <slot name="empty">
@@ -176,11 +165,9 @@
       </table>
     </div>
 
-    <!-- Table Footer -->
     <div v-if="showFooter" class="table-footer">
       <div class="footer-left">
         <slot name="footer-left">
-          <!-- Selected items info -->
           <div
             v-if="selectable && selectedRows.length > 0"
             class="selected-info"
@@ -192,7 +179,6 @@
 
       <div class="footer-right" v-if="paginated">
         <slot name="footer-right">
-          <!-- Pagination -->
           <div class="pagination">
             <div class="pagination-info">
               Showing {{ startIndex }} to {{ endIndex }} of
@@ -221,7 +207,6 @@
               </button>
             </div>
 
-            <!-- Page Size Selector -->
             <div v-if="pageSizeOptions" class="page-size-selector">
               <select v-model="localPageSize" @change="onPageSizeChange">
                 <option
@@ -619,7 +604,11 @@ watch(
   border-bottom: 1px solid #ccc8c885;
 }
 
-.base-table__table th,
+.base-table__table th {
+  padding: 0.75rem;
+  text-align: left;
+}
+
 .base-table__table td {
   padding: 0.75rem;
   text-align: left;

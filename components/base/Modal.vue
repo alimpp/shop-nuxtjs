@@ -44,11 +44,11 @@
           />
         </div>
       </div>
-      <div class="flex w-100 py-10">
-        <div class="w-100 flex align-center px-5">
-          <slot name="content"></slot>
-        </div>
+
+      <div class="content-style">
+        <slot name="content"></slot>
       </div>
+
       <div class="flex w-100 py-5 border-top" v-if="hasFooter">
         <div class="w-100 flex align-center px-5">
           <slot name="footer"></slot>
@@ -121,6 +121,16 @@ const emit = defineEmits(['close']);
 .content {
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   overflow: hidden;
+  max-height: 90dvh;
+}
+
+.content-style {
+  max-height: 90dvh;
+  overflow-y: scroll;
+  padding: 20px 20px;
+}
+.content-style::-webkit-scrollbar {
+  display: none;
 }
 
 .border-top {

@@ -19,7 +19,7 @@ export class CustomersDataModel extends BaseApp<any> {
       const dateFormt = formatDateTime(date);
       return {
         ...item,
-        created_at: dateFormt,
+        created_at: `${item.created_at?.split('T')[0]} - ${dateFormt}`,
       };
     });
     return list;

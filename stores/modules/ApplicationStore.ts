@@ -22,6 +22,9 @@ interface IApplication {
   toastMessages: Array<IToast>;
   alert: IAlert;
   compose: boolean;
+  loading: Boolean;
+  loadingText: string;
+  loadingSub: string;
 }
 
 export class ApplicationStore extends BaseStore<IApplication> {
@@ -46,6 +49,9 @@ export class ApplicationStore extends BaseStore<IApplication> {
         timeout: 0,
       },
       compose: false,
+      loading: false,
+      loadingText: '',
+      loadingSub: '',
     });
     StoreManager.register(this);
   }
@@ -82,6 +88,26 @@ export class ApplicationStore extends BaseStore<IApplication> {
 
   get getComposeState(): boolean {
     return this._state.compose;
+  }
+
+  public setLoading(loading: boolean, text: string, sub: string) {
+    this._state.loading = loading;
+    this._state.loadingText = text;
+    this._state.loadingSub = sub;
+  }
+
+  public resetLoading() {
+    this._state.loading = false;
+    this._state.loadingText = '';
+    this._state.loadingSub = '';
+  }
+
+  get getLoading() {
+    return {
+      state: this._state.loading,
+      text: this._state.loadingText,
+      sub: this._state.loadingSub,
+    };
   }
 
   public reset() {
