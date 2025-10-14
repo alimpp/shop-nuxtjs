@@ -1,6 +1,8 @@
 import { NotificationDataModel } from '~/model/Notification';
 import type { INotification } from '~/types/Notification';
 
+const { success, error } = useToast();
+
 class NotificationController extends NotificationDataModel {
   private intervalId: NodeJS.Timeout | null = null;
   private isPolling: boolean = false;
@@ -13,30 +15,36 @@ class NotificationController extends NotificationDataModel {
   private userStore = useUserStore();
 
   private getCacheData() {
-    const cacheData = this.readObject();
-    if (cacheData) {
-      this.notificationStore.setNotification(cacheData);
+    try {
+      const cacheData = this.readObject();
+      if (cacheData) {
+        this.notificationStore.setNotification(cacheData);
+      }
+    } catch (err) {
+      const textError = 'notification data caching field';
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
     }
   }
 
   public async getNotification() {
     this.getCacheData();
-    if (this.userStore.getAuthenticated) {
-      await this.Get('/api/notification/list')
-        .then(async (res: any) => {
-          const parsedList: INotification[] =
-            await this.notificationParsed(res);
-          this.saveAllItems(parsedList);
-          this.notificationStore.setNotification(parsedList);
-          const count = parsedList.filter((item: INotification) => {
-            return item.seen == false;
-          });
-          this.notificationStore.setNotificationCount(count.length);
-        })
-        .catch((err) => {
-          console.error('Error fetching notifications:', err);
-          this.stopPolling();
-        });
+    try {
+      const serverResponse = await this.Get('/api/notification/list');
+      const parseList: INotification[] =
+        await this.notificationParsed(serverResponse);
+      this.saveAllItems(parseList);
+      this.notificationStore.setNotification(parseList);
+      const count = parseList.filter((item: INotification) => {
+        return item.seen == false;
+      });
+      this.notificationStore.setNotificationCount(count.length);
+    } catch (err) {
+      const textError = 'notification data fetching field';
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
     }
   }
 
@@ -76,13 +84,15 @@ class NotificationController extends NotificationDataModel {
   }
 
   public async seen(id: string) {
-    await this.Patch(`/api/notification/${id}`, { seen: true })
-      .then(() => {
-        this.getNotification();
-      })
-      .catch((err) => {
-        console.error('Error marking notification as seen:', err);
-      });
+    try {
+      await this.Patch(`/api/notification/${id}`, { seen: true });
+      this.getNotification();
+    } catch (err) {
+      const textError = 'seen field';
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
+    }
   }
 
   destroy() {
