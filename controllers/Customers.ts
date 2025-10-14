@@ -18,7 +18,7 @@ export class CustomersController extends CustomersDataModel {
         this.customersStore.setCustomersList(cacheData);
       }
     } catch (err) {
-      const textError = 'CUSTOMER DATA CAHCING FIELD';
+      const textError = 'customer data caching field';
       error(textError);
       console.error(err);
       throw new Error(textError);
@@ -34,7 +34,7 @@ export class CustomersController extends CustomersDataModel {
       this.customersStore.setCustomersList(parseResult);
       this.customersStore.setModuleState('');
     } catch (err) {
-      const textError = 'CUSTOMER LIST FETCHING FIELD';
+      const textError = 'customer data fetching field';
       error(textError);
       console.error(err);
       throw new Error(textError);
