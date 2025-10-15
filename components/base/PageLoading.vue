@@ -1,13 +1,7 @@
 <template>
   <div
-    :class="[
-      {
-        'base-card-dark': appTheme == 'dark',
-        'base-card-light': appTheme == 'light',
-      },
-    ]"
     v-if="dataSource.state"
-    class="content-style w-100 h-15-dvh flex flex-column justify-center align-center slid-up-animation-3"
+    class="bg-secondary-1 content-style flex flex-column justify-center align-center slid-left-animation-3"
   >
     <BaseLoading :text="dataSource.text" :sub="dataSource.sub" />
   </div>
@@ -19,17 +13,18 @@ const dataStore = useApplicationStore();
 const dataSource = computed(() => {
   return dataStore.getLoading;
 });
-
-const appTheme = computed(() => {
-  return dataStore._state.theme;
-});
 </script>
 
 <style scoped>
 .content-style {
+  max-width: 385px;
+  max-height: 110px;
+  width: 385px;
+  min-height: 70px;
   z-index: 2000;
   position: fixed;
-  bottom: 0;
-  border-radius: 30px 30px 0 0;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 15px;
 }
 </style>

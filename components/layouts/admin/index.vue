@@ -18,8 +18,8 @@
       <div class="router-content overflow-hidden">
         <NuxtPage />
       </div>
-      <BasePageLoading />
     </div>
+    <BasePageLoading />
   </div>
 </template>
 

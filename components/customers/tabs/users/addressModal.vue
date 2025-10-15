@@ -12,21 +12,16 @@
 
     <template #content>
       <div class="flex flex-column">
-        <div
-          class="flex flex-column mt-5 mb-5"
+        <BaseCard
+          class="flex flex-column py-10 px-10 mb-10 mt-10"
           v-for="data in info"
           :key="data.id"
         >
-          <span class="f-s-15 f-w-500 color-primary-1">Address Name</span>
-          <span class="f-s-12 f-w-500">{{ data.name }}</span>
-          <span class="f-s-15 f-w-500 color-primary-1">Address Content</span>
-          <span class="f-s-12 f-w-500">{{ data.content }}</span>
-          <span class="f-s-15 f-w-500 color-primary-1">Postal Code</span>
-          <span class="f-s-12 f-w-500">{{ data.postalCode }}</span>
-          <span class="f-s-15 f-w-500 color-primary-1">Created Time</span>
-          <span class="f-s-12 f-w-500">{{ data.created_at }}</span>
-          <BaseDivider class="mt-5" />
-        </div>
+          <BaseFieldView label="Address Name" :content="data.name" />
+          <BaseFieldView label="Address Content" :content="data.content" />
+          <BaseFieldView label="Postal Code" :content="data.postalCode" />
+          <BaseFieldView label="Created Time" :content="data.created_at" />
+        </BaseCard>
       </div>
     </template>
   </BaseModal>

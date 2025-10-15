@@ -5,29 +5,29 @@
         'bg-app-dark': appTheme == 'dark',
         'bg-app-light': appTheme == 'light',
       }"
-      class="content bg-primary-white flex flex-column slid-left-animation-5"
+      class="content bg-primary-white flex flex-column slid-left-animation-5 px-15 py-10"
       :style="{ width: width, height: height, borderRadius: borderRadius }"
     >
       <div
-        class="flex w-100 border-bottom py-10"
+        class="flex w-100"
         v-if="hasHeader"
         :class="{
           'bg-app-dark': appTheme == 'dark',
           'bg-light': appTheme == 'light',
         }"
       >
-        <div class="w-100 flex align-center px-10">
+        <div class="w-100 flex align-center">
           <div
             class="w-50-px h-50-px border-circle bg-primary-gr flex align-center justify-center"
           >
             <slot name="icon"></slot>
           </div>
-          <div class="flex flex-column justify-center px-8">
+          <div class="flex flex-column justify-center px-5">
             <span class="f-s-15 f-w-600 color-primary">{{ title }}</span>
             <span class="f-s-12 f-w-400 color-gray">{{ text }}</span>
           </div>
         </div>
-        <div class="flex align-center px-10">
+        <div class="flex align-center">
           <BaseIcon
             name="line-md:menu-to-close-alt-transition"
             class="cursor-pointer"
@@ -35,6 +35,7 @@
           />
         </div>
       </div>
+
       <div class="flex justify-end w-100 py-8" v-else>
         <div class="flex align-center px-4">
           <BaseIcon
@@ -45,12 +46,14 @@
         </div>
       </div>
 
-      <div class="content-style">
+      <BaseDivider class="mt-8" />
+
+      <div class="solt-content-style">
         <slot name="content"></slot>
       </div>
 
       <div class="flex w-100 py-5 border-top" v-if="hasFooter">
-        <div class="w-100 flex align-center px-5">
+        <div class="w-100 flex align-center">
           <slot name="footer"></slot>
         </div>
       </div>
@@ -121,15 +124,17 @@ const emit = defineEmits(['close']);
 .content {
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   overflow: hidden;
-  max-height: 90dvh;
+  max-height: 95dvh;
 }
 
-.content-style {
-  max-height: 90dvh;
+.solt-content-style {
+  max-height: 95dvh;
   overflow-y: scroll;
-  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
 }
-.content-style::-webkit-scrollbar {
+
+.solt-content-style::-webkit-scrollbar {
   display: none;
 }
 

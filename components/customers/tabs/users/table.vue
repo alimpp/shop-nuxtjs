@@ -78,7 +78,11 @@ const dataSource = computed(() => {
 });
 
 const getOsData = async (data) => {
-  appStore.setLoading(true, 'Fetching User OS Data');
+  appStore.setLoading(
+    true,
+    'Fetching Data',
+    'Please waiting for server response'
+  );
   const serverResponse = await customersController.getUserData(data.id);
   if (serverResponse) {
     osDataModalState.value = !osDataModalState.value;
@@ -92,7 +96,11 @@ const getOsData = async (data) => {
 };
 
 const getUserAddress = async (data) => {
-  appStore.setLoading(true, 'Fetching User Address Data');
+  appStore.setLoading(
+    true,
+    'Fetching User Address Data',
+    'Please waiting for server response'
+  );
   const serverResponse = await addressController.getAddressByUserId(data.id);
   if (serverResponse) {
     addressModalState.value = !addressModalState.value;
