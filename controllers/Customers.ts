@@ -2,7 +2,7 @@ import { CustomersDataModel } from '../model/Customers';
 
 import { ICustomers, IUserData } from '../types/Customers';
 
-const { success, error } = useToast();
+const { success, error, warning } = useToast();
 
 export class CustomersController extends CustomersDataModel {
   constructor() {
@@ -47,14 +47,14 @@ export class CustomersController extends CustomersDataModel {
         userId: id,
       });
       if (!response?.data) {
-        error('No user data found in response');
+        warning('No user data found in response');
         throw new Error('No user data found in response');
       }
       const result = await this.parseUserData(response.data);
       if (result?.os) {
         return result.os;
       } else {
-        error('OS system data not found for user');
+        warning('OS system data not found for user');
         return undefined;
       }
     } catch (err) {
