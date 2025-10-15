@@ -1,5 +1,5 @@
 import { AddressDataModel } from '../model/Address';
-const { success, error } = useToast();
+const { success, error, warning } = useToast();
 
 import { IAddBody, IAddress } from '../types/Address';
 
@@ -64,7 +64,7 @@ export class AddressController extends AddressDataModel {
       );
       const parseList = this.addressParsed(serverResponse);
       if (parseList.length != 0) return parseList;
-      error('User no address data');
+      warning('User no address data');
       return null;
     } catch (err) {
       const textError = 'address by user id fetching field';
