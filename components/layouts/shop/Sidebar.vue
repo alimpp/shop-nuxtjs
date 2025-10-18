@@ -86,7 +86,7 @@ const appTheme = computed(() => {
 @import url('@/assets/scss/theme_colors.scss');
 
 .custom-style {
-  box-shadow: 1px 0px 0px 0px #53535320;
+  box-shadow: 1px 0px 0px 0px #ffffff2d;
 }
 
 .container {
