@@ -126,7 +126,6 @@ const appTheme = computed(() => {
 .container-sidebar {
   width: 350px;
   height: 100dvh;
-  // border-radius: 0 20px 20px 0;
 }
 
 .close-container {
