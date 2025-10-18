@@ -120,13 +120,13 @@ const appTheme = computed(() => {
 @import url('@/assets/scss/theme_colors.scss');
 
 .custom-style {
-  box-shadow: 1px 0px 0px 0px #53535320;
+  box-shadow: 1px 0px 0px 0px #ffffff2d;
 }
 
 .container-sidebar {
   width: 350px;
   height: 100dvh;
-  border-radius: 0 20px 20px 0;
+  // border-radius: 0 20px 20px 0;
 }
 
 .close-container {

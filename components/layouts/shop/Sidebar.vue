@@ -67,10 +67,6 @@ const menuItems = ref([
     name: 'Blogs',
     path: '/blogs',
   },
-  {
-    name: 'Support',
-    path: '/support',
-  },
 ]);
 const navigate = (path) => {
   const osWidth = window.screen.width;
@@ -103,7 +99,7 @@ const appTheme = computed(() => {
 }
 
 .active-path {
-  background: var(--primary-);
+  background: var(--primary1-);
   color: var(--white-);
   border-radius: 5px;
   padding: 0 10px;

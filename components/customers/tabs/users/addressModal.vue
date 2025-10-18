@@ -7,7 +7,7 @@
     :hasFooter="false"
   >
     <template #icon>
-      <BaseIcon name="qlementine-icons:system-monitor-16" />
+      <BaseIcon name="entypo:address" />
     </template>
 
     <template #content>

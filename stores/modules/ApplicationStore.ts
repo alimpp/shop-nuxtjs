@@ -39,7 +39,7 @@ export class ApplicationStore extends BaseStore<IApplication> {
 
   private constructor() {
     super('application', {
-      theme: 'dark',
+      theme: 'light',
       toastMessages: [],
       alert: {
         title: '',
