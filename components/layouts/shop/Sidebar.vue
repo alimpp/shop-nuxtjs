@@ -84,20 +84,16 @@ const appTheme = computed(() => {
 
 <style scoped lang="scss">
 @import url('@/assets/scss/theme_colors.scss');
-
 .custom-style {
   box-shadow: 1px 0px 0px 0px #ffffff2d;
 }
-
 .container {
   width: 350px;
   height: 100dvh;
 }
-
 .close-container {
   display: none;
 }
-
 .active-path {
   background: var(--primary1-);
   color: var(--white-);
@@ -105,7 +101,6 @@ const appTheme = computed(() => {
   padding: 0 10px;
   transition: 1s;
 }
-
 @media (max-width: 650px) {
   .container {
     position: fixed;
