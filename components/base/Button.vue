@@ -29,10 +29,9 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-  responsive: {
-    type: Boolean,
-    default: false,
-  },
+  responsive: {},
+  type: Boolean,
+  default: false,
   bg: {
     type: String,
     default: 'bg-primary-gr',
@@ -108,14 +107,13 @@ const buttonStyles = computed(() => ({
 
 <style scoped>
 .base-button {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 6px;
   cursor: pointer;
   border: none;
   transition: all 0.2s ease-in-out;
-  gap: 8px;
   position: relative;
 }
 

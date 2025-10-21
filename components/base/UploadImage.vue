@@ -27,6 +27,13 @@
         <span class="f-s-10 f-w-500 color-gray">{{ subTitle }}</span>
       </div>
     </div>
+    <BaseButton
+      name="Updload New File"
+      class="mt-10"
+      bg="bg-secondary-1"
+      icon="solar:upload-square-outline"
+      v-if="image"
+    />
   </div>
 </template>
 
