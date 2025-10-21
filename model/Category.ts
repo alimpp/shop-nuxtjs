@@ -16,6 +16,8 @@ export class CategoryDataModel extends BaseApp<any> {
     apiResponse.map((category) => {
       const obj = {
         ...category,
+        imageId: `http://localhost:4000/files/${category.imageId}`,
+        iconId: `http://localhost:4000/files/${category.iconId}`,
         created_at: category.created_at.slice(0, 10),
       };
       list.push(obj);

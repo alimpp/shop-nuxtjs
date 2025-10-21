@@ -9,16 +9,12 @@
         name="solar:pen-linear"
         size="20"
         class="mx-5 cursor-pointer"
-        width="28px"
-        height="28px"
       />
       <BaseIconContent
         bgClass="bg-danger-2"
         name="solar:trash-bin-minimalistic-linear"
         size="20"
         class="mx-5 cursor-pointer"
-        width="28px"
-        height="28px"
       />
     </div>
   </BaseCard>

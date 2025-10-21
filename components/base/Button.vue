@@ -1,23 +1,41 @@
 <template>
   <button
     class="base-button"
-    :style="{ width: width, height: height }"
-    :class="[bg, color, border]"
+    :class="buttonClasses"
     :disabled="disabled || loading"
+    :style="buttonStyles"
   >
-    <span :class="[fontSize, fontWeight, color]" class="px-2" v-if="name">
-      {{ name }}</span
-    >
-    <BaseIcon name="line-md:loading-loop" v-if="loading" />
-    <BaseIcon :name="icon" v-if="!loading && icon" :size="iconSize" />
+    <BaseIcon
+      v-if="loading"
+      name="line-md:loading-loop"
+      :size="iconSize"
+      class="base-button__icon"
+    />
+
+    <BaseIcon
+      v-else-if="icon"
+      :name="icon"
+      :size="iconSize"
+      class="base-button__icon"
+    />
+
+    <span v-if="showText" class="base-button__text" :class="textClasses">
+      {{ name }}
+    </span>
   </button>
 </template>
 
 <script setup>
+import { computed } from 'vue';
+
 const props = defineProps({
+  responsive: {
+    type: Boolean,
+    default: false,
+  },
   bg: {
     type: String,
-    default: 'bg-primary-gr ',
+    default: 'bg-primary-gr',
   },
   color: {
     type: String,
@@ -51,38 +69,93 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  width: {
-    type: String,
-    default: '90px',
-  },
-  height: {
-    type: String,
-    default: '35px',
-  },
   iconSize: {
     type: String,
     default: '20px',
   },
   padding: {
     type: String,
-    default: '10px 10px',
+    default: '8px 16px',
+  },
+  fullWidth: {
+    type: Boolean,
+    default: false,
   },
 });
+
+const showText = computed(() => props.name && !props.responsive);
+
+const buttonClasses = computed(() => [
+  props.bg,
+  props.border,
+  {
+    'base-button--disabled': props.disabled || props.loading,
+    'base-button--full-width': props.fullWidth,
+    'base-button--loading': props.loading,
+  },
+]);
+
+const textClasses = computed(() => [
+  props.fontSize,
+  props.fontWeight,
+  props.color,
+]);
+
+const buttonStyles = computed(() => ({
+  padding: props.padding,
+}));
 </script>
 
 <style scoped>
 .base-button {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 6px;
   cursor: pointer;
   border: none;
+  transition: all 0.2s ease-in-out;
+  gap: 8px;
+  position: relative;
+}
+
+.base-button--full-width {
+  width: 100%;
+}
+
+.base-button__text {
+  line-height: 1;
+}
+
+.base-button__icon {
+  flex-shrink: 0;
 }
 
 .base-button:disabled,
-.disabled-button {
+.base-button--disabled {
   cursor: not-allowed;
-  opacity: 0.7;
+  opacity: 0.6;
+  transform: none !important;
+}
+
+.base-button:not(.base-button--disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.base-button:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.base-button--loading {
+  cursor: wait;
+}
+
+@media (max-width: 768px) {
+  .base-button {
+    min-height: 36px;
+    gap: 6px;
+  }
 }
 </style>

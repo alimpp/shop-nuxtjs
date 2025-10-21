@@ -3,4 +3,6 @@ export interface ICategory {
   name: string;
   submiter: string;
   created_at: string;
+  imageId: string;
+  iconId: string;
 }

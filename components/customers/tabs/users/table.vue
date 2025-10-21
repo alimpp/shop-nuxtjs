@@ -7,26 +7,23 @@
           name="solar:info-circle-linear"
           size="20"
           class="mx-5 cursor-pointer"
-          width="28px"
-          height="28px"
           @Click="getOsData(row)"
+          padding="6px 6px"
         />
         <BaseIconContent
           bgClass="bg-primary-1"
           name="solar:flag-2-broken"
           size="20"
           class="mx-5 cursor-pointer"
-          width="28px"
-          height="28px"
           @click="getUserAddress(row)"
+          padding="6px 6px"
         />
         <BaseIconContent
           bgClass="bg-primary-4"
           name="streamline-freehand:shopping-basket-1"
           size="20"
           class="mx-5 cursor-pointer"
-          width="28px"
-          height="28px"
+          padding="6px 6px"
         />
         <BaseIcon
           v-if="loading"
@@ -70,7 +67,6 @@ const columns = ref([
   { key: 'lastname', label: 'Lastname', sortable: true, visible: true },
   { key: 'email', label: 'Email', sortable: true, visible: true },
   { key: 'phone', label: 'Phone', sortable: true, visible: true },
-  { key: 'created_at', label: 'Created At', sortable: true, visible: true },
 ]);
 
 const dataSource = computed(() => {

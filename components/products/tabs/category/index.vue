@@ -1,5 +1,5 @@
 <script setup>
-import { categoryController } from '../../../controllers/Category';
+import { categoryController } from '../../../../controllers/Category';
 
 const modalState = ref(false);
 const modalController = () => {
@@ -12,16 +12,5 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="w-100 flex flex-column">
-    <div id="topbar" class="w-100 flex justify-end">
-      <BaseButton
-        name="New Category"
-        width="150px"
-        icon="line-md:plus"
-        @click="modalController"
-      />
-    </div>
-    <ProductsTabsCategoryTable />
-    <CategoryModalAdd :isOpen="modalState" @close="modalController" />
-  </div>
+  <CategoryModalAdd :isOpen="modalState" @close="modalController" />
 </template>

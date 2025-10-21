@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="style"
-    :class="[bgClass]"
-    :style="{ width: `${width}`, height: `${height}` }"
-  >
+  <div class="style" :class="[bgClass]" :style="{ padding: `${padding}` }">
     <Icon :icon="name" :width="size" :height="size" :color="color" />
   </div>
 </template>
@@ -16,13 +12,9 @@ const props = defineProps({
     type: String,
     default: 'bg-primary-1',
   },
-  width: {
+  padding: {
     type: String,
-    default: '30px',
-  },
-  height: {
-    type: String,
-    default: '30px',
+    default: '8px 16px',
   },
   name: { type: String, required: true },
   size: { type: [String, Number], default: 24 },
@@ -36,5 +28,6 @@ const props = defineProps({
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  cursor: pointer;
 }
 </style>

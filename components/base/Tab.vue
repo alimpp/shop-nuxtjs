@@ -153,15 +153,15 @@ onBeforeUnmount(() => {
 }
 
 .tab-button {
-  padding: 12px 24px;
+  padding: 12px 12px;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 13px;
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
   color: var(--text-secondary);
   transition: color 0.3s ease;
   flex-shrink: 0;

@@ -1,13 +1,13 @@
 <template>
   <div class="flex align-center w-100">
-    <div class="w-100 flex align-center">
+    <div class="w-40 flex align-center">
       <span class="f-s-12 f-w-500 color-primary">APPLICATION</span>
       <span class="f-s-12 f-w-500 px-4">/</span>
       <span class="f-s-12 f-w-500">{{ parent }}</span>
       <span class="f-s-12 f-w-500 px-4">/</span>
       <span class="f-s-12 f-w-500">{{ child }}</span>
     </div>
-    <div class="flex center">
+    <div class="flex justify-end w-60">
       <slot></slot>
     </div>
   </div>
