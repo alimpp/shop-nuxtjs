@@ -136,20 +136,16 @@ const appTheme = computed(() => {
 
 <style scoped lang="scss">
 @import url('@/assets/scss/theme_colors.scss');
-
 .custom-style {
   box-shadow: 1px 0px 0px 0px #ffffff2d;
 }
-
 .container-sidebar {
   width: 350px;
   height: 100dvh;
 }
-
 .close-container {
   display: none;
 }
-
 .active-path {
   background: var(--secondary3-);
   color: var(--secondary1-);
@@ -157,7 +153,6 @@ const appTheme = computed(() => {
   padding: 0 10px;
   transition: 1s;
 }
-
 @media (max-width: 650px) {
   .container-sidebar {
     position: fixed;
