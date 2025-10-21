@@ -10,10 +10,10 @@
       class="flex flex-column align-center justify-center w-98 h-200-px"
       v-if="loading"
     >
-      <IconsSpinner color="#7d7be5" />
+      <BaseIcon name="svg-spinners:blocks-shuffle-3" />
       <span class="f-s-12 f-w-600 color-primary">Uploading...</span>
     </div>
-    <div class="flex flex-column" v-else>
+    <div class="flex flex-column" @click="openFiles" v-else>
       <img
         :src="image"
         alt="image"
@@ -22,22 +22,11 @@
         height="200"
       />
       <div class="image-content" v-else>
-        <span class="f-s-12 f-w-600 color-primary">Choose Image</span>
-        <span class="f-s-10 f-w-500 color-gray pt-5"
-          >JPG , JPEG , and PNG formats , up to 10MB</span
-        >
+        <BaseIcon name="solar:cloud-upload-broken" size="40" />
+        <span class="f-s-13 f-w-600 py-10">{{ title }}</span>
+        <span class="f-s-10 f-w-500 color-gray">{{ subTitle }}</span>
       </div>
     </div>
-    <BaseButton
-      @click="openFiles"
-      class="bg-primary-1 mt-10"
-      width="100%"
-      name="Upload Image"
-    >
-      <template #iconLeft>
-        <IconsUploadAvatar />
-      </template>
-    </BaseButton>
   </div>
 </template>
 
@@ -46,6 +35,8 @@ const emit = defineEmits(['uploadImage']);
 const input = ref(null);
 
 const props = defineProps({
+  title: { default: 'Choose Image' },
+  subTitle: { default: 'JPG , JPEG , and PNG formats , up to 10MB' },
   image: {
     type: String,
     default: '',

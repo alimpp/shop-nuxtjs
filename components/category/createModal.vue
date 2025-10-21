@@ -9,19 +9,19 @@
       <BaseIcon name="line-md:plus" />
     </template>
     <template #content>
-      <div class="flex flex-column w-100 px-5 py-30">
-        <BaseInput
-          :validate="true"
-          v-model:access="access"
-          v-model="name"
-          rules="length"
-          min-length="3"
-          max-length="15"
-          class="w-100 mt-5"
-          placeholder="Enter category name"
-          label="Category name"
-        />
-      </div>
+      <BaseInput
+        :validate="true"
+        v-model:access="access"
+        v-model="name"
+        rules="length"
+        min-length="3"
+        max-length="15"
+        class="w-100 mt-5"
+        placeholder="Enter category name"
+        label="Category name"
+      />
+      <BaseUploadImage class="mt-10" title="Upload Category Image" />
+      <BaseUploadImage class="mt-10" title="Upload Category Icon" />
     </template>
     <template #footer>
       <div class="flex w-100 align-center py-5 px-5">
