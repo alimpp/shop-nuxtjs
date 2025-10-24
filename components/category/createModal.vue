@@ -11,8 +11,7 @@
     <template #content>
       <BaseInput
         :validate="true"
-        v-model:access="access"
-        v-model="name"
+        v-model="form.name"
         rules="length"
         min-length="3"
         max-length="15"
@@ -20,8 +19,20 @@
         placeholder="Enter category name"
         label="Category name"
       />
-      <BaseUploadImage class="mt-10" title="Upload Category Image" />
-      <BaseUploadImage class="mt-10" title="Upload Category Icon" />
+      <BaseUploadImage
+        class="mt-10"
+        title="Upload Category Image"
+        @uploadImage="uploadImage"
+        :loading="loadingImage"
+        :previewImage="preView.image"
+      />
+      <BaseUploadImage
+        class="mt-10"
+        title="Upload Category Icon"
+        @uploadImage="uploadIcon"
+        :loading="loadingIcon"
+        :previewImage="preView.icon"
+      />
     </template>
     <template #footer>
       <div class="flex w-100 align-center py-5 px-5">
@@ -46,6 +57,8 @@
 
 <script setup>
 import { categoryController } from '@/controllers/Category';
+import { filesController } from '@/controllers/Files';
+import { computed } from 'vue';
 
 const emit = defineEmits(['close']);
 const props = defineProps({
@@ -56,7 +69,7 @@ const props = defineProps({
 });
 
 const close = () => {
-  name.value = '';
+  form.value = '';
   access.value = false;
   loading.value = false;
   emit('close');
@@ -64,12 +77,62 @@ const close = () => {
 
 const access = ref(false);
 const loading = ref(false);
-const name = ref('');
+const loadingImage = ref(false);
+const loadingIcon = ref(false);
 
-const createCategory = async () => {
-  loading.value = true;
-  await categoryController.createCategory(name.value);
-  loading.value = false;
-  close();
+const handleAccess = () => {
+  access.value = !access.value;
+};
+
+const form = ref({
+  name: '',
+  imageId: '',
+  iconId: '',
+});
+const preView = ref({
+  image: '',
+  icon: '',
+});
+
+// const createCategory = async () => {
+//   loading.value = true;
+//   await categoryController.createCategory(name.value);
+//   loading.value = false;
+//   close();
+// };
+
+const uploadImage = async (event) => {
+  loadingImage.value = true;
+  const serverResponse = await filesController.uploadFile(
+    event.target.files[0],
+  );
+  if (serverResponse?.id) {
+    preView.value.image = await filesController.downloadFileById(
+      serverResponse.id,
+    );
+  }
+  loadingImage.value = false;
+};
+
+const uploadIcon = async (event) => {
+  loadingIcon.value = true;
+  const serverResponse = await filesController.uploadFile(
+    event.target.files[0],
+  );
+  if (serverResponse?.id) {
+    preView.value.icon = await filesController.downloadFileById(
+      serverResponse.id,
+    );
+  }
+  loadingIcon.value = false;
+};
+
+const handleUpload = () => {
+  if (preView.value.image && preView.value.icon && form.value.name !== '') {
+    console.log('filled');
+    access.value = true;
+  } else {
+    console.log('not filled');
+  }
 };
 </script>

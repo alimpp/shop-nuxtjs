@@ -15,9 +15,9 @@
     </div>
     <div class="flex flex-column" @click="openFiles" v-else>
       <img
-        :src="image"
+        :src="previewImage"
         alt="image"
-        v-if="image"
+        v-if="previewImage"
         class="fade-animation w-98 border-rounded"
         height="200"
       />
@@ -32,7 +32,8 @@
       class="mt-10"
       bg="bg-secondary-1"
       icon="solar:upload-square-outline"
-      v-if="image"
+      v-if="previewImage"
+      @click="openFiles"
     />
   </div>
 </template>
@@ -44,7 +45,7 @@ const input = ref(null);
 const props = defineProps({
   title: { default: 'Choose Image' },
   subTitle: { default: 'JPG , JPEG , and PNG formats , up to 10MB' },
-  image: {
+  previewImage: {
     type: String,
     default: '',
   },
