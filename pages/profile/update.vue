@@ -41,7 +41,6 @@
     <BaseButton
       name="Submit Profile"
       @click="submit"
-      width="130px"
       icon="gg:check-o"
       :loading="loading"
       class="mt-15"

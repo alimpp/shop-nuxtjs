@@ -28,7 +28,6 @@
         <BaseButton
           name="Create category"
           @click="createCategory"
-          width="130px"
           icon="gg:check-o"
           :loading="loading"
           :disabled="!access"

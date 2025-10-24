@@ -18,7 +18,6 @@
         class="mt-15"
         name="Confrim Otp Code"
         width="100%"
-        height="40px"
         :loading="loading"
         :disabled="true"
         @click="sendPhone"

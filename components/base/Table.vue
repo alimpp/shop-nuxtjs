@@ -19,7 +19,6 @@
 
           <div v-if="showColumnToggle" class="column-toggle mt-5 mx-5">
             <BaseButton
-              width="40px"
               icon="mingcute:column-fill"
               @click="showColumnsDropdown = !showColumnsDropdown"
               bg="bg-primary-1"
@@ -47,7 +46,6 @@
 
           <div v-if="exportable" class="mt-5">
             <BaseButton
-              width="40px"
               icon="line-md:file-export"
               bg="bg-secondary-1"
               @click="onExport"

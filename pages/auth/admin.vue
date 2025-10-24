@@ -33,8 +33,6 @@
     <BaseButton
       class="mt-15"
       name="Send"
-      width="100%"
-      height="40px"
       :loading="loading"
       :disabled="disabled"
       @click="login"

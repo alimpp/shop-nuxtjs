@@ -51,7 +51,6 @@
         <BaseButton
           name="Create address"
           @click="create"
-          width="130px"
           icon="gg:check-o"
           :loading="loading"
           :disabled="disabled"

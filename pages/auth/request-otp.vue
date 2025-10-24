@@ -20,8 +20,6 @@
     <BaseButton
       class="mt-15"
       name="Send"
-      width="100%"
-      height="40px"
       :loading="loading"
       :disabled="disabled"
       @click="sendPhone"
@@ -30,16 +28,16 @@
 </template>
 
 <script setup>
-import { userController } from '@/controllers/User';
+import { userController } from "@/controllers/User";
 
 definePageMeta({
-  layout: 'auth',
+  layout: "auth",
 });
 
 const access = ref(false);
 const loading = ref(false);
 
-const phone = ref('');
+const phone = ref("");
 
 const disabled = computed(() => {
   return !access.value || !phone.value ? true : false;

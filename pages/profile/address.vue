@@ -8,7 +8,6 @@
       <div class="flex aligb-center">
         <BaseButton
           name="Add New Address"
-          width="150px"
           icon="line-md:plus"
           @click="modalController"
         />

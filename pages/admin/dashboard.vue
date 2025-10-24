@@ -22,7 +22,6 @@
         <div class="w-100 flex flex-column align-center justify-center">
           <span class="f-s-14 f-w-500">User Not Found</span>
           <BaseButton
-            width="150px"
             name="Refresh Table Data"
             @click="refreshData"
             bg="bg-secondary-1"
