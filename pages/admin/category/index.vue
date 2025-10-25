@@ -73,9 +73,9 @@ const openRemoveConfrim = (data) => {
   lastTargetCategoryData.value = data;
   removeConfrimState.value = true;
 };
-const removeCategory = () => {
+const removeCategory = async () => {
   removeConfrimState.value = false;
-  console.log('lastTargetCategoryData', lastTargetCategoryData.value);
+  await categoryController.remove(lastTargetCategoryData?.value?.id);
 };
 
 const editConfrimState = ref(false);

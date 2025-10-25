@@ -25,12 +25,12 @@
       :key="data.id"
       :data="data"
     />
-    <AddressModalAdd :isOpen="modalState" @close="modalController" />
+    <AddressCreateModal :isOpen="modalState" @close="modalController" />
   </div>
 </template>
 
 <script setup>
-import { addressController } from "~/controllers/Address";
+import { addressController } from '~/controllers/Address';
 
 const modalState = ref(false);
 const modalController = () => {
