@@ -1,41 +1,55 @@
 <template>
-  <div class="base-modal-content fade-animation" v-if="isOpen">
+  <div class="base-modal-content fade-animation-1s" v-if="isOpen">
     <div
-      class="content flex flex-column py-50"
       :class="{
-        'bg-danger-1': type == 'error',
+        'bg-app-dark': appTheme == 'dark',
+        'bg-app-light': appTheme == 'light',
       }"
+      class="content flex flex-column slid-up-animation-5 px-15 py-10"
       :style="{ width: width, height: height, borderRadius: borderRadius }"
     >
-      <div class="flex flex-column align-center justify-center w-100">
-        <IconsDanger v-if="type == 'error'" />
-        <IconsSuccess v-if="type == 'success'" />
-        <span
-          class="f-s-12 f-w-500 pt-10"
-          :class="{ 'color-primary-white': type == 'error' }"
-          >{{ title }}</span
-        >
-        <span
-          class="f-s-12 f-w-500"
-          :class="{ 'color-primary-white': type == 'error' }"
-          >{{ text }}</span
-        >
+      <div class="w-100 flex justify-end">
+        <BaseIcon
+          name="line-md:menu-to-close-alt-transition"
+          class="cursor-pointer"
+          @click="emit('cancel')"
+        />
       </div>
-      <div
-        class="w-100 flex align-center justify-center mt-20"
-        v-if="hasFooter"
-      >
-        <slot name="footer"></slot>
+      <div class="w-100 flex justify-center py-15">
+        <BaseIconContent :name="icon.name" :bgClass="icon.bg" />
+      </div>
+      <div class="w-100 flex flex-column justify-center align-center">
+        <span class="f-s-16 f-w-600">{{ title }}</span>
+        <span class="f-s-14 f-w-500 color-gray-1">{{ text }}</span>
+      </div>
+      <div class="w-100 flex justify-center align-center py-20">
+        <BaseButton
+          :bg="buttonStyle.bg"
+          :name="confrimText"
+          class="mx-5"
+          @click="emit('confrim')"
+        />
+        <BaseButton
+          bg="bg-gray-2"
+          :name="cancelText"
+          class="mx-5"
+          @click="emit('cancel')"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+const applicationStore = useApplicationStore();
+const appTheme = computed(() => {
+  return applicationStore._state.theme;
+});
+
 const props = defineProps({
   type: {
     type: String,
-    default: '',
+    default: 'danger',
   },
   isOpen: {
     type: Boolean,
@@ -61,13 +75,51 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  hasFooter: {
-    type: Boolean,
-    default: true,
+  confrimText: {
+    type: String,
+    default: 'Yes',
+  },
+  cancelText: {
+    type: String,
+    default: 'cancel',
+  },
+  icon: {
+    type: String,
+    default: '',
   },
 });
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(['cancel', 'confrim']);
+
+const icon = computed(() => {
+  switch (props.type) {
+    case 'danger':
+      return { name: 'solar:trash-bin-trash-linear', bg: 'bg-danger-3' };
+
+    case 'success':
+      return {
+        name: props.icon ? props.icon : 'line-md:confirm-circle',
+        bg: 'bg-primary-1',
+      };
+
+    default:
+      break;
+  }
+});
+
+const buttonStyle = computed(() => {
+  switch (props.type) {
+    case 'danger':
+      return { bg: 'bg-danger-3' };
+    case 'success':
+      return {
+        bg: 'bg-primary-1',
+      };
+
+    default:
+      break;
+  }
+});
 </script>
 
 <style scoped>
@@ -76,7 +128,6 @@ const emit = defineEmits(['close']);
   height: 100dvh;
   position: fixed;
   z-index: 1000;
-  background: #00000096;
   top: 0;
   bottom: 0;
   left: 0;
@@ -84,14 +135,24 @@ const emit = defineEmits(['close']);
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #0000006c;
 }
 
 .content {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   overflow: hidden;
+  max-height: 95dvh;
 }
 
-.custom-border-radius {
-  border-radius: 0 0 50px 50px;
+.solt-content-style {
+  max-height: 95dvh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.solt-content-style::-webkit-scrollbar {
+  display: none;
 }
 
 .border-top {
@@ -100,12 +161,5 @@ const emit = defineEmits(['close']);
 
 .border-bottom {
   border-bottom: 1px solid #d1cdcd53;
-}
-
-.success-type {
-  background: #7ded1c81;
-}
-.error-type {
-  background: #de484898;
 }
 </style>

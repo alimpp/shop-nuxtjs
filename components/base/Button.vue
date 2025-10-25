@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed } from 'vue';
 
 const props = defineProps({
   responsive: {},
@@ -34,23 +34,23 @@ const props = defineProps({
   default: false,
   bg: {
     type: String,
-    default: "bg-primary-gr",
+    default: 'bg-primary-gr',
   },
   color: {
     type: String,
-    default: "color-primary-white",
+    default: 'color-primary-white',
   },
   fontSize: {
     type: String,
-    default: "f-s-12",
+    default: 'f-s-13',
   },
   fontWeight: {
     type: String,
-    default: "f-w-500",
+    default: 'f-w-500',
   },
   name: {
     type: String,
-    default: "",
+    default: '',
   },
   loading: {
     type: Boolean,
@@ -62,19 +62,19 @@ const props = defineProps({
   },
   border: {
     type: String,
-    default: "",
+    default: '',
   },
   icon: {
     type: String,
-    default: "",
+    default: '',
   },
   iconSize: {
     type: String,
-    default: "20px",
+    default: '20px',
   },
   padding: {
     type: String,
-    default: "0px 16px",
+    default: '0px 16px',
   },
   fullWidth: {
     type: Boolean,
@@ -88,9 +88,9 @@ const buttonClasses = computed(() => [
   props.bg,
   props.border,
   {
-    "base-button--disabled": props.disabled || props.loading,
-    "base-button--full-width": props.fullWidth,
-    "base-button--loading": props.loading,
+    'base-button--disabled': props.disabled || props.loading,
+    'base-button--full-width': props.fullWidth,
+    'base-button--loading': props.loading,
   },
 ]);
 

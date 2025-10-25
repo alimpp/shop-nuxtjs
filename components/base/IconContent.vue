@@ -1,5 +1,9 @@
 <template>
-  <div class="style" :class="[bgClass]" :style="{ padding: `${padding}` }">
+  <div
+    class="style"
+    :class="[bgClass]"
+    :style="{ padding: padding, borderRadius: borderRadius }"
+  >
     <Icon :icon="name" :width="size" :height="size" :color="color" />
   </div>
 </template>
@@ -14,11 +18,12 @@ const props = defineProps({
   },
   padding: {
     type: String,
-    default: '8px 16px',
+    default: '16px 16px',
   },
   name: { type: String, required: true },
   size: { type: [String, Number], default: 24 },
   color: { type: String, default: 'currentColor' },
+  borderRadius: { type: String, default: '50%' },
 });
 </script>
 

@@ -42,14 +42,30 @@
             :src="item.iconId"
             alt="Cateory Image"
             class="w-100-px border-rounded mt-5"
+            @click="emit('edit', item)"
           />
         </div>
+      </div>
+      <BaseDivider class="mt-10" />
+      <div class="w-100 flex justify-end pt-10">
+        <BaseButton
+          icon="solar:pen-broken"
+          bg="bg-primary-2"
+          @click="emit('edit', { ...item, type: 'success' })"
+        />
+        <BaseButton
+          class="mx-5"
+          icon="solar:trash-bin-trash-linear"
+          bg="bg-danger-2"
+          @click="emit('remove', { id: item.id, type: 'danger' })"
+        />
       </div>
     </div>
   </BaseCard>
 </template>
 
 <script setup>
+const emit = defineEmits(['remove', 'edit']);
 const props = defineProps({
   item: {
     type: Object,
