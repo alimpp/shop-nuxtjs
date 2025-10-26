@@ -17,7 +17,7 @@ export class AddressController extends AddressDataModel {
         this.addressStore.setList(cacheData);
       }
     } catch (err) {
-      const textError = 'address data caching field';
+      const textError = 'address data caching failed';
       error(textError);
       console.error(err);
       throw new Error(textError);
@@ -36,7 +36,7 @@ export class AddressController extends AddressDataModel {
         this.addressStore.setModuleState('');
       });
     } catch (err) {
-      const textError = 'address data caching field';
+      const textError = 'address data caching failed';
       error(textError);
       console.error(err);
       throw new Error(textError);
@@ -50,7 +50,7 @@ export class AddressController extends AddressDataModel {
         this.list();
       });
     } catch (err) {
-      const textError = 'add address field';
+      const textError = 'add address failed';
       error(textError);
       console.error(err);
       throw new Error(textError);
@@ -60,14 +60,14 @@ export class AddressController extends AddressDataModel {
   public async getAddressByUserId(userId: string) {
     try {
       const serverResponse: IAddress[] = await this.Get(
-        `/api/address/${userId}`,
+        `/api/address/${userId}`
       );
       const parseList = this.addressParsed(serverResponse);
       if (parseList.length != 0) return parseList;
       warning('User no address data');
       return null;
     } catch (err) {
-      const textError = 'address by user id fetching field';
+      const textError = 'address by user id fetching failed';
       error(textError);
       console.error(err);
       throw new Error(textError);

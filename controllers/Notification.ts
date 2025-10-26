@@ -21,7 +21,7 @@ class NotificationController extends NotificationDataModel {
         this.notificationStore.setNotification(cacheData);
       }
     } catch (err) {
-      const textError = 'notification data caching field';
+      const textError = 'notification data caching failed';
       error(textError);
       console.error(err);
       throw new Error(textError);
@@ -41,7 +41,7 @@ class NotificationController extends NotificationDataModel {
       });
       this.notificationStore.setNotificationCount(count.length);
     } catch (err) {
-      const textError = 'notification data fetching field';
+      const textError = 'notification data fetching failed';
       error(textError);
       console.error(err);
       throw new Error(textError);
@@ -88,7 +88,7 @@ class NotificationController extends NotificationDataModel {
       await this.Patch(`/api/notification/${id}`, { seen: true });
       this.getNotification();
     } catch (err) {
-      const textError = 'seen field';
+      const textError = 'seen failed';
       error(textError);
       console.error(err);
       throw new Error(textError);

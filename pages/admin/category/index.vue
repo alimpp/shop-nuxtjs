@@ -12,7 +12,18 @@
     </BaseBreadCrumbs>
 
     <div class="flex flex-column mt-15">
+      <BaseLoading
+        text="Fetch List"
+        sub="Fetching Category List Please Wait"
+        v-if="moduleState == 'loading'"
+      />
+      <BaseEmptyState
+        v-if="moduleState == 'empty'"
+        title="Empty List"
+        text="Category List Is Empty"
+      />
       <CategoryCard
+        v-if="dataSource.length != 0"
         v-for="item in dataSource"
         :item="item"
         @remove="openRemoveConfrim"
@@ -64,6 +75,10 @@ const categoryStore = useCategoryStore();
 
 const dataSource = computed(() => {
   return categoryStore.getList;
+});
+
+const moduleState = computed(() => {
+  return categoryStore.getModuleState;
 });
 
 const lastTargetCategoryData = ref({});

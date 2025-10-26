@@ -21,7 +21,7 @@ class SupportController extends SupportDataModel {
       const parseResult = await this.chatListParsed(serverResponse);
       this.supportStore.setChatList(parseResult);
     } catch (err) {
-      error('Chat list fetching field');
+      error('Chat list fetching failed');
       console.error(error);
       this.stopPolling();
     }
@@ -93,7 +93,7 @@ class SupportController extends SupportDataModel {
         }
       }
     } catch (err) {
-      error('Fetching chat item field');
+      error('Fetching chat item failed');
       console.error(error);
       this.stopChatPolling(chatId);
     }
@@ -109,7 +109,7 @@ class SupportController extends SupportDataModel {
       this.supportStore.addToMessages(newMessage);
       await this.getChatList();
     } catch (err) {
-      const textError = 'Send message field';
+      const textError = 'Send message failed';
       error(textError);
       console.error(err);
       throw new Error(textError);
@@ -122,7 +122,7 @@ class SupportController extends SupportDataModel {
       const newMessage = await this.generateMessage(serverResponse);
       this.supportStore.addToMessages(newMessage);
     } catch (err) {
-      const textError = 'Send message field';
+      const textError = 'Send message failed';
       error(textError);
       console.error(err);
       throw new Error(textError);
@@ -136,7 +136,7 @@ class SupportController extends SupportDataModel {
         chatId: body.chatId,
       });
     } catch (err) {
-      const textError = 'Seen message field';
+      const textError = 'Seen message failed';
       error(textError);
       console.error(err);
       throw new Error(textError);
