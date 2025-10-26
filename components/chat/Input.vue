@@ -20,7 +20,22 @@
       class="w-35-px h-35-px flex align-center justify-center bg-secondary-1 border-circle"
     >
       <baseIcon
-        :name="sendLoading ? 'svg-spinners:eclipse-half' : 'line-md:arrow-up'"
+        v-if="sendState == 'sending'"
+        name="svg-spinners:90-ring"
+        @click="send"
+        class="cursor-pointer"
+        size="25"
+      />
+      <baseIcon
+        v-if="sendState == 'sended'"
+        name="line-md:confirm-circle-filled"
+        @click="send"
+        class="cursor-pointer"
+        size="25"
+      />
+      <baseIcon
+        v-if="sendState == ''"
+        name="line-md:arrow-up"
         @click="send"
         class="cursor-pointer"
         size="25"
@@ -40,9 +55,9 @@ const message = ref('');
 const emit = defineEmits(['send']);
 
 const props = defineProps({
-  sendLoading: {
-    type: Boolean,
-    default: false,
+  sendState: {
+    type: String,
+    default: '',
   },
 });
 

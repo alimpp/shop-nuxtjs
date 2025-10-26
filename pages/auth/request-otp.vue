@@ -18,7 +18,7 @@
       placeholder="Please Enter Your phone number"
     />
     <BaseButton
-      class="mt-15"
+      class="mt-15 w-100"
       name="Send"
       :loading="loading"
       :disabled="disabled"
@@ -28,16 +28,16 @@
 </template>
 
 <script setup>
-import { userController } from "@/controllers/User";
+import { userController } from '@/controllers/User';
 
 definePageMeta({
-  layout: "auth",
+  layout: 'auth',
 });
 
 const access = ref(false);
 const loading = ref(false);
 
-const phone = ref("");
+const phone = ref('');
 
 const disabled = computed(() => {
   return !access.value || !phone.value ? true : false;

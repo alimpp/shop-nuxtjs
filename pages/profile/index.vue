@@ -49,7 +49,7 @@
     <Chat
       :isOpen="modals.chat"
       :loading="loading"
-      :sendLoading="sendLoading"
+      :sendState="sendState"
       :messages="messages"
       :info="chatInfo"
       @close="closeChat"
@@ -77,7 +77,7 @@ const modals = ref({
   chat: false,
 });
 
-const sendLoading = ref(false);
+const sendState = ref('');
 const loading = ref(false);
 
 const listItems = ref([
@@ -157,12 +157,15 @@ const closeChat = () => {
 };
 
 const send = async (data) => {
-  sendLoading.value = true;
+  sendState.value = 'sending';
   await supportController.sendMsgUser({
     chatId: userStore.getUser.id,
     ...data,
   });
-  sendLoading.value = false;
+  sendState.value = 'sended';
+  setTimeout(() => {
+    sendState.value = '';
+  }, 2000);
 };
 
 const seen = (data) => {

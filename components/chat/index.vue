@@ -13,7 +13,7 @@
       <BaseDivider />
       <ChatContent :messages="messages" :loading="loading" @seen="seen" />
       <BaseDivider />
-      <ChatInput :sendLoading="sendLoading" @send="send" />
+      <ChatInput :sendState="sendState" @send="send" />
     </div>
   </div>
 </template>
@@ -35,9 +35,9 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  sendLoading: {
-    type: Boolean,
-    default: false,
+  sendState: {
+    type: String,
+    default: '',
   },
   messages: {
     type: Array,

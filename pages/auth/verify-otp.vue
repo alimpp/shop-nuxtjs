@@ -15,9 +15,8 @@
         :loading="loading"
       />
       <BaseButton
-        class="mt-15"
+        class="mt-15 w-100"
         name="Confrim Otp Code"
-        width="100%"
         :loading="loading"
         :disabled="true"
         @click="sendPhone"
