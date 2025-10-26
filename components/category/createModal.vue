@@ -12,6 +12,7 @@
       <BaseInput
         :validate="true"
         v-model="form.name"
+        v-model:access="access"
         rules="length"
         min-length="3"
         max-length="15"
@@ -41,7 +42,7 @@
           @click="createCategory"
           icon="gg:check-o"
           :loading="loading"
-          :disabled="!access"
+          :disabled="disabled"
         />
         <BaseButton
           name="Cancel"
@@ -70,6 +71,7 @@ const props = defineProps({
 
 const close = () => {
   form.value = '';
+  preView.value = '';
   access.value = false;
   loading.value = false;
   emit('close');
@@ -79,10 +81,6 @@ const access = ref(false);
 const loading = ref(false);
 const loadingImage = ref(false);
 const loadingIcon = ref(false);
-
-const handleAccess = () => {
-  access.value = !access.value;
-};
 
 const form = ref({
   name: '',
@@ -94,12 +92,21 @@ const preView = ref({
   icon: '',
 });
 
-// const createCategory = async () => {
-//   loading.value = true;
-//   await categoryController.createCategory(name.value);
-//   loading.value = false;
-//   close();
-// };
+const createCategory = async () => {
+  loading.value = true;
+  await categoryController.createCategory(form.value);
+  loading.value = false;
+  form.value = {
+    name: '',
+    imageId: '',
+    iconId: '',
+  };
+  preView.value = {
+    image: '',
+    icon: '',
+  };
+  close();
+};
 
 const uploadImage = async (event) => {
   loadingImage.value = true;
@@ -110,6 +117,7 @@ const uploadImage = async (event) => {
     preView.value.image = await filesController.downloadFileById(
       serverResponse.id,
     );
+    form.value.imageId = preView.value.image;
   }
   loadingImage.value = false;
 };
@@ -123,16 +131,17 @@ const uploadIcon = async (event) => {
     preView.value.icon = await filesController.downloadFileById(
       serverResponse.id,
     );
+    form.value.iconId = preView.value.icon;
   }
   loadingIcon.value = false;
 };
 
-const handleUpload = () => {
-  if (preView.value.image && preView.value.icon && form.value.name !== '') {
-    console.log('filled');
-    access.value = true;
-  } else {
-    console.log('not filled');
-  }
-};
+const disabled = computed(() => {
+  return !access.value ||
+    !form.value.name ||
+    !form.value.imageId ||
+    !form.value.iconId
+    ? true
+    : false;
+});
 </script>
