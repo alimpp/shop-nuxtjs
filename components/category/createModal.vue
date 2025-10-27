@@ -70,8 +70,15 @@ const props = defineProps({
 });
 
 const close = () => {
-  form.value = '';
-  preView.value = '';
+  form.value = {
+    name: '',
+    imageId: '',
+    iconId: '',
+  };
+  preView.value = {
+    image: '',
+    icon: '',
+  };
   access.value = false;
   loading.value = false;
   emit('close');
@@ -95,16 +102,6 @@ const preView = ref({
 const createCategory = async () => {
   loading.value = true;
   await categoryController.createCategory(form.value);
-  loading.value = false;
-  form.value = {
-    name: '',
-    imageId: '',
-    iconId: '',
-  };
-  preView.value = {
-    image: '',
-    icon: '',
-  };
   close();
 };
 
