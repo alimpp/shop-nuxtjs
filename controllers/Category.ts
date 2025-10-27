@@ -1,5 +1,5 @@
 import { CategoryDataModel } from '../model/Category';
-import { ICategory } from '../types/Category';
+import { IAddBody, ICategory } from '../types/Category';
 
 const { success, error } = useToast();
 
@@ -47,15 +47,18 @@ export class CategoryController extends CategoryDataModel {
     }
   }
 
-  public async createCategory(name: string) {
-    await this.Post('/api/category/add', { name })
-      .then((res) => {
-        success(`Category ${name} added`);
+  public async createCategory(body: IAddBody) {
+    try {
+      await this.Post('/api/category/add', body).then((res) => {
+        success(`Category ${body.name} added`);
         this.list();
-      })
-      .catch((err) => {
-        error(`Add category failed`);
       });
+    } catch (err) {
+      const textError = 'add category failed';
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
+    }
   }
 
   public async remove(id: string) {
@@ -63,7 +66,7 @@ export class CategoryController extends CategoryDataModel {
       this.appStore.setLoading(
         true,
         'Remove category',
-        'Proccess for remove category'
+        'Proccess for remove category',
       );
       await this.Delete(`/api/category/${id}`);
       success('Category Removed');

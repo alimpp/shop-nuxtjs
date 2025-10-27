@@ -6,3 +6,9 @@ export interface ICategory {
   imageId: string;
   iconId: string;
 }
+
+export interface IAddBody {
+  name: string;
+  imageId: string;
+  iconId: string;
+}
