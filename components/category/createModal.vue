@@ -117,7 +117,7 @@ const uploadImage = async (event) => {
     preView.value.image = await filesController.downloadFileById(
       serverResponse.id,
     );
-    form.value.imageId = preView.value.image;
+    form.value.imageId = serverResponse?.id;
   }
   loadingImage.value = false;
 };
@@ -131,7 +131,7 @@ const uploadIcon = async (event) => {
     preView.value.icon = await filesController.downloadFileById(
       serverResponse.id,
     );
-    form.value.iconId = preView.value.icon;
+    form.value.iconId = serverResponse?.id;
   }
   loadingIcon.value = false;
 };
