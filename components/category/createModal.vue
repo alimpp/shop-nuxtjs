@@ -59,7 +59,6 @@
 <script setup>
 import { categoryController } from '@/controllers/Category';
 import { filesController } from '@/controllers/Files';
-import { computed } from 'vue';
 
 const emit = defineEmits(['close']);
 const props = defineProps({
