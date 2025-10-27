@@ -61,12 +61,23 @@ export class CategoryController extends CategoryDataModel {
     }
   }
 
+  public async editCategory(categoryId: string, body: IAddBody) {
+    try {
+      console.log(categoryId, body);
+    } catch (err) {
+      const textError = 'edit category failed';
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
+    }
+  }
+
   public async remove(id: string) {
     try {
       this.appStore.setLoading(
         true,
         'Remove category',
-        'Proccess for remove category',
+        'Proccess for remove category'
       );
       await this.Delete(`/api/category/${id}`);
       success('Category Removed');
