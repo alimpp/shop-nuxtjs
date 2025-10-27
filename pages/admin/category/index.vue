@@ -36,6 +36,11 @@
     :isOpen="createCategoryState"
     @close="createCategoryState = false"
   />
+  <CategoryEditModal
+    :isOpen="editCategoryModalState"
+    @close="editCategoryModalState = false"
+    :form="lastTargetCategoryData"
+  />
 
   <BaseConfrim
     :isOpen="removeConfrimState"
@@ -98,8 +103,11 @@ const openEditConfrim = (data) => {
   lastTargetCategoryData.value = data;
   editConfrimState.value = true;
 };
+
+const editCategoryModalState = ref(false);
 const openEditCategoryModal = () => {
   editConfrimState.value = false;
+  editCategoryModalState.value = true;
   console.log('lastTargetCategoryData.value', lastTargetCategoryData.value);
 };
 

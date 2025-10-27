@@ -104,18 +104,18 @@ const preView = ref({
 
 const editCategory = async () => {
   loading.value = true;
-  await categoryController.editCategory(props.form);
+  await categoryController.editCategory(props.form.id, props.form);
   close();
 };
 
 const uploadImage = async (event) => {
   loadingImage.value = true;
   const serverResponse = await filesController.uploadFile(
-    event.target.files[0]
+    event.target.files[0],
   );
   if (serverResponse?.id) {
     preView.value.image = await filesController.downloadFileById(
-      serverResponse.id
+      serverResponse.id,
     );
     props.form.imageId = serverResponse?.id;
   }
@@ -125,11 +125,11 @@ const uploadImage = async (event) => {
 const uploadIcon = async (event) => {
   loadingIcon.value = true;
   const serverResponse = await filesController.uploadFile(
-    event.target.files[0]
+    event.target.files[0],
   );
   if (serverResponse?.id) {
     preView.value.icon = await filesController.downloadFileById(
-      serverResponse.id
+      serverResponse.id,
     );
     props.form.iconId = serverResponse?.id;
   }
@@ -144,4 +144,8 @@ const disabled = computed(() => {
     ? true
     : false;
 });
+// onMounted(async () => {
+//   form.value.name = props.form.name;
+
+// });
 </script>
