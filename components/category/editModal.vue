@@ -11,7 +11,7 @@
     <template #content>
       <BaseInput
         :validate="true"
-        v-model="form.name"
+        v-model="props.form.name"
         v-model:access="access"
         rules="length"
         min-length="3"
@@ -144,8 +144,4 @@ const disabled = computed(() => {
     ? true
     : false;
 });
-// onMounted(async () => {
-//   form.value.name = props.form.name;
-
-// });
 </script>
