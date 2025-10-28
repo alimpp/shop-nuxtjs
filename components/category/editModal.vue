@@ -92,11 +92,6 @@ const loading = ref(false);
 const loadingImage = ref(false);
 const loadingIcon = ref(false);
 
-const form = ref({
-  name: '',
-  imageId: '',
-  iconId: '',
-});
 const preView = ref({
   image: '',
   icon: '',
@@ -111,11 +106,11 @@ const editCategory = async () => {
 const uploadImage = async (event) => {
   loadingImage.value = true;
   const serverResponse = await filesController.uploadFile(
-    event.target.files[0],
+    event.target.files[0]
   );
   if (serverResponse?.id) {
     preView.value.image = await filesController.downloadFileById(
-      serverResponse.id,
+      serverResponse.id
     );
     props.form.imageId = serverResponse?.id;
   }
@@ -125,11 +120,11 @@ const uploadImage = async (event) => {
 const uploadIcon = async (event) => {
   loadingIcon.value = true;
   const serverResponse = await filesController.uploadFile(
-    event.target.files[0],
+    event.target.files[0]
   );
   if (serverResponse?.id) {
     preView.value.icon = await filesController.downloadFileById(
-      serverResponse.id,
+      serverResponse.id
     );
     props.form.iconId = serverResponse?.id;
   }
@@ -144,4 +139,13 @@ const disabled = computed(() => {
     ? true
     : false;
 });
+
+watch(
+  () => props.form,
+  (n, o) => {
+    preView.value.image = props.form.imageId;
+    preView.value.icon = props.form.iconId;
+  },
+  { deep: true }
+);
 </script>

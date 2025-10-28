@@ -108,7 +108,6 @@ const editCategoryModalState = ref(false);
 const openEditCategoryModal = () => {
   editConfrimState.value = false;
   editCategoryModalState.value = true;
-  console.log('lastTargetCategoryData.value', lastTargetCategoryData.value);
 };
 
 onMounted(async () => {
