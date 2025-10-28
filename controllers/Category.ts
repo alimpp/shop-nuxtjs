@@ -82,6 +82,7 @@ export class CategoryController extends CategoryDataModel {
       await this.Delete(`/api/category/${id}`);
       success('Category Removed');
       await this.list();
+      this.appStore.resetLoading();
     } catch (err) {
       const textError = 'Category removing failed';
       error(textError);
