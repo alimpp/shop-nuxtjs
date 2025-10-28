@@ -34,23 +34,23 @@ const props = defineProps({
   },
   width: {
     type: String,
-    default: "400px",
+    default: '400px',
   },
   height: {
     type: String,
-    default: "100dvh",
+    default: '100dvh',
   },
   borderRadius: {
     type: String,
-    default: "10px",
+    default: '10px',
   },
   title: {
     type: String,
-    default: "",
+    default: '',
   },
   text: {
     type: String,
-    default: "",
+    default: '',
   },
   hasFooter: {
     type: Boolean,
@@ -58,7 +58,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(['close']);
 </script>
 
 <style scoped>
@@ -67,7 +67,7 @@ const emit = defineEmits(["close"]);
   height: 100dvh;
   position: fixed;
   z-index: 1000;
-  background: #00000096;
+  background: #00000098;
   top: 0;
   bottom: 0;
   left: 0;

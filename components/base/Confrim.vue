@@ -94,7 +94,10 @@ const emit = defineEmits(['cancel', 'confrim']);
 const icon = computed(() => {
   switch (props.type) {
     case 'danger':
-      return { name: props.icon ? props.icon :'solar:trash-bin-trash-linear', bg: 'bg-danger-3' };
+      return {
+        name: props.icon ? props.icon : 'solar:trash-bin-trash-linear',
+        bg: 'bg-danger-3',
+      };
 
     case 'success':
       return {
@@ -135,7 +138,7 @@ const buttonStyle = computed(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #0000006c;
+  background: #00000098;
 }
 
 .content {

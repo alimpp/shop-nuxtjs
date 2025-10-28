@@ -8,6 +8,7 @@
         icon="line-md:plus"
         class="mx-8"
         @click="createCategoryState = true"
+        :padding="width < 650 ? '0 5px' : '0 10px'"
       />
     </BaseBreadCrumbs>
 
@@ -28,6 +29,7 @@
         :item="item"
         @remove="openRemoveConfrim"
         @edit="openEditConfrim"
+        class="mt-10"
       />
     </div>
   </div>

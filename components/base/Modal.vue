@@ -118,7 +118,7 @@ const emit = defineEmits(['close']);
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #0000006c;
+  background: #00000098;
 }
 
 .content {

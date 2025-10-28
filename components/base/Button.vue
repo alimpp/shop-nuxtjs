@@ -19,7 +19,7 @@
       class="base-button__icon mx-5"
     />
 
-    <span v-if="showText" class="base-button__text" :class="textClasses">
+    <span v-if="showText" class="base-button__text pt-2" :class="textClasses">
       {{ name }}
     </span>
   </button>
@@ -74,7 +74,7 @@ const props = defineProps({
   },
   padding: {
     type: String,
-    default: '0px 16px',
+    default: '0px 8px',
   },
   fullWidth: {
     type: Boolean,
@@ -83,16 +83,6 @@ const props = defineProps({
 });
 
 const showText = computed(() => props.name && !props.responsive);
-
-const buttonClasses = computed(() => [
-  props.bg,
-  props.border,
-  {
-    'base-button--disabled': props.disabled || props.loading,
-    'base-button--full-width': props.fullWidth,
-    'base-button--loading': props.loading,
-  },
-]);
 
 const textClasses = computed(() => [
   props.fontSize,
@@ -114,7 +104,6 @@ const buttonStyles = computed(() => ({
   cursor: pointer;
   border: none;
   position: relative;
-  height: 36px;
 }
 
 .base-button--full-width {
