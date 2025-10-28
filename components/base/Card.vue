@@ -9,6 +9,7 @@
       px,
       py,
     ]"
+    :style="{ 'min-height': minHeight }"
   >
     <slot></slot>
   </div>
@@ -33,6 +34,7 @@ const props = defineProps({
     type: String,
     default: 'py-5',
   },
+  minHeight: { type: String, default: 'auto' },
 });
 </script>
 

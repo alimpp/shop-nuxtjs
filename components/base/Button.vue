@@ -74,7 +74,7 @@ const props = defineProps({
   },
   padding: {
     type: String,
-    default: '0px 8px',
+    default: '8px 8px',
   },
   fullWidth: {
     type: Boolean,

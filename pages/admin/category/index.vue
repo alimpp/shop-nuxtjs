@@ -23,14 +23,19 @@
         title="Empty List"
         text="Category List Is Empty"
       />
-      <CategoryCard
-        v-if="dataSource.length != 0"
-        v-for="item in dataSource"
-        :item="item"
-        @remove="openRemoveConfrim"
-        @edit="openEditConfrim"
-        class="mt-10"
-      />
+      <div class="flex flex-wrap justify-center align-center w-100">
+        <div
+          class="w-385-px mt-10 mx-10"
+          v-if="dataSource.length != 0"
+          v-for="item in dataSource"
+        >
+          <CategoryCard
+            :item="item"
+            @remove="openRemoveConfrim"
+            @edit="openEditConfrim"
+          />
+        </div>
+      </div>
     </div>
   </div>
 
