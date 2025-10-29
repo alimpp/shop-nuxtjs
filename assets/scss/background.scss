@@ -130,5 +130,16 @@
   background: var(--base-card-light-bg-);
   color: var(--dark-);
 }
-
 // ** Application base card theme class ** //
+
+// ** Application base drop menu theme class ** //
+.base-drop-menu-dark {
+  background: var(--base-drop-menu-dark-bg-);
+  color: var(--white-);
+}
+
+.base-drop-menu-light {
+  background: var(--base-drop-menu-light-bg-);
+  color: var(--dark-);
+}
+// ** Application base drop menu theme class ** //

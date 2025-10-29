@@ -2,17 +2,8 @@
   <BaseCard minHeight="290px">
     <div class="flex flex-column px-10 py-10">
       <div class="w-100 flex">
-        <div class="w-40 flex align-start" style="position: relative">
-          <BaseIcon
-            name="ant-design:more-outlined"
-            class="cursor-pointer"
-            size="20"
-            @click="dropMenu = !dropMenu"
-          />
-          <div
-            v-if="dropMenu"
-            class="fade-animation-1s custom-style flex flex-column bg-secondary-3 border-rounded px-10 py-10"
-          >
+        <div class="w-40 flex align-start">
+          <BaseDropMenu v-model:dropMenu="dropMenu">
             <div
               class="flex align-center color-secondary-1 cursor-pointer"
               @click="
@@ -20,7 +11,7 @@
               "
             >
               <BaseIcon name="solar:pen-broken" size="20" />
-              <span class="f-s-12 f-w-500 px-5">Update Category<</span>
+              <span class="f-s-12 f-w-500 px-5">Update Category</span>
             </div>
             <div
               class="flex align-center color-danger-3 mt-10 cursor-pointer"
@@ -32,7 +23,7 @@
               <BaseIcon name="solar:trash-bin-trash-linear" size="20" />
               <span class="f-s-12 f-w-500 px-5">Remove Category</span>
             </div>
-          </div>
+          </BaseDropMenu>
         </div>
         <div class="w-60 flex flex-column align-end">
           <BaseIcon
@@ -109,12 +100,3 @@ const props = defineProps({
 
 const dropMenu = ref(false);
 </script>
-
-<style scoped>
-.custom-style {
-  position: absolute;
-  z-index: 100;
-  left: 20px;
-  width: 150px;
-}
-</style>
