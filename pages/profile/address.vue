@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <div class="flex align-center w-100">
-      <div class="flex align-center w-100">
+      <div class="flex align-center w-50">
         <BaseIcon name="entypo:address" size="30" />
         <span class="f-s-14 f-w-600 pt-10">All Your Address</span>
       </div>
-      <div class="flex aligb-center">
+      <div class="flex align-center justify-end w-50">
         <BaseButton
           name="Add New Address"
           icon="line-md:plus"
