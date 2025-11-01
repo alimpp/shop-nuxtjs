@@ -12,14 +12,26 @@ export class AddressDataModel extends BaseApp<any> {
     if (!Array.isArray(apiResponse)) {
       throw new Error('Invalid list data format');
     }
-    return apiResponse.map((item) => {
-      const isoString = item.created_at;
-      const date = parseDate(isoString);
-      const dateFormt = formatDateTime(date);
-      return {
-        ...item,
-        created_at: `${item.created_at?.split('T')[0]} - ${dateFormt}`,
-      };
-    });
+    let list = [];
+
+    const existDefault = apiResponse.find((item) => item?.default === true);
+
+    if (existDefault) {
+      list.push(existDefault);
+    }
+
+    for (let item of apiResponse) {
+      if (item.default == false) {
+        const isoString = item.created_at;
+        const date = parseDate(isoString);
+        const dateFormt = formatDateTime(date);
+        const obj = {
+          ...item,
+          created_at: `${item.created_at?.split('T')[0]} - ${dateFormt}`,
+        };
+        list.push(obj);
+      }
+    }
+    return list;
   }
 }

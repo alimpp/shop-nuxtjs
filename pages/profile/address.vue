@@ -24,6 +24,7 @@
       v-for="data in dataSource"
       :key="data.id"
       :data="data"
+      @setDefault="setDefault"
     />
     <AddressCreateModal :isOpen="modalState" @close="modalController" />
   </div>
@@ -42,6 +43,10 @@ const addressStore = useAddressStore();
 const dataSource = computed(() => {
   return addressStore.getList;
 });
+
+const setDefault = async (data) => {
+  await addressController.setDefault(data.id, true);
+};
 
 onMounted(async () => {
   await addressController.list();

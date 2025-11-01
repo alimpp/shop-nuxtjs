@@ -10,7 +10,14 @@
             "
           >
             <BaseIcon name="solar:pen-broken" size="20" />
-            <span class="f-s-12 f-w-500 px-5">Update Address</span>
+            <span class="f-s-12 f-w-500 px-5 pt-5">Update Address</span>
+          </div>
+          <div
+            class="flex align-center color-secondary-1 mt-10 cursor-pointer"
+            @click="(emit('setDefault', data), (dropMenu = false))"
+          >
+            <BaseIcon name="solar:check-circle-broken" size="20" />
+            <span class="f-s-12 f-w-500 px-5 pt-5">Set Default</span>
           </div>
           <div
             class="flex align-center color-danger-3 mt-10 cursor-pointer"
@@ -20,19 +27,15 @@
             "
           >
             <BaseIcon name="solar:trash-bin-trash-linear" size="20" />
-            <span class="f-s-12 f-w-500 px-5">Remove Address</span>
+            <span class="f-s-12 f-w-500 px-5 pt-5">Remove Address</span>
           </div>
         </BaseDropMenu>
       </div>
-      <div class="w-60 flex flex-column align-end">
+      <div class="w-60 flex flex-column align-end color-primary-1">
         <BaseIcon
-          name="line-md:menu-to-close-alt-transition"
-          class="cursor-pointer"
-          size="20"
-          @click="
-            (emit('remove', { id: item.id, type: 'danger' }),
-            (dropMenu = false))
-          "
+          name="solar:check-circle-broken"
+          size="25"
+          v-if="data.default"
         />
       </div>
     </div>

@@ -45,12 +45,30 @@ export class AddressController extends AddressDataModel {
 
   public async add(body: IAddBody) {
     try {
-      await this.Post('/api/address/add', body).then((res) => {
-        success(`Your ${body.name} address successfully added`);
-        this.list();
+      await this.Post('/api/address/add', {
+        ...body,
+        default: false,
+        pin: false,
       });
+      success(`Your ${body.name} address successfully added`);
+      await this.list();
     } catch (err) {
       const textError = 'add address failed';
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
+    }
+  }
+
+  public async setDefault(id: string, newDefault: boolean) {
+    try {
+      await this.Patch(`/api/address/set-default/${id}`, {
+        default: newDefault,
+      });
+      success(`New Address Set Default`);
+      await this.list();
+    } catch (err) {
+      const textError = 'set default address failed';
       error(textError);
       console.error(err);
       throw new Error(textError);
