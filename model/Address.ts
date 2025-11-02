@@ -8,34 +8,30 @@ export class AddressDataModel extends BaseApp<any> {
     super('address');
   }
 
-  public addressParsed(apiResponse: IAddress[]): IAddress[] {
+   public addressParsed(apiResponse: IAddress[]) {
     if (!Array.isArray(apiResponse)) {
       throw new Error('Invalid list data format');
     }
-    const defaultAddresses: IAddress[] = [];
-    const nonDefaultAddresses: IAddress[] = [];
-  
-    for (const item of apiResponse) {
-      if (item?.default === true) {
-        defaultAddresses.push(item);
-      } else {
-        nonDefaultAddresses.push(item);
+    let list = [];
+
+    const existDefault = apiResponse.find((item) => item?.default === true);
+
+    if (existDefault) {
+      list.push(existDefault);
+    }
+
+    for (let item of apiResponse) {
+      if (item.default == false) {
+        const isoString = item.created_at;
+        const date = parseDate(isoString);
+        const dateFormt = formatDateTime(date);
+        const obj = {
+          ...item,
+          created_at: `${item.created_at?.split('T')[0]} - ${dateFormt}`,
+        };
+        list.push(obj);
       }
     }
-    
-    const processedNonDefault = nonDefaultAddresses.map(item => {
-      const isoString = item.created_at;
-      if (!isoString) return item;
-      
-      const date = parseDate(isoString);
-      const dateFormat = formatDateTime(date);
-      
-      return {
-        ...item,
-        created_at: `${isoString.split('T')[0]} - ${dateFormat}`
-      };
-    });
-  
-    return [...defaultAddresses, ...processedNonDefault];
+    return list;
   }
 }
