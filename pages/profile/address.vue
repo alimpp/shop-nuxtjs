@@ -25,8 +25,11 @@
       :key="data.id"
       :data="data"
       @setDefault="setDefault"
+      @edit="edit"
+      @remove="remove"
     />
     <AddressCreateModal :isOpen="modalState" @close="modalController" />
+    <AddressEditModal :isOpen="editModalodalState" :alreadyData="editData" @close="editModalController" />
   </div>
 </template>
 
@@ -37,6 +40,10 @@ const modalState = ref(false);
 const modalController = () => {
   modalState.value = !modalState.value;
 };
+const editModalodalState = ref(false);
+const editModalController = () => {
+  editModalodalState.value = !editModalodalState.value;
+};
 
 const addressStore = useAddressStore();
 
@@ -46,6 +53,15 @@ const dataSource = computed(() => {
 
 const setDefault = async (data) => {
   await addressController.setDefault(data.id, true);
+};
+const editData = ref({})
+const edit =  (data) => {
+     editModalodalState.value = !editModalodalState.value;
+    editData.value = data
+  
+};
+const remove = async (data) => {
+  await addressController.remove(data.id);
 };
 
 onMounted(async () => {

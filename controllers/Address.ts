@@ -75,6 +75,38 @@ export class AddressController extends AddressDataModel {
     }
   }
 
+    public async remove(id: string) {
+    try {
+      await this.Delete(`/api/address/${id}`);
+      success(`Address removed successfully`);
+      await this.list();
+    } catch (err) {
+      const textError = 'Address does not removed';
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
+    }
+  }
+
+    public async edit(body: any) {
+    try {
+      await this.Patch(`/api/address/${body.id}`, {
+        name: body.name,
+        content: body.content,
+        postalCode: body.postalCode,
+        default: false,
+        pin: false,
+      });
+      success(`Your address successfully edited`);
+      await this.list();
+    } catch (err) {
+      const textError = 'edit address failed';
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
+    }
+  }
+
   public async getAddressByUserId(userId: string) {
     try {
       const serverResponse: IAddress[] = await this.Get(
