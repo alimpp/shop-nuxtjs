@@ -28,7 +28,6 @@ export class AddressController extends AddressDataModel {
     this.getCacheData();
     try {
       this.addressStore.setModuleState('loading');
-
       await this.Get('/api/address/all/user').then((res: any) => {
         const result = this.addressParsed(res);
         this.addressStore.setList(result);
