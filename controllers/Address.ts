@@ -1,7 +1,7 @@
 import { AddressDataModel } from '../model/Address';
 const { success, error, warning } = useToast();
 
-import { IAddBody, IAddress } from '../types/Address';
+import { IAddBody, IAddress, IUpdateAddress } from '../types/Address';
 
 export class AddressController extends AddressDataModel {
   constructor() {
@@ -75,7 +75,7 @@ export class AddressController extends AddressDataModel {
     }
   }
 
-    public async remove(id: string) {
+  public async remove(id: string) {
     try {
       await this.Delete(`/api/address/${id}`);
       success(`Address removed successfully`);
@@ -88,15 +88,9 @@ export class AddressController extends AddressDataModel {
     }
   }
 
-    public async edit(body: any) {
+  public async edit(body: IUpdateAddress) {
     try {
-      await this.Patch(`/api/address/${body.id}`, {
-        name: body.name,
-        content: body.content,
-        postalCode: body.postalCode,
-        default: false,
-        pin: false,
-      });
+      await this.Patch(`/api/address/${body.id}`, body);
       success(`Your address successfully edited`);
       await this.list();
     } catch (err) {

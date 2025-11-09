@@ -13,7 +13,7 @@
         <BaseInput
           :validate="true"
           v-model:access="access"
-          v-model="props.alreadyData.name"
+          v-model="props.form.name"
           rules="length"
           min-length="3"
           max-length="20"
@@ -24,7 +24,7 @@
         <BaseInput
           :validate="true"
           v-model:access="access"
-          v-model="props.alreadyData.content"
+          v-model="props.form.content"
           rules="length"
           min-length="15"
           max-length="100"
@@ -35,7 +35,7 @@
         <BaseInput
           :validate="true"
           v-model:access="access"
-          v-model="props.alreadyData.postalCode"
+          v-model="props.form.postalCode"
           rules="length"
           min-length="10"
           max-length="10"
@@ -49,7 +49,7 @@
     <template #footer>
       <div class="flex w-100 align-center py-5 px-5">
         <BaseButton
-          name="Create address"
+          name="Update address"
           @click="edit"
           icon="gg:check-o"
           :loading="loading"
@@ -68,7 +68,6 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
 import { addressController } from '~/controllers/Address';
 
 const emit = defineEmits(['close']);
@@ -77,13 +76,13 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  alreadyData: {
-  id: '',
-  name: '',
-  content: '',
-  postalCode: '',
-  userId: '',
-  }
+  form: {
+    id: '',
+    name: '',
+    content: '',
+    postalCode: '',
+    userId: '',
+  },
 });
 
 const access = ref(false);
@@ -91,20 +90,20 @@ const loading = ref(false);
 
 const disabled = computed(() => {
   return !access.value ||
-    !props.alreadyData.name ||
-    !props.alreadyData.content ||
-    !props.alreadyData.postalCode
+    !props.form.name ||
+    !props.form.content ||
+    !props.form.postalCode
     ? true
     : false;
 });
 
 const close = () => {
-  props.alreadyData = {
-  id: '',
-  name: '',
-  content: '',
-  postalCode: '',
-  userId: '',
+  props.form = {
+    id: '',
+    name: '',
+    content: '',
+    postalCode: '',
+    userId: '',
   };
   access.value = false;
   loading.value = false;
@@ -113,9 +112,8 @@ const close = () => {
 
 const edit = async () => {
   loading.value = true;
-  await addressController.edit(props.alreadyData);
+  await addressController.edit(props.form);
   loading.value = false;
   close();
 };
-
 </script>

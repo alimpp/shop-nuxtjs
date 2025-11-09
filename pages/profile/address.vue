@@ -29,7 +29,11 @@
       @remove="remove"
     />
     <AddressCreateModal :isOpen="modalState" @close="modalController" />
-    <AddressEditModal :isOpen="editModalodalState" :alreadyData="editData" @close="editModalController" />
+    <AddressEditModal
+      :isOpen="editModalodalState"
+      :form="form"
+      @close="editModalController"
+    />
   </div>
 </template>
 
@@ -54,11 +58,11 @@ const dataSource = computed(() => {
 const setDefault = async (data) => {
   await addressController.setDefault(data.id, true);
 };
-const editData = ref({})
-const edit =  (data) => {
-     editModalodalState.value = !editModalodalState.value;
-    editData.value = data
-  
+
+const form = ref(null);
+const edit = (data) => {
+  editModalodalState.value = !editModalodalState.value;
+  form.value = data;
 };
 const remove = async (data) => {
   await addressController.remove(data.id);
