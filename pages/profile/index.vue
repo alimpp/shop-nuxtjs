@@ -130,6 +130,13 @@ const listItems = ref([
     icon: 'solar:chat-round-line-linear',
     size: '25',
   },
+  {
+    id: 7,
+    name: 'Settings',
+    signal: 'settings',
+    icon: 'solar:settings-broken',
+    size: '25',
+  },
 ]);
 
 const messages = computed(() => {
@@ -194,6 +201,10 @@ const signalController = (signal) => {
       } else {
         router.push('/auth/request-otp');
       }
+      break;
+
+    case 'settings':
+      router.push('/profile/settings');
       break;
 
     default:

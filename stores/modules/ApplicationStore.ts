@@ -25,6 +25,7 @@ interface IApplication {
   loading: Boolean;
   loadingText: string;
   loadingSub: string;
+  title: string;
 }
 
 export class ApplicationStore extends BaseStore<IApplication> {
@@ -52,8 +53,17 @@ export class ApplicationStore extends BaseStore<IApplication> {
       loading: false,
       loadingText: '',
       loadingSub: '',
+      title: 'Standard',
     });
     StoreManager.register(this);
+  }
+
+  public setTitleSize(size: string) {
+    this._state.title = size;
+  }
+
+  public getTitleSize(): string {
+    return this._state.title;
   }
 
   setTheme(theme: string) {

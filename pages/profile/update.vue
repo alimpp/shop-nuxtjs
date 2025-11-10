@@ -8,10 +8,10 @@
         avatar="/image/avatar.jpg"
       />
       <div class="flex flex-column justify-center px-10">
-        <span class="f-s-14 f-w-500 color-primary">{{
+        <span class="f-s-14 f-w-500 color-primary-4">{{
           profile.fristname ? profile.fullname : profile.phone
         }}</span>
-        <span class="f-s-11 f-w-500">{{
+        <span class="f-s-11 f-w-500 color-primary-2">{{
           profile.fristname ? profile.phone : 'Active User'
         }}</span>
       </div>
