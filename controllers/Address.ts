@@ -90,7 +90,11 @@ export class AddressController extends AddressDataModel {
 
   public async edit(body: IUpdateAddress) {
     try {
-      await this.Patch(`/api/address/${body.id}`, body);
+      await this.Patch(`/api/address/${body.id}`, {
+        name: body.name,
+        content: body.content,
+        postalCode: body.postalCode,
+      });
       success(`Your address successfully edited`);
       await this.list();
     } catch (err) {

@@ -31,10 +31,11 @@
           </div>
         </BaseDropMenu>
       </div>
-      <div class="w-60 flex flex-column align-end color-primary-1">
+      <div class="w-60 flex justify-end align-center color-primary-1">
+        <span class="f-s-12 px-5" v-if="data.default">Default</span>
         <BaseIcon
           name="solar:check-circle-broken"
-          size="25"
+          size="20"
           v-if="data.default"
         />
       </div>
