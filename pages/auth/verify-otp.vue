@@ -15,6 +15,7 @@
         :loading="loading"
       />
       <BaseButton
+        padding="12px 8px"
         class="mt-15 w-100"
         name="Confrim Otp Code"
         :loading="loading"

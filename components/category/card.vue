@@ -66,7 +66,7 @@
         </div>
         <div class="w-60 flex flex-column align-end">
           <img
-            :src="item.imageId"
+            :src="item.preViewImage"
             alt="Cateory Image"
             class="w-100-px border-rounded mt-5"
           />
@@ -79,7 +79,7 @@
         </div>
         <div class="w-60 flex flex-column align-end">
           <img
-            :src="item.iconId"
+            :src="item.preViewIcon"
             alt="Cateory Image"
             class="w-100-px border-rounded mt-5"
           />

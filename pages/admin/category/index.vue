@@ -32,7 +32,7 @@
           <CategoryCard
             :item="item"
             @remove="openRemoveConfrim"
-            @edit="openEditConfrim"
+            @edit="openEditCategoryModal"
           />
         </div>
       </div>
@@ -44,6 +44,7 @@
     @close="createCategoryState = false"
   />
   <CategoryEditModal
+    type="edit"
     :isOpen="editCategoryModalState"
     @close="editCategoryModalState = false"
     :form="lastTargetCategoryData"
@@ -57,17 +58,6 @@
     :type="lastTargetCategoryData.type"
     title="Remove Category?"
     text="Are you sure you want to delete the category?"
-  ></BaseConfrim>
-
-  <BaseConfrim
-    :isOpen="editConfrimState"
-    @cancel="editConfrimState = false"
-    @confrim="openEditCategoryModal"
-    confrimText="Yes Edit Category"
-    :type="lastTargetCategoryData.type"
-    title="Edit Category?"
-    text="Are you sure you want to edit the category?"
-    icon="solar:ruler-pen-broken"
   ></BaseConfrim>
 </template>
 
@@ -105,15 +95,9 @@ const removeCategory = async () => {
   await categoryController.remove(lastTargetCategoryData?.value?.id);
 };
 
-const editConfrimState = ref(false);
-const openEditConfrim = (data) => {
-  lastTargetCategoryData.value = data;
-  editConfrimState.value = true;
-};
-
 const editCategoryModalState = ref(false);
-const openEditCategoryModal = () => {
-  editConfrimState.value = false;
+const openEditCategoryModal = (data) => {
+  lastTargetCategoryData.value = data;
   editCategoryModalState.value = true;
 };
 

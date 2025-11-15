@@ -63,7 +63,8 @@ export class CategoryController extends CategoryDataModel {
 
   public async editCategory(categoryId: string, body: IAddBody) {
     try {
-      console.log(categoryId, body);
+      await this.Patch(`/api/category/${categoryId}`, body);
+      this.list();
     } catch (err) {
       const textError = 'edit category failed';
       error(textError);

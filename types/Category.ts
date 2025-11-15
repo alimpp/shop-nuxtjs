@@ -5,6 +5,8 @@ export interface ICategory {
   created_at: string;
   imageId: string;
   iconId: string;
+  preViewImage: string;
+  preViewIcon: string;
 }
 
 export interface IAddBody {

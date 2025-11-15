@@ -30,7 +30,7 @@
           @click="emit('confrim')"
         />
         <BaseButton
-          bg="bg-gray-2"
+          bg="bg-danger-1"
           :name="cancelText"
           class="mx-5"
           @click="emit('cancel')"

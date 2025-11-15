@@ -31,6 +31,7 @@
       placeholder="Please Enter Password"
     />
     <BaseButton
+      padding="12px 8px"
       class="mt-15"
       name="Send"
       :loading="loading"

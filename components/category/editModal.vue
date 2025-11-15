@@ -62,6 +62,10 @@ import { filesController } from '@/controllers/Files';
 
 const emit = defineEmits(['close']);
 const props = defineProps({
+  type: {
+    type: String,
+    default: '',
+  },
   form: {
     type: Object,
     default: {},
@@ -99,7 +103,12 @@ const preView = ref({
 
 const editCategory = async () => {
   loading.value = true;
-  await categoryController.editCategory(props.form.id, props.form);
+  const bodyRequest = {
+    iconId: props.form.iconId,
+    imageId: props.form.imageId,
+    name: props.form.name,
+  };
+  await categoryController.editCategory(props.form.id, bodyRequest);
   close();
 };
 
@@ -109,10 +118,11 @@ const uploadImage = async (event) => {
     event.target.files[0]
   );
   if (serverResponse?.id) {
+    access.value = true;
+    props.form.imageId = serverResponse?.id;
     preView.value.image = await filesController.downloadFileById(
       serverResponse.id
     );
-    props.form.imageId = serverResponse?.id;
   }
   loadingImage.value = false;
 };
@@ -123,10 +133,11 @@ const uploadIcon = async (event) => {
     event.target.files[0]
   );
   if (serverResponse?.id) {
+    access.value = true;
+    props.form.iconId = serverResponse?.id;
     preView.value.icon = await filesController.downloadFileById(
       serverResponse.id
     );
-    props.form.iconId = serverResponse?.id;
   }
   loadingIcon.value = false;
 };
@@ -141,10 +152,10 @@ const disabled = computed(() => {
 });
 
 watch(
-  () => props.form,
+  () => props.form.imageId || props.form.iconId,
   (n, o) => {
-    preView.value.image = props.form.imageId;
-    preView.value.icon = props.form.iconId;
+    preView.value.image = props.form.preViewImage;
+    preView.value.icon = props.form.preViewIcon;
   },
   { deep: true }
 );

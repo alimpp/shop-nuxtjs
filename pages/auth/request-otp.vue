@@ -19,6 +19,7 @@
     />
     <BaseButton
       class="mt-15 w-100"
+      padding="12px 8px"
       name="Send"
       :loading="loading"
       :disabled="disabled"
