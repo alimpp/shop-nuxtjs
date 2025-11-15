@@ -104,6 +104,7 @@ const buttonStyles = computed(() => ({
   cursor: pointer;
   border: none;
   position: relative;
+  outline: none;
 }
 
 .base-button--full-width {
@@ -129,11 +130,6 @@ const buttonStyles = computed(() => ({
 .base-button:not(.base-button--disabled):hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.base-button:focus {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
 }
 
 .base-button--loading {
