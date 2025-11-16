@@ -1,21 +1,21 @@
 <template>
   <div class="w-100 h-60-px custom-style flex">
     <div class="w-50 flex px-10 align-center">
-      <BaseAvatar width="45px" height="45px" :character="admin.username[0]" />
+       <BaseIcon
+        class="cursor-pointer"
+        width="30"
+        name="gg:menu-right"
+        @click="chnageSideMenuState"
+      />
     </div>
     <div class="w-50 flex justify-end px-10 align-center">
+       <BaseAvatar width="45px" height="45px" :character="admin.username[0]" />
       <BaseIcon
         @click="router.push('/dashboard/settings')"
         class="cursor-pointer mx-5"
         name="solar:settings-outline"
         width="25"
         height="25"
-      />
-      <BaseIcon
-        class="cursor-pointer"
-        width="30"
-        name="gg:menu-right"
-        @click="chnageSideMenuState"
       />
     </div>
   </div>
