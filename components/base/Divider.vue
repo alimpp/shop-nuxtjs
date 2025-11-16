@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-column">
-    <span class="f-s-13 f-w-500 color-primary-4" v-if="title">{{ title }}</span>
+    <BaseTitle v-if="title" class="color-primary-4">{{ title }}</BaseTitle>
     <div
       class="style"
       :class="{ 'mt-5': title }"

@@ -8,13 +8,6 @@
       class="content flex flex-column slid-up-animation-5 px-15 py-10"
       :style="{ width: width, height: height, borderRadius: borderRadius }"
     >
-      <div class="w-100 flex justify-end">
-        <BaseIcon
-          name="line-md:menu-to-close-alt-transition"
-          class="cursor-pointer"
-          @click="emit('cancel')"
-        />
-      </div>
       <div class="w-100 flex justify-center py-15">
         <BaseIconContent :name="icon.name" :bgClass="icon.bg" />
       </div>
@@ -30,7 +23,8 @@
           @click="emit('confrim')"
         />
         <BaseButton
-          bg="bg-danger-1"
+          bg="bg-gray-2"
+          icon="line-md:menu-to-close-alt-transition"
           :name="cancelText"
           class="mx-5"
           @click="emit('cancel')"
@@ -81,7 +75,7 @@ const props = defineProps({
   },
   cancelText: {
     type: String,
-    default: 'cancel',
+    default: 'Cancel',
   },
   icon: {
     type: String,

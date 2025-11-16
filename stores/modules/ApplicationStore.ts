@@ -53,7 +53,7 @@ export class ApplicationStore extends BaseStore<IApplication> {
       loading: false,
       loadingText: '',
       loadingSub: '',
-      title: 'Standard',
+      title: 'standard',
     });
     StoreManager.register(this);
   }

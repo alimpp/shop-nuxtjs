@@ -16,16 +16,16 @@
       </div>
       <BaseDivider class="mt-10" />
       <div
-        class="f-s-12 f-w-400 h-30-px flex align-center color-gray cursor-pointer mt-10"
+        class="h-35-px flex align-center color-gray cursor-pointer mt-10"
         v-for="item in items"
         :key="item.id"
         @click="navigate(`${item.path}`)"
         :class="{ 'active-path': route.path == item.path }"
       >
-        <BaseIcon :name="item.icon" size="20" />
-        <span class="px-5">
+        <BaseIcon :name="item.icon" size="25" />
+        <BaseTitle class="px-5 pt-5">
           {{ item.name }}
-        </span>
+        </BaseTitle>
       </div>
     </div>
   </div>

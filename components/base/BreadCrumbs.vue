@@ -1,11 +1,11 @@
 <template>
   <div class="flex align-center w-100">
     <div class="w-40 flex align-center">
-      <span class="f-s-12 f-w-500 color-primary">APPLICATION</span>
-      <span class="f-s-12 f-w-500 px-4">/</span>
-      <span class="f-s-12 f-w-500">{{ parent }}</span>
-      <span class="f-s-12 f-w-500 px-4">/</span>
-      <span class="f-s-12 f-w-500">{{ child }}</span>
+      <BaseTitle class="color-primary">APPLICATION</BaseTitle>
+      <BaseTitle class="px-4">/</BaseTitle>
+      <BaseTitle class="">{{ parent }}</BaseTitle>
+      <BaseTitle class="px-4">/</BaseTitle>
+      <BaseTitle class="">{{ child }}</BaseTitle>
     </div>
     <div class="flex justify-end w-60">
       <slot></slot>
