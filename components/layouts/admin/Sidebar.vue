@@ -1,6 +1,6 @@
 <template>
   <div
-    class="container-sidebar flex flex-column custom-style bg-app-dark"
+    class="container-sidebar flex flex-column custom-style sidebar-header-bg"
     v-if="isOpen"
   >
     <div class="w-100 flex justify-end py-10 close-container">
@@ -16,13 +16,13 @@
       </div>
       <BaseDivider class="mt-10" />
       <div
-        class="f-s-14 f-w-400 h-30-px flex align-center color-gray cursor-pointer mt-10"
+        class="f-s-12 f-w-400 h-30-px flex align-center color-gray cursor-pointer mt-10"
         v-for="item in items"
         :key="item.id"
         @click="navigate(`${item.path}`)"
         :class="{ 'active-path': route.path == item.path }"
       >
-        <BaseIcon :name="item.icon" size="25" />
+        <BaseIcon :name="item.icon" size="20" />
         <span class="px-5">
           {{ item.name }}
         </span>
@@ -142,6 +142,7 @@ const appTheme = computed(() => {
 .container-sidebar {
   width: 350px;
   height: 100dvh;
+  border-radius: 0 30px 30px 0;
 }
 .close-container {
   display: none;
