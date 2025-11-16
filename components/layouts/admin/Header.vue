@@ -2,10 +2,6 @@
   <div class="w-100 h-60-px custom-style flex">
     <div class="w-50 flex px-10 align-center">
       <BaseAvatar width="45px" height="45px" :character="admin.username[0]" />
-      <div class="flex flex-column justify-center px-5">
-        <span class="f-s-14 f-w-600">{{ admin.username }}</span>
-        <span class="f-s-12 f-w-500 color-gray">{{ admin.role }}</span>
-      </div>
     </div>
     <div class="w-50 flex justify-end px-10 align-center">
       <BaseIcon
