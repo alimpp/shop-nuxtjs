@@ -25,28 +25,38 @@
       :key="data.id"
       :data="data"
       @setDefault="setDefault"
-      @edit="edit"
-      @remove="remove"
+      @edit="openEditAddressModal"
+      @remove="openRemoveConfrim"
     />
     <AddressCreateModal :isOpen="modalState" @close="modalController" />
     <AddressEditModal
-      :isOpen="editModalodalState"
-      :form="form"
+      :isOpen="editAddressModalState"
+      :form="lastTargetAddressData"
       @close="editModalController"
     />
   </div>
+
+  <BaseConfrim
+    :isOpen="removeConfrimState"
+    @cancel="removeConfrimState = false"
+    @confrim="removeAddress"
+    confrimText="Yes Remove Address"
+    :type="lastTargetAddressData.type"
+    title="Remove Address?"
+    text="Are you sure you want to delete the Address?"
+  ></BaseConfrim>
 </template>
 
 <script setup>
-import { addressController } from '~/controllers/Address';
+import { addressController } from "~/controllers/Address";
 
 const modalState = ref(false);
 const modalController = () => {
   modalState.value = !modalState.value;
 };
-const editModalodalState = ref(false);
+const editAddressModalState = ref(false);
 const editModalController = () => {
-  editModalodalState.value = !editModalodalState.value;
+  editAddressModalState.value = false;
 };
 
 const addressStore = useAddressStore();
@@ -59,13 +69,20 @@ const setDefault = async (data) => {
   await addressController.setDefault(data.id, true);
 };
 
-const form = ref(null);
-const edit = (data) => {
-  editModalodalState.value = !editModalodalState.value;
-  form.value = data;
+const lastTargetAddressData = ref({});
+const openEditAddressModal = (data) => {
+  editAddressModalState.value = true;
+  lastTargetAddressData.value = data;
 };
-const remove = async (data) => {
-  await addressController.remove(data.id);
+
+const removeConfrimState = ref(false);
+const openRemoveConfrim = (data) => {
+  lastTargetAddressData.value = data;
+  removeConfrimState.value = true;
+};
+const removeAddress = async () => {
+  removeConfrimState.value = false;
+  await addressController.remove(lastTargetAddressData?.value?.id);
 };
 
 onMounted(async () => {
