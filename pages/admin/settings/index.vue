@@ -31,6 +31,7 @@
 </template>
 
 <script setup>
+import { applicationController } from '../../../controllers/Application';
 const applicationStore = useApplicationStore();
 
 definePageMeta({
@@ -38,8 +39,9 @@ definePageMeta({
   layout: 'admin',
 });
 
-const setTitleSize = (param) => {
+const setTitleSize = async (param) => {
   applicationStore.setTitleSize(param);
+  await applicationController.updateStyle({ title: param });
 };
 
 const getTitleSize = computed(() => {

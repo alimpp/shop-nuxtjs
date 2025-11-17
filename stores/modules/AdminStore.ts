@@ -1,6 +1,6 @@
-import { BaseStore } from "../../core/BaseStore";
-import { StoreManager } from "../../core/StoreManager";
-import type { IAdminInfo } from "@/types/Admin";
+import type { IAdminInfo } from '@/types/Admin';
+import { BaseStore } from '../../core/BaseStore';
+import { StoreManager } from '../../core/StoreManager';
 
 interface IAdminState {
   admin: IAdminInfo;
@@ -20,16 +20,16 @@ export class AdminStore extends BaseStore<IAdminState> {
   }
 
   private constructor() {
-    super("user", {
+    super('user', {
       admin: {
-        id: "",
-        username: "",
-        password: "",
-        role: "",
+        id: '',
+        username: '',
+        password: '',
+        role: '',
       },
-      jwtToken: "",
+      jwtToken: '',
       isAuthenticated: false,
-      moduleState: "",
+      moduleState: '',
     });
 
     StoreManager.register(this);
@@ -47,7 +47,7 @@ export class AdminStore extends BaseStore<IAdminState> {
     this._state.jwtToken = jwt;
   }
 
-  getAdmin() {
+  public get getAdmin() {
     return this._state.admin;
   }
 
@@ -60,14 +60,14 @@ export class AdminStore extends BaseStore<IAdminState> {
   }
 
   public reset() {
-    (this._state.admin = {
-      id: "",
-      username: "",
-      password: "",
-      role: "",
+    ((this._state.admin = {
+      id: '',
+      username: '',
+      password: '',
+      role: '',
     }),
-      (this._state.jwtToken = "");
+      (this._state.jwtToken = ''));
     this._state.isAuthenticated = false;
-    this._state.moduleState = "";
+    this._state.moduleState = '';
   }
 }

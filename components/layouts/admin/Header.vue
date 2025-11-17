@@ -41,7 +41,7 @@ const appTheme = computed(() => {
 const adminStore = useAdminStore();
 
 const admin = computed(() => {
-  return adminStore.getAdmin();
+  return adminStore.getAdmin;
 });
 
 const emit = defineEmits(['chnageSideMenuState']);

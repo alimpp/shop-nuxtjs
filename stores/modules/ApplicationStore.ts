@@ -18,14 +18,19 @@ interface IAlert {
 }
 
 interface IApplication {
+  id: string;
   theme: string;
+  title: string;
+  subTitle: string;
+  descrption: string;
+  text: string;
+  label: string;
+  date: string;
   toastMessages: Array<IToast>;
   alert: IAlert;
-  compose: boolean;
   loading: Boolean;
   loadingText: string;
   loadingSub: string;
-  title: string;
 }
 
 export class ApplicationStore extends BaseStore<IApplication> {
@@ -40,8 +45,17 @@ export class ApplicationStore extends BaseStore<IApplication> {
 
   private constructor() {
     super('application', {
+      id: '',
       theme: 'light',
+      title: 'standard',
+      subTitle: 'standard',
+      descrption: 'standard',
+      text: 'standard',
+      label: 'standard',
+      date: 'standard',
+
       toastMessages: [],
+
       alert: {
         title: '',
         text: '',
@@ -49,21 +63,29 @@ export class ApplicationStore extends BaseStore<IApplication> {
         id: '',
         timeout: 0,
       },
-      compose: false,
+
       loading: false,
       loadingText: '',
       loadingSub: '',
-      title: 'standard',
     });
     StoreManager.register(this);
   }
 
   public setTitleSize(size: string) {
     this._state.title = size;
+    console.log(this._state.title);
   }
 
-  public getTitleSize(): string {
+  public get getTitleSize(): string {
     return this._state.title;
+  }
+
+  public setSubTitleSize(size: string) {
+    this._state.subTitle = size;
+  }
+
+  public get getSubTitleSize(): string {
+    return this._state.subTitle;
   }
 
   setTheme(theme: string) {
@@ -90,16 +112,6 @@ export class ApplicationStore extends BaseStore<IApplication> {
     };
   }
 
-  public setCompose(state?: boolean) {
-    state
-      ? (this._state.compose = state)
-      : (this._state.compose = !this._state.compose);
-  }
-
-  get getComposeState(): boolean {
-    return this._state.compose;
-  }
-
   public setLoading(loading: boolean, text: string, sub: string) {
     this._state.loading = loading;
     this._state.loadingText = text;
@@ -121,7 +133,6 @@ export class ApplicationStore extends BaseStore<IApplication> {
   }
 
   public reset() {
-    this._state.theme = 'dark';
     this._state.toastMessages = [];
     this._state.alert = {
       title: '',
@@ -130,7 +141,6 @@ export class ApplicationStore extends BaseStore<IApplication> {
       id: '',
       timeout: 0,
     };
-    this._state.compose = false;
   }
 
   private generateId(): string {

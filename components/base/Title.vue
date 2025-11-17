@@ -1,4 +1,5 @@
 <template>
+  {{ getTitleSize }}
   <span
     :class="{
       'f-s-16': getTitleSize == 'standard',

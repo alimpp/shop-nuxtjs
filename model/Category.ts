@@ -1,8 +1,6 @@
 import { BaseApp } from '../core/BaseApp';
 import { ICategory } from '../types/Category';
 
-const { formatDateTime, parseDate } = useDate();
-
 export class CategoryDataModel extends BaseApp<any> {
   constructor() {
     super('category');
