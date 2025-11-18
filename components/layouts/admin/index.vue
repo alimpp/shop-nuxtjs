@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-const sideMenuState = ref(false);
+const sideMenuState = ref(true);
 const chnageSideMenuState = () => {
   sideMenuState.value = !sideMenuState.value;
 };
