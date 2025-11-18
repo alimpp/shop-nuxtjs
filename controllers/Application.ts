@@ -28,6 +28,7 @@ export class ApplicationController extends ApplicationDataModel {
         this.appStore._state.id = cacheData.id;
         this.appStore.setTheme(cacheData.theme);
         this.appStore.setTitleSize(cacheData.title);
+        this.appStore.setSubTitleSize(cacheData.subTitle);
       }
     } catch (err) {
       const textError = 'Category data caching failed';
@@ -51,6 +52,7 @@ export class ApplicationController extends ApplicationDataModel {
       this.appStore._state.id = format.id;
       this.appStore.setTheme(format.theme);
       this.appStore.setTitleSize(format.title);
+      this.appStore.setSubTitleSize(format.subTitle);
       this.saveItem(this.appStore._state);
     } catch (err) {
       const textError = 'Styles data caching failed';
