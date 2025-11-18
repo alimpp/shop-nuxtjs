@@ -22,10 +22,13 @@
 </template>
 
 <script setup>
+import { applicationController } from '../../controllers/Application';
+
 const applicationStore = useApplicationStore();
 
-const setTheme = (theme) => {
+const setTheme = async (theme) => {
   applicationStore.setTheme(theme);
+  await applicationController.updateStyle({ theme: theme });
 };
 
 const appTheme = computed(() => {

@@ -73,7 +73,6 @@ export class ApplicationStore extends BaseStore<IApplication> {
 
   public setTitleSize(size: string) {
     this._state.title = size;
-    console.log(this._state.title);
   }
 
   public get getTitleSize(): string {
