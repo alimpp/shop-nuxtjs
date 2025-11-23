@@ -27,7 +27,7 @@
     <BaseTitle class="mt-10"
       >Lorem ipsum dolor sit, amet consectetur adipisicing elit.</BaseTitle
     >
-    <BaseDivider class="mt-20" title="All Sub Title Fonts Size" />
+    <BaseDivider class="mt-20" title="All Subtitle Fonts Size" />
     <div class="flex align-center mt-10">
       <BaseButton
         :icon="getSubTitleSize == 'standard' ? 'bi:patch-check' : ''"
@@ -53,6 +53,7 @@
       >Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor
       necessitatibus incidunt, sequi illum provid...</BaseSubTitle
     >
+    <BaseDivider class="mt-20" title="All Text Fonts Size" />
     <div class="flex align-center mt-10">
       <BaseButton
         :icon="getTextSize == 'standard' ? 'bi:patch-check' : ''"
@@ -78,6 +79,7 @@
       >Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor
       necessitatibus incidunt, sequi illum provid...</BaseText
     >
+    <BaseDivider class="mt-20" title="All Descrption Fonts Size" />
     <div class="flex align-center mt-10">
       <BaseButton
         :icon="getDescrptionSize == 'standard' ? 'bi:patch-check' : ''"
