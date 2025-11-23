@@ -1,10 +1,9 @@
 <template>
-  {{ getSubTitleSize }}
   <span
     :class="{
-      'f-s-10': getSubTitleSize == 'standard',
-      'f-s-12': getSubTitleSize == 'semiBold',
-      'f-s-14': getSubTitleSize == 'bold',
+      'f-s-11': getSubTitleSize == 'standard',
+      'f-s-13': getSubTitleSize == 'semiBold',
+      'f-s-16': getSubTitleSize == 'bold',
     }"
   >
     <slot></slot>

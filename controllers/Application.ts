@@ -1,4 +1,5 @@
 import { ApplicationDataModel } from '../model/Application';
+import { IApplicationStyles } from '../types/Application';
 
 interface ApplicationStylesUpdate {
   theme?: string;
@@ -29,6 +30,8 @@ export class ApplicationController extends ApplicationDataModel {
         this.appStore.setTheme(cacheData.theme);
         this.appStore.setTitleSize(cacheData.title);
         this.appStore.setSubTitleSize(cacheData.subTitle);
+        this.appStore.setTextSize(cacheData.text);
+        this.appStore.setDescrptionSize(cacheData.descrption);
       }
     } catch (err) {
       const textError = 'Category data caching failed';
@@ -53,6 +56,8 @@ export class ApplicationController extends ApplicationDataModel {
       this.appStore.setTheme(format.theme);
       this.appStore.setTitleSize(format.title);
       this.appStore.setSubTitleSize(format.subTitle);
+      this.appStore.setTextSize(format.text);
+      this.appStore.setDescrptionSize(format.descrption);
       this.saveItem(this.appStore._state);
     } catch (err) {
       const textError = 'Styles data caching failed';

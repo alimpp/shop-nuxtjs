@@ -17,7 +17,7 @@
       </div>
       <div class="w-50 flex justify-end px-10 align-center">
         <BaseIcon
-          @click="router.push('/dashboard/settings')"
+          @click="router.push('/admin/settings')"
           class="cursor-pointer mx-5"
           name="solar:settings-outline"
           width="25"

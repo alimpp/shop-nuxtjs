@@ -87,6 +87,22 @@ export class ApplicationStore extends BaseStore<IApplication> {
     return this._state.subTitle;
   }
 
+  public setTextSize(size: string) {
+    this._state.text = size;
+  }
+
+  public get getTextSize(): string {
+    return this._state.text;
+  }
+
+  public setDescrptionSize(size: string) {
+    this._state.descrption = size;
+  }
+
+  public get getDescrptionSize(): string {
+    return this._state.descrption;
+  }
+
   setTheme(theme: string) {
     this._state.theme = theme;
   }
