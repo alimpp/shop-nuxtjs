@@ -5,6 +5,7 @@ const { success, error } = useToast();
 
 import { navigateTo } from 'nuxt/app';
 class UserController extends UserDataModel {
+  
   constructor() {
     super();
   }

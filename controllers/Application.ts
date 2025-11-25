@@ -14,14 +14,15 @@ interface ApplicationStylesUpdate {
 const { success, error } = useToast();
 
 export class ApplicationController extends ApplicationDataModel {
+  
   constructor() {
     super();
   }
-
+  
   private appStore = useApplicationStore();
   private userStore = useUserStore();
   private adminStore = useAdminStore();
-
+  
   public getCacheData() {
     try {
       const cacheData = this.readObject();
