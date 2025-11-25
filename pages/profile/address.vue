@@ -34,21 +34,20 @@
       :form="lastTargetAddressData"
       @close="editModalController"
     />
+    <BaseConfrim
+      :isOpen="removeConfrimState"
+      @cancel="removeConfrimState = false"
+      @confrim="removeAddress"
+      confrimText="Yes Remove Address"
+      :type="lastTargetAddressData.type"
+      title="Remove Address?"
+      text="Are you sure you want to delete the Address?"
+    ></BaseConfrim>
   </div>
-
-  <BaseConfrim
-    :isOpen="removeConfrimState"
-    @cancel="removeConfrimState = false"
-    @confrim="removeAddress"
-    confrimText="Yes Remove Address"
-    :type="lastTargetAddressData.type"
-    title="Remove Address?"
-    text="Are you sure you want to delete the Address?"
-  ></BaseConfrim>
 </template>
 
 <script setup>
-import { addressController } from "~/controllers/Address";
+import { addressController } from '~/controllers/Address';
 
 const modalState = ref(false);
 const modalController = () => {

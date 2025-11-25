@@ -37,28 +37,26 @@
         </div>
       </div>
     </div>
+    <CategoryCreateModal
+      :isOpen="createCategoryState"
+      @close="createCategoryState = false"
+    />
+    <CategoryEditModal
+      type="edit"
+      :isOpen="editCategoryModalState"
+      @close="editCategoryModalState = false"
+      :form="lastTargetCategoryData"
+    />
+    <BaseConfrim
+      :isOpen="removeConfrimState"
+      @cancel="removeConfrimState = false"
+      @confrim="removeCategory"
+      confrimText="Yes Remove Category"
+      :type="lastTargetCategoryData.type"
+      title="Remove Category?"
+      text="Are you sure you want to delete the category?"
+    ></BaseConfrim>
   </div>
-
-  <CategoryCreateModal
-    :isOpen="createCategoryState"
-    @close="createCategoryState = false"
-  />
-  <CategoryEditModal
-    type="edit"
-    :isOpen="editCategoryModalState"
-    @close="editCategoryModalState = false"
-    :form="lastTargetCategoryData"
-  />
-
-  <BaseConfrim
-    :isOpen="removeConfrimState"
-    @cancel="removeConfrimState = false"
-    @confrim="removeCategory"
-    confrimText="Yes Remove Category"
-    :type="lastTargetCategoryData.type"
-    title="Remove Category?"
-    text="Are you sure you want to delete the category?"
-  ></BaseConfrim>
 </template>
 
 <script setup>
