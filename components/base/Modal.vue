@@ -5,7 +5,7 @@
         'bg-app-dark': appTheme == 'dark',
         'bg-app-light': appTheme == 'light',
       }"
-      class="content bg-primary-white flex flex-column slid-left-animation-5 px-15 py-10"
+      class="content bg-primary-white flex flex-column px-15 py-10"
       :style="{ width: width, height: height, borderRadius: borderRadius }"
     >
       <div
@@ -144,5 +144,24 @@ const emit = defineEmits(['close']);
 
 .border-bottom {
   border-bottom: 1px solid #d1cdcd53;
+}
+
+@keyframes slid-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 650px) {
+  .base-modal-content {
+    align-items: end;
+  }
+  .content {
+    width: 100% !important;
+    animation: 0.5s slid-up;
+  }
 }
 </style>

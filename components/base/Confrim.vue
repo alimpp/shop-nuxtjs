@@ -5,7 +5,7 @@
         'bg-app-dark': appTheme == 'dark',
         'bg-app-light': appTheme == 'light',
       }"
-      class="content flex flex-column slid-up-animation-5 px-15 py-10"
+      class="content flex flex-column px-15 py-10"
       :style="{ width: width, height: height, borderRadius: borderRadius }"
     >
       <div class="w-100 flex justify-center py-15">
@@ -21,13 +21,15 @@
           :name="confrimText"
           class="mx-5"
           @click="emit('confrim')"
+          padding="12px 12px"
         />
         <BaseButton
-          bg="bg-gray-2"
-          icon="line-md:menu-to-close-alt-transition"
+          bg="bg-gray-1"
+          color="color-dark-1"
           :name="cancelText"
           class="mx-5"
           @click="emit('cancel')"
+          padding="12px 12px"
         />
       </div>
     </div>
@@ -158,5 +160,15 @@ const buttonStyle = computed(() => {
 
 .border-bottom {
   border-bottom: 1px solid #d1cdcd53;
+}
+
+@media (max-width: 650px) {
+  .base-modal-content {
+    align-items: end;
+  }
+  .content {
+    width: 100% !important;
+    animation: 0.5s slid-up;
+  }
 }
 </style>

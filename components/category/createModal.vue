@@ -47,7 +47,6 @@
         <BaseButton
           name="Cancel"
           @click="close"
-          icon="line-md:close"
           class="mx-5"
           bg="bg-danger-3"
         />
@@ -107,11 +106,11 @@ const createCategory = async () => {
 const uploadImage = async (event) => {
   loadingImage.value = true;
   const serverResponse = await filesController.uploadFile(
-    event.target.files[0],
+    event.target.files[0]
   );
   if (serverResponse?.id) {
     preView.value.image = await filesController.downloadFileById(
-      serverResponse.id,
+      serverResponse.id
     );
     form.value.imageId = serverResponse?.id;
   }
@@ -121,11 +120,11 @@ const uploadImage = async (event) => {
 const uploadIcon = async (event) => {
   loadingIcon.value = true;
   const serverResponse = await filesController.uploadFile(
-    event.target.files[0],
+    event.target.files[0]
   );
   if (serverResponse?.id) {
     preView.value.icon = await filesController.downloadFileById(
-      serverResponse.id,
+      serverResponse.id
     );
     form.value.iconId = serverResponse?.id;
   }

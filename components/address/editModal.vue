@@ -57,8 +57,8 @@
         />
         <BaseButton
           name="Cancel"
-          @click="close"
           icon="line-md:close"
+          @click="close"
           class="mx-5"
           bg="bg-danger-2"
         />

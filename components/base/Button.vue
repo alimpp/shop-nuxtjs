@@ -42,7 +42,7 @@ const props = defineProps({
   },
   fontSize: {
     type: String,
-    default: 'f-s-13',
+    default: 'f-s-14',
   },
   fontWeight: {
     type: String,
@@ -70,11 +70,11 @@ const props = defineProps({
   },
   iconSize: {
     type: String,
-    default: '20px',
+    default: '18px',
   },
   padding: {
     type: String,
-    default: '8px 8px',
+    default: '10px 12px',
   },
   fullWidth: {
     type: Boolean,
