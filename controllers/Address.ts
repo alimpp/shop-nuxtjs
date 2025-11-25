@@ -4,6 +4,7 @@ const { success, error, warning } = useToast();
 import { IAddBody, IAddress, IUpdateAddress } from '../types/Address';
 
 export class AddressController extends AddressDataModel {
+  
   constructor() {
     super();
   }
