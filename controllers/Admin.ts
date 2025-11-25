@@ -3,6 +3,7 @@ import type { IAdminInfo } from '~/types/Admin';
 const { success, error } = useToast();
 
 class AdminController extends AdminDataModel {
+  
   constructor() {
     super();
   }
