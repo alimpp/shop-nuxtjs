@@ -23,15 +23,28 @@
         :class="{ 'active-path': route.path == item.path }"
       >
         <BaseIcon :name="item.icon" size="25" />
-        <BaseTitle class="px-5 pt-5">
+        <span
+          :class="{
+            'f-s-11': getSidebarItemsSize == 'standard',
+            'f-s-13': getSidebarItemsSize == 'semiBold',
+            'f-s-15': getSidebarItemsSize == 'bold',
+          }"
+          class="px-5 pt-5"
+        >
           {{ item.name }}
-        </BaseTitle>
+        </span>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+const applicationStore = useApplicationStore();
+
+const getSidebarItemsSize = computed(() => {
+  return applicationStore._state.sidebarItems;
+});
+
 import { useRouter } from 'vue-router';
 const router = useRouter();
 
@@ -128,7 +141,6 @@ const navigate = (path) => {
   }
 };
 
-const applicationStore = useApplicationStore();
 const appTheme = computed(() => {
   return applicationStore._state.theme;
 });

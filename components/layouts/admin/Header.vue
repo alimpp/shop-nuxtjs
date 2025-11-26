@@ -17,21 +17,26 @@
       </div>
       <div class="w-50 flex justify-end px-10 align-center">
         <BaseIcon
-          @click="router.push('/admin/settings')"
+          @click="settingModal = true"
           class="cursor-pointer mx-5"
           name="solar:settings-outline"
           width="25"
           height="25"
+          v-if="route.path != '/admin/settings'"
         />
         <BaseAvatar width="45px" height="45px" :character="admin.username[0]" />
       </div>
     </div>
+
+    <SettingsModal :isOpen="settingModal" @close="settingModal = false" />
   </div>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
-const router = useRouter();
+import { useRoute } from 'vue-router';
+const route = useRoute();
+
+const settingModal = ref(false);
 
 const applicationStore = useApplicationStore();
 const appTheme = computed(() => {

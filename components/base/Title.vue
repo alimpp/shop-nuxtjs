@@ -1,9 +1,9 @@
 <template>
   <span
     :class="{
-      'f-s-13': getTitleSize == 'standard',
-      'f-s-16': getTitleSize == 'semiBold',
-      'f-s-20': getTitleSize == 'bold',
+      'f-s-12': getTitleSize == 'standard',
+      'f-s-14': getTitleSize == 'semiBold',
+      'f-s-16': getTitleSize == 'bold',
     }"
   >
     <slot></slot>

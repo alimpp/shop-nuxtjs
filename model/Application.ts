@@ -16,6 +16,9 @@ export class ApplicationDataModel extends BaseApp<any> {
       text: 'standard',
       label: 'standard',
       date: 'standard',
+      breadCrumb: 'standard',
+      sidebarItems: 'standard',
+      divider: 'standard',
     };
   }
 }

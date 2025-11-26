@@ -1,6 +1,15 @@
 <template>
   <div class="flex flex-column">
-    <BaseTitle v-if="title" class="color-primary-4">{{ title }}</BaseTitle>
+    <span
+      v-if="title"
+      class="color-primary-4"
+      :class="{
+        'f-s-11': getDividerSize == 'standard',
+        'f-s-13': getDividerSize == 'semiBold',
+        'f-s-15': getDividerSize == 'bold',
+      }"
+      >{{ title }}</span
+    >
     <div
       class="style"
       :class="{ 'mt-5': title }"
@@ -10,6 +19,12 @@
 </template>
 
 <script setup>
+const applicationStore = useApplicationStore();
+
+const getDividerSize = computed(() => {
+  return applicationStore._state.divider;
+});
+
 const props = defineProps({
   title: {
     type: String,

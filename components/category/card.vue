@@ -40,29 +40,40 @@
 
       <div class="w-100 flex mt-10">
         <div class="w-40 flex flex-column align-start">
-          <span class="f-s-12 f-w-500 pt-5">Category Name :</span>
+          <BaseTitle class="pt-5">Category Name :</BaseTitle>
         </div>
         <div class="w-60 flex flex-column align-end">
-          <span class="f-s-12 f-w-500 color-primary-1 pt-5">{{
+          <BaseSubTitle class="color-primary-1 pt-5">{{
             item.name
-          }}</span>
+          }}</BaseSubTitle>
         </div>
       </div>
 
-      <div class="w-100 flex mt-5">
+      <div class="w-100 flex">
         <div class="w-40 flex flex-column align-start">
-          <span class="f-s-12 f-w-500 pt-5">Creator :</span>
+          <BaseTitle class="f-s-12 f-w-500 pt-5">Created at :</BaseTitle>
         </div>
         <div class="w-60 flex flex-column align-end">
-          <span class="f-s-12 f-w-500 color-primary-1 pt-5">{{
+          <BaseSubTitle class="f-s-12 f-w-500 color-primary-1 pt-5">{{
+            item.created_at
+          }}</BaseSubTitle>
+        </div>
+      </div>
+
+      <div class="w-100 flex">
+        <div class="w-40 flex flex-column align-start">
+          <BaseTitle class="f-s-12 f-w-500 pt-5">Creator :</BaseTitle>
+        </div>
+        <div class="w-60 flex flex-column align-end">
+          <BaseSubTitle class="f-s-12 f-w-500 color-primary-1 pt-5">{{
             item.submiter
-          }}</span>
+          }}</BaseSubTitle>
         </div>
       </div>
 
       <div class="w-100 flex mt-5">
         <div class="w-40 flex flex-column align-start">
-          <span class="f-s-12 f-w-500 pt-5">Image :</span>
+          <BaseTitle class="f-s-12 f-w-500 pt-5">Image :</BaseTitle>
         </div>
         <div class="w-60 flex flex-column align-end">
           <img
@@ -75,7 +86,7 @@
 
       <div class="w-100 flex mt-5">
         <div class="w-40 flex flex-column align-start">
-          <span class="f-s-12 f-w-500 pt-5">Icon :</span>
+          <BaseTitle class="f-s-12 f-w-500 pt-5">Icon :</BaseTitle>
         </div>
         <div class="w-60 flex flex-column align-end">
           <img

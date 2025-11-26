@@ -8,5 +8,8 @@ export interface IApplicationStyles {
   text: string;
   label: string;
   date: string;
+  breadCrumb: string;
+  sidebarItems: string;
+  divider: string;
   created_at?: Date;
 }

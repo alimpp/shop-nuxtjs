@@ -9,6 +9,9 @@ interface ApplicationStylesUpdate {
   text?: string;
   label?: string;
   date?: string;
+  breadCrumb?: string;
+  sidebarItems?: string;
+  divider?: string;
 }
 
 const { success, error } = useToast();
@@ -34,6 +37,9 @@ export class ApplicationController extends ApplicationDataModel {
         this.appStore.setDescrptionSize(cacheData.descrption);
         this.appStore.setLabelSize(cacheData.label);
         this.appStore.setDateSize(cacheData.date);
+        this.appStore.setBreadCrumbSize(cacheData.breadCrumb);
+        this.appStore.setSidebarItemsSize(cacheData.sidebarItems);
+        this.appStore.setDividerSize(cacheData.divider);
       }
     } catch (err) {
       const textError = 'Category data caching failed';
@@ -62,6 +68,9 @@ export class ApplicationController extends ApplicationDataModel {
       this.appStore.setDescrptionSize(format.descrption);
       this.appStore.setLabelSize(format.label);
       this.appStore.setDateSize(format.date);
+      this.appStore.setBreadCrumbSize(format.breadCrumb);
+      this.appStore.setSidebarItemsSize(format.sidebarItems);
+      this.appStore.setDividerSize(format.divider);
       this.saveItem(this.appStore._state);
     } catch (err) {
       const textError = 'Styles data caching failed';

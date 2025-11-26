@@ -26,6 +26,9 @@ interface IApplication {
   text: string;
   label: string;
   date: string;
+  breadCrumb: string;
+  sidebarItems: string;
+  divider: string;
   toastMessages: Array<IToast>;
   alert: IAlert;
   loading: Boolean;
@@ -53,7 +56,9 @@ export class ApplicationStore extends BaseStore<IApplication> {
       text: 'standard',
       label: 'standard',
       date: 'standard',
-
+      breadCrumb: 'standard',
+      sidebarItems: 'standard',
+      divider: 'standard',
       toastMessages: [],
 
       alert: {
@@ -75,24 +80,12 @@ export class ApplicationStore extends BaseStore<IApplication> {
     this._state.title = size;
   }
 
-  public get getTitleSize(): string {
-    return this._state.title;
-  }
-
   public setSubTitleSize(size: string) {
     this._state.subTitle = size;
   }
 
-  public get getSubTitleSize(): string {
-    return this._state.subTitle;
-  }
-
   public setTextSize(size: string) {
     this._state.text = size;
-  }
-
-  public get getTextSize(): string {
-    return this._state.text;
   }
 
   public setLabelSize(size: string) {
@@ -103,12 +96,20 @@ export class ApplicationStore extends BaseStore<IApplication> {
     this._state.date = size;
   }
 
-  public setDescrptionSize(size: string) {
-    this._state.descrption = size;
+  public setBreadCrumbSize(size: string) {
+    this._state.breadCrumb = size;
   }
 
-  public get getDescrptionSize(): string {
-    return this._state.descrption;
+  public setSidebarItemsSize(size: string) {
+    this._state.sidebarItems = size;
+  }
+
+  public setDividerSize(size: string) {
+    this._state.divider = size;
+  }
+
+  public setDescrptionSize(size: string) {
+    this._state.descrption = size;
   }
 
   setTheme(theme: string) {
