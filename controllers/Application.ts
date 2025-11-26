@@ -76,7 +76,6 @@ export class ApplicationController extends ApplicationDataModel {
       this.appStore.setSidebarItemsSize(format.sidebarItems);
       this.appStore.setDividerSize(format.divider);
       this.saveItem(this.appStore._state);
-      
     } catch (err) {
       const textError = 'Styles data caching failed';
       error(textError);
