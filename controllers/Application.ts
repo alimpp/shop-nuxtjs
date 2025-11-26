@@ -61,6 +61,7 @@ export class ApplicationController extends ApplicationDataModel {
     try {
       const requestResponse: IApplicationStyles =
         await this.Get(`/api/styles/all`);
+      
       const format: IApplicationStyles = this.formater(requestResponse);
       
       this.appStore._state.id = format.id;
