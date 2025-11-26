@@ -24,7 +24,19 @@
           height="25"
           v-if="route.path != '/admin/settings'"
         />
-        <BaseAvatar width="45px" height="45px" :character="admin.username[0]" />
+        <BaseIcon
+          class="cursor-pointer mx-5"
+          name="solar:bell-outline"
+          width="25"
+          height="25"
+          v-if="!sideMenuState"
+        />
+        <BaseAvatar
+          v-if="!sideMenuState"
+          width="45px"
+          height="45px"
+          :character="admin.username[0]"
+        />
       </div>
     </div>
 
@@ -35,6 +47,8 @@
 <script setup>
 import { useRoute } from 'vue-router';
 const route = useRoute();
+
+const props = defineProps({ sideMenuState: { default: false } });
 
 const settingModal = ref(false);
 

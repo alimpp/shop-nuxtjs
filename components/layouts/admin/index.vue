@@ -14,7 +14,10 @@
       />
     </div>
     <div class="w-100 flex flex-column">
-      <LayoutsAdminHeader @chnageSideMenuState="chnageSideMenuState" />
+      <LayoutsAdminHeader
+        :sideMenuState="sideMenuState"
+        @chnageSideMenuState="chnageSideMenuState"
+      />
       <div class="router-content overflow-hidden">
         <NuxtPage />
       </div>

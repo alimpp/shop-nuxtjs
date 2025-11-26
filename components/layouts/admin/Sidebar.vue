@@ -11,8 +11,27 @@
       />
     </div>
     <div class="flex flex-column px-10 pt-10">
-      <div class="flex justify-center">
-        <img src="/public/logo/logo.png" alt="logo" width="100" />
+      <div class="flex">
+        <div class="flex w-50">
+          <BaseAvatar
+            width="55px"
+            height="55px"
+            :character="admin.username[0]"
+          />
+          <div class="flex flex-column justify-center px-5">
+            <BaseTitle>{{ admin.username }}</BaseTitle>
+            <BaseSubTitle class="color-gray-1">Admin</BaseSubTitle>
+          </div>
+        </div>
+        <div class="flex justify-end w-50 align-center">
+          <BaseIcon
+            class="cursor-pointer mx-5"
+            name="solar:bell-outline"
+            width="25"
+            height="25"
+            v-if="isOpen"
+          />
+        </div>
       </div>
       <BaseDivider class="mt-10" />
       <div
@@ -39,6 +58,12 @@
 </template>
 
 <script setup>
+const adminStore = useAdminStore();
+
+const admin = computed(() => {
+  return adminStore.getAdmin;
+});
+
 const applicationStore = useApplicationStore();
 
 const getSidebarItemsSize = computed(() => {
