@@ -9,42 +9,40 @@
       <BaseIcon name="entypo:address" size="30" />
     </template>
     <template #content>
-      <div class="flex flex-column w-100 px-5 py-30">
-        <BaseInput
-          :validate="true"
-          v-model:access="access"
-          v-model="form.name"
-          rules="length"
-          min-length="3"
-          max-length="20"
-          class="w-100 mt-5"
-          placeholder="Enter address name"
-          label="Name"
-        />
-        <BaseInput
-          :validate="true"
-          v-model:access="access"
-          v-model="form.content"
-          rules="length"
-          min-length="15"
-          max-length="100"
-          class="w-100 mt-5"
-          placeholder="Enter address content"
-          label="Content"
-        />
-        <BaseInput
-          :validate="true"
-          v-model:access="access"
-          v-model="form.postalCode"
-          rules="length"
-          min-length="10"
-          max-length="10"
-          class="w-100 mt-5"
-          placeholder="Enter address postal code"
-          label="Postal Code"
-          type="number"
-        />
-      </div>
+      <BaseInput
+        :validate="true"
+        v-model:access="access"
+        v-model="form.name"
+        rules="length"
+        min-length="3"
+        max-length="20"
+        class="w-100 mt-5"
+        placeholder="Enter address name"
+        label="Name"
+      />
+      <BaseInput
+        :validate="true"
+        v-model:access="access"
+        v-model="form.content"
+        rules="length"
+        min-length="15"
+        max-length="100"
+        class="w-100 mt-5"
+        placeholder="Enter address content"
+        label="Content"
+      />
+      <BaseInput
+        :validate="true"
+        v-model:access="access"
+        v-model="form.postalCode"
+        rules="length"
+        min-length="10"
+        max-length="10"
+        class="w-100 mt-5"
+        placeholder="Enter address postal code"
+        label="Postal Code"
+        type="number"
+      />
     </template>
     <template #footer>
       <div class="flex w-100 align-center py-5 px-5">
