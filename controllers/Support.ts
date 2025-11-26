@@ -20,8 +20,20 @@ class SupportController extends SupportDataModel {
       const serverResponse = await this.Get('/api/support/chat-list');
       const parseResult = await this.chatListParsed(serverResponse);
       this.supportStore.setChatList(parseResult);
+      this.getUnReadCount();
     } catch (err) {
       error('Chat list fetching failed');
+      console.error(error);
+      this.stopPolling();
+    }
+  }
+
+  async getUnReadCount() {
+    try {
+      const serverResponse = await this.Get('/api/support/unread-count');
+      this.supportStore.setUnReadCount(serverResponse);
+    } catch (err) {
+      error('unread count fetching failed');
       console.error(error);
       this.stopPolling();
     }
