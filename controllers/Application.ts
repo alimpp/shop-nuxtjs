@@ -14,15 +14,14 @@ interface ApplicationStylesUpdate {
 const { success, error } = useToast();
 
 export class ApplicationController extends ApplicationDataModel {
-  
   constructor() {
     super();
   }
-  
+
   private appStore = useApplicationStore();
   private userStore = useUserStore();
   private adminStore = useAdminStore();
-  
+
   public getCacheData() {
     try {
       const cacheData = this.readObject();
@@ -33,6 +32,8 @@ export class ApplicationController extends ApplicationDataModel {
         this.appStore.setSubTitleSize(cacheData.subTitle);
         this.appStore.setTextSize(cacheData.text);
         this.appStore.setDescrptionSize(cacheData.descrption);
+        this.appStore.setLabelSize(cacheData.label);
+        this.appStore.setDateSize(cacheData.date);
       }
     } catch (err) {
       const textError = 'Category data caching failed';
@@ -59,6 +60,8 @@ export class ApplicationController extends ApplicationDataModel {
       this.appStore.setSubTitleSize(format.subTitle);
       this.appStore.setTextSize(format.text);
       this.appStore.setDescrptionSize(format.descrption);
+      this.appStore.setLabelSize(format.label);
+      this.appStore.setDateSize(format.date);
       this.saveItem(this.appStore._state);
     } catch (err) {
       const textError = 'Styles data caching failed';

@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-column w-100">
-    <span class="pb-5 f-s-13 f-w-600" :class="{ 'color-danger': errorMessage }">
+    <BaseLabel :class="{ 'color-danger': errorMessage }">
       {{ label }}
-    </span>
+    </BaseLabel>
     <input
       :style="{
         height: `${height}`,

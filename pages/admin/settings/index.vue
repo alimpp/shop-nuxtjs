@@ -109,6 +109,52 @@
       >Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor
       necessitatibus incidunt, sequi illum provid...</BaseDescription
     >
+    <BaseDivider class="mt-20" title="All Label Fonts Size" />
+    <div class="flex align-center mt-10">
+      <BaseButton
+        :icon="getLabelSize == 'standard' ? 'bi:patch-check' : ''"
+        :bg="getLabelSize == 'standard' ? 'bg-secondary-1' : 'bg-primary-1'"
+        name="Standard"
+        @click="setLabelSize('standard')"
+      />
+      <BaseButton
+        :icon="getLabelSize == 'semiBold' ? 'bi:patch-check' : ''"
+        :bg="getLabelSize == 'semiBold' ? 'bg-secondary-1' : 'bg-primary-1'"
+        name="Semi Bold"
+        class="mx-10"
+        @click="setLabelSize('semiBold')"
+      />
+      <BaseButton
+        :icon="getLabelSize == 'bold' ? 'bi:patch-check' : ''"
+        :bg="getLabelSize == 'bold' ? 'bg-secondary-1' : 'bg-primary-1'"
+        name="Bold"
+        @click="setLabelSize('bold')"
+      />
+    </div>
+    <BaseInput label="Fristname" class="mt-10" />
+    <BaseDivider class="mt-20" title="All Date Fonts Size" />
+    <div class="flex align-center mt-10">
+      <BaseButton
+        :icon="getDateSize == 'standard' ? 'bi:patch-check' : ''"
+        :bg="getDateSize == 'standard' ? 'bg-secondary-1' : 'bg-primary-1'"
+        name="Standard"
+        @click="setDateSize('standard')"
+      />
+      <BaseButton
+        :icon="getDateSize == 'semiBold' ? 'bi:patch-check' : ''"
+        :bg="getDateSize == 'semiBold' ? 'bg-secondary-1' : 'bg-primary-1'"
+        name="Semi Bold"
+        class="mx-10"
+        @click="setDateSize('semiBold')"
+      />
+      <BaseButton
+        :icon="getDateSize == 'bold' ? 'bi:patch-check' : ''"
+        :bg="getDateSize == 'bold' ? 'bg-secondary-1' : 'bg-primary-1'"
+        name="Bold"
+        @click="setDateSize('bold')"
+      />
+    </div>
+    <BaseDate class="mt-10">2023/04/03 12:45</BaseDate>
   </div>
 </template>
 
@@ -136,6 +182,16 @@ const setTextSize = async (param) => {
   await applicationController.updateStyle({ text: param });
 };
 
+const setLabelSize = async (param) => {
+  applicationStore.setLabelSize(param);
+  await applicationController.updateStyle({ label: param });
+};
+
+const setDateSize = async (param) => {
+  applicationStore.setDateSize(param);
+  await applicationController.updateStyle({ date: param });
+};
+
 const setDescrptionSize = async (param) => {
   applicationStore.setDescrptionSize(param);
   await applicationController.updateStyle({ descrption: param });
@@ -155,5 +211,13 @@ const getTextSize = computed(() => {
 
 const getDescrptionSize = computed(() => {
   return applicationStore._state.descrption;
+});
+
+const getLabelSize = computed(() => {
+  return applicationStore._state.label;
+});
+
+const getDateSize = computed(() => {
+  return applicationStore._state.date;
 });
 </script>

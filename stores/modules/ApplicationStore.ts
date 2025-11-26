@@ -95,6 +95,14 @@ export class ApplicationStore extends BaseStore<IApplication> {
     return this._state.text;
   }
 
+  public setLabelSize(size: string) {
+    this._state.label = size;
+  }
+
+  public setDateSize(size: string) {
+    this._state.date = size;
+  }
+
   public setDescrptionSize(size: string) {
     this._state.descrption = size;
   }
