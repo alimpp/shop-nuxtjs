@@ -162,6 +162,7 @@ const emit = defineEmits(['close']);
   .content {
     width: 100% !important;
     animation: 0.5s slid-up;
+    border-radius: 20px 20px 0 0 !important;
   }
 }
 </style>
