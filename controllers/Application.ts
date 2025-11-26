@@ -28,6 +28,7 @@ export class ApplicationController extends ApplicationDataModel {
   public getCacheData() {
     try {
       const cacheData = this.readObject();
+      
       if (cacheData) {
         this.appStore._state.id = cacheData.id;
         this.appStore.setTheme(cacheData.theme);
@@ -41,6 +42,7 @@ export class ApplicationController extends ApplicationDataModel {
         this.appStore.setSidebarItemsSize(cacheData.sidebarItems);
         this.appStore.setDividerSize(cacheData.divider);
       }
+      
     } catch (err) {
       const textError = 'Category data caching failed';
       error(textError);
