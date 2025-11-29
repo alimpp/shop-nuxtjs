@@ -8,7 +8,7 @@ export class AddressDataModel extends BaseApp<any> {
     super('address');
   }
 
-   public addressParsed(apiResponse: IAddress[]) {
+  public addressParsed(apiResponse: IAddress[]) {
     if (!Array.isArray(apiResponse)) {
       throw new Error('Invalid list data format');
     }
