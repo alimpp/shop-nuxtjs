@@ -1,5 +1,8 @@
 import { PropertyDataModel } from "../model/Property";
-import { IAddBody, IProperty } from "../types/Property";
+import {
+  IPropertyFromServer,
+  IPropertyResponseServer,
+} from "../types/Property";
 
 const { success, error } = useToast();
 
@@ -29,8 +32,10 @@ export class PropertyController extends PropertyDataModel {
     try {
       this.getCacheData();
       this.propertyStore.setModuleState("loading");
-      const serverResponse: IProperty[] = await this.Get("/api/propertty/all");
-      const parsedProperties = this.PropertyParsed(serverResponse);
+      const serverResponse: IPropertyResponseServer[] = await this.Get(
+        "/api/propertty/all"
+      );
+      const parsedProperties = this.formatter(serverResponse);
       this.propertyStore.setList(parsedProperties);
       this.saveAllItems(parsedProperties);
       if (this.propertyStore.getList.length === 0) {
@@ -47,7 +52,7 @@ export class PropertyController extends PropertyDataModel {
     }
   }
 
-  public async createProperty(body: IAddBody) {
+  public async createProperty(body: IPropertyFromServer) {
     try {
       await this.Post("/api/propertty/add", body).then((res) => {
         success(`Property ${body.name} added`);
@@ -61,38 +66,38 @@ export class PropertyController extends PropertyDataModel {
     }
   }
 
-    public async editProperty(PropertyId: string, body: IAddBody) {
-      try {
-        await this.Patch(`/api/propertty/${PropertyId}`, body);
-        success(`Property ${body.name} added`);
-        this.list();
-      } catch (err) {
-        const textError = "edit Property failed";
-        error(textError);
-        error(textError);
-        console.error(err);
-        throw new Error(textError);
-      }
+  public async editProperty(PropertyId: string, body: IPropertyFromServer) {
+    try {
+      await this.Patch(`/api/propertty/${PropertyId}`, body);
+      success(`Property ${body.name} added`);
+      this.list();
+    } catch (err) {
+      const textError = "edit Property failed";
+      error(textError);
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
     }
+  }
 
-    public async remove(id: string) {
-      try {
-        this.appStore.setLoading(
-          true,
-          "Remove Property",
-          "Proccess for remove Property"
-        );
-        await this.Delete(`/api/propertty/${id}`);
-        success("Property Removed");
-        await this.list();
-        this.appStore.resetLoading();
-      } catch (err) {
-        const textError = "Property removing failed";
-        error(textError);
-        console.error(err);
-        throw new Error(textError);
-      }
+  public async remove(id: string) {
+    try {
+      this.appStore.setLoading(
+        true,
+        "Remove Property",
+        "Proccess for remove Property"
+      );
+      await this.Delete(`/api/propertty/${id}`);
+      success("Property Removed");
+      await this.list();
+      this.appStore.resetLoading();
+    } catch (err) {
+      const textError = "Property removing failed";
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
     }
+  }
 }
 
 export const propertyController = new PropertyController();

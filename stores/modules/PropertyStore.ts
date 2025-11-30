@@ -1,9 +1,9 @@
 import { BaseStore } from '../../core/BaseStore';
 import { StoreManager } from '../../core/StoreManager';
-import { IProperty } from '../../types/Property';
+import { IPropertyResponseServer } from "../../types/Property";
 
 interface IPropertyState {
-  PropertyList: IProperty[];
+  PropertyList: IPropertyResponseServer[];
   moduleState: string;
 }
 
@@ -18,9 +18,9 @@ export class PropertyStore extends BaseStore<IPropertyState> {
   }
 
   private constructor() {
-    super('PropertyList', {
+    super("PropertyList", {
       PropertyList: [],
-      moduleState: '',
+      moduleState: "",
     });
 
     StoreManager.register(this);
@@ -34,7 +34,7 @@ export class PropertyStore extends BaseStore<IPropertyState> {
     return this._state.moduleState;
   }
 
-  public setList(list: IProperty[]) {
+  public setList(list: IPropertyResponseServer[]) {
     this._state.PropertyList = list;
   }
 
@@ -44,6 +44,6 @@ export class PropertyStore extends BaseStore<IPropertyState> {
 
   public reset() {
     this._state.PropertyList = [];
-    this._state.moduleState = '';
+    this._state.moduleState = "";
   }
 }
