@@ -1,5 +1,8 @@
 import { CategoryDataModel } from '../model/Category';
-import { IAddBody, ICategory } from '../types/Category';
+import {
+  ICategoryFromServer,
+  ICategoryResponseServer,
+} from '../types/Category';
 
 const { success, error } = useToast();
 
@@ -29,8 +32,9 @@ export class CategoryController extends CategoryDataModel {
     try {
       this.getCacheData();
       this.categoryStore.setModuleState('loading');
-      const serverResponse: ICategory[] = await this.Get('/api/category/all');
-      const parsedCategories = this.categoryParsed(serverResponse);
+      const serverResponse: ICategoryResponseServer[] =
+        await this.Get('/api/category/all');
+      const parsedCategories = this.formatter(serverResponse);
       this.categoryStore.setList(parsedCategories);
       this.saveAllItems(parsedCategories);
       if (this.categoryStore.getList.length === 0) {
@@ -47,7 +51,7 @@ export class CategoryController extends CategoryDataModel {
     }
   }
 
-  public async createCategory(body: IAddBody) {
+  public async createCategory(body: ICategoryFromServer) {
     try {
       await this.Post('/api/category/add', body).then((res) => {
         success(`Category ${body.name} added`);
@@ -61,7 +65,7 @@ export class CategoryController extends CategoryDataModel {
     }
   }
 
-  public async editCategory(categoryId: string, body: IAddBody) {
+  public async editCategory(categoryId: string, body: ICategoryFromServer) {
     try {
       await this.Patch(`/api/category/${categoryId}`, body);
       this.list();
