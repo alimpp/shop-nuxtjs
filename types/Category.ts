@@ -1,4 +1,4 @@
-export interface ICategory {
+export interface ICategoryResponseServer {
   id: string;
   name: string;
   submiter: string;
@@ -9,8 +9,8 @@ export interface ICategory {
   preViewIcon: string;
 }
 
-export interface IAddBody {
-  name: string;
-  imageId: string;
-  iconId: string;
+export interface ICategoryFromServer {
+  name?: string;
+  imageId?: string;
+  iconId?: string;
 }

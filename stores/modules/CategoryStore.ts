@@ -1,9 +1,9 @@
 import { BaseStore } from '../../core/BaseStore';
 import { StoreManager } from '../../core/StoreManager';
-import { ICategory } from '../../types/Category';
+import { ICategoryResponseServer } from '../../types/Category';
 
 interface ICategoryState {
-  categoryList: ICategory[];
+  categoryList: ICategoryResponseServer[];
   moduleState: string;
 }
 
@@ -34,7 +34,7 @@ export class CategoryStore extends BaseStore<ICategoryState> {
     return this._state.moduleState;
   }
 
-  public setList(list: ICategory[]) {
+  public setList(list: ICategoryResponseServer[]) {
     this._state.categoryList = list;
   }
 

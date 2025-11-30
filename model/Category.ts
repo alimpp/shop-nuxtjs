@@ -1,16 +1,16 @@
 import { BaseApp } from '../core/BaseApp';
-import { ICategory } from '../types/Category';
+import { ICategoryResponseServer } from '../types/Category';
 
 export class CategoryDataModel extends BaseApp<any> {
   constructor() {
     super('category');
   }
 
-  public categoryParsed(apiResponse: ICategory[]) {
+  public formatter(apiResponse: ICategoryResponseServer[]) {
     if (!Array.isArray(apiResponse)) {
       throw new Error('Invalid list data format');
     }
-    let list: ICategory[] = [];
+    let list: ICategoryResponseServer[] = [];
     apiResponse.map((category) => {
       const obj = {
         ...category,
