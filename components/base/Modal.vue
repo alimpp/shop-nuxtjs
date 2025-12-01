@@ -132,6 +132,8 @@ const emit = defineEmits(['close']);
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .solt-content-style::-webkit-scrollbar {
