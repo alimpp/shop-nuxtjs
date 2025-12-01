@@ -14,7 +14,7 @@ export abstract class BaseApp<T extends { id: string | number }> {
     method: HttpMethod,
     body?: any,
     headers?: Record<string, string>
-  ): Promise<T> {
+  ): mise<T> {
     const api = useCustomFetch();
     try {
       const response = await api(url, {
