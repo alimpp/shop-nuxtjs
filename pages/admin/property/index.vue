@@ -62,23 +62,23 @@
 <script setup>
 const { width } = useScreenSize();
 
-import { propertyController } from "../../../controllers/Property";
+import { propertyController } from '../../../controllers/Property';
 
 definePageMeta({
-  middleware: "auth",
-  layout: "admin",
+  middleware: 'auth',
+  layout: 'admin',
 });
 
 const createPropertyState = ref(false);
 
-const PropertyStore = usePropertyStore();
+const propertyStore = usePropertyStore();
 
 const dataSource = computed(() => {
-  return PropertyStore.getList;
+  return propertyStore.getList;
 });
 
 const moduleState = computed(() => {
-  return PropertyStore.getModuleState;
+  return propertyStore.getModuleState;
 });
 
 const lastTargetPropertyData = ref({});

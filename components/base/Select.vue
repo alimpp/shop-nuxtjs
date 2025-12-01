@@ -25,50 +25,56 @@
     </span>
   </div>
 
-  <div class="glass fade-animation-1s" v-if="listState">
-    <div class="list-content px-15 py-15 base-card-dark">
-      <div class="w-100 flex align-center">
-        <div class="flex align-center w-50">
-          <BaseIcon name="qlementine-icons:select-all-24" />
-          <span class="f-s-14 f-w-600 px-5">
-            {{ title ? title : label }}
-          </span>
-        </div>
-        <div class="flex align-center justify-end w-50">
-          <BaseIcon
-            class="cursor-pointer"
-            @click="listState = !listState"
-            name="line-md:menu-to-close-alt-transition"
-          />
-        </div>
-      </div>
+  <BaseModal
+    :isOpen="listState"
+    :hasFooter="false"
+    title="Select"
+    :text="text"
+    @close="listState = false"
+  >
+    <template #icon>
+      <BaseIcon name="fluent:multiselect-24-regular" />
+    </template>
+
+    <template #content>
       <input
-        class="search-input color-light"
+        :class="{
+          'color-white': appTheme == 'dark',
+          'color-dark-1': appTheme == 'light',
+        }"
+        class="search-input"
         placeholder="Search"
         v-model="searchValue"
       />
       <BaseDivider />
       <div class="list">
         <div
-          class="fade-animation-1s cursor-pointer flex align-center f-s-14 f-w-600 py-12 px-10 mt-5 border-rounded bg-dark-1"
+          class="fade-animation-1s select-item-style cursor-pointer flex align-center py-10 px-8 mt-5 border-rounded"
           v-for="(item, index) in itemsDataSource"
           :key="index"
           @click="handleSelect(item.name)"
-          :class="{ 'bg-selected': item.name == modelValue }"
+          :class="{ 'selected-style': item.name == modelValue }"
         >
           <BaseIcon
-            class="mx-2"
-            name="ei:check"
+            name="solar:check-square-linear"
+            size="20"
             v-if="item.name == modelValue"
           />
-          {{ item.name }}
+          <BaseSubTitle class="px-5 pt-4">
+            {{ item.name }}
+          </BaseSubTitle>
         </div>
       </div>
-    </div>
-  </div>
+    </template>
+  </BaseModal>
 </template>
 
 <script setup>
+const applicationStore = useApplicationStore();
+const appTheme = computed(() => {
+  return applicationStore._state.theme;
+});
+
 const errorMessage = ref('');
 const emit = defineEmits(['update:access']);
 
@@ -83,6 +89,14 @@ const openList = () => {
 };
 
 const props = defineProps({
+  title: {
+    type: String,
+    default: 'Select item',
+  },
+  text: {
+    type: String,
+    default: 'Please select item',
+  },
   mutli: {
     type: Boolean,
     default: false,
@@ -93,11 +107,6 @@ const props = defineProps({
     required: false,
   },
   label: {
-    type: String,
-    default: '',
-    required: false,
-  },
-  title: {
     type: String,
     default: '',
     required: false,
@@ -192,7 +201,6 @@ input {
   outline: none;
   border: 1px solid #8481812f;
   border-radius: 6px;
-  color: black;
 }
 
 .disabled {
@@ -238,9 +246,12 @@ input {
 .list::-webkit-scrollbar {
   display: none;
 }
-
-.bg-selected {
-  background: #404040;
+.select-item-style {
+  border: 1px solid #8481812f;
+}
+.selected-style {
+  background: #b3a9a92c;
+  border: none;
 }
 .color-light {
   color: #fff;

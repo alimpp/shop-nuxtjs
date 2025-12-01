@@ -43,9 +43,9 @@
 </template>
 
 <script setup>
-import { propertyController } from "@/controllers/Property";
+import { propertyController } from '@/controllers/Property';
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(['close']);
 const props = defineProps({
   isOpen: {
     type: Boolean,
@@ -54,22 +54,20 @@ const props = defineProps({
 });
 
 const form = ref({
-  name: "",
+  name: '',
 });
 
 const close = () => {
   form.value = {
-    name: "",
+    name: '',
   };
   access.value = false;
   loading.value = false;
-  emit("close");
+  emit('close');
 };
 
 const access = ref(false);
 const loading = ref(false);
-
-
 
 const createProperty = async () => {
   loading.value = true;
