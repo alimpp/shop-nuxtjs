@@ -65,9 +65,12 @@
           <BaseTitle class="f-s-12 f-w-500 pt-5">Creator :</BaseTitle>
         </div>
         <div class="w-60 flex flex-column align-end">
-          <BaseSubTitle class="f-s-12 f-w-500 color-primary-1 pt-5">{{
-            item.submiter
-          }}</BaseSubTitle>
+          <BaseAvatar
+            width="30px"
+            height="30px"
+            :character="item.submiter[0]"
+            :name="item.submiter"
+          />
         </div>
       </div>
     </div>

@@ -79,12 +79,4 @@ const clickOnChat = (data) => {
     supportController.startChatPolling(data.chatId);
   }, 1000);
 };
-
-onMounted(async () => {
-  supportController.startPolling();
-});
-
-onUnmounted(async () => {
-  supportController.stopPolling();
-});
 </script>

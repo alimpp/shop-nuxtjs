@@ -24,13 +24,7 @@
           </div>
         </div>
         <div class="flex justify-end w-50 align-center">
-          <BaseIcon
-            class="cursor-pointer mx-5"
-            name="solar:bell-outline"
-            width="25"
-            height="25"
-            v-if="isOpen"
-          />
+          <NotificationCount :sideMenuState="!isOpen" :count="unReadCount" />
         </div>
       </div>
       <BaseDivider class="mt-10" />
@@ -83,6 +77,12 @@ const props = defineProps({
     default: 'true',
     type: Boolean,
   },
+});
+
+const supportStore = useSupportStore();
+
+const unReadCount = computed(() => {
+  return supportStore._state.unReadCount;
 });
 
 const chnageSideMenuState = () => {

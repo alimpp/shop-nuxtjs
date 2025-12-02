@@ -1,14 +1,14 @@
 <template>
   <div class="flex flex-column w-100" @click="openList">
-    <span class="pb-5 f-s-13 f-w-600" :class="{ 'color-danger': errorMessage }">
+    <BaseLabel :class="{ 'color-danger': errorMessage }">
       {{ label }}
-    </span>
+    </BaseLabel>
     <input
       :style="{
         height: `${height}`,
         width: `${width}`,
       }"
-      :value="modelValue"
+      :value="displayValue"
       @input="$emit('update:modelValue', $event.target.value)"
       :type="type"
       :class="{
@@ -48,17 +48,18 @@
       />
       <BaseDivider />
       <div class="list">
+        <!-- تغییر در اینجا: ارسال کل شیء به handleSelect -->
         <div
           class="fade-animation-1s select-item-style cursor-pointer flex align-center py-10 px-8 mt-5 border-rounded"
           v-for="(item, index) in itemsDataSource"
           :key="index"
-          @click="handleSelect(item.name)"
-          :class="{ 'selected-style': item.name == modelValue }"
+          @click="handleSelect(item)"
+          :class="{ 'selected-style': isSelected(item) }"
         >
           <BaseIcon
             name="solar:check-square-linear"
             size="20"
-            v-if="item.name == modelValue"
+            v-if="isSelected(item)"
           />
           <BaseSubTitle class="px-5 pt-4">
             {{ item.name }}
@@ -117,7 +118,7 @@ const props = defineProps({
     required: false,
   },
   modelValue: {
-    type: String,
+    type: [String, Object],
     default: '',
     required: false,
   },
@@ -157,12 +158,32 @@ const props = defineProps({
   },
 });
 
+const displayValue = computed(() => {
+  if (typeof props.modelValue === 'string') {
+    return props.modelValue;
+  } else if (props.modelValue && typeof props.modelValue === 'object') {
+    return props.modelValue.name || '';
+  }
+  return '';
+});
+
+const isSelected = (item) => {
+  if (typeof props.modelValue === 'string') {
+    return item.name === props.modelValue;
+  } else if (props.modelValue && typeof props.modelValue === 'object') {
+    return item.name === props.modelValue.name;
+  }
+  return false;
+};
+
 watch(
   () => props.modelValue,
   (nVal, oval) => {
     if (props.validate) {
       if (props.rules == 'required') {
-        if (!props.modelValue) {
+        const hasValue =
+          typeof nVal === 'string' ? !!nVal : nVal && !!nVal.name;
+        if (!hasValue) {
           access.value = false;
           errorMessage.value = 'Field is required';
         } else {

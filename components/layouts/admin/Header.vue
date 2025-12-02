@@ -24,26 +24,10 @@
           height="25"
           v-if="route.path != '/admin/settings'"
         />
-        <div
-          class="flex"
-          :class="{ 'mx-5': unReadCount != 0 }"
-          style="position: relative"
-        >
-          <BaseIcon
-            class="cursor-pointer mx-5"
-            name="solar:bell-outline"
-            width="25"
-            height="25"
-            v-if="!sideMenuState"
-          />
-          <div
-            v-if="unReadCount != 0"
-            style="position: absolute; z-index: 100; top: 10; left: 20px"
-            class="f-s-12 bg-danger-3 flex align-center justify-center w-20-px h-20-px border-circle"
-          >
-            {{ unReadCount }}
-          </div>
-        </div>
+        <NotificationCount
+          :sideMenuState="sideMenuState"
+          :count="unReadCount"
+        />
         <BaseAvatar
           v-if="!sideMenuState"
           width="45px"
@@ -65,12 +49,6 @@ const props = defineProps({ sideMenuState: { default: false } });
 
 const settingModal = ref(false);
 
-const supportStore = useSupportStore();
-
-const unReadCount = computed(() => {
-  return supportStore._state.unReadCount;
-});
-
 const applicationStore = useApplicationStore();
 const appTheme = computed(() => {
   return applicationStore._state.theme;
@@ -80,6 +58,12 @@ const adminStore = useAdminStore();
 
 const admin = computed(() => {
   return adminStore.getAdmin;
+});
+
+const supportStore = useSupportStore();
+
+const unReadCount = computed(() => {
+  return supportStore._state.unReadCount;
 });
 
 const emit = defineEmits(['chnageSideMenuState']);
