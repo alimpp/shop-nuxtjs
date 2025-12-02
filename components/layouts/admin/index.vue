@@ -27,6 +27,8 @@
 </template>
 
 <script setup>
+import { supportController } from '~/controllers/Support';
+
 const sideMenuState = ref(true);
 const chnageSideMenuState = () => {
   sideMenuState.value = !sideMenuState.value;
@@ -35,6 +37,14 @@ const chnageSideMenuState = () => {
 const applicationStore = useApplicationStore();
 const appTheme = computed(() => {
   return applicationStore._state.theme;
+});
+
+onMounted(async () => {
+  supportController.startPolling();
+});
+
+onUnmounted(async () => {
+  supportController.stopPolling();
 });
 </script>
 

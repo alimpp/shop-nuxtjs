@@ -24,13 +24,7 @@
           </div>
         </div>
         <div class="flex justify-end w-50 align-center">
-          <BaseIcon
-            class="cursor-pointer mx-5"
-            name="solar:bell-outline"
-            width="25"
-            height="25"
-            v-if="isOpen"
-          />
+          <NotificationCount :sideMenuState="!isOpen" />
         </div>
       </div>
       <BaseDivider class="mt-10" />
