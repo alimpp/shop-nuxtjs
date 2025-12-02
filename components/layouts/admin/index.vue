@@ -22,7 +22,6 @@
         <NuxtPage />
       </div>
     </div>
-    <BasePageLoading />
   </div>
 </template>
 
