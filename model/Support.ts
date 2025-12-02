@@ -21,6 +21,10 @@ export class SupportDataModel extends BaseApp<any> {
       const dateFormt = formatDateTime(date);
       const obj = {
         ...key,
+        lastMessageContent:
+          key.lastMessageContent.length > 150
+            ? `${key.lastMessageContent.slice(0, 150)}...`
+            : key.lastMessageContent,
         lastMessageTime: dateFormt,
       };
       list.push(obj);
