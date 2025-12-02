@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="flex justify-end w-50 align-center">
-          <NotificationCount :sideMenuState="!isOpen" />
+          <NotificationCount :sideMenuState="!isOpen" :count="unReadCount" />
         </div>
       </div>
       <BaseDivider class="mt-10" />
@@ -77,6 +77,12 @@ const props = defineProps({
     default: 'true',
     type: Boolean,
   },
+});
+
+const supportStore = useSupportStore();
+
+const unReadCount = computed(() => {
+  return supportStore._state.unReadCount;
 });
 
 const chnageSideMenuState = () => {

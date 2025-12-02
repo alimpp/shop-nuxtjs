@@ -22,18 +22,7 @@
           width="25"
           height="25"
         />
-        <BaseIcon
-          @click="router.push('/notification')"
-          class="cursor-pointer mx-5"
-          name="solar:bell-broken"
-          width="25"
-          height="25"
-        />
-        <span
-          class="bg-danger-3 flex align-center justify-center w-30-px h-28-px border-circle pt-2 mb-20"
-          v-if="notificationCount != 0"
-          >{{ notificationCount }}</span
-        >
+        <NotificationCount :count="notificationCount" />
         <BaseIcon
           @click="router.push('/basket')"
           name="solar:bag-2-linear"

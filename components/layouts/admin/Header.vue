@@ -24,7 +24,10 @@
           height="25"
           v-if="route.path != '/admin/settings'"
         />
-        <NotificationCount :sideMenuState="sideMenuState" />
+        <NotificationCount
+          :sideMenuState="sideMenuState"
+          :count="unReadCount"
+        />
         <BaseAvatar
           v-if="!sideMenuState"
           width="45px"
@@ -55,6 +58,12 @@ const adminStore = useAdminStore();
 
 const admin = computed(() => {
   return adminStore.getAdmin;
+});
+
+const supportStore = useSupportStore();
+
+const unReadCount = computed(() => {
+  return supportStore._state.unReadCount;
 });
 
 const emit = defineEmits(['chnageSideMenuState']);
