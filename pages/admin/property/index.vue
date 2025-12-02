@@ -11,7 +11,6 @@
         :padding="width < 650 ? '0 5px' : '0 10px'"
       />
     </BaseBreadCrumbs>
-
     <div class="flex flex-column mt-15">
       <BaseLoading
         text="Fetch List"
