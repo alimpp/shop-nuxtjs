@@ -43,7 +43,7 @@ export class PropertyValueController extends PropertyValueDataModel {
       }
       this.propertyValueStore.setModuleState('');
     } catch (err) {
-      const textError = 'Failed to fetch properties';
+      const textError = 'Failed to fetch Property Value';
       this.propertyValueStore.setModuleState(textError);
       error(textError);
       console.error(err);
@@ -58,7 +58,7 @@ export class PropertyValueController extends PropertyValueDataModel {
         this.list();
       });
     } catch (err) {
-      const textError = 'add PropertyValue failed';
+      const textError = 'add Property Value failed';
       error(textError);
       console.error(err);
       throw new Error(textError);
@@ -71,7 +71,7 @@ export class PropertyValueController extends PropertyValueDataModel {
       success(`PropertyValue update to ${body.name}`);
       this.list();
     } catch (err) {
-      const textError = 'edit PropertyValue failed';
+      const textError = 'edit Property Value failed';
       error(textError);
       error(textError);
       console.error(err);
@@ -84,14 +84,14 @@ export class PropertyValueController extends PropertyValueDataModel {
       this.appStore.setLoading(
         true,
         'Remove PropertyValue',
-        'Proccess for remove PropertyValue'
+        'Proccess for remove Property Value'
       );
       await this.Delete(`/api/propertty-value/${id}`);
       success('PropertyValue Removed');
       await this.list();
       this.appStore.resetLoading();
     } catch (err) {
-      const textError = 'PropertyValue removing failed';
+      const textError = 'Property Value removing failed';
       error(textError);
       console.error(err);
       throw new Error(textError);

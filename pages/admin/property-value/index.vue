@@ -15,13 +15,13 @@
     <div class="flex flex-column mt-15">
       <BaseLoading
         text="Fetch List"
-        sub="Fetching Property List Please Wait"
+        sub="Fetching Property Value List Please Wait"
         v-if="moduleState == 'loading'"
       />
       <BaseEmptyState
         v-if="moduleState == 'empty'"
         title="Empty List"
-        text="Property List Is Empty"
+        text="Property Value List Is Empty"
       />
       <div class="flex flex-wrap justify-center align-center w-100">
         <div
@@ -51,10 +51,10 @@
       :isOpen="removeConfrimState"
       @cancel="removeConfrimState = false"
       @confrim="removeProperty"
-      confrimText="Yes Remove Property"
+      confrimText="Yes Remove Property Value"
       :type="lastTargetPropertyData.type"
-      title="Remove Property?"
-      text="Are you sure you want to delete the Property?"
+      title="Remove Property Valuealue?"
+      text="Are you sure you want to delete the Property Value?"
     ></BaseConfrim>
   </div>
 </template>
@@ -75,6 +75,7 @@ const createPropertyValueState = ref(false);
 const propertyValueStore = usePropertyValueStore();
 
 const dataSource = computed(() => {
+  
   return propertyValueStore.getList;
 });
 

@@ -2,8 +2,8 @@
   <BaseModal
     @close="close"
     :isOpen="isOpen"
-    title="Property"
-    text="Create new Property"
+    title="Property Value"
+    text="Create new Property Value"
   >
     <template #icon>
       <BaseIcon name="line-md:plus" />
@@ -23,14 +23,14 @@
         min-length="3"
         max-length="15"
         class="w-100 mt-5"
-        placeholder="Enter Property name"
-        label="Property name"
+        placeholder="Enter Property Value name"
+        label="Property Value name"
       />
     </template>
     <template #footer>
       <div class="flex w-100 align-center py-5 px-5">
         <BaseButton
-          name="Create Property"
+          name="Create Property Value"
           @click="createProperty"
           icon="gg:check-o"
           :loading="loading"
@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import { propertyValueController } from '../../controllers/PropertyValue';
+import { propertyValueController } from "../../controllers/PropertyValue";
 
 const propertyStore = usePropertyStore();
 
@@ -57,7 +57,7 @@ const propertyList = computed(() => {
   return propertyStore.getList;
 });
 
-const emit = defineEmits(['close']);
+const emit = defineEmits(["close"]);
 const props = defineProps({
   isOpen: {
     type: Boolean,
@@ -66,17 +66,17 @@ const props = defineProps({
 });
 
 const form = ref({
-  name: '',
+  name: "",
   propertyId: null,
 });
 
 const close = () => {
   form.value = {
-    name: '',
+    name: "",
   };
   access.value = false;
   loading.value = false;
-  emit('close');
+  emit("close");
 };
 
 const access = ref(false);

@@ -11,7 +11,7 @@
               "
             >
               <BaseIcon name="solar:pen-broken" size="20" />
-              <span class="f-s-12 f-w-500 px-5">Update Property</span>
+              <span class="f-s-12 f-w-500 px-5">Update Property Value</span>
             </div>
             <div
               class="flex align-center color-danger-3 mt-10 cursor-pointer"
@@ -21,7 +21,7 @@
               "
             >
               <BaseIcon name="solar:trash-bin-trash-linear" size="20" />
-              <span class="f-s-12 f-w-500 px-5">Remove Property</span>
+              <span class="f-s-12 f-w-500 px-5">Remove Property Value</span>
             </div>
           </BaseDropMenu>
         </div>
@@ -49,7 +49,7 @@
 
       <div class="w-100 flex mt-5">
         <div class="w-40 flex flex-column align-start">
-          <BaseTitle class="pt-5">Property Name :</BaseTitle>
+          <BaseTitle class="pt-5">Property Value Name :</BaseTitle>
         </div>
         <div class="w-60 flex flex-column align-end">
           <BaseSubTitle class="color-primary-1 pt-5">{{
@@ -58,16 +58,16 @@
         </div>
       </div>
 
-      <div class="w-100 flex">
+      <!-- <div class="w-100 flex">
         <div class="w-40 flex flex-column align-start">
           <BaseTitle class="f-s-12 f-w-500 pt-5">Property</BaseTitle>
         </div>
         <div class="w-60 flex flex-column align-end">
           <BaseSubTitle class="f-s-12 f-w-500 color-primary-1 pt-5">{{
-            item.properttyId.name
+            item
           }}</BaseSubTitle>
         </div>
-      </div>
+      </div> -->
 
       <div class="w-100 flex">
         <div class="w-40 flex flex-column align-start">
