@@ -1,14 +1,14 @@
-import { BaseApp } from "../core/BaseApp";
-import { IPropertyValueResponseServer } from "../types/PropertyValue";
+import { BaseApp } from '../core/BaseApp';
+import { IPropertyValueResponseServer } from '../types/PropertyValue';
 
 export class PropertyValueDataModel extends BaseApp<any> {
   constructor() {
-    super("propertyValue");
+    super('propertyValue');
   }
 
   public formatter(apiResponse: IPropertyValueResponseServer[]) {
     if (!Array.isArray(apiResponse)) {
-      throw new Error("Invalid list data format");
+      throw new Error('Invalid list data format');
     }
     let list: IPropertyValueResponseServer[] = [];
     apiResponse.map((propertyValue) => {

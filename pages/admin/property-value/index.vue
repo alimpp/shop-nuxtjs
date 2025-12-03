@@ -62,6 +62,7 @@
 <script setup>
 const { width } = useScreenSize();
 
+import { propertyController } from '../../../controllers/Property';
 import { propertyValueController } from '../../../controllers/PropertyValue';
 
 definePageMeta({
@@ -101,5 +102,6 @@ const openEditPropertyModal = (data) => {
 
 onMounted(async () => {
   await propertyValueController.list();
+  await propertyController.list();
 });
 </script>

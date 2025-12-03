@@ -9,6 +9,12 @@
       <BaseIcon name="solar:pen-broken" />
     </template>
     <template #content>
+      <BaseSelect
+        label="Property"
+        placeholder="Select property"
+        :items="propertyList"
+        v-model="form.properttyId"
+      />
       <BaseInput
         :validate="true"
         v-model="props.form.name"
@@ -43,13 +49,19 @@
 </template>
 
 <script setup>
-import { propertyController } from "@/controllers/Property";
+import { propertyValueController } from '../../controllers/PropertyValue';
 
-const emit = defineEmits(["close"]);
+const propertyStore = usePropertyStore();
+
+const propertyList = computed(() => {
+  return propertyStore.getList;
+});
+
+const emit = defineEmits(['close']);
 const props = defineProps({
   type: {
     type: String,
-    default: "",
+    default: '',
   },
   form: {
     type: Object,
@@ -63,11 +75,12 @@ const props = defineProps({
 
 const close = () => {
   props.form = {
-    name: "",
+    name: '',
+    propertyId: null,
   };
   access.value = false;
   loading.value = false;
-  emit("close");
+  emit('close');
 };
 
 const access = ref(false);
@@ -77,8 +90,9 @@ const editProperty = async () => {
   loading.value = true;
   const bodyRequest = {
     name: props.form.name,
+    properttyId: props.form.properttyId.id,
   };
-  await propertyController.editProperty(props.form.id, bodyRequest);
+  await propertyValueController.editPropertyValue(props.form.id, bodyRequest);
   close();
 };
 

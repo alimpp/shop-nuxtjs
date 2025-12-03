@@ -9,6 +9,12 @@
       <BaseIcon name="line-md:plus" />
     </template>
     <template #content>
+      <BaseSelect
+        label="Property"
+        placeholder="Select property"
+        :items="propertyList"
+        v-model="form.propertyId"
+      />
       <BaseInput
         :validate="true"
         v-model="form.name"
@@ -43,7 +49,13 @@
 </template>
 
 <script setup>
-import { propertyController } from '@/controllers/Property';
+import { propertyValueController } from '../../controllers/PropertyValue';
+
+const propertyStore = usePropertyStore();
+
+const propertyList = computed(() => {
+  return propertyStore.getList;
+});
 
 const emit = defineEmits(['close']);
 const props = defineProps({
@@ -55,6 +67,7 @@ const props = defineProps({
 
 const form = ref({
   name: '',
+  propertyId: null,
 });
 
 const close = () => {
@@ -71,11 +84,14 @@ const loading = ref(false);
 
 const createProperty = async () => {
   loading.value = true;
-  await propertyController.createProperty(form.value);
+  await propertyValueController.createPropertyValue({
+    name: form.value.name,
+    properttyId: form.value.propertyId.id,
+  });
   close();
 };
 
 const disabled = computed(() => {
-  return !access.value || !form.value.name ? true : false;
+  return !access.value && form.value.name && form.value.propertyId;
 });
 </script>

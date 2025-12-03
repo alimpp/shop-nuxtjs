@@ -38,7 +38,16 @@
         </div>
       </div>
 
-      <div class="w-100 flex mt-10">
+      <div class="flex w-100 mt-10">
+        <BaseAvatar
+          width="35px"
+          height="35px"
+          :character="item.submiter[0]"
+          :name="item.submiter"
+        />
+      </div>
+
+      <div class="w-100 flex mt-5">
         <div class="w-40 flex flex-column align-start">
           <BaseTitle class="pt-5">Property Name :</BaseTitle>
         </div>
@@ -57,20 +66,6 @@
           <BaseSubTitle class="f-s-12 f-w-500 color-primary-1 pt-5">{{
             item.created_at
           }}</BaseSubTitle>
-        </div>
-      </div>
-
-      <div class="w-100 flex">
-        <div class="w-40 flex flex-column align-start">
-          <BaseTitle class="f-s-12 f-w-500 pt-5">Creator :</BaseTitle>
-        </div>
-        <div class="w-60 flex flex-column align-end">
-          <BaseAvatar
-            width="30px"
-            height="30px"
-            :character="item.submiter[0]"
-            :name="item.submiter"
-          />
         </div>
       </div>
     </div>

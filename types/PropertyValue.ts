@@ -1,9 +1,10 @@
+import { IPropertyResponseServer } from './Property';
 export interface IPropertyValueResponseServer {
   id: string;
   name: string;
   submiter: string;
   created_at: string;
-  propertyId: string;
+  properttyId: IPropertyResponseServer;
 }
 
 export interface IPropertyValueFromServer {

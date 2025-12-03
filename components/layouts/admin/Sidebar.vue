@@ -161,14 +161,10 @@ const items = ref([
 const navigate = (path) => {
   const osWidth = window.screen.width;
   router.push(path);
-  if (osWidth < 650) {
+  if (osWidth < 900) {
     emit('chnageSideMenuState');
   }
 };
-
-const appTheme = computed(() => {
-  return applicationStore._state.theme;
-});
 </script>
 
 <style scoped lang="scss">
@@ -191,7 +187,7 @@ const appTheme = computed(() => {
   padding: 0 10px;
   transition: 1s;
 }
-@media (max-width: 650px) {
+@media (max-width: 900px) {
   .container-sidebar {
     position: fixed;
     z-index: 100;
