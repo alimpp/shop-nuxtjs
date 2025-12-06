@@ -1,9 +1,9 @@
 <template>
   <span
     :class="{
-      'f-s-10': getDateSize == 'standard',
-      'f-s-12': getDateSize == 'semiBold',
-      'f-s-14': getDateSize == 'bold',
+      'f-s-9': getDateSize == 'standard',
+      'f-s-13': getDateSize == 'semiBold',
+      'f-s-15': getDateSize == 'bold',
     }"
   >
     <slot></slot>

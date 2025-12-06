@@ -12,8 +12,8 @@
         <BaseIconContent :name="icon.name" :bgClass="icon.bg" />
       </div>
       <div class="w-100 flex flex-column justify-center align-center">
-        <span class="f-s-16 f-w-600">{{ title }}</span>
-        <span class="f-s-14 f-w-500 color-gray-1">{{ text }}</span>
+        <BaseTitle>{{ title }}</BaseTitle>
+        <BaseSubTitle class="color-gray-1">{{ text }}</BaseSubTitle>
       </div>
       <div class="w-100 flex justify-center align-center py-20">
         <BaseButton

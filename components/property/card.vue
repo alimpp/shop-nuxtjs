@@ -38,12 +38,14 @@
         </div>
       </div>
 
-      <div class="flex w-100 mt-10">
+      <div class="flex align-center w-100 mt-10">
+        <BaseTitle class="pt-2">Created By</BaseTitle>
         <BaseAvatar
           width="35px"
           height="35px"
           :character="item.submiter[0]"
           :name="item.submiter"
+          class="mx-8"
         />
       </div>
 

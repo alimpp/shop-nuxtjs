@@ -53,7 +53,7 @@
       @confrim="removeProperty"
       confrimText="Yes Remove Property Value"
       :type="lastTargetPropertyData.type"
-      title="Remove Property Valuealue?"
+      title="Remove Property Value?"
       text="Are you sure you want to delete the Property Value?"
     ></BaseConfrim>
   </div>
@@ -75,7 +75,6 @@ const createPropertyValueState = ref(false);
 const propertyValueStore = usePropertyValueStore();
 
 const dataSource = computed(() => {
-  
   return propertyValueStore.getList;
 });
 
