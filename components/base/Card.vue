@@ -5,6 +5,7 @@
       {
         'base-card-dark': appTheme == 'dark',
         'base-card-light': appTheme == 'light',
+        'loading-style': loading,
       },
       px,
       py,
@@ -22,6 +23,10 @@ const appTheme = computed(() => {
 });
 
 const props = defineProps({
+  loading: {
+    type: Boolean,
+    default: true,
+  },
   bgClass: {
     type: String,
     default: '',
@@ -42,5 +47,19 @@ const props = defineProps({
 .base-card {
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   overflow: hidden;
+  transition: 1s;
+}
+
+.loading-style {
+  animation: 3s loading;
+}
+
+@keyframes loading {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 </style>

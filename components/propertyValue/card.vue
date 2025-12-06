@@ -1,5 +1,5 @@
 <template>
-  <BaseCard minHeight="150px">
+  <BaseCard minHeight="150px" :loading="item.loading">
     <div class="flex flex-column px-10 py-10">
       <div class="w-100 flex">
         <div class="w-40 flex align-start">

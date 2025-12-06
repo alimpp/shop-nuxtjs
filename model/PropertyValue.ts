@@ -12,9 +12,10 @@ export class PropertyValueDataModel extends BaseApp<any> {
     }
     let list: IPropertyValueResponseServer[] = [];
     apiResponse.map((propertyValue) => {
-      const obj = {
+      const obj: IPropertyValueResponseServer = {
         ...propertyValue,
         created_at: propertyValue.created_at.slice(0, 10),
+        loading: false,
       };
       list.push(obj);
     });

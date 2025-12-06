@@ -90,9 +90,23 @@ export class PropertyValueController extends PropertyValueDataModel {
         'Remove PropertyValue',
         'Proccess for remove Property Value'
       );
-      await this.Delete(`/api/propertty-value/${id}`);
+      const result = this.propertyValueStore._state.PropertyValueList.find(
+        (item: IPropertyValueResponseServer) => {
+          return item.id == id;
+        }
+      );
+      result.loading = true;
+      const response: { success: boolean; message: string } = await this.Delete(
+        `/api/propertty-value/${id}`
+      );
+      if (response?.success)
+        this.propertyValueStore._state.PropertyValueList =
+          this.propertyValueStore._state.PropertyValueList.filter(
+            (item: IPropertyValueResponseServer) => {
+              return item.id != id;
+            }
+          );
       success('PropertyValue Removed');
-      await this.list();
       this.appStore.resetLoading();
     } catch (err) {
       const textError = 'Property Value removing failed';

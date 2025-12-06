@@ -5,6 +5,7 @@ export interface IPropertyValueResponseServer {
   submiter: string;
   created_at: string;
   properttyId: IPropertyResponseServer;
+  loading?: false;
 }
 
 export interface IPropertyValueFromServer {
