@@ -22,8 +22,8 @@ export class SupportDataModel extends BaseApp<any> {
       const obj = {
         ...key,
         lastMessageContent:
-          key.lastMessageContent.length > 150
-            ? `${key.lastMessageContent.slice(0, 150)}...`
+          key.lastMessageContent.length > 50
+            ? `${key.lastMessageContent.slice(0, 50)}...`
             : key.lastMessageContent,
         lastMessageTime: dateFormt,
       };

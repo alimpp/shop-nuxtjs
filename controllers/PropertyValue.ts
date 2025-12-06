@@ -32,8 +32,9 @@ export class PropertyValueController extends PropertyValueDataModel {
     try {
       this.getCacheData();
       this.propertyValueStore.setModuleState('loading');
-      const serverResponse: IPropertyValueResponseServer[] =
-        await this.Get('/api/propertty-value/all');
+      const serverResponse: IPropertyValueResponseServer[] = await this.Get(
+        '/api/propertty-value/all'
+      );
       const parsedProperties = this.formatter(serverResponse);
       this.propertyValueStore.setList(parsedProperties);
       this.saveAllItems(parsedProperties);
@@ -65,7 +66,10 @@ export class PropertyValueController extends PropertyValueDataModel {
     }
   }
 
-  public async editPropertyValue(PropertyValueId: string, body: IPropertyValueFromServer) {
+  public async editPropertyValue(
+    PropertyValueId: string,
+    body: IPropertyValueFromServer
+  ) {
     try {
       await this.Patch(`/api/propertty-value/${PropertyValueId}`, body);
       success(`PropertyValue update to ${body.name}`);

@@ -14,8 +14,8 @@
         avatar="/image/avatar.jpg"
       />
       <div class="flex flex-column px-10 justify-center">
-        <span class="f-s-14 f-w-600">{{ info.name }}</span>
-        <span class="f-s-11 f-w-100 pt-5">{{ info.sub }}</span>
+        <BaseTitle>{{ info.name }}</BaseTitle>
+        <BaseSubTitle class="f-s-11 f-w-100 pt-5">{{ info.sub }}</BaseSubTitle>
       </div>
     </div>
     <div class="w-20 flex align-center justify-end px-10">

@@ -1,7 +1,7 @@
 <template>
   <div class="w-100 h-80-px flex align-center justify-center">
     <div
-      class="flex align-center w-96 h-55-px custom-border"
+      class="flex align-center w-97 h-55-px custom-border"
       :class="{
         'sidebar-header-bg': appTheme == 'dark',
         'bg-white': appTheme == 'light',
@@ -16,6 +16,10 @@
         />
       </div>
       <div class="w-50 flex justify-end px-10 align-center">
+        <NotificationCount
+          :sideMenuState="sideMenuState"
+          :count="unReadCount"
+        />
         <BaseIcon
           @click="settingModal = true"
           class="cursor-pointer mx-5"
@@ -23,10 +27,6 @@
           width="25"
           height="25"
           v-if="route.path != '/admin/settings'"
-        />
-        <NotificationCount
-          :sideMenuState="sideMenuState"
-          :count="unReadCount"
         />
         <BaseAvatar
           v-if="!sideMenuState"

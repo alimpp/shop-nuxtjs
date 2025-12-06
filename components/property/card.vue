@@ -38,7 +38,7 @@
         </div>
       </div>
 
-      <div class="flex align-center w-100 mt-10">
+      <div class="flex align-center w-100 mt-5">
         <BaseTitle class="pt-2">Created By</BaseTitle>
         <BaseAvatar
           width="35px"
@@ -60,14 +60,12 @@
         </div>
       </div>
 
-      <div class="w-100 flex">
+      <div class="w-100 flex mt-5">
         <div class="w-40 flex flex-column align-start">
           <BaseTitle class="f-s-12 f-w-500 pt-5">Created at :</BaseTitle>
         </div>
         <div class="w-60 flex flex-column align-end">
-          <BaseSubTitle class="f-s-12 f-w-500 color-primary-1 pt-5">{{
-            item.created_at
-          }}</BaseSubTitle>
+          <BaseDate class="color-gray-1 pt-5">{{ item.created_at }}</BaseDate>
         </div>
       </div>
     </div>

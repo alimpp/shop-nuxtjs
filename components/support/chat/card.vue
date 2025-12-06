@@ -7,14 +7,16 @@
       }"
       class="mx-10 mt-10 px-15 py-10 flex flex-column card"
     >
-      <span class="f-s-16 f-w-500" v-html="data.content"></span>
+      <BaseText v-html="data.content"></BaseText>
       <div class="flex justify-end mt-6">
         <span
           class="f-s-10 f-w-100 bg-danger-3 border-rounded px-5 mx-5"
           v-if="!data.seen && !data.itsMe"
           >New</span
         >
-        <span class="f-s-10 f-w-100 color-gray">{{ data.created_at }}</span>
+        <BaseDate class="f-s-10 f-w-100 color-gray">{{
+          data.created_at
+        }}</BaseDate>
       </div>
     </div>
   </div>
@@ -45,7 +47,7 @@ onMounted(() => {
   white-space: normal;
 }
 .its-me-style {
-  background: #89cff3;
+  background: #889bee;
   color: #cdf5fd;
   border-radius: 15px 2px 15px 15px;
 }
