@@ -14,9 +14,9 @@
       <span
         class="f-s-12"
         :class="{
-          'f-s-12': getBreadCrumbSize == 'standard',
-          'f-s-14': getBreadCrumbSize == 'semiBold',
-          'f-s-16': getBreadCrumbSize == 'bold',
+          'f-s-10': getBreadCrumbSize == 'standard',
+          'f-s-12': getBreadCrumbSize == 'semiBold',
+          'f-s-14': getBreadCrumbSize == 'bold',
         }"
         >{{ parent }}</span
       >
@@ -24,9 +24,9 @@
       <span
         class="f-s-12"
         :class="{
-          'f-s-12': getBreadCrumbSize == 'standard',
-          'f-s-14': getBreadCrumbSize == 'semiBold',
-          'f-s-16': getBreadCrumbSize == 'bold',
+          'f-s-10': getBreadCrumbSize == 'standard',
+          'f-s-12': getBreadCrumbSize == 'semiBold',
+          'f-s-14': getBreadCrumbSize == 'bold',
         }"
         >{{ child }}</span
       >
