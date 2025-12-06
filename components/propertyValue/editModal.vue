@@ -2,8 +2,8 @@
   <BaseModal
     @close="close"
     :isOpen="isOpen"
-    title="Property"
-    text="Create new Property"
+    title="Property Value"
+    text="Edit Property Value"
   >
     <template #icon>
       <BaseIcon name="solar:pen-broken" />
@@ -23,14 +23,14 @@
         min-length="3"
         max-length="15"
         class="w-100 mt-5"
-        placeholder="Enter Property name"
-        label="Property name"
+        placeholder="Enter Property Value name"
+        label="Property Value name"
       />
     </template>
     <template #footer>
       <div class="flex w-100 align-center py-5 px-5">
         <BaseButton
-          name="Update Property"
+          name="Update Property Value"
           @click="editProperty"
           icon="solar:pen-broken"
           :loading="loading"
