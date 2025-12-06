@@ -4,9 +4,9 @@
       v-if="title"
       class="color-primary-4"
       :class="{
-        'f-s-11': getDividerSize == 'standard',
-        'f-s-13': getDividerSize == 'semiBold',
-        'f-s-15': getDividerSize == 'bold',
+        'f-s-10': getDividerSize == 'standard',
+        'f-s-12': getDividerSize == 'semiBold',
+        'f-s-13': getDividerSize == 'bold',
       }"
       >{{ title }}</span
     >
