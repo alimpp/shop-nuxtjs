@@ -60,16 +60,16 @@
         </div>
       </div>
 
-      <div class="w-100 flex mt-5">
+      <!-- <div class="w-100 flex mt-5">
         <div class="w-40 flex flex-column align-start">
           <BaseTitle class="f-s-12 f-w-500 pt-5">Property :</BaseTitle>
         </div>
         <div class="w-60 flex flex-column align-end">
           <BaseSubTitle class="f-s-12 f-w-500 color-primary-1 pt-5">{{
-            item.properttyId.name
+            item
           }}</BaseSubTitle>
         </div>
-      </div>
+      </div> -->
 
       <div class="w-100 flex mt-5">
         <div class="w-40 flex flex-column align-start">

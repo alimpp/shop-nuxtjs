@@ -31,7 +31,7 @@
       <div class="flex w-100 align-center py-5 px-5">
         <BaseButton
           name="Update Property Value"
-          @click="editProperty"
+          @click="editPropertyValue"
           icon="solar:pen-broken"
           :loading="loading"
           :disabled="disabled"
@@ -86,13 +86,13 @@ const close = () => {
 const access = ref(false);
 const loading = ref(false);
 
-const editProperty = async () => {
+const editPropertyValue = async () => {
   loading.value = true;
   const bodyRequest = {
     name: props.form.name,
     properttyId: props.form.properttyId.id,
   };
-  await propertyValueController.editPropertyValue(props.form.id, bodyRequest);
+  await propertyValueController.editPropertyValueValue(props.form.id, bodyRequest);
   close();
 };
 
