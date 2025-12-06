@@ -3,7 +3,7 @@
     :class="{
       'f-s-9': getTextSize == 'standard',
       'f-s-11': getTextSize == 'semiBold',
-      'f-s-14': getTextSize == 'bold',
+      'f-s-13': getTextSize == 'bold',
     }"
   >
     <slot></slot>
