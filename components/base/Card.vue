@@ -5,7 +5,6 @@
       {
         'base-card-dark': appTheme == 'dark',
         'base-card-light': appTheme == 'light',
-        'loading-style': loading,
       },
       px,
       py,
@@ -13,6 +12,7 @@
     :style="{ 'min-height': minHeight }"
   >
     <slot></slot>
+    <div class="loader" v-if="loading"></div>
   </div>
 </template>
 
@@ -50,16 +50,30 @@ const props = defineProps({
   transition: 1s;
 }
 
-.loading-style {
-  animation: 3s loading;
+.loader {
+  height: 4px;
+  width: 100%;
+  --c: no-repeat linear-gradient(#3c8cf59f 0 0);
+  background: var(--c), var(--c), #d7b8fc41;
+  background-size: 60% 100%;
+  animation: loader 1.5s infinite;
+  border-radius: 10px;
 }
-
-@keyframes loading {
+@keyframes loader {
   0% {
-    opacity: 1;
+    background-position:
+      -150% 0,
+      -150% 0;
+  }
+  66% {
+    background-position:
+      250% 0,
+      -150% 0;
   }
   100% {
-    opacity: 0;
+    background-position:
+      250% 0,
+      250% 0;
   }
 }
 </style>
