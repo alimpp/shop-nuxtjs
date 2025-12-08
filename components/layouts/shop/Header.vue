@@ -34,8 +34,8 @@
       <BaseButton
         v-else
         name="Login"
-        bg="bg-secondary-3"
-        color="color-secondary-1"
+        bg="bg-primary-3"
+        color="color-primary-1"
         icon="solar:login-2-linear"
         class="mx-2"
         @click="navigateTo('/auth/request-otp')"

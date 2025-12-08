@@ -1,22 +1,38 @@
 <template>
-  <div class="container flex">
-    <BaseCarousel
-      :slides="slides"
-      :auto-slide="true"
-      :slide-interval="4000"
-      :show-indicators="true"
-      :show-navigation="true"
-    >
-      <template #slide="{ slide, index }">
-        <div class="custom-slide">
-          <img :src="slide.image" :alt="slide.alt" />
-        </div>
-      </template>
-    </BaseCarousel>
+  <div class="flex flex-column">
+    <div class="w-100">
+      <BaseCarousel
+        :slides="slides"
+        :auto-slide="true"
+        :slide-interval="4000"
+        :show-indicators="true"
+        :show-navigation="true"
+        :height="carouselHeight"
+        @updateHeight="updateHeight"
+      >
+        <template #slide="{ slide, index }">
+          <div class="custom-slide">
+            <img class="w-100" :src="slide.image" :alt="slide.alt" />
+          </div>
+        </template>
+      </BaseCarousel>
+    </div>
+    <div class="container">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur
+      laudantium minima, fugit impedit ea id molestiae inventore? Asperiores
+      quas, rem debitis possimus ratione harum esse neque, natus ab, voluptas
+      tempora.
+    </div>
   </div>
 </template>
 
 <script setup>
+const carouselHeight = ref('600px');
+
+const updateHeight = (height) => {
+  carouselHeight.value = height;
+};
+
 const slides = [
   {
     image:

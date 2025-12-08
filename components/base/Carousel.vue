@@ -4,7 +4,7 @@
     @mouseenter="pauseAutoSlide"
     @mouseleave="resumeAutoSlide"
   >
-    <div class="carousel-wrapper">
+    <div class="carousel-wrapper" :style="{ height: height }">
       <div
         class="carousel-slides"
         :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
@@ -61,31 +61,67 @@
   </div>
 </template>
 
-<script setup lang="ts">
-interface Slide {
-  image: string;
-  alt?: string;
-  title?: string;
-  description?: string;
-}
+<script setup>
+import { onMounted, onUnmounted, ref, watch } from 'vue';
 
-interface Props {
-  slides: Slide[];
-  autoSlide?: boolean;
-  slideInterval?: number;
-  showIndicators?: boolean;
-  showNavigation?: boolean;
-}
+const { width } = useScreenSize();
 
-const props = withDefaults(defineProps<Props>(), {
-  autoSlide: true,
-  slideInterval: 5000,
-  showIndicators: true,
-  showNavigation: true,
+watch(
+  () => width,
+  (oldVal, newVal) => {
+    if (newVal.value > 900) {
+      emit('updateHeight', props.height);
+    }
+    if (newVal.value < 900) {
+      emit('updateHeight', '500px');
+    }
+    if (newVal.value < 750) {
+      emit('updateHeight', '400px');
+    }
+    if (newVal.value < 650) {
+      emit('updateHeight', '350px');
+    }
+    if (newVal.value < 550) {
+      emit('updateHeight', '300px');
+    }
+    if (newVal.value < 450) {
+      emit('updateHeight', '200px');
+    }
+  },
+  { deep: true }
+);
+
+const emit = defineEmits(['updateHeight']);
+
+const props = defineProps({
+  slides: {
+    type: Array,
+    required: true,
+  },
+  autoSlide: {
+    type: Boolean,
+    default: true,
+  },
+  slideInterval: {
+    type: Number,
+    default: 5000,
+  },
+  showIndicators: {
+    type: Boolean,
+    default: true,
+  },
+  showNavigation: {
+    type: Boolean,
+    default: true,
+  },
+  height: {
+    type: String,
+    default: '600px',
+  },
 });
 
 const currentIndex = ref(0);
-const autoSlideTimer = ref<NodeJS.Timeout | null>(null);
+const autoSlideTimer = ref(null);
 const isAutoSlidePaused = ref(false);
 const touchStartX = ref(0);
 const touchEndX = ref(0);
@@ -99,7 +135,7 @@ const goToPrev = () => {
     currentIndex.value === 0 ? props.slides.length - 1 : currentIndex.value - 1;
 };
 
-const goToSlide = (index: number) => {
+const goToSlide = (index) => {
   currentIndex.value = index;
 };
 
@@ -126,12 +162,12 @@ const resumeAutoSlide = () => {
   startAutoSlide();
 };
 
-const handleTouchStart = (e: TouchEvent) => {
+const handleTouchStart = (e) => {
   touchStartX.value = e.touches[0].clientX;
   pauseAutoSlide();
 };
 
-const handleTouchMove = (e: TouchEvent) => {
+const handleTouchMove = (e) => {
   touchEndX.value = e.touches[0].clientX;
 };
 
@@ -183,13 +219,11 @@ watch(
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 8px;
 }
 
 .carousel-wrapper {
   position: relative;
   width: 100%;
-  height: 400px;
 }
 
 .carousel-slides {
