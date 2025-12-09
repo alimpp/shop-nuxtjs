@@ -1,5 +1,5 @@
 <template>
-  <BaseCard minHeight="150px">
+  <BaseCard minHeight="150px" :loading="item.loading">
     <div class="flex flex-column px-10 py-10">
       <div class="w-100 flex">
         <div class="w-40 flex align-start">
@@ -7,7 +7,7 @@
             <div
               class="flex align-center color-secondary-1 cursor-pointer"
               @click="
-                (emit('edit', { ...item, type: 'success' }), (dropMenu = false))
+                emit('edit', { ...item, type: 'success' }), (dropMenu = false)
               "
             >
               <BaseIcon name="solar:pen-broken" size="20" />
@@ -16,8 +16,8 @@
             <div
               class="flex align-center color-danger-3 mt-10 cursor-pointer"
               @click="
-                (emit('remove', { id: item.id, type: 'danger' }),
-                (dropMenu = false))
+                emit('remove', { id: item.id, type: 'danger' }),
+                  (dropMenu = false)
               "
             >
               <BaseIcon name="solar:trash-bin-trash-linear" size="20" />
@@ -31,8 +31,8 @@
             class="cursor-pointer"
             size="20"
             @click="
-              (emit('remove', { id: item.id, type: 'danger' }),
-              (dropMenu = false))
+              emit('remove', { id: item.id, type: 'danger' }),
+                (dropMenu = false)
             "
           />
         </div>
@@ -73,7 +73,7 @@
 </template>
 
 <script setup>
-const emit = defineEmits(['remove', 'edit']);
+const emit = defineEmits(["remove", "edit"]);
 const props = defineProps({
   item: {
     type: Object,

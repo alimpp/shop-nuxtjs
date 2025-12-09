@@ -25,7 +25,7 @@ const appTheme = computed(() => {
 const props = defineProps({
   loading: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   bgClass: {
     type: String,

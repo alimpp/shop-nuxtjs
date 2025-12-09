@@ -15,6 +15,7 @@ export class PropertyDataModel extends BaseApp<any> {
       const obj = {
         ...property,
         created_at: property.created_at.slice(0, 10),
+        loading: false,
       };
       list.push(obj);
     });

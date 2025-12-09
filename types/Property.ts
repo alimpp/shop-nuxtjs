@@ -3,6 +3,7 @@ export interface IPropertyResponseServer {
   name: string;
   submiter: string;
   created_at: string;
+  loading?: boolean;
 }
 
 export interface IPropertyFromServer {
