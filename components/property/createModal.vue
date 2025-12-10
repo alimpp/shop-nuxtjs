@@ -55,11 +55,13 @@ const props = defineProps({
 
 const form = ref({
   name: '',
+  trash: false,
 });
 
 const close = () => {
   form.value = {
     name: '',
+    trash: false,
   };
   access.value = false;
   loading.value = false;

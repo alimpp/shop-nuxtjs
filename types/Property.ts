@@ -3,8 +3,10 @@ export interface IPropertyResponseServer {
   name: string;
   submiter: string;
   created_at: string;
+  trash?: boolean;
 }
 
 export interface IPropertyFromServer {
   name: string;
+  trash?: boolean;
 }
