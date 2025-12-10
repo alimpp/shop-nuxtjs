@@ -29,9 +29,7 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-  responsive: {},
-  type: Boolean,
-  default: false,
+  responsive: { type: Boolean, default: false },
   bg: {
     type: String,
     default: 'bg-primary-gr',

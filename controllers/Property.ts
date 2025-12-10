@@ -67,12 +67,44 @@ export class PropertyController extends PropertyDataModel {
 
   public async editProperty(PropertyId: string, body: IPropertyFromServer) {
     try {
-      await this.Patch(`/api/propertty/${PropertyId}`, body);
+      const result = this.propertyStore._state.PropertyList.find(
+        (item: IPropertyResponseServer) => {
+          return item.id == PropertyId;
+        }
+      );
+      result.loading = true;
+
+      const response: { success: boolean; message: string } = await this.Patch(
+        `/api/propertty/${PropertyId}`,
+        body
+      );
       success(`Property update to ${body.name}`);
       this.list();
     } catch (err) {
       const textError = 'edit Property failed';
       error(textError);
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
+    }
+  }
+
+  public async trashProperty(PropertyId: string, trash: boolean) {
+    try {
+      const result = this.propertyStore._state.PropertyList.find(
+        (item: IPropertyResponseServer) => {
+          return item.id == PropertyId;
+        }
+      );
+      result.loading = true;
+      const response: { success: boolean; message: string } = await this.Patch(
+        `/api/propertty/trash/${PropertyId}`,
+        { trash }
+      );
+      success(`Property move to trash`);
+      this.list();
+    } catch (err) {
+      const textError = 'edit Property failed';
       error(textError);
       console.error(err);
       throw new Error(textError);
@@ -86,7 +118,15 @@ export class PropertyController extends PropertyDataModel {
         'Remove Property',
         'Proccess for remove Property'
       );
-      await this.Delete(`/api/propertty/${id}`);
+      const result = this.propertyStore._state.PropertyList.find(
+        (item: IPropertyResponseServer) => {
+          return item.id == id;
+        }
+      );
+      result.loading = true;
+      const response: { success: boolean; message: string } = await this.Delete(
+        `/api/propertty/${id}`
+      );
       success('Property Removed');
       await this.list();
       this.appStore.resetLoading();

@@ -1,14 +1,20 @@
 <template>
   <div class="flex flex-column">
     <BaseBreadCrumbs>
-      <BaseButton icon="solar:filter-linear" bg="bg-secondary-3" />
+      <BaseButton
+        icon="solar:trash-bin-minimalistic-broken"
+        bg="bg-primary-3"
+        color="color-primary-1"
+        iconSize="22"
+        padding="10px 7px"
+      />
       <BaseButton
         :responsive="width < 650 ? true : false"
         name="Create Property"
         icon="line-md:plus"
         class="mx-8"
         @click="createPropertyState = true"
-        :padding="width < 650 ? '0 5px' : '0 10px'"
+        :padding="width < 650 ? '10px 9px' : '0 10px'"
       />
     </BaseBreadCrumbs>
     <div class="flex flex-column mt-15">
@@ -30,7 +36,7 @@
         >
           <PropertyCard
             :item="item"
-            @remove="openRemoveConfrim"
+            @trash="openRemoveConfrim"
             @edit="openEditPropertyModal"
           />
         </div>
@@ -49,11 +55,11 @@
     <BaseConfrim
       :isOpen="removeConfrimState"
       @cancel="removeConfrimState = false"
-      @confrim="removeProperty"
-      confrimText="Yes Remove Property"
+      @confrim="trashProperty"
+      confrimText="Yes Move To Trash"
       :type="lastTargetPropertyData.type"
-      title="Remove Property?"
-      text="Are you sure you want to delete the Property?"
+      title="Trash Property?"
+      text="Are you sure you want to trash the Property?"
     ></BaseConfrim>
   </div>
 </template>
@@ -87,9 +93,12 @@ const openRemoveConfrim = (data) => {
   lastTargetPropertyData.value = data;
   removeConfrimState.value = true;
 };
-const removeProperty = async () => {
+const trashProperty = async () => {
   removeConfrimState.value = false;
-  await propertyController.remove(lastTargetPropertyData?.value?.id);
+  await propertyController.trashProperty(
+    lastTargetPropertyData?.value?.id,
+    true
+  );
 };
 
 const editPropertyModalState = ref(false);

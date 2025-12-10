@@ -78,6 +78,7 @@ const editProperty = async () => {
   const bodyRequest = {
     name: props.form.name,
   };
+  emit("close");
   await propertyController.editProperty(props.form.id, bodyRequest);
   close();
 };

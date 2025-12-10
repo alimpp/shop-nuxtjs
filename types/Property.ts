@@ -4,6 +4,7 @@ export interface IPropertyResponseServer {
   submiter: string;
   created_at: string;
   trash?: boolean;
+  loading?: boolean;
 }
 
 export interface IPropertyFromServer {

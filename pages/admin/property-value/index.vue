@@ -1,14 +1,20 @@
 <template>
   <div class="flex flex-column">
     <BaseBreadCrumbs>
-      <BaseButton icon="solar:filter-linear" bg="bg-secondary-3" />
+      <BaseButton
+        icon="solar:trash-bin-minimalistic-broken"
+        bg="bg-primary-3"
+        color="color-primary-1"
+        iconSize="22"
+        padding="10px 7px"
+      />
       <BaseButton
         :responsive="width < 650 ? true : false"
         name="Create Property value"
         icon="line-md:plus"
         class="mx-8"
         @click="createPropertyValueState = true"
-        :padding="width < 650 ? '0 5px' : '0 10px'"
+        :padding="width < 650 ? '10px 9px' : '0 10px'"
       />
     </BaseBreadCrumbs>
 
