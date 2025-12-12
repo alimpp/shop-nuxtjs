@@ -7,6 +7,8 @@
         color="color-primary-1"
         iconSize="22"
         padding="10px 7px"
+        @click="getTrashList"
+        :loading="trashListLoading"
       />
       <BaseButton
         :responsive="width < 650 ? true : false"
@@ -42,6 +44,10 @@
         </div>
       </div>
     </div>
+    <PropertyTrashList
+      :isOpen="trashListState"
+      @close="trashListState = false"
+    />
     <PropertyCreateModal
       :isOpen="createPropertyState"
       @close="createPropertyState = false"
@@ -67,11 +73,11 @@
 <script setup>
 const { width } = useScreenSize();
 
-import { propertyController } from '../../../controllers/Property';
+import { propertyController } from "../../../controllers/Property";
 
 definePageMeta({
-  middleware: 'auth',
-  layout: 'admin',
+  middleware: "auth",
+  layout: "admin",
 });
 
 const createPropertyState = ref(false);
@@ -105,6 +111,15 @@ const editPropertyModalState = ref(false);
 const openEditPropertyModal = (data) => {
   lastTargetPropertyData.value = data;
   editPropertyModalState.value = true;
+};
+
+const trashListState = ref(false);
+const trashListLoading = ref(false);
+const getTrashList = async () => {
+  trashListLoading.value = true;
+  await propertyController.trashList();
+  trashListLoading.value = false;
+  trashListState.value = true;
 };
 
 onMounted(async () => {

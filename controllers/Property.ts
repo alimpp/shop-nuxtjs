@@ -1,8 +1,8 @@
-import { PropertyDataModel } from '../model/Property';
+import { PropertyDataModel } from "../model/Property";
 import {
   IPropertyFromServer,
   IPropertyResponseServer,
-} from '../types/Property';
+} from "../types/Property";
 
 const { success, error } = useToast();
 
@@ -21,7 +21,7 @@ export class PropertyController extends PropertyDataModel {
         this.propertyStore.setList(cacheData);
       }
     } catch (err) {
-      const textError = 'Property data caching failed';
+      const textError = "Property data caching failed";
       error(textError);
       console.error(err);
       throw new Error(textError);
@@ -31,20 +31,36 @@ export class PropertyController extends PropertyDataModel {
   public async list() {
     try {
       this.getCacheData();
-      this.propertyStore.setModuleState('loading');
-      const serverResponse: IPropertyResponseServer[] =
-        await this.Get('/api/propertty/all');
+      this.propertyStore.setModuleState("loading");
+      const serverResponse: IPropertyResponseServer[] = await this.Get(
+        "/api/propertty/all"
+      );
       const parsedProperties = this.formatter(serverResponse);
       this.propertyStore.setList(parsedProperties);
       this.saveAllItems(parsedProperties);
       if (this.propertyStore.getList.length === 0) {
-        this.propertyStore.setModuleState('empty');
+        this.propertyStore.setModuleState("empty");
         return;
       }
-      this.propertyStore.setModuleState('');
+      this.propertyStore.setModuleState("");
     } catch (err) {
-      const textError = 'Failed to fetch properties';
+      const textError = "Failed to fetch properties";
       this.propertyStore.setModuleState(textError);
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
+    }
+  }
+
+  public async trashList() {
+    try {
+      const serverResponse: IPropertyResponseServer[] = await this.Get(
+        "/api/propertty/trash"
+      );
+      const parsedProperties = this.formatter(serverResponse);
+      this.propertyStore._state.trashList = parsedProperties;
+    } catch (err) {
+      const textError = "Failed to fetch trash properties";
       error(textError);
       console.error(err);
       throw new Error(textError);
@@ -53,12 +69,12 @@ export class PropertyController extends PropertyDataModel {
 
   public async createProperty(body: IPropertyFromServer) {
     try {
-      await this.Post('/api/propertty/add', body).then((res) => {
+      await this.Post("/api/propertty/add", body).then((res) => {
         success(`Property ${body.name} added`);
         this.list();
       });
     } catch (err) {
-      const textError = 'add Property failed';
+      const textError = "add Property failed";
       error(textError);
       console.error(err);
       throw new Error(textError);
@@ -67,21 +83,21 @@ export class PropertyController extends PropertyDataModel {
 
   public async editProperty(PropertyId: string, body: IPropertyFromServer) {
     try {
-      const result = this.propertyStore._state.PropertyList.find(
+      const result = this.propertyStore._state.propertyList.find(
         (item: IPropertyResponseServer) => {
           return item.id == PropertyId;
         }
       );
       result.loading = true;
-
       const response: { success: boolean; message: string } = await this.Patch(
         `/api/propertty/${PropertyId}`,
         body
       );
+      if (response?.success) result.name = body.name;
       success(`Property update to ${body.name}`);
-      this.list();
+      result.loading = false;
     } catch (err) {
-      const textError = 'edit Property failed';
+      const textError = "edit Property failed";
       error(textError);
       error(textError);
       console.error(err);
@@ -91,7 +107,7 @@ export class PropertyController extends PropertyDataModel {
 
   public async trashProperty(PropertyId: string, trash: boolean) {
     try {
-      const result = this.propertyStore._state.PropertyList.find(
+      const result = this.propertyStore._state.propertyList.find(
         (item: IPropertyResponseServer) => {
           return item.id == PropertyId;
         }
@@ -101,10 +117,17 @@ export class PropertyController extends PropertyDataModel {
         `/api/propertty/trash/${PropertyId}`,
         { trash }
       );
+      if (response?.success)
+        this.propertyStore._state.propertyList =
+          this.propertyStore._state.propertyList.filter(
+            (item: IPropertyResponseServer) => {
+              return item?.id != PropertyId;
+            }
+          );
       success(`Property move to trash`);
-      this.list();
+      result.loading = false;
     } catch (err) {
-      const textError = 'edit Property failed';
+      const textError = "trash Property failed";
       error(textError);
       console.error(err);
       throw new Error(textError);
@@ -115,10 +138,10 @@ export class PropertyController extends PropertyDataModel {
     try {
       this.appStore.setLoading(
         true,
-        'Remove Property',
-        'Proccess for remove Property'
+        "Remove Property",
+        "Proccess for remove Property"
       );
-      const result = this.propertyStore._state.PropertyList.find(
+      const result = this.propertyStore._state.propertyList.find(
         (item: IPropertyResponseServer) => {
           return item.id == id;
         }
@@ -127,11 +150,11 @@ export class PropertyController extends PropertyDataModel {
       const response: { success: boolean; message: string } = await this.Delete(
         `/api/propertty/${id}`
       );
-      success('Property Removed');
+      success("Property Removed");
       await this.list();
       this.appStore.resetLoading();
     } catch (err) {
-      const textError = 'Property removing failed';
+      const textError = "Property removing failed";
       error(textError);
       console.error(err);
       throw new Error(textError);
