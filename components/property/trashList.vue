@@ -10,9 +10,22 @@
       <BaseIcon name="solar:trash-bin-trash-linear" />
     </template>
     <template #content>
-      {{ trashList }}
+      <div class="flex flex-wrap justify-center align-center w-100">
+        <div class="w-385-px mt-10 mx-10" v-for="item in trashList">
+          <PropertyTrashCard :item="item" @remove="openRemoveConfrim" />
+        </div>
+      </div>
     </template>
   </BaseModal>
+  <BaseConfrim
+    :isOpen="removeConfrimState"
+    @cancel="removeConfrimState = false"
+    @confrim="trashProperty"
+    confrimText="Yes Move To the Property"
+    :type="lastTargetPropertyData.type"
+    title="Restore the Property?"
+    text="Are you sure you want to Restore the Property?"
+  ></BaseConfrim>
 </template>
 
 <script setup>
@@ -31,6 +44,22 @@ const props = defineProps({
     default: false,
   },
 });
+
+const lastTargetPropertyData = ref({});
+
+const removeConfrimState = ref(false);
+const openRemoveConfrim = (data) => {
+  lastTargetPropertyData.value = data;
+  removeConfrimState.value = true;
+};
+
+const trashProperty = async () => {
+  removeConfrimState.value = false;
+  await propertyController.restoreProperty(
+    lastTargetPropertyData?.value?.id,
+    false
+  );
+};
 
 const close = () => {
   emit("close");
