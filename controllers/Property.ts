@@ -142,18 +142,19 @@ export class PropertyController extends PropertyDataModel {
         }
       );
       result.loading = true;
-
       result.trash = false;
-      this.propertyStore._state.trashList =
-        this.propertyStore._state.trashList.filter(
-          (item: IPropertyResponseServer) => {
-            return item?.id != PropertyId;
-          }
-        );
-
+      const response: { success: boolean; message: string } = await this.Patch(
+        `/api/propertty/trash/${PropertyId}`,
+        { trash }
+      );
+      if (response?.success)
+        this.propertyStore._state.trashList =
+          this.propertyStore._state.trashList.filter(
+            (item: IPropertyResponseServer) => {
+              return item?.id != PropertyId;
+            }
+          );
       this.propertyStore._state.propertyList.push(result);
-
-      console.log(result);
 
       success(`Property Restored`);
       result.loading = false;
