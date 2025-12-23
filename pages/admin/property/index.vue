@@ -122,11 +122,7 @@ const getTrashList = async () => {
   trashListState.value = true;
 };
 
-const route = useRoute();
-const routeHistory = useRouteHistoryStore();
-
 onMounted(async () => {
-  routeHistory.addHistory(route.path);
   await propertyController.list();
 });
 </script>

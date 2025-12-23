@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import { propertyValueController } from "../../controllers/PropertyValue";
+import { propertyValueController } from '../../controllers/PropertyValue';
 
 const propertyStore = usePropertyStore();
 
@@ -57,7 +57,7 @@ const propertyList = computed(() => {
   return propertyStore.getList;
 });
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(['close']);
 const props = defineProps({
   isOpen: {
     type: Boolean,
@@ -66,17 +66,17 @@ const props = defineProps({
 });
 
 const form = ref({
-  name: "",
+  name: '',
   propertyId: null,
 });
 
 const close = () => {
   form.value = {
-    name: "",
+    name: '',
   };
   access.value = false;
   loading.value = false;
-  emit("close");
+  emit('close');
 };
 
 const access = ref(false);
@@ -87,6 +87,7 @@ const createProperty = async () => {
   await propertyValueController.createPropertyValue({
     name: form.value.name,
     properttyId: form.value.propertyId.id,
+    trash: false,
   });
   close();
 };

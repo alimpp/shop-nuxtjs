@@ -32,11 +32,4 @@ const tabs = [
     icon: 'solar:circle-top-down-linear',
   },
 ];
-
-const route = useRoute();
-const routeHistory = useRouteHistoryStore();
-
-onMounted(() => {
-  routeHistory.addHistory(route.path);
-});
 </script>

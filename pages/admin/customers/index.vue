@@ -31,11 +31,7 @@ const tabs = [
   },
 ];
 
-const route = useRoute();
-const routeHistory = useRouteHistoryStore();
-
 onMounted(async () => {
-  routeHistory.addHistory(route.path);
   await customersController.customersList();
 });
 </script>

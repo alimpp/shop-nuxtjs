@@ -46,11 +46,4 @@ const tabs = [
     icon: 'hugeicons:service',
   },
 ];
-
-const route = useRoute();
-const routeHistory = useRouteHistoryStore();
-
-onMounted(() => {
-  routeHistory.addHistory(route.path);
-});
 </script>
