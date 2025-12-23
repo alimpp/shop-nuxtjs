@@ -1,5 +1,5 @@
 <template>
-  <div class="horizontal-scroll">
+  <div class="horizontal-scroll" v-if="dataSource.length > 1">
     <div
       class="custom-style px-10 mx-2 h-30-px flex align-center custom-radius cursor-pointer"
       :class="{
@@ -35,6 +35,7 @@ const dataSource = computed(() => {
 .custom-style {
   border: 1px solid var(--secondary1-);
   color: var(--secondary1-);
+  transition: 1s;
 }
 
 .horizontal-scroll {

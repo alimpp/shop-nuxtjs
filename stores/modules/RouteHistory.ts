@@ -48,7 +48,7 @@ export class RouteHistoryStore extends BaseStore<IRouteHistoryState> {
       return item.path == history?.path;
     });
     if (target) return;
-    else this._state.routeHistory.push(history);
+    else this._state.routeHistory.unshift(history);
   }
 
   removeHistory(path: string) {
