@@ -19,6 +19,7 @@
         @chnageSideMenuState="chnageSideMenuState"
       />
       <div class="router-content overflow-hidden">
+        <RouteHistory class="mb-15" />
         <NuxtPage />
       </div>
     </div>

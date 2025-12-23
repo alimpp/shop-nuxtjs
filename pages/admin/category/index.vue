@@ -99,7 +99,11 @@ const openEditCategoryModal = (data) => {
   editCategoryModalState.value = true;
 };
 
+const route = useRoute();
+const routeHistory = useRouteHistoryStore();
+
 onMounted(async () => {
+  routeHistory.addHistory(route.path);
   await categoryController.list();
 });
 </script>

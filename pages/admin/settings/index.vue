@@ -10,4 +10,11 @@ definePageMeta({
   middleware: 'auth',
   layout: 'admin',
 });
+
+const route = useRoute();
+const routeHistory = useRouteHistoryStore();
+
+onMounted(() => {
+  routeHistory.addHistory(route.path);
+});
 </script>

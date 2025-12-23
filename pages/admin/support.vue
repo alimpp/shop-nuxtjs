@@ -79,4 +79,11 @@ const clickOnChat = (data) => {
     supportController.startChatPolling(data.chatId);
   }, 1000);
 };
+
+const route = useRoute();
+const routeHistory = useRouteHistoryStore();
+
+onMounted(() => {
+  routeHistory.addHistory(route.path);
+});
 </script>

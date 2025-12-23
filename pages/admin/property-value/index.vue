@@ -106,7 +106,11 @@ const openEditPropertyModal = (data) => {
   editPropertyModalState.value = true;
 };
 
+const route = useRoute();
+const routeHistory = useRouteHistoryStore();
+
 onMounted(async () => {
+  routeHistory.addHistory(route.path);
   await propertyValueController.list();
   await propertyController.list();
 });
