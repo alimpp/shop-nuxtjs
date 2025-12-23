@@ -73,11 +73,11 @@
 <script setup>
 const { width } = useScreenSize();
 
-import { propertyController } from "../../../controllers/Property";
+import { propertyController } from '../../../controllers/Property';
 
 definePageMeta({
-  middleware: "auth",
-  layout: "admin",
+  middleware: 'auth',
+  layout: 'admin',
 });
 
 const createPropertyState = ref(false);

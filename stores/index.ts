@@ -2,10 +2,11 @@ import { AddressStore } from './modules/AddressStore';
 import { AdminStore } from './modules/AdminStore';
 import { ApplicationStore } from './modules/ApplicationStore';
 import { CategoryStore } from './modules/CategoryStore';
-import { PropertyStore } from './modules/PropertyStore';
-import { PropertyValueStore } from './modules/PropertyValueStore';
 import { CustomersStore } from './modules/CustomersStore';
 import { NotificationStore } from './modules/NotificationStore';
+import { PropertyStore } from './modules/PropertyStore';
+import { PropertyValueStore } from './modules/PropertyValueStore';
+import { RouteHistoryStore } from './modules/RouteHistory';
 import { SupportStore } from './modules/SupportStore';
 import { UserStore } from './modules/UserStore';
 
@@ -17,6 +18,7 @@ export const initializeStores = () => {
   NotificationStore.getInstance();
   AddressStore.getInstance();
   CustomersStore.getInstance();
+  RouteHistoryStore.getInstance();
 };
 
 initializeStores();
@@ -31,3 +33,4 @@ export const usePropertyStore = () => PropertyStore.getInstance();
 export const usePropertyValueStore = () => PropertyValueStore.getInstance();
 export const useAddressStore = () => AddressStore.getInstance();
 export const useCustomersStore = () => CustomersStore.getInstance();
+export const useRouteHistoryStore = () => RouteHistoryStore.getInstance();

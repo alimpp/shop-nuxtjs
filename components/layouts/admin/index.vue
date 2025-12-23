@@ -19,6 +19,7 @@
         @chnageSideMenuState="chnageSideMenuState"
       />
       <div class="router-content overflow-hidden">
+        <RouteHistory class="mb-15" />
         <NuxtPage />
       </div>
     </div>
@@ -37,6 +38,17 @@ const applicationStore = useApplicationStore();
 const appTheme = computed(() => {
   return applicationStore._state.theme;
 });
+
+const route = useRoute();
+const routeHistory = useRouteHistoryStore();
+
+watch(
+  () => route.path,
+  (newVal, oldVal) => {
+    routeHistory.addHistory(newVal);
+  },
+  { deep: true }
+);
 
 onMounted(async () => {
   supportController.startPolling();
