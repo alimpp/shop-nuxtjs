@@ -134,6 +134,38 @@ export class PropertyController extends PropertyDataModel {
     }
   }
 
+  public async restoreProperty(PropertyId: string, trash: boolean) {
+    try {
+      const result = this.propertyStore._state.trashList.find(
+        (item: IPropertyResponseServer) => {
+          return item.id == PropertyId;
+        }
+      );
+      result.loading = true;
+      result.trash = false;
+      const response: { success: boolean; message: string } = await this.Patch(
+        `/api/propertty/trash/${PropertyId}`,
+        { trash }
+      );
+      if (response?.success)
+        this.propertyStore._state.trashList =
+          this.propertyStore._state.trashList.filter(
+            (item: IPropertyResponseServer) => {
+              return item?.id != PropertyId;
+            }
+          );
+      this.propertyStore._state.propertyList.push(result);
+
+      success(`Property Restored`);
+      result.loading = false;
+    } catch (err) {
+      const textError = "restore Property failed";
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
+    }
+  }
+
   public async remove(id: string) {
     try {
       this.appStore.setLoading(
