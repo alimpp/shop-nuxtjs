@@ -3,7 +3,7 @@
     @close="close"
     :isOpen="isOpen"
     title="Trash List"
-    text="Property Trash list"
+    text="Property value Trash list"
     :hasFooter="false"
   >
     <template #icon>
@@ -12,7 +12,7 @@
     <template #content>
       <div class="flex flex-wrap justify-center align-center w-100">
         <div class="w-385-px mt-10 mx-10" v-for="item in trashList">
-          <PropertyTrashCard :item="item" @restore="openRestoreConfrim" />
+          <PropertyValueTrashCard :item="item" @restore="openRestoreConfrim" />
         </div>
       </div>
     </template>
@@ -20,21 +20,21 @@
   <BaseConfrim
     :isOpen="restoreConfrimState"
     @cancel="restoreConfrimState = false"
-    @confrim="restoreProperty"
-    confrimText="Yes Move To the Property"
-    :type="lastTargetPropertyData.type"
-    title="Restore the Property?"
-    text="Are you sure you want to Restore the Property?"
+    @confrim="trashProperty"
+    confrimText="Yes Move To the Property Value"
+    :type="lastTargetPropertyValueData.type"
+    title="Restore the Property value?"
+    text="Are you sure you want to Restore the Property value?"
   ></BaseConfrim>
 </template>
 
 <script setup>
-import { propertyController } from "@/controllers/Property";
+import { propertyValueController } from "@/controllers/PropertyValue";
 
-const propertyStore = usePropertyStore();
+const propertyValueStore = usePropertyValueStore();
 
 const trashList = computed(() => {
-  return propertyStore._state.trashList;
+  return propertyValueStore._state.trashList;
 });
 
 const emit = defineEmits(["close"]);
@@ -45,18 +45,18 @@ const props = defineProps({
   },
 });
 
-const lastTargetPropertyData = ref({});
+const lastTargetPropertyValueData = ref({});
 
 const restoreConfrimState = ref(false);
 const openRestoreConfrim = (data) => {
-  lastTargetPropertyData.value = data;
+  lastTargetPropertyValueData.value = data;
   restoreConfrimState.value = true;
 };
 
-const restoreProperty = async () => {
+const trashProperty = async () => {
   restoreConfrimState.value = false;
-  await propertyController.restoreProperty(
-    lastTargetPropertyData?.value?.id,
+  await propertyValueController.restorePropertyValue(
+    lastTargetPropertyValueData?.value?.id,
     false
   );
 };

@@ -16,12 +16,12 @@
             <div
               class="flex align-center color-danger-3 mt-10 cursor-pointer"
               @click="
-                (emit('remove', { id: item.id, type: 'danger' }),
+                (emit('trash', { id: item.id, type: 'danger' }),
                 (dropMenu = false))
               "
             >
               <BaseIcon name="solar:trash-bin-trash-linear" size="20" />
-              <span class="f-s-12 f-w-500 px-5">Remove Property Value</span>
+              <span class="f-s-12 f-w-500 px-5">Trash Property Value</span>
             </div>
           </BaseDropMenu>
         </div>

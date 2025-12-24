@@ -7,6 +7,8 @@
         color="color-primary-1"
         iconSize="22"
         padding="10px 7px"
+        @click="getTrashList"
+        :loading="trashListLoading"
       />
       <BaseButton
         :responsive="width < 650 ? true : false"
@@ -37,12 +39,16 @@
         >
           <PropertyValueCard
             :item="item"
-            @remove="openRemoveConfrim"
+            @trash="openRemoveConfrim"
             @edit="openEditPropertyModal"
           />
         </div>
       </div>
     </div>
+    <PropertyValueTrashList
+      :isOpen="trashListState"
+      @close="trashListState = false"
+    />
     <PropertyValueCreateModal
       :isOpen="createPropertyValueState"
       @close="createPropertyValueState = false"
@@ -56,11 +62,11 @@
     <BaseConfrim
       :isOpen="removeConfrimState"
       @cancel="removeConfrimState = false"
-      @confrim="removeProperty"
-      confrimText="Yes Remove Property Value"
+      @confrim="trashProperty"
+      confrimText="Yes Trash Property Value"
       :type="lastTargetPropertyData.type"
-      title="Remove Property Value?"
-      text="Are you sure you want to delete the Property Value?"
+      title="Trash Property Value?"
+      text="Are you sure you want to Trash the Property Value?"
     ></BaseConfrim>
   </div>
 </template>
@@ -68,12 +74,12 @@
 <script setup>
 const { width } = useScreenSize();
 
-import { propertyController } from '../../../controllers/Property';
-import { propertyValueController } from '../../../controllers/PropertyValue';
+import { propertyController } from "../../../controllers/Property";
+import { propertyValueController } from "../../../controllers/PropertyValue";
 
 definePageMeta({
-  middleware: 'auth',
-  layout: 'admin',
+  middleware: "auth",
+  layout: "admin",
 });
 
 const createPropertyValueState = ref(false);
@@ -95,15 +101,27 @@ const openRemoveConfrim = (data) => {
   lastTargetPropertyData.value = data;
   removeConfrimState.value = true;
 };
-const removeProperty = async () => {
+const trashProperty = async () => {
   removeConfrimState.value = false;
-  await propertyValueController.remove(lastTargetPropertyData?.value?.id);
+  await propertyValueController.trashPropertyValue(
+    lastTargetPropertyData?.value?.id,
+    true
+  );
 };
 
 const editPropertyModalState = ref(false);
 const openEditPropertyModal = (data) => {
   lastTargetPropertyData.value = data;
   editPropertyModalState.value = true;
+};
+
+const trashListState = ref(false);
+const trashListLoading = ref(false);
+const getTrashList = async () => {
+  trashListLoading.value = true;
+  await propertyValueController.trashList();
+  trashListLoading.value = false;
+  trashListState.value = true;
 };
 
 onMounted(async () => {

@@ -52,6 +52,21 @@ export class PropertyValueController extends PropertyValueDataModel {
     }
   }
 
+  public async trashList() {
+    try {
+      const serverResponse: IPropertyValueResponseServer[] = await this.Get(
+        "/api/propertty-value/trash"
+      );
+      const parsedProperties = this.formatter(serverResponse);
+      this.propertyValueStore._state.trashList = parsedProperties;
+    } catch (err) {
+      const textError = "Failed to fetch trash property values";
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
+    }
+  }
+
   public async createPropertyValue(body: IPropertyValueFromServer) {
     try {
       await this.Post("/api/propertty-value/add", body).then((res) => {
@@ -119,6 +134,68 @@ export class PropertyValueController extends PropertyValueDataModel {
       this.appStore.resetLoading();
     } catch (err) {
       const textError = "Property Value removing failed";
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
+    }
+  }
+
+  public async trashPropertyValue(PropertyValueId: string, trash: boolean) {
+    try {
+      const result = this.propertyValueStore._state.PropertyValueList.find(
+        (item: IPropertyValueResponseServer) => {
+          return item.id == PropertyValueId;
+        }
+      );
+      result.loading = true;
+      const response: { success: boolean; message: string } = await this.Patch(
+        `/api/propertty-value/trash/${PropertyValueId}`,
+        { trash }
+      );
+
+      if (response?.success)
+        this.propertyValueStore._state.PropertyValueList =
+          this.propertyValueStore._state.PropertyValueList.filter(
+            (item: IPropertyValueResponseServer) => {
+              return item?.id != PropertyValueId;
+            }
+          );
+      success(`Property value move to trash`);
+      result.loading = false;
+    } catch (err) {
+      const textError = "trash Property value failed";
+      error(textError);
+      console.error(err);
+      throw new Error(textError);
+    }
+  }
+
+  public async restorePropertyValue(PropertyValueId: string, trash: boolean) {
+    try {
+      const result = this.propertyValueStore._state.trashList.find(
+        (item: IPropertyValueResponseServer) => {
+          return item.id == PropertyValueId;
+        }
+      );
+      result.loading = true;
+      result.trash = false;
+      const response: { success: boolean; message: string } = await this.Patch(
+        `/api/propertty-value/trash/${PropertyValueId}`,
+        { trash }
+      );
+      if (response?.success)
+        this.propertyValueStore._state.trashList =
+          this.propertyValueStore._state.trashList.filter(
+            (item: IPropertyValueResponseServer) => {
+              return item?.id != PropertyValueId;
+            }
+          );
+      this.propertyValueStore._state.propertyValueList.push(result);
+
+      success(`Property value Restored`);
+      result.loading = false;
+    } catch (err) {
+      const textError = "restore Property value failed";
       error(textError);
       console.error(err);
       throw new Error(textError);

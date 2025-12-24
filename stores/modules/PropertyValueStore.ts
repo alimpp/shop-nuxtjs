@@ -1,10 +1,11 @@
-import { BaseStore } from '../../core/BaseStore';
-import { StoreManager } from '../../core/StoreManager';
+import { BaseStore } from "../../core/BaseStore";
+import { StoreManager } from "../../core/StoreManager";
 import { IPropertyValueResponseServer } from "../../types/PropertyValue";
 
 interface IPropertyValueState {
   PropertyValueList: IPropertyValueResponseServer[];
   moduleState: string;
+  trashList: IPropertyValueResponseServer[];
 }
 
 export class PropertyValueStore extends BaseStore<IPropertyValueState> {
@@ -21,6 +22,7 @@ export class PropertyValueStore extends BaseStore<IPropertyValueState> {
     super("PropertyValueList", {
       PropertyValueList: [],
       moduleState: "",
+      trashList: [],
     });
 
     StoreManager.register(this);

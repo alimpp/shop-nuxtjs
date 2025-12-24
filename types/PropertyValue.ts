@@ -6,9 +6,11 @@ export interface IPropertyValueResponseServer {
   created_at: string;
   properttyId: IPropertyResponseServer;
   loading?: boolean;
+  trash?: boolean;
 }
 
 export interface IPropertyValueFromServer {
   name: string;
   propertyId: string;
+  trash?: boolean;
 }
