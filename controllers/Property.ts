@@ -155,7 +155,6 @@ export class PropertyController extends PropertyDataModel {
             }
           );
       this.propertyStore._state.propertyList.push(result);
-
       success(`Property Restored`);
       result.loading = false;
     } catch (err) {
