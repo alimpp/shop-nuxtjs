@@ -12,7 +12,6 @@
       />
       <BaseButton
         :responsive="width < 650 ? true : false"
-        name="Create Property"
         icon="line-md:plus"
         class="mx-8"
         @click="createPropertyState = true"
@@ -73,11 +72,11 @@
 <script setup>
 const { width } = useScreenSize();
 
-import { propertyController } from '../../../controllers/Property';
+import { propertyController } from "../../../controllers/Property";
 
 definePageMeta({
-  middleware: 'auth',
-  layout: 'admin',
+  middleware: "auth",
+  layout: "admin",
 });
 
 const createPropertyState = ref(false);

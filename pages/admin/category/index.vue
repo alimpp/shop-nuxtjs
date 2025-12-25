@@ -4,7 +4,6 @@
       <BaseButton icon="solar:filter-linear" bg="bg-secondary-3" />
       <BaseButton
         :responsive="width < 650 ? true : false"
-        name="Create Category"
         icon="line-md:plus"
         class="mx-8"
         @click="createCategoryState = true"
@@ -62,11 +61,11 @@
 <script setup>
 const { width } = useScreenSize();
 
-import { categoryController } from '../../../controllers/Category';
+import { categoryController } from "../../../controllers/Category";
 
 definePageMeta({
-  middleware: 'auth',
-  layout: 'admin',
+  middleware: "auth",
+  layout: "admin",
 });
 
 const createCategoryState = ref(false);

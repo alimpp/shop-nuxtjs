@@ -7,7 +7,7 @@
             <div
               class="flex align-center color-secondary-1 cursor-pointer"
               @click="
-                (emit('edit', { ...item, type: 'success' }), (dropMenu = false))
+                emit('edit', { ...item, type: 'success' }), (dropMenu = false)
               "
             >
               <BaseIcon name="solar:pen-broken" size="20" />
@@ -16,8 +16,8 @@
             <div
               class="flex align-center color-danger-3 mt-10 cursor-pointer"
               @click="
-                (emit('trash', { id: item.id, type: 'danger' }),
-                (dropMenu = false))
+                emit('trash', { id: item.id, type: 'danger' }),
+                  (dropMenu = false)
               "
             >
               <BaseIcon name="solar:trash-bin-trash-linear" size="20" />
@@ -25,16 +25,9 @@
             </div>
           </BaseDropMenu>
         </div>
+
         <div class="w-60 flex flex-column align-end">
-          <BaseIcon
-            name="line-md:menu-to-close-alt-transition"
-            class="cursor-pointer"
-            size="20"
-            @click="
-              (emit('remove', { id: item.id, type: 'danger' }),
-              (dropMenu = false))
-            "
-          />
+          <!-- remove side -->
         </div>
       </div>
 
@@ -73,7 +66,7 @@
 </template>
 
 <script setup>
-const emit = defineEmits(['trash', 'edit']);
+const emit = defineEmits(["trash", "edit"]);
 const props = defineProps({
   item: {
     type: Object,

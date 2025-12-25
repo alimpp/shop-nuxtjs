@@ -9,19 +9,27 @@
     <template #icon>
       <BaseIcon name="solar:trash-bin-trash-linear" />
     </template>
+
     <template #content>
       <div class="flex flex-wrap justify-center align-center w-100">
-        <div class="w-385-px mt-10 mx-10" v-for="item in trashList">
-          <PropertyTrashCard :item="item" @restore="openRestoreConfrim" />
+        <BaseEmptyState
+          v-if="trashList.length == 0"
+          title="Empty List"
+          text="Trash List Is Empty"
+        />
+        <div class="w-385-px mt-10" v-for="item in trashList" v-else>
+          <PropertyTrashCard :item="item" @restore="openConfrim" />
         </div>
       </div>
     </template>
   </BaseModal>
+
   <BaseConfrim
-    :isOpen="restoreConfrimState"
-    @cancel="restoreConfrimState = false"
-    @confrim="restoreProperty"
+    :isOpen="confrimState"
+    @cancel="confrimState = false"
+    @confrim="trashProperty"
     confrimText="Yes Move To the Property"
+    icon="solar:refresh-bold"
     :type="lastTargetPropertyData.type"
     title="Restore the Property?"
     text="Are you sure you want to Restore the Property?"
@@ -47,14 +55,14 @@ const props = defineProps({
 
 const lastTargetPropertyData = ref({});
 
-const restoreConfrimState = ref(false);
-const openRestoreConfrim = (data) => {
+const confrimState = ref(false);
+const openConfrim = (data) => {
   lastTargetPropertyData.value = data;
-  restoreConfrimState.value = true;
+  confrimState.value = true;
 };
 
-const restoreProperty = async () => {
-  restoreConfrimState.value = false;
+const trashProperty = async () => {
+  confrimState.value = false;
   await propertyController.restoreProperty(
     lastTargetPropertyData?.value?.id,
     false
