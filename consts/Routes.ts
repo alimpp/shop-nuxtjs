@@ -38,7 +38,7 @@ export const routes = [
   {
     id: 7,
     name: 'Value',
-    path: '/admin/property-value',
+    path: '/admin/value',
     icon: 'solar:circle-top-down-linear',
   },
   {
