@@ -23,6 +23,7 @@
       :validate="true"
       v-model:access="access"
       v-model="form.password"
+      type="password"
       rules="length"
       min-length="8"
       max-length="15"
