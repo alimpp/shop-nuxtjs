@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-column w-100">
+  <div class="flex flex-column" style="position: relative">
     <BaseLabel :class="{ 'color-danger': errorMessage }">
       {{ label }}
     </BaseLabel>
@@ -10,7 +10,7 @@
       }"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
-      :type="type"
+      :type="inputType"
       :class="{
         error: errorMessage,
         disabled: disabled,
@@ -22,6 +22,16 @@
     <span v-if="errorMessage" class="color-danger-3 f-s-12 f-w-500 pt-5">
       {{ errorMessage }}
     </span>
+    <div
+      v-if="props.type === 'password'"
+      class="password-eye"
+      @click="togglePassword"
+    >
+      <BaseIcon
+        class="cursor-pointer"
+        :name="showPassword ? 'solar:eye-closed-linear' : 'solar:eye-linear'"
+      />
+    </div>
   </div>
 </template>
 
@@ -151,6 +161,19 @@ watch(
   },
   { deep: true }
 );
+
+const showPassword = ref(false);
+
+const inputType = computed(() => {
+  if (props.type === 'password') {
+    return showPassword.value ? 'text' : 'password';
+  }
+  return props.type;
+});
+
+const togglePassword = () => {
+  showPassword.value = !showPassword.value;
+};
 </script>
 
 <style scoped lang="scss">
@@ -169,5 +192,12 @@ input {
 .error {
   border: 2px solid #f50000;
   color: #f50000;
+}
+
+.password-eye {
+  position: absolute;
+  right: 8px;
+  margin-top: 30px;
+  z-index: 10;
 }
 </style>
