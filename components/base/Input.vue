@@ -197,7 +197,7 @@ input {
 .password-eye {
   position: absolute;
   right: 8px;
-  margin-top: 30px;
+  margin-top: 27px;
   z-index: 10;
 }
 </style>
