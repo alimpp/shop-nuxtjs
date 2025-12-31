@@ -1,10 +1,11 @@
-import { BaseStore } from '../../core/BaseStore';
-import { StoreManager } from '../../core/StoreManager';
-import { ICategoryResponseServer } from '../../types/Category';
+import { BaseStore } from "../../core/BaseStore";
+import { StoreManager } from "../../core/StoreManager";
+import { ICategoryResponseServer } from "../../types/Category";
 
 interface ICategoryState {
   categoryList: ICategoryResponseServer[];
   moduleState: string;
+  trashList: ICategoryResponseServer[];
 }
 
 export class CategoryStore extends BaseStore<ICategoryState> {
@@ -18,9 +19,10 @@ export class CategoryStore extends BaseStore<ICategoryState> {
   }
 
   private constructor() {
-    super('categoryList', {
+    super("categoryList", {
       categoryList: [],
-      moduleState: '',
+      moduleState: "",
+      trashList: [],
     });
 
     StoreManager.register(this);
@@ -44,6 +46,6 @@ export class CategoryStore extends BaseStore<ICategoryState> {
 
   public reset() {
     this._state.categoryList = [];
-    this._state.moduleState = '';
+    this._state.moduleState = "";
   }
 }

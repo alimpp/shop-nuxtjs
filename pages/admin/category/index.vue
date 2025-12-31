@@ -1,6 +1,16 @@
 <template>
   <div class="flex flex-column">
     <BaseBreadCrumbs>
+      <BaseButton
+        icon="solar:trash-bin-minimalistic-broken"
+        bg="bg-primary-3"
+        class="mx-8"
+        color="color-primary-1"
+        iconSize="22"
+        padding="10px 7px"
+        @click="getTrashList"
+        :loading="trashListLoading"
+      />
       <BaseButton icon="solar:filter-linear" bg="bg-secondary-3" />
       <BaseButton
         :responsive="width < 650 ? true : false"
@@ -30,12 +40,16 @@
         >
           <CategoryCard
             :item="item"
-            @remove="openRemoveConfrim"
+            @trash="openTrashConfirm"
             @edit="openEditCategoryModal"
           />
         </div>
       </div>
     </div>
+    <CategoryTrashList
+      :isOpen="trashListState"
+      @close="trashListState = false"
+    />
     <CategoryCreateModal
       :isOpen="createCategoryState"
       @close="createCategoryState = false"
@@ -47,9 +61,9 @@
       :form="lastTargetCategoryData"
     />
     <BaseConfrim
-      :isOpen="removeConfrimState"
-      @cancel="removeConfrimState = false"
-      @confrim="removeCategory"
+      :isOpen="trashConfirmState"
+      @cancel="trashConfirmState = false"
+      @confrim="trashCategory"
       confrimText="Yes Remove Category"
       :type="lastTargetCategoryData.type"
       title="Remove Category?"
@@ -82,20 +96,32 @@ const moduleState = computed(() => {
 
 const lastTargetCategoryData = ref({});
 
-const removeConfrimState = ref(false);
-const openRemoveConfrim = (data) => {
+const trashConfirmState = ref(false);
+const openTrashConfirm = (data) => {
   lastTargetCategoryData.value = data;
-  removeConfrimState.value = true;
+  trashConfirmState.value = true;
 };
-const removeCategory = async () => {
-  removeConfrimState.value = false;
-  await categoryController.remove(lastTargetCategoryData?.value?.id);
+const trashCategory = async () => {
+  trashConfirmState.value = false;
+  await categoryController.trashCategory(
+    lastTargetCategoryData?.value?.id,
+    true
+  );
 };
 
 const editCategoryModalState = ref(false);
 const openEditCategoryModal = (data) => {
   lastTargetCategoryData.value = data;
   editCategoryModalState.value = true;
+};
+
+const trashListState = ref(false);
+const trashListLoading = ref(false);
+const getTrashList = async () => {
+  trashListLoading.value = true;
+  await categoryController.trashList();
+  trashListLoading.value = false;
+  trashListState.value = true;
 };
 
 onMounted(async () => {

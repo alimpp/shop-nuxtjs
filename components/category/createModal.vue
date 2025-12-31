@@ -92,6 +92,8 @@ const form = ref({
   name: '',
   imageId: '',
   iconId: '',
+  trash: false,
+
 });
 const preView = ref({
   image: '',
