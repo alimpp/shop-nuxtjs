@@ -3,16 +3,12 @@
     <div
       class="content flex flex-column slid-right-animation-8 h-100-dvh"
       :class="{
-        'bg-app-dark': appTheme == 'dark',
-        'bg-app-light': appTheme == 'light',
         'w-100': width < 400,
         'w-400-px': width > 400,
       }"
     >
       <ChatHeader :info="info" :loading="loading" @close="emit('close')" />
-      <BaseDivider />
       <ChatContent :messages="messages" :loading="loading" @seen="seen" />
-      <BaseDivider />
       <ChatInput :sendState="sendState" @send="send" />
     </div>
   </div>
@@ -81,9 +77,9 @@ const { width } = useScreenSize();
 }
 
 .content {
+  background-image: url('../../public/image/chat-bg.jpg') !important;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: calc();
   overflow: hidden;
 }
 </style>

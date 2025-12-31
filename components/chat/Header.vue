@@ -1,11 +1,5 @@
 <template>
-  <div
-    class="w-100 h-10-dvh chat-header flex align-center"
-    :class="{
-      'bg-dark-1': appTheme == 'dark',
-      'bg-app-light': appTheme == 'light',
-    }"
-  >
+  <div class="w-100 h-10-dvh chat-header flex align-center">
     <div class="w-80 flex align-center px-10">
       <BaseAvatar
         width="50px"
@@ -47,3 +41,13 @@ const props = defineProps({
   },
 });
 </script>
+
+<style scoped>
+.chat-header {
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(9.4px);
+  color: #fff !important;
+}
+</style>

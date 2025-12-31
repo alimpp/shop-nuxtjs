@@ -1,18 +1,8 @@
 <template>
-  <div
-    class="chat-input w-100 h-10-dvh flex align-center"
-    :class="{
-      'bg-dark-1': appTheme == 'dark',
-      'bg-app-light': appTheme == 'light',
-    }"
-  >
+  <div class="chat-input w-100 h-10-dvh flex align-center">
     <textarea
-      placeholder="Enter message"
+      placeholder="Type message"
       class="w-340-px f-s-16 f-w-500"
-      :class="{
-        'color-dark-1': appTheme == 'white',
-        'color-white': appTheme == 'dark',
-      }"
       v-model="message"
     >
     </textarea>
@@ -70,12 +60,24 @@ const send = () => {
 </script>
 
 <style scoped>
+.chat-input {
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(9.4px);
+  color: #fff !important;
+}
+textarea::placeholder {
+  color: #fff;
+  opacity: 1; /* Important for Firefox */
+}
 textarea {
   background: none;
   border: none;
   outline: none;
   resize: none;
   padding-left: 15px;
+  color: #fff !important;
 }
 textarea::-webkit-scrollbar {
   display: none;
