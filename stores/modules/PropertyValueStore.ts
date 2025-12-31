@@ -3,7 +3,7 @@ import { StoreManager } from "../../core/StoreManager";
 import { IPropertyValueResponseServer } from "../../types/PropertyValue";
 
 interface IPropertyValueState {
-  PropertyValueList: IPropertyValueResponseServer[];
+  propertyValueList: IPropertyValueResponseServer[];
   moduleState: string;
   trashList: IPropertyValueResponseServer[];
 }
@@ -20,7 +20,7 @@ export class PropertyValueStore extends BaseStore<IPropertyValueState> {
 
   private constructor() {
     super("PropertyValueList", {
-      PropertyValueList: [],
+      propertyValueList: [],
       moduleState: "",
       trashList: [],
     });
@@ -37,15 +37,15 @@ export class PropertyValueStore extends BaseStore<IPropertyValueState> {
   }
 
   public setList(list: IPropertyValueResponseServer[]) {
-    this._state.PropertyValueList = list;
+    this._state.propertyValueList = list;
   }
 
   public get getList() {
-    return this._state.PropertyValueList;
+    return this._state.propertyValueList;
   }
 
   public reset() {
-    this._state.PropertyValueList = [];
+    this._state.propertyValueList = [];
     this._state.moduleState = "";
   }
 }

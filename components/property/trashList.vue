@@ -18,7 +18,7 @@
           text="Trash List Is Empty"
         />
         <div class="w-385-px mt-10" v-for="item in trashList" v-else>
-          <PropertyTrashCard :item="item" @restore="openConfrim" />
+          <PropertyTrashCard :item="item" @restore="openRestoreConfrim" />
         </div>
       </div>
     </template>
@@ -56,7 +56,7 @@ const props = defineProps({
 const lastTargetPropertyData = ref({});
 
 const confrimState = ref(false);
-const openConfrim = (data) => {
+const openRestoreConfrim = (data) => {
   lastTargetPropertyData.value = data;
   confrimState.value = true;
 };

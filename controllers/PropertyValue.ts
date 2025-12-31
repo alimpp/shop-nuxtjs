@@ -86,7 +86,7 @@ export class PropertyValueController extends PropertyValueDataModel {
     body: IPropertyValueFromServer
   ) {
     try {
-      const result = this.propertyValueStore._state.PropertyValueList.find(
+      const result = this.propertyValueStore._state.propertyValueList.find(
         (item: IPropertyValueResponseServer) => {
           return item.id == PropertyValueId;
         }
@@ -109,7 +109,7 @@ export class PropertyValueController extends PropertyValueDataModel {
 
   public async trashPropertyValue(PropertyValueId: string, trash: boolean) {
     try {
-      const result = this.propertyValueStore._state.PropertyValueList.find(
+      const result = this.propertyValueStore._state.propertyValueList.find(
         (item: IPropertyValueResponseServer) => {
           return item.id == PropertyValueId;
         }
@@ -121,8 +121,8 @@ export class PropertyValueController extends PropertyValueDataModel {
       );
 
       if (response?.success)
-        this.propertyValueStore._state.PropertyValueList =
-          this.propertyValueStore._state.PropertyValueList.filter(
+        this.propertyValueStore._state.propertyValueList =
+          this.propertyValueStore._state.propertyValueList.filter(
             (item: IPropertyValueResponseServer) => {
               return item?.id != PropertyValueId;
             }
@@ -158,7 +158,6 @@ export class PropertyValueController extends PropertyValueDataModel {
             }
           );
       this.propertyValueStore._state.propertyValueList.push(result);
-
       success(`Property value Restored`);
       result.loading = false;
     } catch (err) {
@@ -176,7 +175,7 @@ export class PropertyValueController extends PropertyValueDataModel {
         'Remove PropertyValue',
         'Proccess for remove Property Value'
       );
-      const result = this.propertyValueStore._state.PropertyValueList.find(
+      const result = this.propertyValueStore._state.propertyValueList.find(
         (item: IPropertyValueResponseServer) => {
           return item.id == id;
         }
@@ -186,8 +185,8 @@ export class PropertyValueController extends PropertyValueDataModel {
         `/api/propertty-value/${id}`
       );
       if (response?.success)
-        this.propertyValueStore._state.PropertyValueList =
-          this.propertyValueStore._state.PropertyValueList.filter(
+        this.propertyValueStore._state.propertyValueList =
+          this.propertyValueStore._state.propertyValueList.filter(
             (item: IPropertyValueResponseServer) => {
               return item.id != id;
             }

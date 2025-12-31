@@ -2,13 +2,19 @@
   <BaseCard minHeight="150px" :loading="item.loading">
     <div class="flex flex-column px-10 py-10">
       <div class="w-100 flex">
-        <div class="w-100 flex flex-column align-end">
-          <BaseIcon
-            name="line-md:menu-to-close-alt-transition"
-            class="cursor-pointer"
-            size="20"
-            @click="emit('restore', { id: item.id, type: 'danger' })"
-          />
+        <div class="w-40 flex flex-column align-atart">
+          <BaseDropMenu v-model:dropMenu="dropMenu">
+            <div
+              class="flex align-center color-secondary-1 cursor-pointer"
+              @click="
+                emit('restore', { ...item, type: 'success' }),
+                  (dropMenu = false)
+              "
+            >
+              <BaseIcon name="solar:refresh-bold" size="20" />
+              <span class="f-s-12 f-w-500 px-5">Restore Property</span>
+            </div>
+          </BaseDropMenu>
         </div>
       </div>
 
@@ -58,7 +64,7 @@
 </template>
 
 <script setup>
-const emit = defineEmits(['restore']);
+const emit = defineEmits(["restore"]);
 const props = defineProps({
   item: {
     type: Object,
