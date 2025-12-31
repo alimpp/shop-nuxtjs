@@ -35,11 +35,6 @@
 </template>
 
 <script setup>
-const applicationStore = useApplicationStore();
-const appTheme = computed(() => {
-  return applicationStore._state.theme;
-});
-
 const message = ref('');
 
 const emit = defineEmits(['send']);

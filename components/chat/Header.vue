@@ -23,11 +23,6 @@
 </template>
 
 <script setup>
-const applicationStore = useApplicationStore();
-const appTheme = computed(() => {
-  return applicationStore._state.theme;
-});
-
 const emit = defineEmits(['close']);
 
 const props = defineProps({
