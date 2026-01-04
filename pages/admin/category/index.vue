@@ -4,20 +4,18 @@
       <BaseButton
         icon="solar:trash-bin-minimalistic-broken"
         bg="bg-primary-3"
-        class="mx-8"
         color="color-primary-1"
         iconSize="22"
         padding="10px 7px"
         @click="getTrashList"
         :loading="trashListLoading"
       />
-      <BaseButton icon="solar:filter-linear" bg="bg-secondary-3" />
       <BaseButton
         :responsive="width < 650 ? true : false"
         icon="line-md:plus"
         class="mx-8"
         @click="createCategoryState = true"
-        :padding="width < 650 ? '0 5px' : '0 10px'"
+        :padding="width < 650 ? '0 9px' : '0 10px'"
       />
     </BaseBreadCrumbs>
 
@@ -64,10 +62,10 @@
       :isOpen="trashConfirmState"
       @cancel="trashConfirmState = false"
       @confrim="trashCategory"
-      confrimText="Yes Remove Category"
+      confrimText="Yes Trash Category"
       :type="lastTargetCategoryData.type"
-      title="Remove Category?"
-      text="Are you sure you want to delete the category?"
+      title="Trash Category?"
+      text="Are you sure you want to trash the category?"
     ></BaseConfrim>
   </div>
 </template>
@@ -75,11 +73,11 @@
 <script setup>
 const { width } = useScreenSize();
 
-import { categoryController } from "../../../controllers/Category";
+import { categoryController } from '../../../controllers/Category';
 
 definePageMeta({
-  middleware: "auth",
-  layout: "admin",
+  middleware: 'auth',
+  layout: 'admin',
 });
 
 const createCategoryState = ref(false);

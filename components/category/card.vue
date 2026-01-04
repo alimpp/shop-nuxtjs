@@ -1,5 +1,5 @@
 <template>
-  <BaseCard minHeight="290px">
+  <BaseCard minHeight="290px" :loading="item.loading">
     <div class="flex flex-column px-10 py-10">
       <div class="w-100 flex">
         <div class="w-40 flex align-start">
@@ -21,21 +21,11 @@
               "
             >
               <BaseIcon name="solar:trash-bin-trash-linear" size="20" />
-              <span class="f-s-12 f-w-500 px-5">Trash Category</span>
+              <span class="f-s-12 f-w-500 px-5">Move To Trash</span>
             </div>
           </BaseDropMenu>
         </div>
-        <div class="w-60 flex flex-column align-end">
-          <BaseIcon
-            name="line-md:menu-to-close-alt-transition"
-            class="cursor-pointer"
-            size="20"
-            @click="
-              (emit('remove', { id: item.id, type: 'danger' }),
-              (dropMenu = false))
-            "
-          />
-        </div>
+        <div class="w-60 flex flex-column align-end"></div>
       </div>
 
       <div class="w-100 flex mt-10">
@@ -82,7 +72,7 @@
           <img
             :src="item.preViewImage"
             alt="Cateory Image"
-            class="w-100-px border-rounded mt-5"
+            class="w-100-px border-rounded mt-5 h-60-px"
           />
         </div>
       </div>
@@ -95,7 +85,7 @@
           <img
             :src="item.preViewIcon"
             alt="Cateory Image"
-            class="w-100-px border-rounded mt-5"
+            class="w-100-px border-rounded mt-5 h-60-px"
           />
         </div>
       </div>

@@ -7,12 +7,12 @@
             <div
               class="flex align-center color-secondary-1 cursor-pointer"
               @click="
-                emit('restore', { ...item, type: 'success' }),
-                  (dropMenu = false)
+                (emit('restore', { ...item, type: 'success' }),
+                (dropMenu = false))
               "
             >
               <BaseIcon name="solar:refresh-bold" size="20" />
-              <span class="f-s-12 f-w-500 px-5">Restore Property</span>
+              <span class="f-s-12 f-w-500 px-5">Restore</span>
             </div>
           </BaseDropMenu>
         </div>
@@ -64,7 +64,7 @@
 </template>
 
 <script setup>
-const emit = defineEmits(["restore"]);
+const emit = defineEmits(['restore']);
 const props = defineProps({
   item: {
     type: Object,

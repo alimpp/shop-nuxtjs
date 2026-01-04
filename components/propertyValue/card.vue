@@ -11,7 +11,7 @@
               "
             >
               <BaseIcon name="solar:pen-broken" size="20" />
-              <span class="f-s-12 f-w-500 px-5">Update Property Value</span>
+              <span class="f-s-12 f-w-500 px-5">Update Value</span>
             </div>
             <div
               class="flex align-center color-danger-3 mt-10 cursor-pointer"
@@ -21,21 +21,11 @@
               "
             >
               <BaseIcon name="solar:trash-bin-trash-linear" size="20" />
-              <span class="f-s-12 f-w-500 px-5">Trash Property Value</span>
+              <span class="f-s-12 f-w-500 px-5">Move To Trash</span>
             </div>
           </BaseDropMenu>
         </div>
-        <div class="w-60 flex flex-column align-end">
-          <BaseIcon
-            name="line-md:menu-to-close-alt-transition"
-            class="cursor-pointer"
-            size="20"
-            @click="
-              (emit('remove', { id: item.id, type: 'danger' }),
-              (dropMenu = false))
-            "
-          />
-        </div>
+        <div class="w-60 flex flex-column align-end"></div>
       </div>
 
       <div class="flex align-center w-100 mt-5">

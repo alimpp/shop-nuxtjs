@@ -8,6 +8,7 @@ export interface ICategoryResponseServer {
   preViewImage: string;
   preViewIcon: string;
   trash?: boolean;
+  loading?: boolean;
 }
 
 export interface ICategoryFromServer {

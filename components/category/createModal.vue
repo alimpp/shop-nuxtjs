@@ -73,6 +73,7 @@ const close = () => {
     name: '',
     imageId: '',
     iconId: '',
+    trash: false,
   };
   preView.value = {
     image: '',
@@ -93,7 +94,6 @@ const form = ref({
   imageId: '',
   iconId: '',
   trash: false,
-
 });
 const preView = ref({
   image: '',
