@@ -3,7 +3,7 @@
     @close="close"
     :isOpen="isOpen"
     title="Trash List"
-    text="Property Trash list"
+    text="Category Trash list"
     :hasFooter="false"
   >
     <template #icon>
@@ -18,7 +18,7 @@
           text="Trash List Is Empty"
         />
         <div class="w-385-px mt-10" v-for="item in trashList" v-else>
-          <PropertyTrashCard :item="item" @restore="openRestoreConfrim" />
+          <CategoryTrashCard :item="item" @restore="openRestoreConfrim" />
         </div>
       </div>
     </template>
@@ -27,22 +27,22 @@
   <BaseConfrim
     :isOpen="confrimState"
     @cancel="confrimState = false"
-    @confrim="trashProperty"
-    confrimText="Yes Move To the Property"
+    @confrim="restoreCategory"
+    confrimText="Yes Move To the Category"
     icon="solar:refresh-bold"
-    :type="lastTargetPropertyData.type"
-    title="Restore the Property?"
-    text="Are you sure you want to Restore the Property?"
+    :type="lastTargetCategoryData.type"
+    title="Restore the Category?"
+    text="Are you sure you want to Restore the Category?"
   ></BaseConfrim>
 </template>
 
 <script setup>
-import { propertyController } from "@/controllers/Property";
+import { categoryController } from "@/controllers/Category";
 
-const propertyStore = usePropertyStore();
+const categoryStore = useCategoryStore();
 
 const trashList = computed(() => {
-  return propertyStore._state.trashList;
+  return categoryStore._state.trashList;
 });
 
 const emit = defineEmits(["close"]);
@@ -53,18 +53,18 @@ const props = defineProps({
   },
 });
 
-const lastTargetPropertyData = ref({});
+const lastTargetCategoryData = ref({});
 
 const confrimState = ref(false);
 const openRestoreConfrim = (data) => {
-  lastTargetPropertyData.value = data;
+  lastTargetCategoryData.value = data;
   confrimState.value = true;
 };
 
-const trashProperty = async () => {
+const restoreCategory = async () => {
   confrimState.value = false;
-  await propertyController.restoreProperty(
-    lastTargetPropertyData?.value?.id,
+  await categoryController.restoreCategory(
+    lastTargetCategoryData?.value?.id,
     false
   );
 };

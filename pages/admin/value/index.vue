@@ -38,7 +38,7 @@
         >
           <PropertyValueCard
             :item="item"
-            @trash="openRemoveConfrim"
+            @trash="openTrashConfrim"
             @edit="openEditPropertyModal"
           />
         </div>
@@ -59,8 +59,8 @@
       :form="lastTargetPropertyData"
     />
     <BaseConfrim
-      :isOpen="removeConfrimState"
-      @cancel="removeConfrimState = false"
+      :isOpen="trashConfrimState"
+      @cancel="trashConfrimState = false"
       @confrim="trashProperty"
       confrimText="Yes Trash Property Value"
       :type="lastTargetPropertyData.type"
@@ -95,13 +95,13 @@ const moduleState = computed(() => {
 
 const lastTargetPropertyData = ref({});
 
-const removeConfrimState = ref(false);
-const openRemoveConfrim = (data) => {
+const trashConfrimState = ref(false);
+const openTrashConfrim = (data) => {
   lastTargetPropertyData.value = data;
-  removeConfrimState.value = true;
+  trashConfrimState.value = true;
 };
 const trashProperty = async () => {
-  removeConfrimState.value = false;
+  trashConfrimState.value = false;
   await propertyValueController.trashPropertyValue(
     lastTargetPropertyData?.value?.id,
     true

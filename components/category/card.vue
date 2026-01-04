@@ -16,12 +16,12 @@
             <div
               class="flex align-center color-danger-3 mt-10 cursor-pointer"
               @click="
-                (emit('remove', { id: item.id, type: 'danger' }),
+                (emit('trash', { id: item.id, type: 'danger' }),
                 (dropMenu = false))
               "
             >
               <BaseIcon name="solar:trash-bin-trash-linear" size="20" />
-              <span class="f-s-12 f-w-500 px-5">Remove Category</span>
+              <span class="f-s-12 f-w-500 px-5">Trash Category</span>
             </div>
           </BaseDropMenu>
         </div>
@@ -104,7 +104,7 @@
 </template>
 
 <script setup>
-const emit = defineEmits(['remove', 'edit']);
+const emit = defineEmits(['trash', 'edit']);
 const props = defineProps({
   item: {
     type: Object,

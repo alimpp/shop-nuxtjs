@@ -20,7 +20,7 @@
   <BaseConfrim
     :isOpen="restoreConfrimState"
     @cancel="restoreConfrimState = false"
-    @confrim="trashProperty"
+    @confrim="restoreProperty"
     confrimText="Yes Move To the Property Value"
     :type="lastTargetPropertyValueData.type"
     title="Restore the Property value?"
@@ -53,7 +53,7 @@ const openRestoreConfrim = (data) => {
   restoreConfrimState.value = true;
 };
 
-const trashProperty = async () => {
+const restoreProperty = async () => {
   restoreConfrimState.value = false;
   await propertyValueController.restorePropertyValue(
     lastTargetPropertyValueData?.value?.id,

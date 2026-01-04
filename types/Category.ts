@@ -7,10 +7,12 @@ export interface ICategoryResponseServer {
   iconId: string;
   preViewImage: string;
   preViewIcon: string;
+  trash?: boolean;
 }
 
 export interface ICategoryFromServer {
   name?: string;
   imageId?: string;
   iconId?: string;
+  trash?: boolean;
 }
